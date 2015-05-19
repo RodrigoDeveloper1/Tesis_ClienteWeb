@@ -274,7 +274,9 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\DocumentFormat.OpenXml.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\itextsharp.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
@@ -304,6 +306,7 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.pdb
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.xml
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.xml
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\itextsharp.xml
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
@@ -325,6 +328,8 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Syste
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.xml
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.SqlServer.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
