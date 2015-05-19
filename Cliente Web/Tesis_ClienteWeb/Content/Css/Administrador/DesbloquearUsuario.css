@@ -1,0 +1,17 @@
+﻿#div-tabla-lista-usuarios-habilitados
+{
+    overflow-y: auto;
+    height: 30em;
+}
+
+#div-tabla-lista-usuarios-bloqueados
+{
+    overflow-y: auto;
+    height: 30em;
+}
+
+tr,
+th 
+{
+    font-size: 13px;
+}

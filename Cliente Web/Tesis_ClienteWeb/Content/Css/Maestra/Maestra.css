@@ -1,0 +1,69 @@
+﻿.navbar-static-top { background-color: #428BCA; /*Azul semiclaro*/ }
+.navbar-header .navbar-brand { color: #FFF; /*Blanco*/ }
+.page-header { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+.ui-dialog-title { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+.ui-button { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+.nav > li { font-weight: bold; }
+.alerta-error, .alerta-aclamacion { font-weight: bold; }
+.fuente-12 { font-size: 12px; }
+.fuente-13 { font-size: 13px; }
+
+.sidebar-nav a {
+    color: #90B2F0;
+    font-weight: bold;
+}
+
+.iconogris {
+  color: gray;
+}
+
+.bootstrap-select, .pull-left {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-weight: bold;
+}
+
+.separador
+{
+    padding-bottom: 19px;
+    border-top: 1px solid #eee;
+}
+
+.separador-formularios { margin-bottom: 0; }
+
+.separador-dialogos { padding-bottom: 12px; }
+
+.subtitulos { 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+    font-weight: bold;
+    margin-top: 0 !important; 
+}
+
+.icono-blanco { color: #fff; }
+
+.centrar { text-align: center; }
+
+/********************************************Propiedades de diálogos*****************************************/
+.no-close .ui-dialog-titlebar-close { display: none; }
+
+.ui-dialog .ui-dialog-titlebar
+{
+    color: #90B2F0;    
+    font-weight: bold;
+}
+/***********************************Fin de Propiedades de diálogos*******************************************/
+
+/* Loading gift */
+#loading-gif {
+    display:    block;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../../Images/Maestra/loading.gif') 
+                50% 50% 
+                no-repeat;
+}
+

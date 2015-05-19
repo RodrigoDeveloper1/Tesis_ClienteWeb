@@ -1,0 +1,9 @@
+﻿.eliminaralumno { 
+    cursor: pointer; 
+    color: red;
+}
+
+#div-tabla-lista-alumnos-cargar {
+    overflow-y: auto;
+    height: 40em;
+}

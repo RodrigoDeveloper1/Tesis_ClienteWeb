@@ -1,0 +1,90 @@
+﻿/************************************************************************************************
+ * Copyright from:                                                                              *
+ * http://stackoverflow.com/questions/21168521/scrollable-table-with-fixed-header-in-bootstrap  *
+ *                                                                                              *
+ * Username: giulio - http://stackoverflow.com/users/1008538/giulio                             *
+ ************************************************************************************************/
+ 
+/*table 
+{
+    width: 100%;
+}*/
+
+thead,
+tbody,
+tr, 
+td,
+th
+{ 
+    display: block; 
+}
+
+tr:after 
+{
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th 
+{
+    /*height: 30px;*/
+    height: 60px;
+}
+
+tbody 
+{
+    /*height: 120px;*/
+    height: 260px;
+    overflow-y: auto;
+}
+
+thead th,
+tbody td 
+{
+    /*width: 19.2%;*/
+    float: left;
+}
+
+/************************************************************************************************
+ * Fin de copyright from:                                                                       *
+ * http://stackoverflow.com/questions/21168521/scrollable-table-with-fixed-header-in-bootstrap  *
+ *                                                                                              *
+ * Username: giulio - http://stackoverflow.com/users/1008538/giulio                             *
+ ************************************************************************************************/
+
+#Div-seleccionarcurso
+{
+  padding-bottom: 9px;
+  margin: 0em 0 1em;
+}
+
+.th-nombre { width: 40%; }
+.td-nombre { width: 40%; }
+.th-codigo, .td-codigo { width: 35%; }
+.th-pensum, .td-pensum { width: 25%; }
+
+/************************************* Diálogo Nueva MAteria *******************************************/
+#dialog-nueva-materia { display: none; }
+
+#dialog-nueva-materia  .div-interior-dialog 
+{
+    width: 28em;
+    height: 3em;
+}
+
+#dialog-nueva-materia  .div-interior-dialog div
+{
+    text-align: justify; 
+    font-size: 13px; 
+}
+
+/*********************************** Fin de Diálogo Nueva Materia **************************************/
+.no-close .ui-dialog-titlebar-close { display: none; }
+
+.ui-dialog .ui-dialog-titlebar
+{
+    color: #90B2F0;    
+    font-weight: bold;
+}

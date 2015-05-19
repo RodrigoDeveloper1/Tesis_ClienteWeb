@@ -1,0 +1,35 @@
+﻿.td-nombre { width: 19em; }
+.td-atribucion { width: 13em; }
+.td-tipo { width: 13.50em; }
+.td-sujeto { width: 12em; }
+.td-mensaje > button { font-weight: bold; }
+.td-fecha-envio { width: 11em; }
+#table-notif-person { display: none; }
+
+#contador { 
+    font-weight: bold; 
+    font-size: 13px;
+}
+.verde { color: green; }
+.rojo { color: red; }
+
+#div-table-notificaciones
+{
+    overflow-y: auto;
+    height: 30em;
+}
+
+/** Diálogo mensaje de la notificación **/
+#dialog-mensaje { display: none; }
+#btn-nueva-notificacion { font-weight: bold; }
+
+#div-cuerpo-mensaje-notificacion p { 
+    display: none; 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    text-align: justify;
+}
+/** Fin de diálogo mensaje de la notificación **/
+
+#dialog-nueva-notificacion { display: none; }
+

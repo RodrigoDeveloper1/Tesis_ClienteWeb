@@ -1,0 +1,17 @@
+﻿.combo-tipos-cedula { width: 60px !important; }
+
+/* Mensajes de error personalizados*/
+#div-alerta-no-alumno,
+#div-alerta-no-representantes,
+#div-alerta-no-representante-2 { display: none; } 
+/* Fin de Mensajes de error personalizados*/
+
+#div-tabla-lista-alumnos {
+    overflow-y: auto;
+    height: 40em;
+}
+
+#div-tabla-lista-representantes {
+    overflow-y: auto;
+    height: 15em;
+}

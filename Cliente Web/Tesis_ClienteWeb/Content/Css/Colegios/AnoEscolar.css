@@ -1,0 +1,14 @@
+﻿#div-tabla-lista-colegios {
+    overflow-y: auto;
+    height: 23em;
+}
+
+.subtitulos-ano-escolar { margin-top: 0; }
+
+#fecha-inicio, #fecha-finalizacion {
+    cursor: auto;
+    background-color: white;
+}
+
+.fa-check { color: green; }
+.fa-ban { color: red; }

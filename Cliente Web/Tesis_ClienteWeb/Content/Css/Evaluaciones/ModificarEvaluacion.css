@@ -1,0 +1,12 @@
+﻿#div-tabla-lista-evaluaciones
+{
+    height: 260px;
+    overflow-y: auto;
+}
+
+#table-lista-evaluaciones > tbody > tr.active { background-color: #B9C2DF !important; }
+#table-lista-evaluaciones tbody tr:hover { background-color: #B9C2DF; }
+#div-tabla-lista-evaluaciones tbody > tr { cursor: pointer; }
+.form-subir { padding-top: 25px; }
+.fa-ban { color: red; }
+.td-eliminar { text-align: center; }

@@ -1,0 +1,13 @@
+﻿#div-table-lista-alumnos-cargar .ui-icon-plusthick, 
+#div-table-lista-alumnos-cargar .ui-icon-check,
+#div-table-lista-alumnos-cargar .fa-edit,
+#div-table-lista-alumnos-cargar .fa-minus-circle { cursor: pointer; }
+
+#div-table-lista-alumnos-cargar
+{
+    overflow-y: auto;
+    height: 40em;
+}
+
+.i-editar-alumno { color: blue; }
+.i-eliminar-fila-alumno { color: red; }

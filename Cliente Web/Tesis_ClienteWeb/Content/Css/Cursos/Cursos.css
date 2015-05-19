@@ -1,0 +1,68 @@
+﻿/************************************************Listar Cursos***********************************************/
+/*Tabla de lista de cursos*/
+.th-nombre { width: 22%; }
+.th-numalumnos { width: 18%; }
+.th-periodo-escolar, .td-periodo-escolar { width: 26%; }
+.th-estatus { width: 19%; }
+.th-opcion { width: 10%; }
+
+.td-numero-alumno { width: 10%; }
+.th-numero-alumno { width: 10%; }
+
+.td-nombre { width: 25%; }
+.td-numalumnos { width: 16%; }
+.td-estatus { width: 20%; }
+/*Fin de Tabla de lista de cursos*/
+
+/*Tabla de lista de alumnos*/
+.th-nro-lista-alum, .td-nro-lista-alum { width: 10%; }
+.th-apellidos-alum, .td-apellidos-alum { width: 45%; }
+.th-nombres-alum, .td-nombres-alum { width: 40%; }
+/*Fin de Tabla de lista de cursos*/
+
+#div-panel-datos-esta { margin-top: -13.35em; }
+
+#table-lista-alumnos tbody { height: 17em; }
+
+#table-lista-alumnos thead th 
+{ 
+    height: 3em; 
+    padding-top: 0;
+}
+#table-lista-alumnos tbody td  
+{
+    padding-top: 3px; 
+    padding-bottom: 3px;
+}
+
+#table-lista-cursos > tbody > tr.active > td { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
+#table-lista-cursos tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }
+
+#div-table-lista-cursos
+{
+    overflow-y: auto;
+    height: 20em;
+}
+
+#div-table-lista-alumnos
+{
+    overflow-y: auto;
+    height: 22.50em;
+}
+
+/*Diálogo Nuevo Curso*/
+#dialog-nuevo-curso { display: none; }
+
+#dialog-nuevo-curso .div-interior-dialog 
+{
+    width: 28em;
+    height: 3em;
+}
+
+#dialog-nuevo-curso .div-interior-dialog div
+{
+    text-align: justify; 
+    font-size: 13px; 
+}
+/*Fin de Diálogo Nuevo Curso*/
+/*******************************************Fin de Listar Cursos*********************************************/

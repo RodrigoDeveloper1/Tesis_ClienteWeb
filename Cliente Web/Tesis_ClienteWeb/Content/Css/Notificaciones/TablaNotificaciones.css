@@ -1,0 +1,29 @@
+﻿#div-table-lista-notificaciones-personalizadas
+{
+    overflow-y: auto;
+    height: 27em;    
+}
+
+#div-table-lista-notificaciones-personalizadas td,
+#div-table-lista-notificaciones-personalizadas td .mensaje-notif { font-size: 12px; }
+
+#div-table-lista-notificaciones-personalizadas .th-tipo,
+#div-table-lista-notificaciones-personalizadas .td-tipo { width: 17%; }
+
+#div-table-lista-notificaciones-personalizadas .th-atribucion,
+#div-table-lista-notificaciones-personalizadas .td-atribucion { width: 10%; }
+
+#div-table-lista-notificaciones-personalizadas .th-sujeto,
+#div-table-lista-notificaciones-personalizadas .td-sujeto { width: 23%; }
+
+#div-table-lista-notificaciones-personalizadas .th-enviadopor,
+#div-table-lista-notificaciones-personalizadas .td-enviadopor { width: 13%; }
+
+#div-table-lista-notificaciones-personalizadas .th-curso,
+#div-table-lista-notificaciones-personalizadas .td-curso { width: 17%; }
+
+#div-table-lista-notificaciones-personalizadas .th-fechaenvio,
+#div-table-lista-notificaciones-personalizadas .td-fechaenvio { width: 16%; }
+
+#div-table-lista-notificaciones-personalizadas .th-mensaje,
+#div-table-lista-notificaciones-personalizadas .td-mensaje { /*width: 10%;*/ }

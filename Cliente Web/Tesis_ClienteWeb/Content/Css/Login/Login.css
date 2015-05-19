@@ -1,0 +1,47 @@
+﻿#login-header { padding-bottom: 10px; }
+
+#mensaje-error { 
+    font-size: 13px; 
+    font-weight: bold;
+    text-align: justify;
+}
+
+.input-extra-large
+{
+    width: 350px;
+    margin-bottom: 15px;
+    line-height: 35px;    
+    font-size: 20px;
+}
+
+.col-centered
+{
+    float: none;
+    margin: 0 auto;
+    padding-bottom: 15px;
+}
+
+#login-body-credentials
+{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 27em;
+    float: none;
+    margin: 0 auto;    
+}
+
+#form-login-credentials
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#imagen-logo {
+    width: 300px;
+    height: 350px;
+}
+
+#div-cuerpo-login {
+    padding-top: 60px;
+    padding-bottom: 50px;
+}

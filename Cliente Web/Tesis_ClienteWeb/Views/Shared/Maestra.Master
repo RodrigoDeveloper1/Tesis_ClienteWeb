@@ -1,0 +1,80 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage<Tesis_ClienteWeb.Models.MaestraModel>" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+        
+    <!-- Archivos .css -->
+    <link href="../../Content/Plug-ins/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Plug-ins/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Plug-ins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />        
+    <link href="../../Content/Plug-ins/jquery-ui-1.11.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />    
+    <link href="../../Content/Css/Maestra/metisMenu.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/timeline.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/sb-admin-2.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/morris.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/Maestra.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/sweet-alert.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/Header.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Maestra/TipsMensajes.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="CSSContent" runat="server" />
+
+    <!-- Archivos scripts -->    
+    <script src="../../Scripts/jquery-1.11.0.js" type="text/javascript"></script>
+    <script src="../../Content/Plug-ins/bootstrap-3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Content/Plug-ins/bootstrap-select/dist/js/bootstrap-select.js" type="text/javascript"></script>
+    <script src="../../Content/Plug-ins/jquery-ui-1.11.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Maestra/metisMenu.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Maestra/raphael.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Maestra/sb-admin-2.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Maestra/Maestra.js" type="text/javascript"></script>    
+    <script src="../../Scripts/Views/Maestra/sweet-alert.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Maestra/Header.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Maestra/LoadingGif.js" type="text/javascript"></script>
+    <script src="../../Content/Plug-ins/fabric.js-1.5.0/dist/fabric.min.js" type="text/javascript"></script>
+
+    <asp:ContentPlaceHolder ID="JSContent" runat="server" />
+</head>
+
+<body class="homepage">
+    <% Html.RenderAction("Header","Index"); %>
+
+    <div id="page-wrapper">
+        <!-- Título de la página -->
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-header"><asp:ContentPlaceHolder ID="TituloPagina" runat="server" /></h1>
+            </div>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div class="row">
+            <div class="col-xs-12">
+                <%: Html.ValidationSummary("", new { @class = "alert alert-danger alerta-error", @role="alert", 
+                @style="display: " + Model.MostrarErrores}) %>
+            </div>
+        </div>
+
+        <!-- Mensaje de aclamación -->
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-success alerta-aclamacion" role="alert" style="display: 
+                <%: Model.MostrarAclamaciones %>">
+                    <i class="fa fa-check"></i><%: Model.MensajeAclamacion %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Gif -->
+        <div id="loading-gif"></div>
+
+        <!-- Cuerpo principal -->
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+</body>
+</html>

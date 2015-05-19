@@ -1,0 +1,19 @@
+﻿/*Sección agregar usuario*/
+#div-tabla-lista-usuarios
+{
+    overflow-y: auto;
+    height: 26em;
+}
+/*Fin de Sección agregar usuario*/
+
+/*Sección listar usuarios*/
+#table-lista-usuarios > tbody > tr > td .a-eliminar-usuario { cursor: pointer; }
+#div-tabla-lista-usuarios-grande
+{
+    overflow-y: auto;
+    height: 25em;
+}
+/*Fin de Sección listar usuarios*/
+
+/*Sección editar usuario*/
+/*Fin de Sección editar usuario*/

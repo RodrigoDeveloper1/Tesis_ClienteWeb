@@ -1,0 +1,339 @@
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb2010\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.Fakes.fakesconfig
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\DocumentFormat.OpenXml.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Owin.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojFakesResolveAssemblyReference.cache
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\DocumentFormat.OpenXml.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Owin.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Rotativa.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\DocumentFormat.OpenXml.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Owin.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Rotativa.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.pdb
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.pdb
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.pdb
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
+C:\Users\Mr. Fabio\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\DocumentFormat.OpenXml.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\itextsharp.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Owin.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Rotativa.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Newtonsoft.Json.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\itextsharp.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\DocumentFormat.OpenXml.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\itextsharp.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Owin.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Rotativa.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Data.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb_Models.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\ClosedXML.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\itextsharp.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\PagedList.Mvc.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Helpers.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Http.Owin.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Mvc.Extensions.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Optimization.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.Razor.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb

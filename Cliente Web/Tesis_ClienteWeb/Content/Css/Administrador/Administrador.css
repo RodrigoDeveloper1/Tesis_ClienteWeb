@@ -1,0 +1,31 @@
+﻿.iconos-maestras 
+{    
+    padding: 10px;
+    text-decoration: none !important;
+}
+
+/*************************************************************************************************************/
+/* Referencias de:                                                                                           */
+/* http://stackoverflow.com/questions/10243440/how-to-creat-a-box-when-mouse-over-text-in-pure-css           */
+/*                                                                                                           */
+/*************************************************************************************************************/
+.icono-mensaje
+{
+    display: none;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 30px;
+    left: 30px;
+    padding: 0 15px;
+    position: relative;
+    top: -30px;
+}
+
+.icono-mensaje
+{
+    position: absolute;
+}
+.iconos-maestras:hover .icono-mensaje { display: block; }
+
+/*************************************************************************************************************/
+/* Fin de Fuente.                                                                                            */
+/*************************************************************************************************************/

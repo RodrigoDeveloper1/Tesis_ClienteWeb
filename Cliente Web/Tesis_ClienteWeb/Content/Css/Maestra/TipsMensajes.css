@@ -1,0 +1,49 @@
+﻿.cabecera-tips { padding-bottom: 5px; }
+.tip-informacion { cursor: help; color: blue; }
+
+.tip-mensaje {
+    display: none;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    height: auto;
+    line-height: 15px;
+    position: relative;
+    text-align: left;
+    white-space: normal;
+}
+
+/********************************Posicionamiento y customización de los mensajes******************************/
+/*Alumnos/AgregarAlumno.aspx*/
+/*Docente/AgregarDocente.aspx*/
+#tip-lista-colegios-1 { left: 150px; top: -32px;  width: 160px; position: absolute;                  }
+
+/*Alumnos/AgregarAlumno.aspx*/
+#tip-lista-cursos-1   { left: 139px; top: -75px;  width: 279px; position: absolute;                  }
+
+/*Docente/AgregarDocente.aspx*/
+#tip-lista-materias-1   { left: 148px; top: -32px;  width: 279px; position: absolute;                  }
+
+/*Alumnos/GestionAlumnos.aspx*/
+#tip-lista-colegios-2 { left: 150px; top: -32px;  width: 160px; position: absolute;                  }
+
+/*Alumnos/GestionAlumnos.aspx*/
+/*Docente/AgregarDocente.aspx*/
+#tip-lista-cursos-2   { left: 139px; top: -61px;  width: 279px; position: absolute;                  }
+
+/*Alumnos/AsociarRepresentantes.aspx*/
+#tip-lista-colegios-3 { left: 150px; top: -32px;  width: 160px; position: absolute;                  }
+
+/*Alumnos/AsociarRepresentantes.aspx*/
+#tip-lista-cursos-3   { left: 139px; top: -75px;  width: 200px; position: absolute;                  }
+
+/*Alumnos/AsociarRepresentantes.aspx*/
+#tip-btn-asociar      { left: 460px; top: -115px; width: 300px; position: absolute; font-size: 11px; }
+
+/*Notificaciones/Notificaciones/Personalizadas*/
+#tip-lista-colegios-4 { left: 150px; top: -32px;  width: 160px; position: absolute;                  }
+
+/*Notificaciones/Notificaciones/Personalizadas*/
+#tip-lista-atribucion { left: 115px; top: -48px;  width: 170px; position: absolute; font-size: 11px; }
+/****************************Fin de: Posicionamiento y customización de los mensajes**************************/
+
+.tip-informacion:hover .tip-mensaje { display: block; }
+.btn-tip-mensaje:hover .tip-mensaje { display: block; }

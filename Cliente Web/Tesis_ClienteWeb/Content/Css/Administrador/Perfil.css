@@ -1,0 +1,22 @@
+﻿#div-tabla-lista-perfiles
+{
+    overflow-y: auto;
+    height: 40em;
+}
+
+#div-tabla-lista-perfiles th,
+#div-tabla-lista-perfiles td { font-size: 12px; }
+
+#table-lista-perfiles tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }
+#table-lista-perfiles > tbody > tr.active > td { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
+#table-lista-perfiles > tbody > tr > td .a-eliminar-perfil { cursor: pointer; }
+
+#table-lista-perfiles > tbody > tr > td.td-editar,
+#table-lista-perfiles > tbody > tr > td.td-eliminar { text-align: center; }
+
+/*Descontinuado, era para eliminar el estilo por defecto de los botones*/
+/*#btn-eliminar-perfil 
+{
+    background: none; 
+    border: 0; 
+}*/

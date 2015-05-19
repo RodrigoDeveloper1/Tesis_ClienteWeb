@@ -1,0 +1,67 @@
+﻿ul.social {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+ul.social > li {
+  margin: 0 0 16px;
+}
+ul.social > li > a {
+  display: block;
+  font-size: 18px;
+}
+ul.social > li > a i {
+  margin-right: 10px;
+}
+
+.icon-social {
+  border: 0;
+  color: #fff;
+  border-radius: 100%;
+  display: inline-block !important;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  padding: 0;
+}
+
+.icon-social.fa-facebook {
+  background: #4f7dd4;
+}
+.icon-social.fa-facebook:hover {
+  background: #789bde;
+}
+.icon-social.fa-twitter {
+  background: #5bceff;
+}
+.icon-social.fa-twitter:hover {
+  background: #8eddff;
+}
+.icon-social.fa-linkedin {
+  background: #21a6d8;
+}
+.icon-social.fa-linkedin:hover {
+  background: #49b9e3;
+}
+.icon-social.fa-google-plus {
+  background: #dc422b;
+}
+.icon-social.fa-google-plus:hover {
+  background: #e36957;
+}
+.icon-social.fa-pinterest {
+  background: #cb2027;
+}
+.icon-social.fa-pinterest:hover {
+  background: #e03e44;
+}
+.icon-social.fa-youtube {
+  background: #ce332d;
+}
+.icon-social.fa-youtube:hover {
+  background: #da5954;
+}
+.icon-social:hover {
+  color: #fff;
+}

@@ -1,0 +1,22 @@
+﻿#div-tabla-lista-perfiles
+{
+    overflow-y: auto;
+    height: 40em;
+}
+
+th, 
+td 
+{
+    font-size: 13px;
+}
+
+#table-lista-perfiles > tbody > tr > td.td-incluir { text-align: center; }
+/*Sección de listado de roles*/
+#div-tabla-lista-roles
+{
+    overflow-y: auto;
+    height: 25em;
+}
+
+.a-eliminar-rol { cursor: pointer; }
+/*Fin de Sección de listado de roles*/

@@ -1,0 +1,14 @@
+﻿#div-tabla-lista-materias
+{
+    overflow-y: auto;
+    height: 24em;
+}
+
+th,
+td { font-size: 13px; }
+
+.td-eliminar { text-align: center; }
+.fa-ban { 
+    cursor: pointer; 
+    color: red;
+}

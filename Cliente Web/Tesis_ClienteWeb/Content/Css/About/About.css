@@ -1,0 +1,85 @@
+﻿.box {
+  padding: 50px 30px;
+  background: #fff;
+  border-bottom: 1px solid #e9e9e9;
+  position: relative;
+}
+
+.box.first {
+  margin-top: -40px;
+  border-radius: 5px 5px 0 0;
+}
+.box.last {
+  border-radius: 0 0 5px 5px;
+}
+
+.box h2 {
+  padding: 10px 30px;
+  display: inline-block;
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 30px;
+  font-size: 48px;
+}
+
+.carousel.scale .left-arrow,
+.carousel.scale .right-arrow {
+  top: 30%;
+  position: absolute;
+}
+.carousel.scale .left-arrow {
+  left: -10px;
+}
+.carousel.scale .right-arrow {
+  right: -10px;
+}
+.carousel.scale .active .row > div:nth-child(1) {
+  -webkit-animation: scaleUp 200ms linear 0 both;
+  -moz-animation: scaleUp 200ms linear 0 both;
+  -ms-animation: scaleUp 200ms linear 0 both;
+  -o-animation: scaleUp 200ms linear 0 both;
+  animation: scaleUp 200ms linear 0 both;
+}
+.carousel.scale .active .row > div:nth-child(2) {
+  -webkit-animation: scaleUp 200ms linear 100ms both;
+  -moz-animation: scaleUp 200ms linear 100ms both;
+  -ms-animation: scaleUp 200ms linear 100ms both;
+  -o-animation: scaleUp 200ms linear 100ms both;
+  animation: scaleUp 200ms linear 100ms both;
+}
+.carousel.scale .active .row > div:nth-child(3) {
+  -webkit-animation: scaleUp 200ms linear 200ms both;
+  -moz-animation: scaleUp 200ms linear 200ms both;
+  -ms-animation: scaleUp 200ms linear 200ms both;
+  -o-animation: scaleUp 200ms linear 200ms both;
+  animation: scaleUp 200ms linear 200ms both;
+}
+.carousel.scale .active .row > div:nth-child(4) {
+  -webkit-animation: scaleUp 200ms linear 400ms both;
+  -moz-animation: scaleUp 200ms linear 400ms both;
+  -ms-animation: scaleUp 200ms linear 400ms both;
+  -o-animation: scaleUp 200ms linear 400ms both;
+  animation: scaleUp 200ms linear 400ms both;
+}
+
+.center {
+  text-align: center;
+}
+
+.gap {
+  margin-bottom: 50px;
+}
+
+.member {
+  margin: 0 25px;
+  text-align: center;
+}
+
+.portfolio-item img {
+  width: 100%;
+}
+
+#team-scroller .designation {
+  margin-top: 10px;
+  display: block;
+}

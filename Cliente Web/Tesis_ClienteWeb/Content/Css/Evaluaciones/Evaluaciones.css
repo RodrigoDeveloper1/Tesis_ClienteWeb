@@ -1,0 +1,129 @@
+﻿/************************************************************************************************
+ * Copyright from:                                                                              *
+ * http://stackoverflow.com/questions/21168521/scrollable-table-with-fixed-header-in-bootstrap  *
+ *                                                                                              *
+ * Username: giulio - http://stackoverflow.com/users/1008538/giulio                             *
+ ************************************************************************************************/
+ 
+/*table 
+{
+    width: 100%;
+}*/
+
+thead,
+tbody,
+tr, 
+td,
+th
+{ 
+    display: block; 
+}
+
+tr:after 
+{
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th 
+{
+    /*height: 30px;*/
+    height: 60px;
+}
+
+tbody 
+{
+    /*height: 120px;*/
+    height: 370px;
+    overflow-y: auto;
+}
+
+thead th,
+tbody td 
+{
+    /*width: 19.2%;*/
+    float: left;
+}
+
+/************************************************************************************************
+ * Fin de copyright from:                                                                       *
+ * http://stackoverflow.com/questions/21168521/scrollable-table-with-fixed-header-in-bootstrap  *
+ *                                                                                              *
+ * Username: giulio - http://stackoverflow.com/users/1008538/giulio                             *
+ ************************************************************************************************/
+
+
+.th-evaluacion { width: 14%; }
+.td-evaluacion { width: 14%; }
+.th-tecnica, .td-tecnica { width: 12%; }
+.th-tipo, .td-tipo { width: 11%; }
+.th-instrumento { width: 15%; }
+.td-instrumento { width: 16%; }
+.th-curso, .td-curso { width: 13%; }
+.th-materia, .td-materia { width: 11%; }
+.th-porcentaje{ width: 7%; }
+.td-porcentaje { width: 7%; }
+.th-opcion { width: 13%; }
+.td-opcion { width: 14%; }
+.th-eliminar { width: 14%; }
+
+
+.th-evaluacion-prof { width: 20%; }
+.td-evaluacion-prof { width: 20%; }
+.th-tecnica-prof, .td-tecnica-prof { width: 15%; }
+.th-tipo-prof, .td-tipo-prof { width: 14%; }
+.th-instrumento-prof { width: 17%; }
+.td-instrumento-prof { width: 18%; }
+.th-curso-prof, .td-curso-prof { width: 15%; }
+.th-materia-prof, .td-materia-prof { width: 13%; }
+.th-porcentaje-prof{ width: 7%; }
+.td-porcentaje-prof { width: 7%; }
+.th-opcion-prof { width: 13%; }
+.td-opcion-prof { width: 14%; }
+
+/************************************* Diálogo Nueva Evaluaci[on *******************************************/
+#dialog-nueva-evaluacion 
+{
+    display: none;
+}
+
+#dialog-nueva-evaluacion  .div-interior-dialog 
+{
+    width: 28em;
+    height: 3em;
+}
+
+#dialog-nueva-evaluacion  .div-interior-dialog div
+{
+    text-align: justify; 
+    font-size: 13px; 
+}
+/*********************************** Fin de Diálogo Nueva Evaluacion **************************************/
+
+.no-close .ui-dialog-titlebar-close 
+{
+  display: none;
+}
+
+.ui-dialog .ui-dialog-titlebar
+{
+    color: #90B2F0;    
+    font-weight: bold;
+}
+
+#Div-seleccionarcurso
+{
+  padding-bottom: 9px;
+  margin: 0em 0 1em;
+}
+
+#Div-seleccionarmateria
+{
+  padding-bottom: 9px;
+  margin: 0em 0 1em;
+}
+
+#table-lista-evaluaciones > tbody > tr.active > td { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
+#table-lista-evaluaciones tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }

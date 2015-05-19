@@ -1,0 +1,8 @@
+﻿#div-table-lista-notificaciones-automaticas
+{
+    overflow-y: auto;
+    height: 27em;    
+}
+
+#div-table-lista-notificaciones-automaticas td,
+#div-table-lista-notificaciones-automaticas td .mensaje-notif { font-size: 12px; }

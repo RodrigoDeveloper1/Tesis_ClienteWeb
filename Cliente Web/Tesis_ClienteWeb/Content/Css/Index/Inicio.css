@@ -1,0 +1,29 @@
+﻿.th-dia-index, .td-dia-index { width: 10%; }
+.th-fecha-index, .td-fecha-index { width: 12%; }
+.th-hora-index, .td-hora-index { width: 12%; }
+.th-tipos-eventos-index, .td-tipos-eventos-index { width: 13%; }
+.th-nombre-evaluacion-index, td-nombre-evaluacion-index { width: 15%; }
+
+
+.panel-title {
+    font-weight: bold !important;
+    color: white !important;
+    font-size: 15px !important;
+}
+
+#panel-rankingalumnos-inicio
+{
+    height: 40em;
+}
+#panel-aprovsrepro-inicio
+{
+    height: 40em;
+}
+.fa-file-pdf-o { color: black !important; }
+.fa-file-pdf-o:hover { color: blue !important; }
+
+.rankingalumnos-inicio
+{
+    height: 30em; 
+    padding-bottom: 8em;
+}

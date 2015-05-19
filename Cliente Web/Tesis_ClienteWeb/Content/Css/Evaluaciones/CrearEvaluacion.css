@@ -1,0 +1,49 @@
+﻿.th-nombre { width: 25%; }
+.td-nombre { width: 26%; }
+.th-porcentaje { width: 7%; }
+.td-porcentaje { width: 6%; }
+.th-inicio { width: 21%; }
+.td-inicio { width: 21%; }
+.th-fin { width: 21%; }
+.td-fin { width: 21%; }
+.th-tipo { width: 19%; }
+.td-tipo { width: 19%; }
+
+#table-lista-evaluaciones thead,
+#table-lista-evaluaciones tbody,
+#table-lista-evaluaciones tr, 
+#table-lista-evaluaciones td,
+#table-lista-evaluaciones th
+{ 
+    display: block; 
+}
+
+#table-lista-evaluaciones tr:after 
+{
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+#table-lista-evaluaciones thead th 
+{
+    /*height: 30px;*/
+    height: 60px;
+}
+
+#table-lista-evaluaciones tbody 
+{
+    /*height: 120px;*/
+    height: 260px;
+    overflow-y: auto;
+}
+
+#table-lista-evaluaciones thead th,
+#table-lista-evaluaciones tbody td 
+{
+    /*width: 19.2%;*/
+    float: left;
+}
+
+#i-add-fila-evaluaciones, .ui-icon-check, .fa-minus-circle { cursor: pointer; }

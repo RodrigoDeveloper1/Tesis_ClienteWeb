@@ -1,0 +1,12 @@
+﻿#panel-rankingalumnos { height: 36em; }
+#panel-ranking-peores { height: 36em; }
+#panel-ranking-peores2 { height: 36em; }
+#panel-ranking-peores3 { height: 36em; }
+#panel-aprovvsrepro { height: 31em; }
+#panel-proporcion-notas-evaluacion { height: 36em; }
+#panel-materiadificultad { height: 31em; }
+
+.panel-heading { height: 48px; font-weight: bold; }
+.fa-file-pdf-o { color: black !important; }
+.fa-file-pdf-o:hover { color: blue !important; }
+.descripcion-estadistica { text-align: justify; }

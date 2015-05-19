@@ -1,0 +1,6 @@
+﻿#dialog-nueva-notificacion { display: none; }
+#dialog-nueva-notificacion label { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+#dialog-nueva-notificacion #fila-mensaje-nueva-notificacion #text-area-notificacion { 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important; 
+}
+.ui-dialog { top: 72px !important; }

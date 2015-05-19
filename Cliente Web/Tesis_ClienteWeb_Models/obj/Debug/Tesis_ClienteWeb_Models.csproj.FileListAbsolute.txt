@@ -1,0 +1,154 @@
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll.config
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Mvc.JQuery.Datatables.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.pdb
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.csprojResolveAssemblyReference.cache
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Rodrigo\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll.config
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Mvc.JQuery.Datatables.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.pdb
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.csprojResolveAssemblyReference.cache
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Documents\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll.config
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Mvc.JQuery.Datatables.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.pdb
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll.config
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Tesis_ClienteWeb_Models.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Mvc.JQuery.Datatables.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\PagedList.Mvc.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Helpers.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Mvc.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.Razor.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.SqlServer.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.pdb

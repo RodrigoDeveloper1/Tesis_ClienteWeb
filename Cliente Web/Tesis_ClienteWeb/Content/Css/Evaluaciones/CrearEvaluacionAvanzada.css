@@ -1,0 +1,7 @@
+﻿#input-porcentaje { padding-top: 25px; }
+
+#fecha-inicio,
+#fecha-finalizacion {
+    cursor: default !important;
+    background-color: transparent !important;
+}

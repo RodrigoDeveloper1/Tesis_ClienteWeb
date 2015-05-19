@@ -1,0 +1,22 @@
+﻿/************************************* Diálogo Nueva técnica *******************************************/
+#dialog-nueva-tecnica { display: none; } 
+
+#dialog-nueva-tecnica  .div-interior-dialog 
+{
+    width: 28em;
+    height: 3em;
+}
+
+#dialog-nueva-tecnica  .div-interior-dialog div
+{
+    text-align: justify; 
+    font-size: 13px; 
+}
+
+/*********************************** Fin de Diálogo Nueva técnica **************************************/
+.no-close .ui-dialog-titlebar-close { display: none; }
+
+.ui-dialog .ui-dialog-titlebar
+{
+    color: #90B2F0;    
+    font-weight: bold;

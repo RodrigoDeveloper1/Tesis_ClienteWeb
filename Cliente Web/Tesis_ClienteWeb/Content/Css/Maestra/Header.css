@@ -1,0 +1,80 @@
+﻿#a-usuario { color: white; }
+.navbar { min-height: 60px; }
+.sidebar { margin-top: 59px; }
+.navbar-brand { padding: 5px 0 0 18px; }
+.navbar-top-links li a { padding: 19px; }
+.header-next-notifications { text-align: justify; }
+
+#a-img-logo img { 
+    height: 50px;
+    padding-right: 1px;
+    width: auto;
+}
+
+/* Sección de estilo para el número de notificaciones */
+/* Fuente: http://jsfiddle.net/b8K77/2445/ 
+ *         http://stackoverflow.com/questions/5747863/easiest-css-for-facebook-style-red-notifications
+ */
+#div-container-nro-notificaciones {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+}
+
+#nro-notificaciones {
+    position:absolute;
+    top: -25px;
+    right: 10px;
+    padding:1px 2px 1px 2px;
+    background-color:red;
+    color:white;
+    font-weight:bold;
+    font-size: 10px;
+    
+    border-radius:30px;
+    box-shadow:1px 1px 1px gray;
+}
+
+#nro-notificaciones2
+{
+    background-color:red;
+    color:white;
+    font-weight:bold;
+    font-size: 10px;
+    border-radius:30px;
+    box-shadow:2px 2px 2px gray;
+    padding: 2px 4px 2px 4px;
+    float: right;
+}
+/* Fin: Sección de estilo para el número de notificaciones */
+
+
+
+/* Sección: íconos de cabecera */
+.iconos-seleccionados { 
+    cursor: pointer; 
+    padding: 10px; 
+    text-decoration: none !important; 
+}
+
+.iconos-seleccionados:hover { background-color: transparent !important; }
+.iconos-seleccionados:focus { background-color: #5bc0de !important; } 
+/* Fin de Sección: íconos de cabecera */
+
+
+
+/*Sección: mensajes tips de íconos cabecera */
+.icono-mensaje-header
+{
+    display: none;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 30px;
+    left: -100px;
+    padding: 0 15px;
+    position: relative;
+    top: 40px;
+}
+
+.icono-mensaje-header { position: absolute; }
+.iconos-seleccionados:hover .icono-mensaje-header { display: block; }
+/*Fin de Sección: mensajes tips de íconos cabecera */

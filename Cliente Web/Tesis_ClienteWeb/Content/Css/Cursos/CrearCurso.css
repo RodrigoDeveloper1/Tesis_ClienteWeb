@@ -1,0 +1,60 @@
+﻿#ul-nav-campos-obligatorios > li > a { background-color: #FFFFFF; }
+#ul-nav-campos-obligatorios > li > a:hover { background-color: #D7F3F1; }
+#ul-nav-campos-obligatorios > li.active > a { background-color: #D7F3F1; }
+
+#div-panel-periodo-escolar { display: none; }
+#div-panel-lista-asignaturas { margin-top: -25.4em; }
+
+#div-table-lista-cursos
+{
+    overflow-y: auto;
+    height: 32em;
+}
+
+#div-table-lista-cursos table td
+{
+    padding-top: 3px; 
+    padding-bottom: 3px;
+}
+
+#div-table-lista-alumnos-cargar .td-nro-alumno { width: 8%; }
+#div-table-lista-alumnos-cargar .td-apellidos-alumno { width: 30%; }
+#div-table-lista-alumnos-cargar .td-nombres-alumno { width: 30%; }
+#div-table-lista-alumnos-cargar .td-agregar-alumno { width: 4%; }
+#div-table-lista-alumnos-cargar .td-eliminar-alumno { width: 4%; }
+
+#div-table-lista-alumnos-cargar .ui-icon-plusthick, 
+#div-table-lista-alumnos-cargar .ui-icon-check,
+#div-table-lista-alumnos-cargar .fa-edit,
+#div-table-lista-alumnos-cargar .fa-minus-circle { cursor: pointer; }
+
+#span-btn-files 
+{
+    position: relative;
+    overflow: hidden;
+}
+
+#span-btn-files input[type=file]
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.fa-ban { cursor: pointer; }
+.td-opcion, .th-opcion, .th-estatus, .td-status {text-align: center; }
+
+#select-to, #select-from { 
+    font-size: 11px; 
+    height: 17.2em;
+}
