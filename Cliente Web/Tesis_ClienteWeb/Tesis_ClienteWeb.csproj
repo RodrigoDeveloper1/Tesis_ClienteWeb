@@ -2396,8 +2396,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
-    <Folder Include="App_Uploads\Reports_Remains\" />
-    <Folder Include="App_Uploads\Reports_ServerSide\" />
     <Folder Include="Content\Css\Errores\" />
     <Folder Include="Content\Plug-ins\pick-a-color-master\docs\" />
     <Folder Include="Scripts\Views\Errores\" />
@@ -2409,11 +2407,6 @@
     <Content Include="Views\Shared\Maestra.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Uploads\Lista_Alumnos\2º A %28formato invalido%29.xls" />
-    <Content Include="App_Uploads\Lista_Alumnos\2º A %28formato inválido%29.xls" />
-    <Content Include="App_Uploads\Lista_Alumnos\2º A.xls" />
-    <Content Include="App_Uploads\Lista_Alumnos\2º A.xlsx" />
-    <Content Include="App_Uploads\Lista_Alumnos\prueba.xlsx" />
     <None Include="Content\Plug-ins\bootstrap-3.2.0\css\bootstrap-theme.css.map" />
     <None Include="Content\Plug-ins\bootstrap-3.2.0\css\bootstrap.css.map" />
     <None Include="Content\Plug-ins\bootstrap-3.2.0\fonts\glyphicons-halflings-regular.eot" />
