@@ -102,7 +102,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
                     <!-- Nro de alumnos del curso -->
                     <div class="form-group col-xs-4">
                         <label for="input-nro-alumnos"># Alumnos (autogenerable):</label>
-                        <%: Html.TextBoxFor(q => q.Course.StudentTotal, new { @type = "text", @class = "form-control", 
+                        <%: Html.TextBoxFor(q => q.Course.Students.Count(), new { @type = "text", @class = "form-control", 
                             @id = "input-nro-alumnos", disabled="disabled"}) %>
                     </div>
 
@@ -111,38 +111,13 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
                         <label for="input-nro-asignaturas"># Asignaturas (autogenerable):</label>
 
                     </div>
-
-                    <!-- Estatus del curso -->
-                    <div class="form-group col-xs-4">
-                        <label for="input-estatus">Estatus (autogenerable):</label>
-                        <%: Html.TextBoxFor(q => q.Course.Status, new { @type = "text", @class = "form-control", 
-                            @id = "input-estatus", disabled="disabled" }) %>
-                    </div>
-
                 </div>
 
                 <!-- Panel de Períodos Escolares -->
                 <div class="panel-body" id="div-panel-periodo-escolar">
-
-                    <!-- Fecha de Inicio -->
-                    <div class="form-group col-xs-6">
-                        <label for="fecha-inicio">Fecha inicio:</label>
-                        <%: Html.TextBoxFor(q => q.Course.StartDate, new { @type = "text", @class = "datepicker form-control", 
-                            @id = "fecha-inicio" }) %>
-                    </div>
-
-                    <!-- Fecha de Finalización -->
-                    <div class="form-group col-xs-6">
-                        <label for="fecha-finalizacion">Fecha finalización:</label>
-                        <%: Html.TextBoxFor(q => q.Course.FinishDate, new { @type = "text", @class = "datepicker form-control", 
-                            @id = "fecha-finalizacion" }) %>
-                    </div>
-
-
                     <div class="col-xs-12">
                         <div class="separador"></div>
                     </div>
-
 
                     <div class="row">
                         <div class="col-xs-3">
@@ -348,7 +323,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
-    <script src="../../Scripts/Views/Cursos/ModificarCurso.js" type="text/javascript" language="javascript"></script>
+    <script src="../../Scripts/Views/Cursos/ModificarCurso.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="TituloPagina" runat="server">
