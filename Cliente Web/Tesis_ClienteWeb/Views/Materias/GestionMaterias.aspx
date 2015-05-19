@@ -93,14 +93,14 @@
                             <% { %>
                             <tr>
                                 <td class="td-name"><%: materia.Name %></td>
-                                <td class="td-course centrar"><%: materia.Courses.Count %></td>
+                                <td class="td-course centrar"><%: materia.CASUs.Count %></td>
                                 <td class="td-editar centrar">
                                     <a class="fa fa-pencil"
-                                        href="EditarMateria/<%: materia.SubjectdId %>"></a>
+                                        href="EditarMateria/<%: materia.SubjectId %>"></a>
                                 </td>
                                 <td class="td-eliminar centrar">
                                     <a class="fa fa-minus-circle a-eliminar-materia"
-                                        id="<%: materia.SubjectdId %>"></a>
+                                        id="<%: materia.SubjectId %>"></a>
                                 </td>
                             </tr>
                             <% } %>
