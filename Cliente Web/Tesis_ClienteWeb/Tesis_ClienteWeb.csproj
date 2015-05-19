@@ -350,17 +350,6 @@
     <Content Include="Content\Images\Otras\img05.jpg" />
     <Content Include="Content\Images\Otras\img06.jpg" />
     <Content Include="Content\Images\Maestra\header.jpg" />
-    <Content Include="Content\Images\Maestra\pics01.jpg" />
-    <Content Include="Content\Images\Maestra\pics02.jpg" />
-    <Content Include="Content\Images\Maestra\pics05.jpg" />
-    <Content Include="Content\Images\Maestra\pics06.jpg" />
-    <Content Include="Content\Images\Maestra\pics07.jpg" />
-    <Content Include="Content\Images\Maestra\pics08.jpg" />
-    <Content Include="Content\Images\Maestra\pics09.jpg" />
-    <Content Include="Content\Images\Maestra\pics10.jpg" />
-    <Content Include="Content\Images\Maestra\pics11.jpg" />
-    <Content Include="Content\Images\Maestra\pics12.jpg" />
-    <Content Include="Content\Images\Maestra\pics13.jpg" />
     <Content Include="Content\Images\Otras\mobileUI-site-nav-opener-bg.svg" />
     <Content Include="Content\Images\Otras\overlay.png" />
     <Content Include="Content\Images\Otras\spacer.gif" />
