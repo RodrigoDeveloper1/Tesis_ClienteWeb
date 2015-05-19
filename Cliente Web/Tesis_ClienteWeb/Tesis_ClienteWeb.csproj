@@ -367,7 +367,6 @@
     <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\css\bootstrap-responsive.css" />
     <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\css\bootstrap-timepicker.css" />
     <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\css\bootstrap-timepicker.min.css" />
-    <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\Gruntfile.js" />
     <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\index.html" />
     <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\js\bootstrap-timepicker.js" />
     <Content Include="Content\Plug-ins\bootstrap-timepicker-gh-pages\js\bootstrap-timepicker.min.js" />
