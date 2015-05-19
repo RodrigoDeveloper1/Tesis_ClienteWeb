@@ -2395,6 +2395,7 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Browsers\" />
     <Folder Include="App_Uploads\Reports_Remains\" />
     <Folder Include="App_Uploads\Reports_ServerSide\" />
     <Folder Include="Content\Css\Errores\" />
@@ -2408,7 +2409,6 @@
     <Content Include="Views\Shared\Maestra.Master" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Browsers\qt.browser" />
     <Content Include="App_Uploads\Lista_Alumnos\2º A %28formato invalido%29.xls" />
     <Content Include="App_Uploads\Lista_Alumnos\2º A %28formato inválido%29.xls" />
     <Content Include="App_Uploads\Lista_Alumnos\2º A.xls" />
