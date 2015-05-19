@@ -179,7 +179,6 @@
     <Compile Include="Controllers\AlumnosController.cs" />
     <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\ColegiosController.cs" />
-    <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\BridgeController.cs" />
     <Compile Include="Controllers\CursosController.cs" />
     <Compile Include="Controllers\ErroresController.cs" />
@@ -2326,8 +2325,6 @@
     <Content Include="Views\Colegios\EditarColegio.aspx" />
     <Content Include="Views\Colegios\CrearColegio.aspx" />
     <Content Include="Views\Colegios\ListarColegios.aspx" />
-    <Content Include="Views\Contacto\Contacto.aspx" />
-    <Content Include="Views\Contacto\Email.aspx" />
     <Content Include="Views\Cursos\GestionCursos.aspx" />
     <Content Include="Views\Cursos\CrearCurso.aspx" />
     <Content Include="Views\Cursos\ListaCursos.aspx" />
