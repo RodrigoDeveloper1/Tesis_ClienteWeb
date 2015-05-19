@@ -243,7 +243,6 @@
     <Content Include="Content\Css\Alumnos\ManejadorArchivosAlumnos.css" />
     <Content Include="Content\Css\Alumnos\Representantes.css" />
     <Content Include="Content\Css\Atribuciones\Atribuciones.css" />
-    <Content Include="Content\Css\Calificaciones\Definitivas.css" />
     <Content Include="Content\Css\Calificaciones\GestionCalificaciones.css" />
     <Content Include="Content\Css\Calificaciones\ModificarCalificaciones.css" />
     <Content Include="Content\Css\Calificaciones\handsontable.full.css" />
