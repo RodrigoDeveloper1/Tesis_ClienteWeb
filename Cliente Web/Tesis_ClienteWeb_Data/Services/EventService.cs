@@ -299,6 +299,62 @@ namespace Tesis_ClienteWeb_Data.Services
             #endregion
         }
         /// <summary>
+        /// Método que crea aquellos eventos que el sistema debe crear de forma automática, según el tipo de
+        /// acción que ocurra. Dentro del método se especifia la acción a tomar según el caso.
+        /// 
+        /// Rodrigo Uzcátegui - 06-06-15
+        /// </summary>
+        /// <param name="categoria">La categoría del evento a ser creado</param>
+        /// <returns>True: Se creó el evento. False: No se creó el evento</returns>
+        public bool CrearEventoGlobal(int categoria, Event evento)
+        {
+            UserService userService = new UserService(this._unidad);
+            NotificationService notificationService = new NotificationService(this._unidad);
+            evento.DeleteEvent = false; //Evento global
+
+            switch (categoria)
+            {
+                #region Case: Nuevo evento 1 día
+                case ConstantRepository.GLOBAL_EVENT_CATEGORY_NEW_EVENT_1_DAY:
+                    #region Evento #1
+                    evento.Color = ConstantRepository.EVENT_COLOR_LIST[ConstantRepository.EVENT_EVENT_TYPE_EventoUnDia];
+                    evento.Notifications = notificationService.CrearNotificacionAutomatica(
+                    ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_1_DAY, evento, null);
+                    #endregion
+
+                    break;
+                #endregion
+                #region Case: Nuevo evento de varios días
+                case ConstantRepository.GLOBAL_EVENT_CATEGORY_NEW_EVENT_VARIOUS_DAYS:
+                    #region Evento #1
+                    evento.Color = ConstantRepository.EVENT_COLOR_LIST[ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias];
+                    evento.Notifications = notificationService.CrearNotificacionAutomatica(
+                    ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_VARIOUS_DAYS, evento, null);
+                    #endregion
+                    
+                    break;
+                #endregion
+            };
+
+            #region Salvando el eventos
+            try
+            {
+                _unidad.RepositorioEvent.Add(evento);
+                _unidad.Save();
+
+                return true;
+            }
+            #endregion
+            #region Catch de errores
+            catch (Exception e)
+            {
+                throw e;
+            }
+            #endregion
+        }
+
+
+        /// <summary>
         /// Método que crea eventos personalizados del sistema, según el tipo de acción que ocurra. Dentro del 
         /// método se especifia la acción a tomar según el caso.
         /// </summary>
@@ -342,7 +398,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     evento.FinishDate = assessment.FinishDate;
                     evento.EndHour = assessment.EndHour;
                     evento.SchoolYear = assessment.CASU.Period.SchoolYear;
-                    evento.Users.Add(assessment.CASU.User); //Docente respectivo
+                    evento.Users.Add(assessment.CASU.Teacher); //Docente respectivo
                     
                     evento.Notifications = notificationService.CrearNotificacionAutomatica(
                         ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_ASSESSMENTS, assessment);
@@ -405,7 +461,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     evento.FinishDate = assessment.FinishDate;
                     evento.EndHour = assessment.EndHour;
                     evento.SchoolYear = assessment.CASU.Period.SchoolYear;
-                    evento.Users.Add(assessment.CASU.User); //Docente respectivo
+                    evento.Users.Add(assessment.CASU.Teacher); //Docente respectivo
 
                     evento.Notifications = notificationService.CrearNotificacionAutomatica(
                         ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_ASSESSMENTS, assessment);
@@ -426,87 +482,7 @@ namespace Tesis_ClienteWeb_Data.Services
 
 
 
-        public bool CrearEventoGlobalPantallaEventos(int categoria, Event evento)
-        {
-            #region Declaracion de variables
-            UserService userService = new UserService(this._unidad);
-            NotificationService notificationService = new NotificationService(this._unidad);
-
-            bool DeleteEvent = false; //Evento global
-
-            List<Event> listaEventos = new List<Event>();
-            Event evento1 = new Event(DeleteEvent);
-            #endregion
-
-            switch (categoria)
-            {
-                #region Case: Nuevo evento 1 día
-                case ConstantRepository.GLOBAL_EVENT_CATEGORY_NEW_EVENT_1_DAY:
-                    #region Evento #1
-                    evento1.Color = ConstantRepository.EVENT_COLOR_LIST[ConstantRepository.EVENT_EVENT_TYPE_EventoUnDia];
-                    evento1.EventType = evento.EventType;
-                    evento1.Name = evento.Name;
-                    evento1.Description = evento.Description;
-                    evento1.StartDate = evento.StartDate;
-                    evento1.StartHour = evento.StartHour;
-                    evento1.FinishDate = evento.FinishDate;
-                    evento1.EndHour = evento.EndHour;
-;
-
-    evento1.Notifications = notificationService.CrearNotificacionAutomaticaSinSalvadoPantallaEventos(
-    ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_1_DAY, evento, null);
-                    evento1.SchoolYear = evento.SchoolYear;
-                    #endregion
-
-                    #region Añadiendo a la lista de eventos
-                    listaEventos.Add(evento1);
-                    #endregion
-                    break;
-                #endregion
-                #region Case: Nuevo evento de varios días
-                case ConstantRepository.GLOBAL_EVENT_CATEGORY_NEW_EVENT_VARIOUS_DAYS:
-                    #region Evento #1
-                    evento1.Color = ConstantRepository.EVENT_COLOR_LIST[ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias];
-                    evento1.EventType = evento.EventType;
-                    evento1.Name = evento.Name;
-                    evento1.Description = evento.Description;
-                    evento1.StartDate = evento.StartDate;
-                    evento1.StartHour = evento.StartHour;
-                    evento1.FinishDate = evento.FinishDate;
-                    evento1.EndHour = evento.EndHour;
-                    ;
-
-                    evento1.Notifications = notificationService.CrearNotificacionAutomaticaSinSalvadoPantallaEventos(
-                    ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_VARIOUS_DAYS, evento, null);
-                    evento1.SchoolYear = evento.SchoolYear;
-                    #endregion
-
-                    #region Añadiendo a la lista de eventos
-                    listaEventos.Add(evento1);
-                    #endregion
-                    break;
-                #endregion
-            };
-
-            #region Salvando los eventos globales
-            try
-            {
-                foreach (Event eventox in listaEventos)
-                {
-                    _unidad.RepositorioEvent.Add(eventox);
-                }
-                _unidad.Save();
-
-                return true;
-            }
-            #endregion
-            #region Catch de errores
-            catch (Exception e)
-            {
-                throw e;
-            }
-            #endregion
-        }
+        
         /// <summary>
         /// Método que crea un evento personal sin guardarlo en base de datos, según el tipo de acción que 
         /// ocurra.
@@ -553,7 +529,7 @@ namespace Tesis_ClienteWeb_Data.Services
                         assessment.FinishDate, assessment, salon);
                     evento.SchoolYear = salon.Period.SchoolYear;
 
-                    evento.Users.Add(salon.User); //Docente respectivo
+                    evento.Users.Add(salon.Teacher); //Docente respectivo
                     #endregion
                     break;
                 #endregion
@@ -604,7 +580,7 @@ namespace Tesis_ClienteWeb_Data.Services
                         assessment.FinishDate, assessment, salon);
                     evento.SchoolYear = salon.Period.SchoolYear;
 
-                    evento.Users.Add(salon.User); //Docente respectivo
+                    evento.Users.Add(salon.Teacher); //Docente respectivo
                     #endregion
                     break;
                 #endregion
@@ -627,7 +603,7 @@ namespace Tesis_ClienteWeb_Data.Services
                 case ConstantRepository.PERSONAL_EVENT_CATEGORY_1_DAY:
                     #region Evento 
                     evento.Users.Add(profesor);
-                    evento.Notifications = notificationService.CrearNotificacionAutomaticaSinSalvadoPantallaEventos(
+                    evento.Notifications = notificationService.CrearNotificacionAutomatica(
                     ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_PERSONAL_EVENT_1_DAY, evento, profesor);
                     
                     #endregion
@@ -638,7 +614,7 @@ namespace Tesis_ClienteWeb_Data.Services
                 case ConstantRepository.PERSONAL_EVENT_CATEGORY_VARIOUS_DAYS:
                     #region Evento
                     evento.Users.Add(profesor);
-                    evento.Notifications = notificationService.CrearNotificacionAutomaticaSinSalvadoPantallaEventos(
+                    evento.Notifications = notificationService.CrearNotificacionAutomatica(
                     ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_PERSONAL_EVENT_VARIOUS_DAYS, evento, profesor);
 
                     #endregion

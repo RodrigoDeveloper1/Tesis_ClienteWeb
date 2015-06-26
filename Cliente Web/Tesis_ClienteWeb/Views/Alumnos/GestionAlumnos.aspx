@@ -3,7 +3,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Gestión de alumnos
+    Carga Test DAT 5 - Nivel 2   
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -60,7 +60,7 @@
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <strong>Lista de alumnos y representantes</strong>
+                    <strong>Lista de alumnos</strong>
                 </div>
 
                 <div class="panel-body">
@@ -72,10 +72,8 @@
                                     <th class="th-nro-lista">#</th>
                                     <th class="th-apellidos">Apellidos</th>
                                     <th class="th-nombres">Nombres</th>
-                                    <th class="th-representante-1">Representante #1</th>
-                                    <th class="th-representante-2">Representante #2</th>
-                                    <th class="th-editar centrar">Editar</th>
-                                    <th class="th-eliminar centrar">Eliminar</th>
+                                    <th class="th-representante-1">Razonamiento Verbal</th>
+                                    <th class="th-representante-2">Razonamiento Matemático</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,9 +81,8 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><input/></td>
+                                    <td><input/></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -131,5 +128,5 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="TituloPagina" runat="server">
-    Maestras - Gestión de alumnos
+   Carga Test DAT 5 - Nivel 2   
 </asp:Content>

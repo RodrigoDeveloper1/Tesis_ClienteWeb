@@ -23,6 +23,9 @@ namespace Tesis_ClienteWeb_Data.Repositories
         private RepositoryBase<Course> repositorioCourse;
         private RepositoryBase<CASU> repositorioCASU;
         private RepositoryBase<Event> repositorioEvent;
+        private RepositoryBase<Indicator> repositorioIndicator;
+        private RepositoryBase<IndicatorAssessment> repositorioIndicatorAssessment;
+        private RepositoryBase<IndicatorAssignation> repositorioIndicatorAssignation;
         private RepositoryBase<Institute> repositorioInstitute;
         private RepositoryBase<KnowledgeArea> repositorioKnowledgeArea;
         private RepositoryBase<KnowledgeSubArea> repositorioKnowledgeSubArea;
@@ -128,14 +131,43 @@ namespace Tesis_ClienteWeb_Data.Repositories
                 return repositorioCore;
             }
         }
+        public RepositoryBase<Indicator> RepositorioIndicator
+        {
+            get 
+            {
+                if (this.repositorioIndicator == null)
+                    this.repositorioIndicator = new RepositoryBase<Indicator>(contexto);
+
+                return repositorioIndicator;
+            }
+        }
+        public RepositoryBase<IndicatorAssessment> RepositorioIndicatorAssessment
+        {
+            get 
+            {
+                if (this.repositorioIndicatorAssessment == null)
+                    this.repositorioIndicatorAssessment = new RepositoryBase<IndicatorAssessment>(contexto);
+
+                return repositorioIndicatorAssessment;
+            }
+        }
+        public RepositoryBase<IndicatorAssignation> RepositorioIndicatorAssignation
+        {
+            get
+            {
+                if (this.repositorioIndicatorAssignation == null)
+                    this.repositorioIndicatorAssignation = new RepositoryBase<IndicatorAssignation>(contexto);
+
+                return repositorioIndicatorAssignation;
+            }
+        }
         public RepositoryBase<Institute> RepositorioInstitute
         {
             get
             {
                 if(this.repositorioInstitute == null)
-                {
                     this.repositorioInstitute = new RepositoryBase<Institute>(contexto);
-                }
+
                 return repositorioInstitute;
             }
         }

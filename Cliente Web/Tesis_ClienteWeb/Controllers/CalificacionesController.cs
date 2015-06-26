@@ -14,52 +14,47 @@ namespace Tesis_ClienteWeb.Controllers
 
     public class CalificacionesController : MaestraController
     {
-        #region Declaración de variables
-        private AssessmentService _assessmentService;
-        private CourseService _courseService;
-        private SubjectService _subjectService;
-        private SchoolYearService _schoolYearService;
-        private ScoreService _scoreService;
-        private UserService _userService;
-        private UnitOfWork _unidad;
-        private NotificationService _notificationService;
-        #endregion
-
-        #region Pantalla Cargar Calificaciones
-
-
+        private string _controlador = "Calificaciones";
+        private BridgeController _puente = new BridgeController();
 
         [HttpPost]
-        public bool CargarCalificaciones(int idCurso, int idLapso, int idMateria, 
-                    List<Object> alumnos, List<Object> examenes, List<Object> notas)
+        public bool CargarCalificaciones(int idCurso, int idLapso, int idMateria, List<Object> alumnos, 
+            List<Object> examenes, List<Object> notas)
         {
-            #region Inicializando servicios
-            _unidad = new UnitOfWork();
-            _scoreService = new ScoreService(_unidad);
-            _courseService = new CourseService(_unidad);
-            _userService = new UserService (_unidad);
-            _assessmentService = new AssessmentService(_unidad);
-            _subjectService = new SubjectService(_unidad);
-            _notificationService = new NotificationService(_unidad);
+            ConfiguracionInicial(_controlador, "CargarCalificaciones");
+
+            #region Declaración de servicios
+            UnitOfWork unidad = new UnitOfWork();
+            CourseService courseService = new CourseService(unidad);
+            UserService userService = new UserService(unidad);
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            SubjectService subjectService = new SubjectService(unidad);
+            ScoreService scoreService = new ScoreService(unidad);
+            NotificationService notificationService = new NotificationService(unidad);
+            StudentService studentService = new StudentService(unidad);
+
+            Assessment evaluacion = new Assessment();
             #endregion
-            Course curso = _courseService.ObtenerCursoPor_Id(idCurso);
-             string idsession = (string)Session["UserId"];
-            User profesor = _userService.ObtenerUsuarioPorId(idsession);
+
+            #region Obteniendo: curso, docente & materia
+            Course curso = courseService.ObtenerCursoPor_Id(idCurso);
             int grado = curso.Grade;
 
-            #region Validación de notas en blanco
+            User profesor = userService.ObtenerUsuarioPorId(_session.USERID);
+            Subject materia = subjectService.ObtenerMateriaPorId(idMateria);
+            #endregion
+            #region Validación de notas vacías
             if (notas == null || notas[0].ToString() == "")
             {
                 TempData["NotasEnBlanco"] = "Por favor agregue por lo menos una nota.";
                 return false;
             }
             #endregion
-            #region Validacion de formato de notas
+            #region Validación de formato de notas
             for (int i = 0; i <= alumnos.Count - 1; i++)
             {
-
-                if (grado == 1 || grado == 2 || grado == 3 || grado == 4 || grado == 5
-                    || grado == 6)
+                #region Primaria
+                if (grado <= 6) //Primaria
                 {
                     float notaNum;
                     bool res = float.TryParse(notas[i].ToString(), out notaNum);
@@ -70,9 +65,10 @@ namespace Tesis_ClienteWeb.Controllers
                             "Un curso de primaria solo acepta las siguientes notas: A,B,C,D,E. No acepta números";
                         return false;
                     }
-
                 }
-                else
+                #endregion
+                #region Bachillerato
+                else //Bachillerato
                 {
                     float notaNum;
                     bool res = float.TryParse(notas[i].ToString(), out notaNum);
@@ -84,49 +80,52 @@ namespace Tesis_ClienteWeb.Controllers
                         return false;
                     }
                 }
-
+                #endregion
             }
-
             #endregion
-            #region Ciclo de carga
+
+            #region Ciclo de carga de notas
             try
             {     
                 for (int i = 0; i <= alumnos.Count - 1; i++)
                 {
-                    #region Creación de nuevo score
+                    #region Creación de nueva nota
                     Score nota = new Score();
                     nota.StudentId = Convert.ToInt32(alumnos[i].ToString());
                     nota.AssessmentId = Convert.ToInt32(examenes[i].ToString());
-                    Assessment evaluacion = _assessmentService.ObtenerEvaluacionPor_Id(nota.AssessmentId);
-                    Subject materia = _subjectService.ObtenerMateriaPorId(idMateria);
-                    Score notaNueva = _scoreService.ObtenerNotaPor_Alumno_Evaluacion(nota.StudentId, nota.AssessmentId);
-                    if (notaNueva == null)
-                    {
-                        if (grado == 1 || grado == 2 || grado == 3 || grado == 4 || grado == 5
-                            || grado == 6)
-                        {
-
-                            nota.NumberScore = 0;
-                            nota.LetterScore = notas[i].ToString();
-                            _notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE, profesor, evaluacion, materia, nota.LetterScore, _unidad);
-
-                        }
-                        else
-                        {
-
-                            nota.NumberScore =float.Parse(notas[i].ToString(), CultureInfo.InvariantCulture);;
-                            nota.LetterScore = "";
-                            _notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE, profesor, evaluacion, materia, notas[i].ToString(), _unidad);     
-
-                        }
-
                     #endregion
+
+                    #region Validación de nota nueva
+                    Score notaAux = scoreService.ObtenerNotaPor_Alumno_Evaluacion(nota.StudentId, nota.AssessmentId);
+
+                    if (notaAux == null) //Nota nueva
+                    {
+                        #region Obteniendo la evaluación
+                        evaluacion = assessmentService.ObtenerEvaluacionPor_Id(nota.AssessmentId);
+                        Student student = studentService.ObtenerAlumnoPorId(nota.StudentId);
+                        #endregion
+                        #region Creando la notificación respectiva
+                        Notification notificacion = new Notification();
+
+                        if (grado <= 6) nota.LetterScore = notas[i].ToString();
+                        else nota.NumberScore = float.Parse(notas[i].ToString(), CultureInfo.InvariantCulture); ;
+
+                        notificacion = notificationService.CrearNotificacionAutomatica(
+                                ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE, nota, profesor);
+
+                        #region SentNotification
+                        SentNotification SN = new SentNotification();
+                        SN.Sent = true;
+                        SN.Student = student;
+                        #endregion
+
+                        notificacion.SentNotifications.Add(SN);
+                        #endregion
                         #region Agregando score a la bd
                         try
                         {
-
-                            _scoreService.GuardarScore(nota);
-
+                            scoreService.GuardarScore(nota);
+                            notificationService.GuardarNotification(notificacion);
                         }
                         catch (Exception e)
                         {
@@ -135,18 +134,29 @@ namespace Tesis_ClienteWeb.Controllers
                         }
                         #endregion
                     }
+                    #endregion
                 }
-            #endregion
-                TempData["NuevoScore"] = "Se agregaron correctamente las notas '";
+
+                #region Proceso de generado de imágenes para estadísticas móvil
+                _puente.Estadisticas_Movil(evaluacion.AssessmentId);
+                #endregion
+
+                TempData["NuevoScore"] = "Se agregaron correctamente las notas.";
                 return true;
             }
+            #endregion
+            #region Catch de los errores
             catch (Exception e)
             {
                 TempData["NuevoScoreError"] = e.Message;
                 return false;
             }
+            #endregion
         }
-        #endregion
+
+
+        //Por verificar - Rodrigo Uzcátegui 25-06-15
+
         #region Pantalla Modificar Evaluaciones
       
         [HttpGet]
@@ -154,9 +164,9 @@ namespace Tesis_ClienteWeb.Controllers
         {
             ObteniendoSesion();
             #region inicializando variable
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
-            _subjectService = (_subjectService == null ? new SubjectService() : _subjectService);
-            _schoolYearService = new SchoolYearService();
+            CourseService _courseService = new CourseService();
+            SubjectService _subjectService = new SubjectService();
+            SchoolYearService _schoolYearService = new SchoolYearService();
             List<Course> listaCursos;
             List<Subject> listaMaterias;
             #endregion
@@ -208,17 +218,17 @@ namespace Tesis_ClienteWeb.Controllers
                    string nota, int idMateria)
         {
             #region Inicializando servicios
-            _unidad = new UnitOfWork();
-            _scoreService = new ScoreService(_unidad);
-            _courseService = new CourseService(_unidad);
-            _userService = new UserService(_unidad);
-            _assessmentService = new AssessmentService(_unidad);
-            _subjectService = new SubjectService(_unidad);
-            _notificationService = new NotificationService(_unidad);
+            UnitOfWork unidad = new UnitOfWork();
+            ScoreService scoreService = new ScoreService(unidad);
+            CourseService courseService = new CourseService(unidad);
+            UserService userService = new UserService(unidad);
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            SubjectService subjectService = new SubjectService(unidad);
+            NotificationService notificationService = new NotificationService(unidad);
             #endregion
-            Course curso = _courseService.ObtenerCursoPor_Id(idCurso);
+            Course curso = courseService.ObtenerCursoPor_Id(idCurso);
             string idsession = (string)Session["UserId"];
-            User profesor = _userService.ObtenerUsuarioPorId(idsession);
+            User profesor = userService.ObtenerUsuarioPorId(idsession);
             int grado = curso.Grade;
 
             #region Validación de nota en blanco
@@ -268,8 +278,8 @@ namespace Tesis_ClienteWeb.Controllers
                     Score nota1 = new Score();
                     nota1.StudentId = idAlumno;
                     nota1.AssessmentId = idEvaluacion;
-                    Assessment evaluacion = _assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
-                    Subject materia = _subjectService.ObtenerMateriaPorId(idMateria);
+                    Assessment evaluacion = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
+                    Subject materia = subjectService.ObtenerMateriaPorId(idMateria);
                    
                     
                         if (grado == 1 || grado == 2 || grado == 3 || grado == 4 || grado == 5
@@ -278,7 +288,7 @@ namespace Tesis_ClienteWeb.Controllers
 
                             nota1.NumberScore = 0;
                             nota1.LetterScore = nota;
-                            _notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, profesor, evaluacion, materia, nota1.LetterScore, _unidad);
+                            notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, profesor, evaluacion, materia, nota1.LetterScore, unidad);
 
                         }
                         else
@@ -286,16 +296,14 @@ namespace Tesis_ClienteWeb.Controllers
 
                             nota1.NumberScore = Convert.ToInt32(nota);
                             nota1.LetterScore = "";
-                            _notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, profesor, evaluacion, materia, nota, _unidad);
-
+                            notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, profesor, evaluacion, materia, nota, unidad);
                         }
 
                     #endregion
                         #region Modificando score de la bd
                         try
                         {
-
-                            _scoreService.ModificarScore(nota1);
+                            scoreService.ModificarScore(nota1);
                         }
                         catch (Exception e)
                         {
@@ -324,9 +332,9 @@ namespace Tesis_ClienteWeb.Controllers
 
             ObteniendoSesion();
             #region inicializando variable
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
-            _subjectService = (_subjectService == null ? new SubjectService() : _subjectService);
-            _schoolYearService = new SchoolYearService();
+            CourseService courseService = new CourseService();
+            SubjectService subjectService = new SubjectService();
+            SchoolYearService schoolYearService = new SchoolYearService();
             List<Course> listaCursos;
             List<Subject> listaMaterias;
             #endregion
@@ -359,7 +367,7 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
             string idsession = (string)Session["UserId"];
 
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
             listaMaterias = new List<Subject>();
@@ -376,9 +384,9 @@ namespace Tesis_ClienteWeb.Controllers
         {
             ObteniendoSesion();
             #region inicializando variable
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
-            _subjectService = (_subjectService == null ? new SubjectService() : _subjectService);
-            _schoolYearService = new SchoolYearService();
+            CourseService _courseService = new CourseService();
+            SubjectService _subjectService = new SubjectService();
+            SchoolYearService _schoolYearService = new SchoolYearService();
             List<Course> listaCursos;
             List<Subject> listaMaterias;
             #endregion
@@ -408,13 +416,13 @@ namespace Tesis_ClienteWeb.Controllers
         public JsonResult ObtenerNotas(int idCurso, int idLapso, int idMateria,
             List<Object> alumnos, List<Object> examenes)
         {
-            _unidad = new UnitOfWork();
-            _scoreService = new ScoreService(_unidad);
-            _courseService = new CourseService(_unidad);
-            _userService = new UserService(_unidad);
-            _assessmentService = new AssessmentService(_unidad);
-            _subjectService = new SubjectService(_unidad);            
-            _notificationService = new NotificationService(_unidad);            
+            UnitOfWork _unidad = new UnitOfWork();
+            ScoreService _scoreService = new ScoreService(_unidad);
+            CourseService _courseService = new CourseService(_unidad);
+            UserService _userService = new UserService(_unidad);
+            AssessmentService _assessmentService = new AssessmentService(_unidad);
+            SubjectService _subjectService = new SubjectService(_unidad);            
+            NotificationService _notificationService = new NotificationService(_unidad);            
             Course curso = _courseService.ObtenerCursoPor_Id(idCurso);
             string idsession = (string)Session["UserId"];
             User profesor = _userService.ObtenerUsuarioPorId(idsession);
@@ -487,9 +495,9 @@ namespace Tesis_ClienteWeb.Controllers
         [HttpPost]
         public JsonResult ObtenerCalificacionPorCursoAlumnoYExamen(int idCurso, int idAlumno, int idEvaluacion)
         {
-            _unidad = new UnitOfWork();
-            _scoreService = new ScoreService(_unidad);
-            _courseService = new CourseService(_unidad);
+            UnitOfWork _unidad = new UnitOfWork();
+            ScoreService _scoreService = new ScoreService(_unidad);
+            CourseService _courseService = new CourseService(_unidad);
             Course curso = _courseService.ObtenerCursoPor_Id(idCurso);           
             int grado = curso.Grade;
             List<object> jsonResult = new List<object>();
@@ -522,13 +530,13 @@ namespace Tesis_ClienteWeb.Controllers
         public JsonResult ObtenerCalificacionesEstadisticas_SProfesor()
         {
             ObteniendoSesion();
-            _unidad = new UnitOfWork();
-            _scoreService = new ScoreService(_unidad);
+            UnitOfWork _unidad = new UnitOfWork();
+            ScoreService _scoreService = new ScoreService(_unidad);
             List<object> jsonResult = new List<object>();
-            _courseService = new CourseService(_unidad);
+            CourseService _courseService = new CourseService(_unidad);
             Assessment evaluacion = new Assessment();
-            _subjectService = new SubjectService();
-            _assessmentService = new AssessmentService(_unidad);
+            SubjectService _subjectService = new SubjectService();
+            AssessmentService _assessmentService = new AssessmentService(_unidad);
             CASUService _casuService = new CASUService(_unidad);
             evaluacion = _assessmentService.ObtenerUltimaEvaluacionPor_Docente_AnoEscolar(_session.USERID, _session.SCHOOLYEARID);
             if (evaluacion == null)

@@ -110,6 +110,8 @@
       <HintPath>..\packages\PagedList.Mvc.3.0.0.0\lib\40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -157,6 +159,7 @@
     <Compile Include="Repositories\ConstantRepository.cs" />
     <Compile Include="Repositories\SessionVariablesRepository.cs" />
     <Compile Include="Services\CASUService.cs" />
+    <Compile Include="Services\IndicatorService.cs" />
     <Compile Include="Services\RepresentativeService.cs" />
     <Compile Include="Services\AssessmentService.cs" />
     <Compile Include="Services\CourseService.cs" />
@@ -183,7 +186,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config" />
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.Config">

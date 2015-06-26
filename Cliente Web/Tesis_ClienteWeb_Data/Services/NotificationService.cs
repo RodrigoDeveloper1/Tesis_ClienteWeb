@@ -644,10 +644,256 @@ namespace Tesis_ClienteWeb_Data.Services
 
             return listaNotificaciones;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <param name="evento"></param>
+        /// <param name="profesor"></param>
+        /// <returns></returns>
+        public List<Notification> CrearNotificacionAutomatica(int categoria, Event evento, User profesor)
+        {
+            #region Declaración de variables
+            bool Automatico = true;
 
+            List<Notification> listaNotificaciones = new List<Notification>();
+            Notification notificacion = new Notification(Automatico);
+            Notification notificacion2 = new Notification(Automatico);
+            Notification notificacion3 = new Notification(Automatico);
+            Notification notificacion4 = new Notification(Automatico);
+            #endregion
 
+            switch (categoria)
+            {
+                #region Case: Evento de 1 dia
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_1_DAY:
+                    #region Notificacion #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
+                    notificacion.Message = "En 1 semana inicia: " + evento.Name;
+                    notificacion.SendDate = evento.StartDate.AddDays(-8);
+                    notificacion.SchoolYear = evento.SchoolYear;
+                    #endregion
+                    #region Notificación #2
+                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion2.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
+                    notificacion2.Message = "Mañana inicia: " + evento.Name;
+                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
+                    notificacion2.SchoolYear = evento.SchoolYear;
+                    #endregion
+                    #region Añadiendo a lista de notificaciones
+                    listaNotificaciones.Add(notificacion);
+                    listaNotificaciones.Add(notificacion2);
+                    #endregion
+                    break;
+                #endregion
+                #region Case: Evento de varios dias
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_VARIOUS_DAYS:
+                    #region Notificacion #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
+                    notificacion.SendDate = evento.StartDate.AddDays(-8);
+                    notificacion.SchoolYear = evento.SchoolYear;
+                    #endregion
+                    #region Notificación #2
+                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion2.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion2.Message = "Mañana inicia, " + evento.Name;
+                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
+                    notificacion2.SchoolYear = evento.SchoolYear;
+                    #endregion
+                    #region Notificacion #3
+                    notificacion3.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion3.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion3.Message = "En 1 semana finaliza, " + evento.Name;
+                    notificacion3.SendDate = evento.FinishDate.AddDays(-8);
+                    notificacion3.SchoolYear = evento.SchoolYear;
+                    #endregion
+                    #region Notificación #4
+                    notificacion4.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion4.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion4.Message = "Mañana finaliza, " + evento.Name;
+                    notificacion4.SendDate = evento.FinishDate.AddDays(-1);
+                    notificacion4.SchoolYear = evento.SchoolYear;
+                    #endregion
+                    #region Añadiendo a lista de notificaciones
+                    listaNotificaciones.Add(notificacion);
+                    listaNotificaciones.Add(notificacion2);
+                    listaNotificaciones.Add(notificacion3);
+                    listaNotificaciones.Add(notificacion4);
+                    #endregion
+                    break;
+                #endregion
 
+                #region Case: Evento Perzonalizado de 1 dia
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_PERSONAL_EVENT_1_DAY:
+                    #region Notificacion #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
+                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
+                    notificacion.SendDate = evento.StartDate.AddDays(-8);
+                    notificacion.User = profesor;
+                    #endregion
+                    #region Notificación #2
+                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion2.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
+                    notificacion2.Message = "Mañana inicia, " + evento.Name;
+                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
+                    notificacion2.User = profesor;
+                    #endregion
+                    #region Añadiendo a lista de notificaciones
+                    listaNotificaciones.Add(notificacion);
+                    listaNotificaciones.Add(notificacion2);
+                    #endregion
+                    break;
+                #endregion
+                #region Case: Evento Perzonalizado de varios dias
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_PERSONAL_EVENT_VARIOUS_DAYS:
+                    #region Notificacion #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
+                    notificacion.SendDate = evento.StartDate.AddDays(-8);
+                    notificacion.User = profesor;
+                    #endregion
+                    #region Notificación #2
+                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion2.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion2.Message = "Mañana inicia, " + evento.Name;
+                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
+                    notificacion2.User = profesor;
+                    #endregion
+                    #region Notificacion #3
+                    notificacion3.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion3.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion3.Message = "En 1 semana finaliza, " + evento.Name;
+                    notificacion3.SendDate = evento.FinishDate.AddDays(-8);
+                    notificacion3.User = profesor;
+                    #endregion
+                    #region Notificación #4
+                    notificacion4.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
+                    notificacion4.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
+                    notificacion4.Message = "Mañana finaliza, " + evento.Name;
+                    notificacion4.SendDate = evento.FinishDate.AddDays(-1);
+                    notificacion4.User = profesor;
+                    #endregion
+                    #region Añadiendo a lista de notificaciones
+                    listaNotificaciones.Add(notificacion);
+                    listaNotificaciones.Add(notificacion2);
+                    listaNotificaciones.Add(notificacion3);
+                    listaNotificaciones.Add(notificacion4);
+                    #endregion
+                    break;
+                #endregion
+            }
 
+            return listaNotificaciones;
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <param name="score"></param>
+        /// <param name="docente"></param>
+        /// <returns></returns>
+        public Notification       CrearNotificacionAutomatica(int categoria, Score score, User docente)
+        {
+            #region Declaración de variables
+            bool Automatico = true;
+            Notification notificacion = new Notification(Automatico);
+            #endregion
+
+            #region Cálculo de datos
+            AssessmentService assessmentService = new AssessmentService(this._unidad);
+            SubjectService subjectService = new SubjectService(this._unidad);
+
+            Assessment assessment = assessmentService.ObtenerEvaluacionPor_Id(score.AssessmentId);
+            CASU casu = assessment.CASU;
+            int grado = casu.Course.Grade;
+            Subject subject = casu.Subject;
+            SchoolYear schoolYear = casu.Period.SchoolYear;
+            #endregion
+
+            switch (categoria)
+            {
+                #region Case: Nueva nota
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE:
+                    #region Notificación #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
+                    notificacion.Attribution = subject.Name;
+                    notificacion.Message = "Su hijo sacó " + (grado > 6 ? score.NumberScore.ToString() : 
+                        score.LetterScore) + " en la evaluación: " + assessment.Name + ". Materia " + subject.Name + ".";
+                    notificacion.SendDate = DateTime.Now;
+                    notificacion.SchoolYear = schoolYear;
+                    notificacion.User = docente;
+                    #endregion
+                    break;
+                #endregion
+                #region Case: Nota modificada
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE:
+                    break;
+                #endregion
+            }
+
+            return notificacion;
+        }
+
+        public bool CrearNotificacionAutomaticaConSalvadoNotas(int categoria,
+           User profesor, Assessment evaluacion, Subject materia, string nota, UnitOfWork _unidad)
+        {
+            #region Declaración de variables
+            bool Automatico = true;
+            _session = new SessionVariablesRepository();
+            Notification notificacion = new Notification(Automatico);
+            Notification notificacion2 = new Notification(Automatico);
+            SchoolYearService _schoolYearService = new SchoolYearService(_unidad);
+            SchoolYear anoEscolar = _schoolYearService.ObtenerAnoEscolar(_session.SCHOOLYEARID);
+            #endregion
+
+            switch (categoria)
+            {
+                #region Case: Nueva nota
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE:
+                    #region Notificacion #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Aviso;
+                    notificacion.Attribution = materia.Name;
+                    notificacion.Message = "Se han actualizado las notas de la evaluación " + evaluacion.Name;
+                    notificacion.SendDate = DateTime.Now;
+                    notificacion.SchoolYear = anoEscolar;
+                    #endregion
+                    #region Notificación #2
+                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
+                    notificacion2.Attribution = materia.Name;
+                    notificacion2.Message = "Su hijo sacó " + nota + " en la evaluación " + evaluacion.Name + ". Materia " + materia.Name + " ";
+                    notificacion2.SendDate = DateTime.Now;
+                    notificacion2.SchoolYear = anoEscolar;
+                    #endregion
+                    break;
+                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE:
+                    #region Notificacion #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Aviso;
+                    notificacion.Attribution = materia.Name;
+                    notificacion.Message = "Se ha modificado la nota de la evaluación " + evaluacion.Name;
+                    notificacion.SendDate = DateTime.Now;
+                    notificacion.SchoolYear = anoEscolar;
+                    #endregion
+                    #region Notificación #2
+                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
+                    notificacion2.Attribution = materia.Name;
+                    notificacion2.Message = "Luego de actualizar, su hijo sacó " + nota + " en la evaluación " + evaluacion.Name + ". Materia " + materia.Name + " ";
+                    notificacion2.SendDate = DateTime.Now;
+                    notificacion2.SchoolYear = anoEscolar;
+                    #endregion
+                    break;
+                #endregion
+            }
+            #region guardar notif en la bd
+            GuardarNotificationNotas(notificacion);
+            GuardarNotificationNotas(notificacion2);
+            #endregion
+            return true;
+        }
         
                        
         
@@ -1475,196 +1721,9 @@ namespace Tesis_ClienteWeb_Data.Services
 
             return listaNotificaciones;
         }
-        public List<Notification> CrearNotificacionAutomaticaSinSalvadoPantallaEventos(int categoria, 
-           Event evento, User profesor)
-        {
-            #region Declaración de variables
-            bool Automatico = true;
+        
 
-            List<Notification> listaNotificaciones = new List<Notification>();
-            Notification notificacion = new Notification(Automatico);
-            Notification notificacion2 = new Notification(Automatico);
-            Notification notificacion3 = new Notification(Automatico);
-            Notification notificacion4 = new Notification(Automatico);
-            #endregion
-
-            switch (categoria)
-            {
-                #region Case: Evento de 1 dia
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_1_DAY:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
-                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
-                    notificacion.SendDate = evento.StartDate.AddDays(-8);
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion2.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
-                    notificacion2.Message = "Mañana inicia, " + evento.Name;
-                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
-                    #endregion
-                    #region Añadiendo a lista de notificaciones
-                    listaNotificaciones.Add(notificacion);
-                    listaNotificaciones.Add(notificacion2);
-                    #endregion
-                    break;
-                #endregion
-                #region Case: Evento de varios dias
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_VARIOUS_DAYS:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
-                    notificacion.SendDate = evento.StartDate.AddDays(-8);
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion2.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion2.Message = "Mañana inicia, " + evento.Name;
-                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
-                    #endregion
-                    #region Notificacion #3
-                    notificacion3.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion3.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion3.Message = "En 1 semana finaliza, " + evento.Name;
-                    notificacion3.SendDate = evento.FinishDate.AddDays(-8);
-                    #endregion
-                    #region Notificación #4
-                    notificacion4.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion4.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion4.Message = "Mañana finaliza, " + evento.Name;
-                    notificacion4.SendDate = evento.FinishDate.AddDays(-1);
-                    #endregion
-                    #region Añadiendo a lista de notificaciones
-                    listaNotificaciones.Add(notificacion);
-                    listaNotificaciones.Add(notificacion2);
-                    listaNotificaciones.Add(notificacion3);
-                    listaNotificaciones.Add(notificacion4);
-                    #endregion
-                    break;
-                #endregion
-
-                #region Case: Evento Perzonalizado de 1 dia
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_PERSONAL_EVENT_1_DAY:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
-                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
-                    notificacion.SendDate = evento.StartDate.AddDays(-8);
-                    notificacion.User = profesor;
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion2.Attribution = ConstantRepository.NOTIFICATION_ATTRIBUTION_EventoUnDia;
-                    notificacion2.Message = "Mañana inicia, " + evento.Name;
-                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
-                    notificacion2.User = profesor;
-                    #endregion
-                    #region Añadiendo a lista de notificaciones
-                    listaNotificaciones.Add(notificacion);
-                    listaNotificaciones.Add(notificacion2);
-                    #endregion
-                    break;
-                #endregion
-                #region Case: Evento Perzonalizado de varios dias
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_PERSONAL_EVENT_VARIOUS_DAYS:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion.Message = "En 1 semana inicia, " + evento.Name;
-                    notificacion.SendDate = evento.StartDate.AddDays(-8);
-                    notificacion.User = profesor;
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion2.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion2.Message = "Mañana inicia, " + evento.Name;
-                    notificacion2.SendDate = evento.StartDate.AddDays(-1);
-                    notificacion2.User = profesor;
-                    #endregion
-                    #region Notificacion #3
-                    notificacion3.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion3.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion3.Message = "En 1 semana finaliza, " + evento.Name;
-                    notificacion3.SendDate = evento.FinishDate.AddDays(-8);
-                    notificacion3.User = profesor;
-                    #endregion
-                    #region Notificación #4
-                    notificacion4.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Evento;
-                    notificacion4.Attribution = ConstantRepository.EVENT_EVENT_TYPE_EventoVariosDias;
-                    notificacion4.Message = "Mañana finaliza, " + evento.Name;
-                    notificacion4.SendDate = evento.FinishDate.AddDays(-1);
-                    notificacion4.User = profesor;
-                    #endregion
-                    #region Añadiendo a lista de notificaciones
-                    listaNotificaciones.Add(notificacion);
-                    listaNotificaciones.Add(notificacion2);
-                    listaNotificaciones.Add(notificacion3);
-                    listaNotificaciones.Add(notificacion4);
-                    #endregion
-                    break;
-                #endregion
-            }
-
-            return listaNotificaciones;
-        }
-
-        public bool CrearNotificacionAutomaticaConSalvadoNotas(int categoria,
-           User profesor, Assessment evaluacion, Subject materia, string nota, UnitOfWork _unidad)
-        {
-            #region Declaración de variables
-            bool Automatico = true;
-            _session = new SessionVariablesRepository();
-            Notification notificacion = new Notification(Automatico);
-            Notification notificacion2 = new Notification(Automatico);
-            SchoolYearService _schoolYearService = new SchoolYearService(_unidad);
-            SchoolYear anoEscolar = _schoolYearService.ObtenerAnoEscolar(_session.SCHOOLYEARID);
-            #endregion
-
-            switch (categoria)
-            {
-                #region Case: Nueva nota
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Aviso;
-                    notificacion.Attribution = materia.Name;
-                    notificacion.Message = "Se han actualizado las notas de la evaluación " + evaluacion.Name;
-                    notificacion.SendDate = DateTime.Now;
-                    notificacion.SchoolYear = anoEscolar;
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
-                    notificacion2.Attribution = materia.Name;
-                    notificacion2.Message = "Su hijo sacó "+ nota +" en la evaluación "+ evaluacion.Name+". Materia "+materia.Name+ " ";
-                    notificacion2.SendDate = DateTime.Now;
-                    notificacion2.SchoolYear = anoEscolar;
-                    #endregion
-                    break;
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Aviso;
-                    notificacion.Attribution = materia.Name;
-                    notificacion.Message = "Se ha modificado la nota de la evaluación " + evaluacion.Name;
-                    notificacion.SendDate = DateTime.Now;
-                    notificacion.SchoolYear = anoEscolar;
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
-                    notificacion2.Attribution = materia.Name;
-                    notificacion2.Message = "Luego de actualizar, su hijo sacó " + nota + " en la evaluación " + evaluacion.Name + ". Materia " + materia.Name + " ";
-                    notificacion2.SendDate = DateTime.Now;
-                    notificacion2.SchoolYear = anoEscolar;
-                    #endregion
-                    break;
-                #endregion
-            }
-            #region guardar notif en la bd
-            GuardarNotificationNotas(notificacion);
-            GuardarNotificationNotas(notificacion2);
-            #endregion
-            return true;
-        }
+        
         #endregion
     }
 }

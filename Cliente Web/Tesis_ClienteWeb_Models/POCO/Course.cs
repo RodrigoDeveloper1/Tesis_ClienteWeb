@@ -48,7 +48,9 @@ namespace Tesis_ClienteWeb_Models.POCO
         [Display(Name = "Sección:")]
         [Required(ErrorMessage = "Por favor especifique una sección.", AllowEmptyStrings = false)]
         public string Section { get; set; } //Constante: COURSE_SECTION_LIST
-                
+
+        public School School { get; set; }
+
         public List<Student> Students { get; set; }
 
         public List<CASU> CASUs { get; set; }

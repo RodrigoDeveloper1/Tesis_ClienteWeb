@@ -116,22 +116,7 @@ function ObtenerAlumnosDelCurso() {
 
 
 }
-function NoExistenEvaluaciones() {
-    
-            swal({
-                title: "¡No Existen Evaluaciones!",
-                text: "No existen evaluaciones para la materia en el curso y periodo seleccionados .",
-                type: "warning",
-                confirmButtonColor: "green",
-                showCancelButton: false,
-                closeOnConfirm: true,
-            },
-            function (isConfirm) {
-               
-            });
 
-        
-}
 function NoExistenAlumnos() {
 
     swal({

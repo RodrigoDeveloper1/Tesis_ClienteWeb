@@ -6,13 +6,15 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using Tesis_ClienteWeb_Models.POCO;
+using Tesis_ClienteWeb_Data.Repositories;
 
 namespace Tesis_ClienteWeb_Data
 {
     public class Context : IdentityDbContext<User>
     {
         #region Constructor
-        public Context() : base("Context", throwIfV1Schema: false)
+        public Context()
+            : base("Context", throwIfV1Schema: false)
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
         }
@@ -26,6 +28,7 @@ namespace Tesis_ClienteWeb_Data
         public DbSet<Assessment> Assessments { get; set; } //Asignaciones/Evaluaciones
         //public DbSet<CASU> CASUs { get; set; }
         public DbSet<Career> Careers { get; set; }
+        public DbSet<Content> Contents { get; set; }
         public DbSet<Core> Cores { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Course> Courses { get; set; }
@@ -95,9 +98,9 @@ namespace Tesis_ClienteWeb_Data
                 .HasForeignKey(t => t.SubjectId);
 
             modelBuilder.Entity<CASU>()
-                .HasOptional(t => t.User)
+                .HasOptional(t => t.Teacher)
                 .WithMany(t => t.CASUs)
-                .HasForeignKey(t => t.UserId);
+                .HasForeignKey(t => t.TeacherId);
             #endregion            
             #region Opportunity
             //Primary Keys
@@ -168,6 +171,58 @@ namespace Tesis_ClienteWeb_Data
             modelBuilder.Entity<Event>()
                 .HasMany(m => m.Notifications)
                 .WithOptional(m => m.Event);
+            #endregion
+            #region ContentBlock
+            //Primary Keys
+            modelBuilder.Entity<ContentBlock>().HasKey(k => new { k.ContentBlockId, k.SubjectId });
+            modelBuilder.Entity<Subject>().HasMany(k => k.ContentBlocks);
+
+            //Relationships
+            modelBuilder.Entity<ContentBlock>()
+                .HasRequired(m => m.Subject)
+                .WithMany(m => m.ContentBlocks)
+                .HasForeignKey(m => m.SubjectId);
+            #endregion
+            #region Indicator
+            //Primary Keys
+            modelBuilder.Entity<Indicator>().HasKey(k => new { k.IndicatorId, k.CompetencyId });
+            modelBuilder.Entity<Competency>().HasMany(k => k.Indicators);
+
+            //Relationships
+            modelBuilder.Entity<Indicator>()
+                .HasRequired(m => m.Competency)
+                .WithMany(m => m.Indicators)
+                .HasForeignKey(m => m.CompetencyId);
+            #endregion
+            #region IndicatorAssessment
+            //Primary Keys
+            modelBuilder.Entity<IndicatorAssessment>()
+                .HasKey(k => new { k.IndicatorId, k.CompetencyId, k.AssessmentId });
+
+            modelBuilder.Entity<Indicator>().HasMany(k => k.IndicatorAssessments);
+            modelBuilder.Entity<Assessment>().HasMany(k => k.IndicatorAssessments);
+
+            //Relationships
+            modelBuilder.Entity<IndicatorAssessment>()
+                .HasRequired(m => m.Indicator)
+                .WithMany(m => m.IndicatorAssessments)
+                .HasForeignKey(m => new { m.IndicatorId, m.CompetencyId });
+
+            modelBuilder.Entity<IndicatorAssessment>()
+                .HasRequired(m => m.Assessment)
+                .WithMany(m => m.IndicatorAssessments)
+                .HasForeignKey(m => m.AssessmentId);
+            #endregion
+            #region IndicatorAssignations
+            //Primary Keys
+            modelBuilder.Entity<IndicatorAssignation>()
+                .HasKey(k => new { k.IndicatorAssignationId, k.IndicatorId, k.CompetencyId, k.AssessmentId });
+            modelBuilder.Entity<IndicatorAssessment>().HasMany(k => k.IndicatorAsignations);
+
+            modelBuilder.Entity<IndicatorAssignation>()
+                .HasRequired(m => m.IndicatorAssessment)
+                .WithMany(m => m.IndicatorAsignations)
+                .HasForeignKey(m => new { m.IndicatorId, m.CompetencyId, m.AssessmentId });
             #endregion
         }
         #endregion

@@ -16,20 +16,21 @@ namespace Tesis_ClienteWeb.Models
 
         public int EventId { get; set; }
 
+        [Display(Name = "Nombre:")]
         public string Name { get; set; }
-
+        [Display(Name = "Descripción:")]
         public string Description { get; set; }
-
+        [Display(Name = "Tipo:")]
         public string Type { get; set; }
-
+        [Display(Name = "Fecha de inicio:")]
         public DateTime StartDate { get; set; }
-
+        [Display(Name = "Fecha de fin:")]
         public DateTime FinishDate { get; set; }
-
+        [Display(Name = "Hora de inicio:")]
         public string StartHour { get; set; }
-
+        [Display(Name = "Hora de fin:")]
         public string EndHour { get; set; }
-
+        [Display(Name = "Color:")]
         public string Color { get; set; }
 
         [Display(Name = "Lista de tipos de evento:")]

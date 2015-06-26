@@ -19,8 +19,8 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="../../Content/Plug-ins/bootstrap-3.2.0/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/Plug-ins/bootstrap-3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!--link href="../../Content/Plug-ins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../Content/Plug-ins/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Archivos scripts -->
     <script src="../../Scripts/jquery-1.5.1.js" type="text/javascript"></script>
@@ -60,6 +60,16 @@
     <!-- Sección de inicio de sesión -->
     <header>
         <div class="container" id="div-cuerpo-login">
+            <!-- Link de descarga app móvil-->
+            <div class="row">
+                <div class="col-xs-offset-8 col-xs-4">
+                    <a class="btn btn-info" role="button">
+                        <i class="fa fa-key"></i>
+                        <strong>Descargar app móvil</strong>
+                    </a>
+                </div>
+            </div>
+
             <div class="row" >
                 <div class="col-lg-12">
                     <div class="intro-text">

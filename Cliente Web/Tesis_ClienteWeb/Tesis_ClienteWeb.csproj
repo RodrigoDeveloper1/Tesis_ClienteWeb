@@ -112,6 +112,8 @@
       <HintPath>..\packages\Rotativa.1.6.4\lib\net40\Rotativa.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DataVisualization.Design" />
     <Reference Include="System.Web.Extensions" />
@@ -223,6 +225,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WS_MobileBridge\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,12 +262,14 @@
     <Content Include="Content\Css\Estadisticas\EstadisticasCursos.css" />
     <Content Include="Content\Css\Estadisticas\EstadisticasMaterias.css" />
     <Content Include="Content\Css\Estadisticas\EstadisticasEvaluaciones.css" />
+    <Content Include="Content\Css\Evaluaciones\AsociacionIndicadoresLiterales.css" />
     <Content Include="Content\Css\Evaluaciones\ModificarEvaluacion.css" />
     <Content Include="Content\Css\Evaluaciones\CrearEvaluacion.css" />
     <Content Include="Content\Css\Evaluaciones\CrearEvaluacionAvanzada.css" />
     <Content Include="Content\Css\Evaluaciones\Evaluaciones.css" />
     <Content Include="Content\Css\Eventos\bootstrap-timepicker.css" />
     <Content Include="Content\Css\Eventos\CrearEvento.css" />
+    <Content Include="Content\Css\Eventos\CrearEventoAvanzado.css" />
     <Content Include="Content\Css\Eventos\Eventos.css" />
     <Content Include="Content\Css\Eventos\pick-a-color-1.2.3.min.css" />
     <Content Include="Content\Css\Index\Inicio.css" />
@@ -2256,6 +2265,7 @@
     <Content Include="Scripts\Views\Estadisticas\Reportes.js" />
     <Content Include="Scripts\Views\Evaluaciones\CrearEvaluacionAvanzadaProfesor.js" />
     <Content Include="Scripts\Views\Evaluaciones\CrearEvaluacionProfesor.js" />
+    <Content Include="Scripts\Views\Evaluaciones\Matriz_IndicadoresLiterales.js" />
     <Content Include="Scripts\Views\Evaluaciones\ModificarEvaluacionProfesor.js" />
     <Content Include="Scripts\Views\Evaluaciones\ModificarEvaluacion.js" />
     <Content Include="Scripts\Views\Evaluaciones\CrearEvaluacion.js" />
@@ -2301,6 +2311,12 @@
     <Content Include="Scripts\Views\Notificaciones\NuevaNotificacion.js" />
     <Content Include="Scripts\Views\Index\Reportes.js" />
     <Content Include="Scripts\Views\Representantes\ListadoRepresentantes.js" />
+    <None Include="Service References\WS_MobileBridge\configuration91.svcinfo" />
+    <None Include="Service References\WS_MobileBridge\configuration.svcinfo" />
+    <None Include="Service References\WS_MobileBridge\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Views\About\About.aspx" />
     <Content Include="Views\Administrador\EditarUsuario.aspx" />
     <Content Include="Views\Administrador\DesbloquearUsuario.aspx" />
@@ -2328,7 +2344,6 @@
     <Content Include="Views\Cursos\GestionCursos.aspx" />
     <Content Include="Views\Cursos\CrearCurso.aspx" />
     <Content Include="Views\Cursos\ListaCursos.aspx" />
-    <Content Include="Views\Cursos\ModificarCurso.aspx" />
     <Content Include="Views\Docente\AgregarDocente.aspx" />
     <Content Include="Views\Errores\SinPrivilegios.aspx" />
     <Content Include="Views\Errores\SessionExpired.aspx" />
@@ -2339,6 +2354,7 @@
     <Content Include="Views\Evaluaciones\CrearEvaluacionAvanzadaProfesor.aspx" />
     <Content Include="Views\Evaluaciones\CrearEvaluacionProfesor.aspx" />
     <Content Include="Views\Evaluaciones\CrearEvaluacionAvanzada.aspx" />
+    <Content Include="Views\Evaluaciones\AsociacionIndicadoresLiterales.aspx" />
     <Content Include="Views\Evaluaciones\ModificarEvaluacionProfesor.aspx" />
     <Content Include="Views\Evaluaciones\ModificarEvaluacion.aspx" />
     <Content Include="Views\Evaluaciones\CrearEvaluacion.aspx" />
@@ -2390,6 +2406,30 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.HomeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
@@ -2570,6 +2610,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Service References\WS_MobileBridge\Security.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tesis_ClienteWeb_Data\Tesis_ClienteWeb_Data.csproj">
@@ -2580,6 +2621,12 @@
       <Project>{aee1838b-cf5d-4181-8154-0aca44ab23f9}</Project>
       <Name>Tesis_ClienteWeb_Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WS_MobileBridge\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

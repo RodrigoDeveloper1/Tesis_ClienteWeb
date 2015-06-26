@@ -88,16 +88,17 @@ namespace Tesis_ClienteWeb_Data.Services
         /// <param name="id">El id de la evaluación</param>
         /// <returns>La evaluación</returns>
         public Assessment ObtenerEvaluacionPor_Id(int id)
-        {
+        {            
             Assessment assessment = (
                 from Assessment evaluacion in _unidad.RepositorioAssessment._dbset
                     .Include("CASU.Course.Students")
                     .Include("CASU.Period.SchoolYear.School.Subjects")
                     .Include("CASU.Period.SchoolYear.School.SchoolYears")
                     .Include("CASU.Subject")
-                    .Include("CASU.User")
+                    .Include("CASU.Teacher")
                     .Include("Scores")
                     .Include("Event")
+                    .Include("IndicatorAssessments")
                 where evaluacion.AssessmentId == id
                 select evaluacion)
                     .FirstOrDefault<Assessment>();
@@ -124,9 +125,9 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Course")
                     .Include("Assessments")
                     .Include("Period.SchoolYear")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Subject")
-                where casu.UserId == idDocente &&
+                where casu.TeacherId == idDocente &&
                       casu.Period.SchoolYear.SchoolYearId == idAnoEscolar
                 select casu)
                     .ToList<CASU>();
@@ -190,9 +191,9 @@ namespace Tesis_ClienteWeb_Data.Services
                 from CASU casu in _unidad.RepositorioCASU._dbset
                     .Include("Subject")
                     .Include("Course")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Assessments")
-                where casu.User.Id == idDocente &&
+                where casu.Teacher.Id == idDocente &&
                       casu.Course.CourseId == idCurso &&
                       casu.Subject.SubjectId == idMateria
                 select casu.Assessments)
@@ -217,24 +218,31 @@ namespace Tesis_ClienteWeb_Data.Services
         public List<Assessment> ObtenerListaEvaluacionesPor_Curso_Materia_Docente_Lapso(int idMateria,
             int idCurso, string idProfesor, int idLapso)
         {
+            List<Assessment> lista = new List<Assessment>();
+
             List<Assessment> listaEvaluaciones = (
                 from CASU casu in _unidad.RepositorioCASU._dbset
                     .Include("Period.SchoolYear.School")
-                    .Include("Course")
+                    .Include("Course.CASU")
                     .Include("Subject")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Assessments")
                 where casu.PeriodId == idLapso &&
                       casu.CourseId == idCurso &&
                       casu.SubjectId == idMateria &&
-                      casu.UserId == idProfesor
+                      casu.TeacherId == idProfesor
                 select casu.Assessments)
                     .FirstOrDefault()
                     .OrderBy(m => m.FinishDate)
                     .ThenBy(t => t.StartHour)
                     .ToList<Assessment>();
 
-            return listaEvaluaciones;
+            foreach(Assessment evaluacion in listaEvaluaciones)
+            {
+                lista.Add(this.ObtenerEvaluacionPor_Id(evaluacion.AssessmentId));
+            }
+
+            return lista;
         }
         /// <summary>
         /// Método que obtiene la lista de evaluaciones por curso, materia y lapso
@@ -256,7 +264,7 @@ namespace Tesis_ClienteWeb_Data.Services
                         .Include("Period.SchoolYear.School")
                         .Include("Course")
                         .Include("Subject")
-                        .Include("User")
+                        .Include("Teacher")
                         .Include("Assessments")
                     where casu.PeriodId == idLapso &&
                           casu.CourseId == idCurso &&
@@ -303,7 +311,7 @@ namespace Tesis_ClienteWeb_Data.Services
                         .Include("Period.SchoolYear.School")
                         .Include("Course")
                         .Include("Subject")
-                        .Include("User")
+                        .Include("Teacher")
                         .Include("Assessments")
                     where casu.Period.Name == nombreLapso &&
                           casu.CourseId == idCurso &&
@@ -360,7 +368,7 @@ namespace Tesis_ClienteWeb_Data.Services
                 where casu.CourseId == idCurso &&
                       casu.PeriodId == idLapso &&
                       casu.SubjectId == idMateria &&
-                      casu.UserId == idDocente
+                      casu.TeacherId == idDocente
                 select casu.Assessments)
                     .FirstOrDefault()
                     .ToList<Assessment>();
@@ -404,7 +412,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Course.Students")
                 where casu.CourseId == idCurso &&
                       casu.PeriodId == idLapso &&
-                      casu.UserId == idDocente
+                      casu.TeacherId == idDocente
                 select casu)
                     .FirstOrDefault();
             #endregion

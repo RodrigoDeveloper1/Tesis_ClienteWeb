@@ -103,56 +103,47 @@ function TryParseFloat(str, defaultValue) {
 }
 function AgregarNotas() {
     showProgress();
+
     var listaAlumnos = [];
     var listaExamenes = [];
     var listaNotas = [];
-     idCurso = $("#select-curso option:selected").val();
-     idLapso = $("#select-lapso option:selected").val();
-     idMateria = $("#select-materia option:selected").val();
+    idCurso = $("#select-curso option:selected").val();
+    idLapso = $("#select-lapso option:selected").val();
+    idMateria = $("#select-materia option:selected").val();
 
-     for (i = 0; i <= countAlumnos; i++) { // for que recorre la columna de alumnos
-      
-         for (t = 1; t <= countExamenes-1; t++) {
-             
-           
-             if (hot.getData()[i][t] != " ") { // agarro la data de la celda en la posici[on si es diferente a ""
-         
-                 var datavalidation = TryParseFloat(hot.getData()[i][t], 50);// valida que se pueda parsear a float
-                 var letravalidation = hot.getData()[i][t];
-          
-                 if (datavalidation == 50) // devuelve 50 si no parsea a float
-                 {
-                     if (letravalidation != "a" && letravalidation != "A" && letravalidation != "b"
-                         && letravalidation != "B" && letravalidation != "c" && letravalidation != "C"
-                         && letravalidation != "d" && letravalidation != "D" && letravalidation != "e"
-                         && letravalidation != "E") { // valida que solo sean letras a,b,c,d,e
-                         ValidacionNotas();
+    for (i = 0; i <= countAlumnos; i++) { // for que recorre la columna de alumnos      
+        for (t = 1; t <= countExamenes - 1; t++) {
+            if (hot.getData()[i][t] != " ") { // agarro la data de la celda en la posición si es diferente a ""         
+                var datavalidation = TryParseFloat(hot.getData()[i][t], 50);// valida que se pueda parsear a float
+                var letravalidation = hot.getData()[i][t];
+
+                if (datavalidation == 50) { // devuelve 50 si no parsea a float
+                    if (letravalidation != "a" && letravalidation != "A" && letravalidation != "b"
+                        && letravalidation != "B" && letravalidation != "c" && letravalidation != "C"
+                        && letravalidation != "d" && letravalidation != "D" && letravalidation != "e"
+                        && letravalidation != "E") { // valida que solo sean letras a,b,c,d,e
+
+                        ValidacionNotas();
                          
-                         return false;
-                     }                    
-                 }
-                 else
-                 {               
-                     if (datavalidation <0 || datavalidation > 20) { // valida números negativos y mayores a 20
-                        
-                         ValidacionNotas();
-                       
-                         return false;
-                       
-                     }
-                 }
-             
-                 listaAlumnos.push(idsAlumnos[i]); // agrego el id del alumno
-                 listaExamenes.push(idsExamenes[t - 1]); // agrego el id de la evaluaci[on
-                 nota = hot.getData()[i][t];
-                 listaNotas.push(nota); // agrego la nota       
-               
-             }
-            
+                        return false;
+                    }
+                }
+                else {
+                    if (datavalidation < 0 || datavalidation > 20) { // valida números negativos y mayores a 20
+                        ValidacionNotas();
+
+                        return false;
+                    }
+                }
+
+                listaAlumnos.push(idsAlumnos[i]); // agrego el id del alumno
+                listaExamenes.push(idsExamenes[t - 1]); // agrego el id de la evaluaci[on
+                nota = hot.getData()[i][t];
+                listaNotas.push(nota); // agrego la nota       
+            }
         }
     }
     
-
     var postData = {
         idCurso: idCurso,
         idLapso: idLapso,
@@ -161,19 +152,18 @@ function AgregarNotas() {
         examenes: listaExamenes,
         notas: listaNotas
     };
-            $.ajax({
-                type: "POST",
-                url: "/Calificaciones/CargarCalificaciones",
-                traditional: true,
-                data: postData,
-                success: function (r) {
-                    window.location.href = 'GestionCalificaciones';
-                }
-            });        
-       
 
+    $.ajax({
+        type: "POST",
+        url: "/Calificaciones/CargarCalificaciones",
+        traditional: true,
+        data: postData,
+        success: function (r) {
+            window.location.href = 'GestionCalificaciones';
+        }
+    });
+}
 
-    }
 function ObtenerNotas() {
     idCurso = $("#select-curso option:selected").val();
     idLapso = $("#select-lapso option:selected").val();
@@ -263,7 +253,7 @@ function ObtenerAlumnosDelCurso() {
                             definitiva = 0;
                             var definitivaLetra = "";
                             var resultado = [];
-                            resultado.push(data1[i].apellido1 + ',' + data1[i].nombre1);
+                            resultado.push(data1[i].apellido1 + ', ' + data1[i].nombre1);
                             for (var r = 0; r < countidsExamenes; r++) {
                                 auxDefinitiva = 0;
                                 resultado.push(listaNotas[w]);
@@ -346,22 +336,7 @@ function ObtenerAlumnosDelCurso() {
     });
 
 }
-function NoExistenEvaluaciones() {
-    
-            swal({
-                title: "¡No Existen Evaluaciones!",
-                text: "No existen evaluaciones para la materia en el curso y periodo seleccionados .",
-                type: "warning",
-                confirmButtonColor: "green",
-                showCancelButton: false,
-                closeOnConfirm: true,
-            },
-            function (isConfirm) {
-                window.location.href = 'CargarCalificaciones';
-            });
 
-        
-}
 function NoExistenAlumnos() {
 
     swal({
@@ -378,13 +353,14 @@ function NoExistenAlumnos() {
 
 
 }
-$(document).ready(function () {
 
+$(document).ready(function () {
     container = document.getElementById('tablaCargarCalificaciones');
 
     $("#select-curso").change(function () {
 
         if ($(this).val() != "") {
+            showProgress();
 
             $("#select-lapso").find('option').remove().end().append("<option>Cargando lapsos...</option>");
             $("#select-lapso").selectpicker("refresh");
@@ -401,15 +377,18 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idLapso + '">' + data[i].nombre + '</option>');
-
                     }
                
                     $("#select-lapso").find('option').remove().end().append(lista);
                     $("#select-lapso").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
                     $("#select-lapso").find('option').remove().end().append('<option>No se encontraron lapso activos....</option>');
                     $("#select-lapso").selectpicker("refresh");
+
+                    hideProgress();
                 }
             });
         }
@@ -418,17 +397,14 @@ $(document).ready(function () {
             $("#select-lapso").selectpicker("refresh");
         }
     });
-  
-
     $("#select-lapso").change(function () {
         idCurso = $("#select-curso option:selected").val();
         idLapso = $(this).val();
         if ($(this).val() != "") {
+            showProgress();
 
             $("#select-materia").find('option').remove().end().append("<option>Cargando materias...</option>");
-            $("#select-materia").selectpicker("refresh");
-
-            
+            $("#select-materia").selectpicker("refresh");                       
 
             $.post("/Bridge/ObtenerSelectListMaterias",
             {
@@ -440,14 +416,18 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idMateria + '">' + data[i].nombre + '</option>');
-
                     }
+
                     $("#select-materia").find('option').remove().end().append(lista);
                     $("#select-materia").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
                     $("#select-materia").find('option').remove().end().append('<option>No se encontraron materias activas....</option>');
                     $("#select-materia").selectpicker("refresh");
+
+                    hideProgress();
                 }
             });
         }
@@ -456,8 +436,6 @@ $(document).ready(function () {
             $("#select-materia").selectpicker("refresh");
         }
     });
-
-    //Obtener lista de evaluaciones
     $("#select-materia").change(function () {
         stop = 0;
         nombresEvaluaciones = [];
@@ -472,6 +450,7 @@ $(document).ready(function () {
         nota = "";
         listaNotas = [];
         countChange++;
+
         $("#tablaCargarCalificaciones-div").find('div').remove().end().append("<div class='col-lg-12 handsontable' id=tablaCargarCalificaciones" + countChange + "></div>");
         container = document.getElementById('tablaCargarCalificaciones'+countChange);
         var lista = "";
@@ -494,7 +473,6 @@ $(document).ready(function () {
                 if (data != null && data.length > 0) {
 
                     for (var i = 0; i < data.length; i++) {
-
                         nombresEvaluaciones.push(data[i].nombre + " " + data[i].porcentaje + "%");
                         idsExamenes.push(data[i].idEvaluacion);
                         porcExamenes.push(parseInt(data[i].porcentaje)/100);
@@ -503,25 +481,17 @@ $(document).ready(function () {
                     ObtenerAlumnosDelCurso();
                 }
                 else {
-                    NoExistenEvaluaciones();
+                    swal('¡Oops!', 'No hay evaluaciones asociadas', 'warning');
                 }
             });
-
-          
         }
         else {
             nombresEvaluaciones.push("");
         }
     });
-
-    $("#CargarNotasButton").click(function (e) {
-      
-        AgregarNotas();
-    });
-
-    $("#ModificarNotasButton").click(function (e) {
-     
+    
+    $("#CargarNotasButton").click(function (e) { AgregarNotas(); });
+    $("#ModificarNotasButton").click(function (e) {     
         window.location.href = 'ModificarCalificaciones';
     });
 });
-

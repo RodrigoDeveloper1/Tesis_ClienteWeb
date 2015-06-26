@@ -100,6 +100,7 @@ namespace Tesis_ClienteWeb.Controllers
                 curso.Name = values[1].ToString();
                 curso.Grade = Convert.ToInt32(values[2].ToString());
                 curso.Section = values[3].ToString();
+                curso.School = añoEscolar.School;
                 #endregion
                 _courseService.GuardarCourse(curso);
 
@@ -238,42 +239,6 @@ namespace Tesis_ClienteWeb.Controllers
 
             return View(model);
         }
-        #endregion
-        #region Pantalla Modificar curso
-
-        [HttpGet]
-        public ActionResult ModificarCurso(int id)
-        {
-            CourseService courseController = new CourseService();
-            CursosModel model = new CursosModel();              
-            Course curso = new Course();
-            curso = courseController.ObtenerCursoPor_Id(id);
-            model.Course = curso;              
-            return View(model);     
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ModificarCurso(CursosModel model)
-        {
-            if(!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            CourseService courseController = new CourseService();
-            Course cursoNuevo = new Course()
-            {
-                CourseId = model.Course.CourseId,
-                Name = model.Course.Name,
-                //StartDate = Convert.ToDateTime(model.Course.StartDate),
-                //EndDate = Convert.ToDateTime(model.Course.EndDate),
-                //Status = true
-            };
-            courseController.ModificarCourse(cursoNuevo);
-            return RedirectToAction("Inicio", "Index");
-        }
-
         #endregion
         #region pantalla gestion cursos
         

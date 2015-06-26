@@ -15,6 +15,7 @@ namespace Tesis_ClienteWeb.Controllers
         string _controlador = "Evaluaciones";
         BridgeController _puente = new BridgeController();
 
+        #region Sección Acciones Maestras
         [HttpGet]
         public ActionResult CrearEvaluacion()
         {
@@ -528,36 +529,124 @@ namespace Tesis_ClienteWeb.Controllers
             }
             #endregion
         }
+        #endregion
+        #region Sección Usuario Docente
+        [HttpGet]
+        public ActionResult Evaluaciones()
+        {
+            ConfiguracionInicial(_controlador, "Evaluaciones");
 
+            #region Declaración de variables
+            EvaluacionModel modelo = new EvaluacionModel();
+            CourseService courseService = new CourseService();
+            List<Course> listaCursos = new List<Course>();
+            #endregion
+            #region Mensajes TempData
+            if (TempData["Success"] != null)
+            {
+                modelo.MostrarAclamaciones = "block";
+                modelo.MensajeAclamacion = TempData["Success"].ToString();
+            }
+            else if (TempData["Error"] != null)
+            {
+                modelo.MostrarErrores = "block";
+                ModelState.AddModelError("", TempData["Error"].ToString());
+            }
+            #endregion
+            #region Obteniendo la lista de cursos del docente en sesión
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
+            listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
+            #endregion
 
+            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+            modelo.idProfesor = _session.USERID;
 
+            return View(modelo);
+        }
 
+        [HttpGet]
+        public ActionResult AsociacionIndicadoresLiterales(int id)
+        {
+            ConfiguracionInicial(_controlador, "AsociacionIndicadoresLiterales");
 
+            #region Obteniendo la evaluación respectiva
+            AssessmentService assessmentService = new AssessmentService();
+            Assessment assessment = assessmentService.ObtenerEvaluacionPor_Id(id);
+            #endregion
+            #region Inicializando el modelo con la evaluación obtenida
+            MatrizIndicadoresLiteralesModel model = new MatrizIndicadoresLiteralesModel(assessment);
+            #endregion
+            #region Obteniendo la lista de competencias respectiva
+            IndicatorService indicatorService = new IndicatorService();            
+            List<Competency> listaCompetencias = indicatorService.ObteniendoListaCompetenciasPor_Evaluacion(id);
+            model.selectListCompetencies = new SelectList(listaCompetencias, "CompetencyId", "Description");
+            #endregion
 
+            return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult AsociacionIndicadoresLiterales(List<Object> principalIds, List<Object> asignaciones)
+        {
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+            List<int> listaIds = new List<int>();
+            List<int> listaAsignaciones = new List<int>();
+            IndicatorService indicatorService = new IndicatorService();
+            #endregion
+
+            #region Obteniendo la lista de Ids de las asignaciones
+            foreach (string bloqueIds in principalIds)
+            {
+                string[] bloqueSeparado = bloqueIds.Split(',');
+                foreach(string idIndividual in bloqueSeparado)
+                {
+                    listaIds.Add(Convert.ToInt32(idIndividual));
+                }
+            }
+            #endregion
+            #region Obteniendo la lista de valores de las asignaciones
+            foreach (string bloqueAsignaciones in asignaciones)
+            {
+                string[] bloqueSeparado = bloqueAsignaciones.Split(',');
+                foreach (string asignacionIndividual in bloqueSeparado)
+                {
+                    listaAsignaciones.Add(Convert.ToInt32(asignacionIndividual));
+                }
+            }
+            #endregion
+            #region Guardando los IndicatorAssignations
+            for (int i = 0; i <= listaIds.Count() - 1; i++ )
+            {
+                IndicatorAssignation IA = indicatorService.ObtenerIndicatorAssignationPor_Id(listaIds[i]);
+                IA.Assignation = listaAsignaciones[i];
+
+                try
+                {
+                    indicatorService.ModificarIndicatorAssignation(IA);
+                    
+                }
+                catch(Exception e)
+                {
+                    TempData["Error"] = e.Message;
+                    jsonResult.Add(new { Success = false });
+                }
+            }
+
+            TempData["Success"] = "Se actualizaron correctamente los valores de asignación entre" +
+                    " indicadores y literales.";
+
+            jsonResult.Add(new { Success = true });
+            #endregion
+
+            return Json(jsonResult);
+        }
+        #endregion
+
+        
         
 
         //Por revisar - Rodrigo Uzcátegui 13-05-15
-        public ActionResult Evaluaciones(EvaluacionModel modelo)
-        {
-            ObteniendoSesion();
-            CourseService _courseService = new CourseService();
-            SubjectService _subjectService = new SubjectService();
-            List<Course> listaCursos;
-            List<Subject> listaMaterias;                      
-
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
-            listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
-            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
-            List<Period> listaLapsos = new List<Period>();
-            modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
-            listaMaterias = new List<Subject>();
-            modelo.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name"); 
-
-      
-            return View(modelo);
-        }
-        
         [HttpGet]
         public ActionResult ModificarEvaluacionProfesor()
         {

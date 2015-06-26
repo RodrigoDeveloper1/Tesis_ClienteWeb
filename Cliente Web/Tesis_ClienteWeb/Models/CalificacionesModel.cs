@@ -15,7 +15,7 @@ namespace Tesis_ClienteWeb.Models
         public int idCurso { get; set; }
         public SelectList selectListCursos { get; set; }
 
-        [Display(Name = "Lista Materias")]
+        [Display(Name = "Lista de materias")]
         [Required(ErrorMessage = "Por favor seleccione la materia.")]
         public int idMateria { get; set; }
         public SelectList selectListMaterias { get; set; }

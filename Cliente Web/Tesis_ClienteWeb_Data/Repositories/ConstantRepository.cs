@@ -205,7 +205,7 @@ namespace Tesis_ClienteWeb_Data.Repositories
         public const string PERIOD_TWO = "2do Lapso";
         public const string PERIOD_THREE = "3er Lapso";
         #endregion
-        #region Constantes de reportes
+        #region Constantes de reportes & estadísticas
         /// <summary>
         /// Constante que indica el directorio de los archivos utilitarios para el diseño de los reportes.
         /// </summary>
@@ -215,6 +215,8 @@ namespace Tesis_ClienteWeb_Data.Repositories
         /// </summary>
         public const string REPORT_SERVER_DOWNLOAD_DIRECTORY = "~/App_Uploads/Reports_ServerSide";
         public const string REPORT_SERVER_REMAINS_DIRECTORY = "~/App_Uploads/Reports_Remains";
+        //public const string STATISTICS_SERVER_REMAINS_DIRECTORY = "~/App_Uploads/Statistics_Remains";
+        public const string STATISTICS_SERVER_REMAINS_DIRECTORY = "App_Uploads/Statistics_Remains";
         public const string REPORT_HEADER_BACKGROUND = "Header.png";
         public const string REPORT_SUBHEADER_BACKGROUND = "SubHeader.png";
         public const string REPORT_LOGO = "Logo.png";
@@ -224,6 +226,9 @@ namespace Tesis_ClienteWeb_Data.Repositories
         public const string REPORT_NODATA_110 = "No-data_110.png";
         public const string REPORT_NODATA_100 = "No-data_100.png";
         public const string REPORT_NODATA_90 = "No-data_90.png";
+
+        public const int MOBILE_STATISTICS_CODE_AprobadosVsReprobados = 1;
+        public const int MOBILE_STATISTICS_CODE_Top10ResultadosDestacados = 2;
         #endregion
         #region Constantes de acciones de menú de Maestras
         public const int MASTER_ACTION_ALUMNOS_AGREGAR_ALUMNOS = 1;
@@ -270,7 +275,7 @@ namespace Tesis_ClienteWeb_Data.Repositories
                 { MASTER_ACTION_MATERIAS_GESTION_MATERIAS, true },
                 { MASTER_ACTION_MATERIAS_MODIFICAR_MATERIAS, true },
                 { MASTER_ACTION_NOTIFICACIONES_GESTION_NOTIFICACIONES_AUTOMATICAS, true },
-                { MASTER_ACTION_NOTIFICACIONES_GESTION_NOTIFICACIONES_PERSONALIZADAS, false },
+                { MASTER_ACTION_NOTIFICACIONES_GESTION_NOTIFICACIONES_PERSONALIZADAS, true },
                 { MASTER_ACTION_SEGURIDAD_AGREGAR_USUARIO, true },
                 { MASTER_ACTION_SEGURIDAD_LISTAR_USUARIO, true },
                 { MASTER_ACTION_SEGURIDAD_BLOQUEAR_DESBLOQUEAR_USUARIO, true },
@@ -318,67 +323,8 @@ namespace Tesis_ClienteWeb_Data.Repositories
         }
         #endregion
         #endregion
-
-        #region Otras constantes
-        /// <summary>
-        /// Constante que guarda el id del primer colegio que se mostrará para los usuarios administradores
-        /// </summary>
-        public const int ADMINISTRATOR_FIRST_SCHOOL = 1;
-
-        /// <summary>
-        /// Constante que indica el número de meses que extenderá el año escolar (tanto en el límite de inicio,
-        /// como para el límite de finaliazción) para realizar diferentes acciones como:
-        /// 
-        /// 1. Encontrar notificaciones automáticas que no estén dentro del período de fechas de un año escolar.
-        /// 2. Mostrar en el calendario de fechas días previos y posteriores a las del año escolar.
-        /// </summary>
-        public const int MONTH_NUMBER_EXTENSION_LIMIT = 1;
-
-        #region Constant: SEX_LIST_SHORT
-        private static readonly ReadOnlyCollection<string> _sex_list_short =
-            new ReadOnlyCollection<string>(new[] 
-        {
-            "F", "M",
-        });
-        public static ReadOnlyCollection<string> SEX_LIST_SHORT
-        {
-            get { return _sex_list_short; }
-        }
+        #region Constantes de estándares de reportes
         #endregion
-
-        #region Constant: SEX_LIST_LARGE
-        private static readonly ReadOnlyCollection<string> _sex_list_large =
-            new ReadOnlyCollection<string>(new[] 
-        {
-            "Femenino", "Masculino",
-        });
-        public static ReadOnlyCollection<string> SEX_LIST_LARGE
-        {
-            get { return _sex_list_large; }
-        }
-        #endregion
-
-        #region Constant: IDENTITY_NUMBER_TYPE_LIST
-        private static readonly ReadOnlyCollection<string> _identity_number_type_list =
-            new ReadOnlyCollection<string>(new[] 
-        {
-            "V-", "E-",
-        });
-        public static ReadOnlyCollection<string> IDENTITY_NUMBER_TYPE_LIST
-        {
-            get { return _identity_number_type_list; }
-        }
-        #endregion
-        #endregion
-
-        #region Estándares
-        #region Reportes
-
-        #endregion
-        #endregion
-
-
-
         #region Constantes de evaluación
         #region Constant: ACTIVITY_LIST
         private static readonly ReadOnlyCollection<string> _activity_list = new ReadOnlyCollection<string>(new[] 
@@ -494,6 +440,58 @@ namespace Tesis_ClienteWeb_Data.Repositories
         }
         #endregion
         #endregion
+        
+        #region Otras constantes
+        /// <summary>
+        /// Constante que guarda el id del primer colegio que se mostrará para los usuarios administradores
+        /// </summary>
+        public const int ADMINISTRATOR_FIRST_SCHOOL = 1;
+
+        /// <summary>
+        /// Constante que indica el número de meses que extenderá el año escolar (tanto en el límite de inicio,
+        /// como para el límite de finaliazción) para realizar diferentes acciones como:
+        /// 
+        /// 1. Encontrar notificaciones automáticas que no estén dentro del período de fechas de un año escolar.
+        /// 2. Mostrar en el calendario de fechas días previos y posteriores a las del año escolar.
+        /// </summary>
+        public const int MONTH_NUMBER_EXTENSION_LIMIT = 1;
+
+        #region Constant: SEX_LIST_SHORT
+        private static readonly ReadOnlyCollection<string> _sex_list_short =
+            new ReadOnlyCollection<string>(new[] 
+        {
+            "F", "M",
+        });
+        public static ReadOnlyCollection<string> SEX_LIST_SHORT
+        {
+            get { return _sex_list_short; }
+        }
+        #endregion
+
+        #region Constant: SEX_LIST_LARGE
+        private static readonly ReadOnlyCollection<string> _sex_list_large =
+            new ReadOnlyCollection<string>(new[] 
+        {
+            "Femenino", "Masculino",
+        });
+        public static ReadOnlyCollection<string> SEX_LIST_LARGE
+        {
+            get { return _sex_list_large; }
+        }
+        #endregion
+
+        #region Constant: IDENTITY_NUMBER_TYPE_LIST
+        private static readonly ReadOnlyCollection<string> _identity_number_type_list =
+            new ReadOnlyCollection<string>(new[] 
+        {
+            "V-", "E-",
+        });
+        public static ReadOnlyCollection<string> IDENTITY_NUMBER_TYPE_LIST
+        {
+            get { return _identity_number_type_list; }
+        }
+        #endregion
+
         #region Constant: GRADE_LIST
         private static readonly ReadOnlyCollection<string> _grade_list = new ReadOnlyCollection<string>(new[] 
         {
@@ -514,6 +512,7 @@ namespace Tesis_ClienteWeb_Data.Repositories
         {
             get { return _course_section_list; }
         }
+        #endregion
         #endregion
 
         /// <summary>

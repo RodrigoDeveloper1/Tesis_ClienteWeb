@@ -48,7 +48,6 @@ namespace Tesis_ClienteWeb.Controllers
                 Response.Redirect("/Errores/SessionExpired");
             }
         }
-
         /// <summary>
         /// Método que valida si la sesión del usuario está activa o no
         /// </summary>
@@ -59,10 +58,10 @@ namespace Tesis_ClienteWeb.Controllers
                 if (HttpContext.Session.IsNewSession)
                     throw new SessionExpiredException();
             }
-            catch (SessionExpiredException)
+            catch (SessionExpiredException e)
             {
                 Server.ClearError();
-                Response.Redirect("/Errores/SessionExpired");
+                throw e; //Response.Redirect("/Errores/SessionExpired");
             }
         }
         /// <summary>
@@ -82,7 +81,6 @@ namespace Tesis_ClienteWeb.Controllers
             else
                 return false;
         }
-
         /// <summary>
         /// Método que valida si el usuario de la sesión tiene los privilegios requeridos para realizar cierta
         /// acción
@@ -123,7 +121,6 @@ namespace Tesis_ClienteWeb.Controllers
         {
             return ConstantRepository.PRODUCTION_ENVIRONMENT;
         }
-
         /// <summary>
         /// Método que obtiene el valor de la constante de la variable de validación de perfiles. Se utiliza
         /// para evitar warnings de llamdas de valores que no pueden cambiar (por ser una constante).

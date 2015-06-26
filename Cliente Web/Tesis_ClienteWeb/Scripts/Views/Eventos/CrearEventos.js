@@ -1,4 +1,6 @@
-﻿var idColegio;
+﻿var idColegio = "";
+var idAnoEscolar = "";
+
 var UltimoNroEvento;
 
 // Gestion tabla de Eventos
@@ -10,18 +12,12 @@ function Add() {
     /*Se borra la fila que contenía solo el símbolo de añadir un nuevo evento*/
     var par = $(this).parent().parent(); //tr
     par.remove();
-    var linea = ("<tr>" +
+    var linea = (
+        "<tr>" +
             "<td class='td-nombre'><input class='form-control input-sm' type='text'/></td>" +
-            "<td class='td-descripcion'><input class='form-control input-sm' " +
-            "  type='text'/></td>" +
+            "<td class='td-descripcion'><input class='form-control input-sm' type='text'/></td>" +
             "<td class='td-inicio'><input class='form-control input-sm datepicker' type='text'/></td>" +
             "<td class='td-fin'><input class='form-control input-sm datepicker' type='text'/></td>" +
-           "<td class='td-tipo'><select class='form-control selectpicker input-sm'>" +
-            "<option value='Evento de un día'>Evento de un día</option>" +
-            "<option value='Evento de varios días'>Evento de varios días</option>" +           
-            "<option value='Otro'>Otro</option>" +
-              " </select>" +
-              "</td>" +
             "<td class='td-agregar-eventos'><i class='ui-icon ui-icon-check i-agregar-eventos'></i></td>" +
             "<td class='td-eliminar-eventos'><i class='fa fa-minus-circle i-eliminar-fila-eventos'></i></td>" +
         "</tr>");
@@ -45,7 +41,6 @@ function Add() {
             "<td class='td-descrpcion'></td>" +
             "<td class='td-inicio'></td>" +
             "<td class='td-fin'></td>" +
-            "<td class='td-tipo'></td>" +
             "<td class='td-agregar-eventos'></td>" +
             "<td class='td-eliminar-eventos'></td>" +
         "</tr>");
@@ -60,7 +55,6 @@ function Save() {
     var tdDescripcion = par.children("td:nth-child(2)");
     var tdInicio = par.children("td:nth-child(3)");
     var tdFin = par.children("td:nth-child(4)");
-    var tdTipo = par.children("td:nth-child(5)");
     var tdAgregar = par.children("td:nth-child(6)");
     var tdEliminar = par.children("td:nth-child(7)");
 
@@ -69,7 +63,6 @@ function Save() {
     tdDescripcion.html(tdDescripcion.children("input[type=text]").val());
     tdInicio.html(tdInicio.children("input[type=text]").val());
     tdFin.html(tdFin.children("input[type=text]").val());
-    tdTipo.html(tdTipo.children("select").val());
     tdAgregar.html("<i class='fa fa-edit i-editar-eventos'></i>"); //El ícono cambia al de editar
     tdEliminar.html("<i class='fa fa-minus-circle i-eliminar-fila-eventos'></i>");
 
@@ -82,40 +75,13 @@ function Edit() {
     var tdDescripcion = par.children("td:nth-child(2)");
     var tdInicio = par.children("td:nth-child(3)");
     var tdFin = par.children("td:nth-child(4)");
-    var tdTipo = par.children("td:nth-child(5)");
     var tdAgregar = par.children("td:nth-child(6)");
     var tdEliminar = par.children("td:nth-child(7)");
 
     tdNombre.html("<input class='form-control input-sm' type='text' value=" + tdNombre.html() + ">"); +
-    tdDescripcion.html("<input class='form-control input-sm'" +
-        " type='text' value=" + tdDescripcion.html() + ">");
+    tdDescripcion.html("<input class='form-control input-sm' type='text' value=" + tdDescripcion.html() + ">");
     tdInicio.html("<input class='form-control input-sm datepicker' type='text' value=" + tdInicio.html() + ">");
     tdFin.html("<input class='form-control input-sm datepicker' type='text' value=" + tdFin.html() + ">");
-   
-
-    if (tdTipo.html() == "Evento de un día") {
-        tdTipo.html("<select class='form-control selectpicker input-sm'>" +
-                "<option selected value='Evento de un día'>Evento de un día</option>" +
-                "<option value='Evento de varios días'>Evento de varios días</option>" +
-                "<option value='Otro'>Otro</option>" +
-                  " </select>");
-    }
-    if (tdTipo.html() == "Evento de varios días") {
-        tdTipo.html("<select class='form-control selectpicker input-sm'>" +
-                "<option value='Evento de un día'>Evento de un día</option>" +
-                "<option selected value='Evento de varios días'>Evento de varios días</option>" +
-                "<option value='Otro'>Otro</option>" +
-                  " </select>");
-    }
-       
-    if (tdTipo.html() == "Otro") {
-        tdTipo.html("<select class='form-control selectpicker input-sm'>" +
-                "<option value='Evento de un día'>Evento de un día</option>" +
-                "<option value='Evento de varios días'>Evento de varios días</option>" +
-                "<option value='Reunión/Consejo de profesores'>Reunión/Consejo de profesores</option>" +
-                "<option selected value='Otro'>Otro</option>" +
-                  " </select>");
-    }
     tdAgregar.html("<i class='ui-icon ui-icon-check i-agregar-eventos'></i>"); //El ícono cambia al de agregar
     tdEliminar.html("<i class='fa fa-minus-circle i-eliminar-fila-eventos'></i>");
 
@@ -147,7 +113,6 @@ function Delete() {
             "<td class='td-descripcion'></td>" +
             "<td class='td-inicio'></td>" +
             "<td class='td-fin'></td>" +
-            "<td class='td-tipo'></td>" +
             "<td class='td-agregar-eventos'></td>" +
             "<td class='td-eliminar-eventos'></td>" +
         "</tr>");
@@ -168,7 +133,6 @@ function BorrarTodo() {
             "<td class='td-descripcion'></td>" +
             "<td class='td-inicio'></td>" +
             "<td class='td-fin'></td>" +
-            "<td class='td-tipo'></td>" +
             "<td class='td-agregar-eventos'></td>" +
             "<td class='td-eliminar-eventos'></td>" +
         "</tr>");
@@ -182,7 +146,6 @@ function SalvarTodo() {
         var tdDescripcion = $(this).children("td:nth-child(2)");
         var tdInicio = $(this).children("td:nth-child(3)");
         var tdFin = $(this).children("td:nth-child(4)");
-        var tdTipo = $(this).children("td:nth-child(5)");
         var tdAgregar = $(this).children("td:nth-child(6)");
         var tdEliminar = $(this).children("td:nth-child(7)");
 
@@ -190,7 +153,6 @@ function SalvarTodo() {
         tdDescripcion.html(tdDescripcion.children("input[type=text]").val());
         tdInicio.html(tdInicio.children("input[type=text]").val());
         tdFin.html(tdFin.children("input[type=text]").val());
-        tdTipo.html(tdTipo.children("select").val());
         tdAgregar.html("<i class='fa fa-edit i-editar-eventos'></i>"); //El ícono cambia al de editar
         tdEliminar.html("<i class='fa fa-minus-circle i-eliminar-fila-eventos'></i>");
     });
@@ -218,56 +180,58 @@ function SalvarTodo() {
     $(".i-eliminar-fila-eventos").bind("click", Delete);
     $("#i-add-fila-eventos").bind("click", Add);
 }
+
 // Agregar Eventos
 function AgregarEventos() {
-    SalvarTodo();
-    $('#div-table-lista-eventos-cargar tr:last').remove(); //Para borrar la última fila con el signo '+'
-    console.log("Entro vieja");
-    var tdNombre;
-    var tdDescripcion;
-    var tdInicio;
-    var tdFin;
-    var tdTipo;
-    var tdAgregar;
-    var tdEliminar;
-    var evento;
-    var listaEventos = [];
+    if (idColegio == null || idColegio == "")
+        swal("¡Oops!", "No ha seleccionado ningún colegio", "warning");
+    else
+    {
+        showProgress();
+        SalvarTodo();
 
-    listaEventos.push(idColegio);
-   
-    $('#div-table-lista-eventos-cargar tbody tr').each(function () {
-        tdNombre = $(this).children("td:nth-child(1)").html();
-        tdDescripcion = $(this).children("td:nth-child(2)").html();
-        tdInicio = $(this).children("td:nth-child(3)").html();
-        tdFin = $(this).children("td:nth-child(4)").html();
-        tdTipo = $(this).children("td:nth-child(5)").html();
-        tdAgregar = $(this).children("td:nth-child(6)").html();
-        tdEliminar = $(this).children("td:nth-child(7)").html();
+        $('#div-table-lista-eventos-cargar tr:last').remove(); //Para borrar la última fila con el signo '+'
 
-        evento = [tdNombre, tdDescripcion, tdInicio, tdFin, tdTipo];
+        //Declaración de variables
+        var tdNombre; var tdDescripcion; var tdInicio; var tdFin; var tdAgregar; var tdEliminar;
+        var evento; var listaEventos = [];
 
-        listaEventos.push(evento);
-    });
+        listaEventos.push([idColegio, idAnoEscolar]);
 
-    var postData = { values: listaEventos };
-    
-    $.ajax({
-        type: "POST",
-        url: "/Eventos/CrearEvento",
-        traditional: true,
-        data: postData,
-        success: function (r) {
-            window.location.href = 'CrearEvento';
-        }
-    });
+        $('#div-table-lista-eventos-cargar tbody tr').each(function () {
+            tdNombre = $(this).children("td:nth-child(1)").html();
+            tdDescripcion = $(this).children("td:nth-child(2)").html();
+            tdInicio = $(this).children("td:nth-child(3)").html();
+            tdFin = $(this).children("td:nth-child(4)").html();
+            tdAgregar = $(this).children("td:nth-child(6)").html();
+            tdEliminar = $(this).children("td:nth-child(7)").html();
+
+            evento = [tdNombre, tdDescripcion, tdInicio, tdFin];
+            listaEventos.push(evento);
+        });
+
+        var postData = { values: listaEventos };
+
+        $.ajax({
+            type: "POST",
+            url: "/Eventos/CrearEvento",
+            traditional: true,
+            data: postData,
+            success: function (data) {
+                window.location.href = 'CrearEvento';
+            }
+        });
+    }
 }
 
 $(document).ready(function () {
     $("#select-colegio-crear").change(function () {
         idColegio = $(this).val();
-
         $("#ano-escolar").val("Cargando el año escolar");
+
         if (idColegio != "") {
+            showProgress();
+
             $.ajax({
                 type: "POST",
                 url: "/Bridge/ObtenerAnoEscolarActivoEnLabel",
@@ -277,12 +241,16 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data[0].success) {
                         $("#ano-escolar").val(data[0].label);
+
                         idAnoEscolarActivo = data[0].idAnoEscolar;
+                        idAnoEscolar = data[0].idAnoEscolar;
                     }
                     else {
                         //Limpiando el text-box del año escolar
                         $("#ano-escolar").val("No posee año escolar activo");
                     }
+
+                    hideProgress();
                 }
             });
         }
@@ -301,11 +269,3 @@ $(document).ready(function () {
 
     $("#btn-agregar-eventos").bind("click", AgregarEventos)
 });
-
-        
-
-
-
-    
-
-

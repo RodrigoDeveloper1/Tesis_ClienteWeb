@@ -27,9 +27,20 @@ namespace Tesis_ClienteWeb_Models.POCO
         [Display(Name = "Estatus del colegio:")]
         public bool Status { get; set; }
 
+        [Display(Name = "Dirección:")]
+        public string Address { get; set; }
+
+        [Display(Name = "Teléfono #1:")]
+        public string Phone1 { get; set; }
+
+        [Display(Name = "Teléfono #2:")]
+        public string Phone2 { get; set; }
+
         public List<SchoolYear> SchoolYears { get; set; } /* Un colegio solo puede tener un año escolar activo
                                                            * por año.
                                                            */
+
+        public List<Course> Courses { get; set; }
 
         public List<User> Users { get; set; }
 
@@ -42,6 +53,7 @@ namespace Tesis_ClienteWeb_Models.POCO
             this.SchoolYears = new List<SchoolYear>();
             this.Users = new List<User>();
             this.Subjects = new List<Subject>();
+            this.Courses = new List<Course>();
         }
     }
 }

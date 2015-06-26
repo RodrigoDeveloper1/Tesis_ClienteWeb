@@ -93,10 +93,10 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.AgregarAlumnosModel>" 
                                 <tr>
                                     <th class="th-nro-alumno">#</th>
                                     <th class="th-matricula"># Matrícula</th>
-                                    <th class="th-primerapellido-alumno">1er Nombre</th>
-                                    <th class="th-segundoapellido-alumno">2do Nombre</th>
-                                    <th class="th-primernombre-alumno">1er Apellido</th>
-                                    <th class="th-segundonombre-alumno">2do Apellido</th>
+                                    <th class="th-primerapellido-alumno">1er Apellido</th>
+                                    <th class="th-segundoapellido-alumno">2do Apellido</th>
+                                    <th class="th-primernombre-alumno">1er Nombre</th>
+                                    <th class="th-segundonombre-alumno">2do Nombre</th>
                                     <th class="th-agregar-alumno">
                                         <i class="ui-icon ui-icon-check iconos-comentados" 
                                             id="i-salvar-todas-filas">

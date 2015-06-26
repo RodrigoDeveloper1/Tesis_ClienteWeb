@@ -150,6 +150,6 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bi
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\EntityFramework.SqlServer.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\bin\Debug\es\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.pdb
-C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Models\obj\Debug\Tesis_ClienteWeb_Models.csprojResolveAssemblyReference.cache

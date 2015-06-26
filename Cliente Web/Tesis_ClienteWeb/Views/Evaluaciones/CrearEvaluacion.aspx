@@ -17,7 +17,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
         <!-- Lista de lapsos -->
         <div class="col-xs-3">
             <%: Html.LabelFor(m => m.idLapso) %>
-            <%: Html.DropDownListFor(m => m.idLapso, Model.selectListLapsos, "Seleccione el lapso...", 
+            <%: Html.DropDownListFor(m => m.idLapso, Model.selectListLapsos, "Seleccione un lapso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-lapso-crear" })%>
         </div>
 
@@ -30,13 +30,13 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
         <!-- Lista de cursos -->
         <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
-            <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
+            <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione un curso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-curso-crear" })%>
         </div>
         <!-- Lista de materias -->
         <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idMateria) %>
-            <%: Html.DropDownListFor(m => m.idMateria, Model.selectListMaterias, "Seleccione la materia...", 
+            <%: Html.DropDownListFor(m => m.idMateria, Model.selectListMaterias, "Seleccione una materia...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-materia-crear" })%>
         </div>
         <!-- Lista de profesores -->

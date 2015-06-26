@@ -31,7 +31,26 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.ColegiosModel>" %>
                         @class = "form-control"}) %>
             </div>
 
-            
+            <!-- Teléfono #1 -->
+            <div class="form-group col-xs-6">
+                <%: Html.LabelFor(m => m.colegio.Phone1) %>
+                <%: Html.TextBoxFor(m => m.colegio.Phone1, new { @PlaceHolder = "Teléfono #1", 
+                    @class = "form-control"}) %>
+            </div>
+
+            <!-- Teléfono #2 -->
+            <div class="form-group col-xs-6">
+                <%: Html.LabelFor(m => m.colegio.Phone2) %>
+                <%: Html.TextBoxFor(m => m.colegio.Phone2, new { @PlaceHolder = "Teléfono #2", 
+                    @class = "form-control"}) %>
+            </div>
+
+            <!-- Descripción del rol -->
+            <div class="form-group col-xs-12">
+                <%: Html.LabelFor(m => m.colegio.Address) %>
+                <%: Html.TextAreaFor(m => m.colegio.Address, new { @class = "form-control", @rows = "3", 
+                    @style = "resize: none" })%>
+            </div>
 
             <!-- Lista de estatus -->
             <div class="form-group col-xs-12">

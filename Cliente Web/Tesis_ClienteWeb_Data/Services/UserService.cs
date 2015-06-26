@@ -97,8 +97,8 @@ namespace Tesis_ClienteWeb_Data.Services
                 listaDocentes = (from CASU casu in _unidad.RepositorioCASU._dbset
                                  where casu.Period.SchoolYear.School.SchoolId == _session.SCHOOLID &&
                                        casu.Period.SchoolYear.SchoolYearId == _session.SCHOOLYEARID &&
-                                       casu.User.Id != _session.USERID //Para que no traiga al usuario conectado
-                                 select casu.User)
+                                       casu.Teacher.Id != _session.USERID //Para que no traiga al usuario conectado
+                                 select casu.Teacher)
                                     .OrderBy(m => m.UserName)
                                     .ToHashSet<User>()
                                     .ToList<User>();
@@ -150,11 +150,11 @@ namespace Tesis_ClienteWeb_Data.Services
         {
             List<User> lista = (
                 from CASU classroom in _unidad.RepositorioCASU._dbset
-                    .Include("User")
+                    .Include("Teacher")
                 where classroom.CourseId == idCurso &&
                       classroom.SubjectId == idMateria &&
                       classroom.PeriodId == idPeriodo
-                select classroom.User)
+                select classroom.Teacher)
                     .OrderBy(m => m.LastName)
                     .ToList<User>();
 

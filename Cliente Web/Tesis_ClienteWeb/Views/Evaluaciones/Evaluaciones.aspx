@@ -6,49 +6,45 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%: Html.HiddenFor(m => m.idProfesor, new { @id = "id-docente"})%>
 
-
- 
-<!-------------------------------- Combobox de cursos  y materias -------------------------------------->
+    <!-- Sección: Lista de cursos, lapsos y materias -->
     <div class="row">
-<!-- Lista de cursos -->
-          <div class="col-xs-12">
+        <!-- Lista de cursos -->
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
             <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
             new { @class = "form-control selectpicker class-cursos",  @id = "select-curso" })%>
         </div>
-             <!--Separador -->
-    <div class="form-group col-xs-12"></div>   
-         <!-- Lista de lapsos -->
-        <div class="col-xs-6">
+
+        <!-- Lista de lapsos -->
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idLapso) %>
             <%: Html.DropDownListFor(m => m.idLapso, Model.selectListLapsos, "Seleccione el lapso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-lapso" })%>
         </div>
+
         <!-- Lista de materias -->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idMateria) %>
             <%: Html.DropDownListFor(m => m.idMateria, Model.selectListMaterias, "Seleccione la materia...", 
             new { @class = "form-control selectpicker class-cursos",  @id = "select-materia" })%>
         </div>
-        
-         <!--Separador -->
-    <div class="form-group col-xs-12"></div>   
-    </div>
-<!-------------------------------- Fin de Combobox de cursos y materias -------------------------------------->
 
-    <div class="row">
+        <!--Separador -->
+        <div class="form-group col-xs-12"></div>
+
+        <!-- Separador con línea -->
         <div class="col-lg-12">
             <div class="separador"></div>
         </div>
     </div>
 
-    <!-------------------------------- Inicio tabla alumnos -------------------------------------->
+    <!-- Sección: Tabla de alumnos -->
     <div class="row">
-
         <!-- Panel de Lista de Evaluaciones -->
         <div class="col-xs-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <strong>Lista de evaluaciones</strong>
                 </div>
@@ -68,62 +64,60 @@
                                     <th class="th-opcion-prof">Fecha Fin</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                              
-                                <tr> 
-                                    <td class="th-evaluacion-prof"></td>
-                                    <td class="th-tecnica-prof"></td>
-                                    <td class="th-tipo-prof"></td>
-                                    <td class="th-instrumento-prof"></td>
-                                    <td class="th-porcentaje-prof"></td>
-                                    <td class="th-opcion-prof"></td>
-                                    <td class="th-opcion-prof"></td>                         
-                                </tr>                               
+
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    
-    
-     <div class="row">
+                
+        <!-- Botón: Asociación Indicadores/Literales -->
+        <div class="col-xs-4">
+            <button class="btn btn-lg btn-primary" id="btn-asociacion-indicadores-literales" disabled="disabled">
+                Asociación: Indicadores/Literales
+            </button>
+        </div>
+
+        <!--Separador -->
+        <div class="form-group col-xs-12"></div>
+
+        <!-- Separador con línea -->
         <div class="col-lg-12">
             <div class="separador"></div>
         </div>
     </div>
+
+    <!-- Botón: Cancelar -->
+    <div class="row">
         <!-- Botón Cancelar -->
         <div class="col-xs-12 text-center">
-            <% using (Html.BeginForm("Inicio", "Index", FormMethod.Get, new
-            {
-                @class = "form",
-                @role = "form"
-            }))
-            { %>
+            <% using (Html.BeginForm("Inicio", "Index", FormMethod.Get, new 
+               { 
+                   @class = "form", 
+                   @role = "form"
+               }))
+               { %>
+
             <button class="btn btn-lg btn-default" type="submit">
                 Cancelar
             </button>
             <% } %>
         </div>
 
-        <div class="col-lg-12">
-            <div class="separador"></div>
-        </div>
-   </div>
-    <!----------------------------------- Fin de Fila de Tabla de evaluaciones ------------------------------------>
-
+        <!--Separador -->
+        <div class="form-group col-xs-12"></div>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="CSSContent" runat="server">
-
     <link href="../../Content/Css/Evaluaciones/Evaluaciones.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
-
-<script src="../../Scripts/Views/Evaluaciones/Evaluaciones.js" type="text/javascript" language="javascript"></script>
+    <script src="../../Scripts/Views/Evaluaciones/Evaluaciones.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="TituloPagina" runat="server">
-Evaluaciones
+    Evaluaciones
 </asp:Content>
-

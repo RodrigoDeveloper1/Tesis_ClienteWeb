@@ -22,10 +22,8 @@ namespace Tesis_ClienteWeb_Models.POCO
 
         public string SubjectCode { get; set; }
 
-        [Display(Name= "Pensum de la materia:")]
-        [StringLength(700, 
-            ErrorMessage = "El pensum de la materia debe tener un máximo de {1} caracteres.")]
-        public string Pensum { get; set; }
+        [Display(Name= "Objetivo general:")]
+        public string GeneralPurpose { get; set; }
 
         public int Grade { get; set; }
 
@@ -33,9 +31,15 @@ namespace Tesis_ClienteWeb_Models.POCO
         
         public List<CASU> CASUs { get; set; }
 
+        public List<ContentBlock> ContentBlocks { get; set; }
+
+        public List<Competency> Competencies { get; set; }
+
         public Subject()
         {
             this.CASUs = new List<CASU>();
+            this.ContentBlocks = new List<ContentBlock>();
+            this.Competencies = new List<Competency>();
         }
     }
 }

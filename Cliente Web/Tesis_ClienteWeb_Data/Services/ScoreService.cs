@@ -246,6 +246,8 @@ namespace Tesis_ClienteWeb_Data.Services
             Assessment assessment;
             Score score;
             double calculo = 0;
+            //double calculoOptimo = 0;
+            int grado = 0;
             #endregion
             #region Obteniendo el casu respectivo
             CASU casu = (
@@ -255,9 +257,12 @@ namespace Tesis_ClienteWeb_Data.Services
                 where casuAux.CourseId == idCurso &&
                       casuAux.PeriodId == idLapso &&
                       casuAux.SubjectId == idMateria &&
-                      casuAux.UserId == idDocente
+                      casuAux.TeacherId == idDocente
                 select casuAux)
                     .FirstOrDefault<CASU>();
+            #endregion
+            #region Definiendo el grado
+            grado = casu.Course.Grade;
             #endregion
             #region Obteniendo la lista de estudiantes & lista de evaluaciones respectivas
             List<Student> listaEstudiantes = casu.Course.Students;
@@ -270,9 +275,30 @@ namespace Tesis_ClienteWeb_Data.Services
                 {
                     assessment = assessmentService.ObtenerEvaluacionPor_Id(assessmentAux.AssessmentId);
                     score = assessment.Scores.Where(m => m.StudentId == student.StudentId).FirstOrDefault<Score>();
+
                     if (score != null) //Nota no vacía
-                        calculo += ((double)(score.NumberScore * assessment.Percentage) / 100);
+                    {
+                        #region Bachillerato
+                        if (grado > 6) //Bachillerato
+                            calculo += ((double)(score.NumberScore * assessment.Percentage) / 100);
+                        #endregion
+                        #region Primaria
+                        else
+                        {
+                            if (score.LetterScore.ToUpper().Equals("A")) calculo += 5;
+                            else if (score.LetterScore.ToUpper().Equals("B")) calculo += 4;
+                            else if (score.LetterScore.ToUpper().Equals("C")) calculo += 3;
+                            else if (score.LetterScore.ToUpper().Equals("D")) calculo += 2;
+                            else if (score.LetterScore.ToUpper().Equals("E")) calculo += 1;
+                        }
+                        #endregion
+                    }
                 };
+
+                #region Cálculo final para alumnos de primaria
+                if (grado <= 6) //Primaria
+                    calculo = Math.Round((double)calculo / listaEvaluaciones.Count());
+                #endregion
 
                 diccionario.Add(student.StudentId, calculo);
                 calculo = 0;

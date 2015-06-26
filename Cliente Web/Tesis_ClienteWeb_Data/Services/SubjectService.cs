@@ -167,10 +167,10 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Subject")
                     .Include("Period")
                     .Include("Course")
-                    .Include("User")
+                    .Include("Teacher")
                 where casu.Period.PeriodId == idLapso && 
                       casu.Course.CourseId == idCurso &&
-                      casu.User != null
+                      casu.Teacher != null
                 select casu.Subject)
                     .OrderBy(m => m.Name)
                     .ToHashSet<Subject>();
@@ -210,8 +210,8 @@ namespace Tesis_ClienteWeb_Data.Services
             List<Subject> listaMaterias = (
                 from CASU casu in _unidad.RepositorioCASU._dbset
                     .Include("Subject")
-                    .Include("User")
-                where casu.UserId == null &&
+                    .Include("Teacher")
+                where casu.TeacherId == null &&
                       casu.CourseId == idCurso &&
                       casu.Subject.School.SchoolId == idColegio &&
                       casu.Subject.Grade == grado
@@ -228,9 +228,9 @@ namespace Tesis_ClienteWeb_Data.Services
             //Editado 18-01-15. No probado
             HashSet<Subject> listaMaterias = (from CASU casu in _unidad.RepositorioCASU._dbset
                                  .Include("Subject")
-                                 .Include("User")
+                                 .Include("Teacher")
                                  .Include("Course")
-                                              where casu.User.Id == idUser && casu.Course.CourseId == idCurso
+                                              where casu.Teacher.Id == idUser && casu.Course.CourseId == idCurso
 
                                               select casu.Subject).ToHashSet<Subject>();
 
@@ -249,10 +249,10 @@ namespace Tesis_ClienteWeb_Data.Services
             List<Subject> listaMaterias = (
                 from CASU casu in _unidad.RepositorioCASU._dbset
                     .Include("Subject")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Course")
                 where casu.CourseId == idCurso &&
-                      casu.UserId == _session.USERID
+                      casu.TeacherId == _session.USERID
                 select casu.Subject)
                       .ToHashSet<Subject>()
                       .OrderBy(m => m.Name)
@@ -272,7 +272,7 @@ namespace Tesis_ClienteWeb_Data.Services
             List<Subject> listaMaterias = (
                 from CASU casu in _unidad.RepositorioCASU._dbset
                     .Include("Subject")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Course")
                 where casu.CourseId == idCurso
                 select casu.Subject)

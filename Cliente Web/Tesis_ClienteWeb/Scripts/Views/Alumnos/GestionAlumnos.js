@@ -97,7 +97,7 @@ $(document).ready(function () {
     //Obteniendo el id del curso
     $("#select-curso").change(function () {
         idCurso = $(this).val();
-
+        console.log("prueba");
         if (idCurso != "") {
             showProgress();
 
@@ -117,14 +117,9 @@ $(document).ready(function () {
                                     "<td class='td-nro-lista'>" + data[i].nroLista + "</td>" +
                                     "<td class='td-apellido'>" + data[i].apellido + "</td>" +
                                     "<td class='td-nombre'>" + data[i].nombre + "</td>" +
-                                    "<td class='td-representante1'>" + data[i].representante1 + "</td>" +
-                                    "<td class='td-representante2'>" + data[i].representante2 + "</td>" +
-                                    "<td class='td-editar-alumno centrar'>" +
-                                        "<a class='fa fa-pencil' href='EditarAlumno/" + data[i].idEstudiante + "'></a>" +
-                                    "</td>" +
-                                    "<td class='td-eliminar centrar' id='" + data[i].idEstudiante + "'>" +
-                                        "<a class='fa fa-minus-circle eliminaralumno'></a>" +
-                                    "</td>" +
+                                    "<td class='td-representante1'><input/></td>" +
+                                    "<td class='td-representante2'><input/></td>" +
+                                    
                                 "</tr>"
                                 );
                         }

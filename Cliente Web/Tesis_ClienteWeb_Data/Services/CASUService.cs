@@ -78,7 +78,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Course.Students")
                     .Include("Period.SchoolYear.School.Subjects")
                     .Include("Subject")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Assessments")
                 where c.CourseId == courseId &&
                       c.PeriodId == periodId &&
@@ -104,12 +104,12 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Course")
                     .Include("Period.SchoolYear")
                     .Include("Subject")
-                    .Include("User")
+                    .Include("Teacher")
                     .Include("Assessments")
                 where c.CourseId == courseId && 
                       c.PeriodId == periodId && 
                       c.SubjectId == subjectId && 
-                      c.UserId == userId
+                      c.TeacherId == userId
                 select c)
                     .FirstOrDefault<CASU>();
 
@@ -142,7 +142,7 @@ namespace Tesis_ClienteWeb_Data.Services
                                     .Include("Course")
                                     .Include("Period.SchoolYear")
                                     .Include("Subject")
-                                    .Include("User")
+                                    .Include("Teacher")
                                     .Include("Assessments")
                                 where casu.Course.CourseId == idCurso &&
                                       casu.Subject.SubjectId == idMateria

@@ -1,59 +1,14 @@
-﻿/************************************************************************************************
- * Copyright from:                                                                              *
- * http://stackoverflow.com/questions/21168521/scrollable-table-with-fixed-header-in-bootstrap  *
- *                                                                                              *
- * Username: giulio - http://stackoverflow.com/users/1008538/giulio                             *
- ************************************************************************************************/
- 
-/*table 
-{
-    width: 100%;
-}*/
-
-thead,
-tbody,
-tr, 
-td,
-th
-{ 
-    display: block; 
+﻿#btn-asociacion-indicadores-literales {    
+    font-size: 15px;
+    font-weight: bold;
 }
 
-tr:after 
-{
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
+#btn-asociacion-indicadores-literales:disabled { cursor: not-allowed !important; }
 
-thead th 
-{
-    /*height: 30px;*/
-    height: 60px;
-}
-
-tbody 
-{
-    /*height: 120px;*/
-    height: 370px;
-    overflow-y: auto;
-}
-
-thead th,
-tbody td 
-{
-    /*width: 19.2%;*/
-    float: left;
-}
-
-/************************************************************************************************
- * Fin de copyright from:                                                                       *
- * http://stackoverflow.com/questions/21168521/scrollable-table-with-fixed-header-in-bootstrap  *
- *                                                                                              *
- * Username: giulio - http://stackoverflow.com/users/1008538/giulio                             *
- ************************************************************************************************/
-
+#div-tabla-lista-evaluaciones { height: 24em; overflow-y: auto; }
+#div-tabla-lista-evaluaciones tbody td { cursor: pointer; }
+#div-tabla-lista-evaluaciones tbody tr.activado { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
+#div-tabla-lista-evaluaciones tbody tr:hover { background-color: #B9C2DF !important; }
 
 .th-evaluacion { width: 14%; }
 .td-evaluacion { width: 14%; }
@@ -69,7 +24,6 @@ tbody td
 .td-opcion { width: 14%; }
 .th-eliminar { width: 14%; }
 
-
 .th-evaluacion-prof { width: 20%; }
 .td-evaluacion-prof { width: 20%; }
 .th-tecnica-prof, .td-tecnica-prof { width: 15%; }
@@ -84,34 +38,13 @@ tbody td
 .td-opcion-prof { width: 14%; }
 
 /************************************* Diálogo Nueva Evaluaci[on *******************************************/
-#dialog-nueva-evaluacion 
-{
-    display: none;
-}
-
-#dialog-nueva-evaluacion  .div-interior-dialog 
-{
-    width: 28em;
-    height: 3em;
-}
-
-#dialog-nueva-evaluacion  .div-interior-dialog div
-{
-    text-align: justify; 
-    font-size: 13px; 
-}
+#dialog-nueva-evaluacion { display: none; }
+#dialog-nueva-evaluacion  .div-interior-dialog { width: 28em; height: 3em; }
+#dialog-nueva-evaluacion  .div-interior-dialog div { text-align: justify; font-size: 13px; }
 /*********************************** Fin de Diálogo Nueva Evaluacion **************************************/
 
-.no-close .ui-dialog-titlebar-close 
-{
-  display: none;
-}
-
-.ui-dialog .ui-dialog-titlebar
-{
-    color: #90B2F0;    
-    font-weight: bold;
-}
+.no-close .ui-dialog-titlebar-close { display: none; }
+.ui-dialog .ui-dialog-titlebar { color: #90B2F0; font-weight: bold; }
 
 #Div-seleccionarcurso
 {
@@ -125,5 +58,3 @@ tbody td
   margin: 0em 0 1em;
 }
 
-#table-lista-evaluaciones > tbody > tr.active > td { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
-#table-lista-evaluaciones tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }

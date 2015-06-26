@@ -69,6 +69,7 @@ namespace Tesis_ClienteWeb_Data.Services
             SchoolYear anoEscolar = (
                 from SchoolYear sy in _unidad.RepositorioSchoolYear._dbset
                     .Include("Periods")
+                    .Include("School")
                 where sy.SchoolYearId == idAnoEscolar
                 select sy)
                     .First<SchoolYear>();

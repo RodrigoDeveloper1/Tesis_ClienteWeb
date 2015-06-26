@@ -73,7 +73,7 @@ function CargarLapsos() {
         },
         function (data) {
             if (data != null && data.length > 0) {
-                var lista = '<option value="">Seleccione el lapso...</option>';
+                var lista = '<option value="">Seleccione un lapso...</option>';
 
                 for (var i = 0; i < data.length; i++) {
                     lista += ('<option value="' + data[i].idLapso + '">' + data[i].nombre + '</option>');
@@ -85,8 +85,11 @@ function CargarLapsos() {
             }
             else {
                 hideProgress();
-                swal("¡Oops!", "No hay lapsos asociados. Seleccione otro colegio", "warning");
-                $("#select-lapso-crear").find('option').remove().end().append('<option>No se encontraron lapsos activos....</option>');
+
+                swal("¡Oops!", "No hay lapsos asociados, seleccione otro colegio", "warning");
+
+                $("#select-lapso-crear").find('option').remove().end()
+                    .append('<option>No se encontraron lapsos activos....</option>');
                 $("#select-lapso-crear").selectpicker("refresh");
             }
         });
@@ -103,7 +106,7 @@ function CargarCursos() {
         },
         function (data) {
             if (data != null && data.length > 0) {
-                var lista = '<option value="">Seleccione el curso...</option>';
+                var lista = '<option value="">Seleccione un curso...</option>';
 
                 for (var i = 0; i < data.length; i++) {
                     lista += ('<option value="' + data[i].idCurso + '">' + data[i].nombre + '</option>');
@@ -111,11 +114,14 @@ function CargarCursos() {
 
                 $("#select-curso-crear").find('option').remove().end().append(lista);
                 $("#select-curso-crear").selectpicker("refresh");
+
                 hideProgress();
             }
             else {
                 hideProgress();
+
                 swal("¡Oops!", "No se encuentran cursos asociados al colegio", "warning");
+
                 $("#select-curso-crear").find('option').remove().end().append('<option>No se encontraron cursos activos....</option>');
                 $("#select-curso-crear").selectpicker("refresh");
             }
@@ -134,7 +140,7 @@ function CargarMaterias() {
         },
         function (data) {
             if (data != null && data.length > 0) {
-                var lista = '<option value="">Seleccione el materia...</option>';
+                var lista = '<option value="">Seleccione una materia...</option>';
 
                 for (var i = 0; i < data.length; i++) {
                     lista += ('<option value="' + data[i].idMateria + '">' + data[i].nombre + '</option>');
@@ -166,8 +172,9 @@ function CargarProfesores() {
             idMateria: idMateria
         },
         function (data) {
-            if (data != null && data.length > 0) {
-                var lista = '<option value="">Seleccione el profesor...</option>';
+            if (data[0].Success)
+            {
+                var lista = '<option value="">Seleccione un profesor...</option>';
 
                 for (var i = 0; i < data.length; i++) {
                     lista += ('<option value="' + data[i].idProfesor + '">' + data[i].nombre + '</option>');
@@ -175,14 +182,19 @@ function CargarProfesores() {
 
                 $("#select-profesor-crear").find('option').remove().end().append(lista);
                 $("#select-profesor-crear").selectpicker("refresh");
+
                 hideProgress();
             }
             else {
-                hideProgress();
-                swal("¡Oops!", "No existen docentes asociados", "warning");
+                if (data[0].TipoError == "No docentes") {
+                    swal("¡Oops!", "No existen docentes asociados", "warning");
+                }
+
                 $("#select-profesor-crear").find('option').remove().end().append
-                                            ('<option>No se encontraron profesores activas....</option>');
+                                            ('<option>No se encontraron profesores activos...</option>');
                 $("#select-profesor-crear").selectpicker("refresh");
+
+                hideProgress();
             }
         })
 }
@@ -194,12 +206,42 @@ $(document).ready(function () {
         if (idColegio != "") {
             CargarLapsos();
         }
+        else {
+            //Blanqueando lista de docentes
+            $("#select-profesor-crear").find('option').remove().end().append("<option>Seleccione un profesor...</option>");
+            $("#select-profesor-crear").selectpicker("refresh");
+
+            //Blanqueando lista de materias
+            $("#select-materia-crear").find('option').remove().end().append("<option>Seleccione una materia...</option>");
+            $("#select-materia-crear").selectpicker("refresh");
+
+            //Blanqueando lista de cursos
+            $("#select-curso-crear").find('option').remove().end().append("<option>Seleccione un curso...</option>");
+            $("#select-curso-crear").selectpicker("refresh");
+
+            //Blanqueando lista de lapsos
+            $("#select-lapso-crear").find('option').remove().end().append("<option>Seleccione un lapso...</option>");
+            $("#select-lapso-crear").selectpicker("refresh");
+        }
     });
     $("#select-lapso-crear").change(function () {
         idLapso = $(this).val();
 
         if (idColegio != "" && idLapso != "") {
             CargarCursos();
+        }
+        else {
+            //Blanqueando lista de docentes
+            $("#select-profesor-crear").find('option').remove().end().append("<option>Seleccione un profesor...</option>");
+            $("#select-profesor-crear").selectpicker("refresh");
+
+            //Blanqueando lista de materias
+            $("#select-materia-crear").find('option').remove().end().append("<option>Seleccione una materia...</option>");
+            $("#select-materia-crear").selectpicker("refresh");
+
+            //Blanqueando lista de cursos
+            $("#select-curso-crear").find('option').remove().end().append("<option>Seleccione un curso...</option>");
+            $("#select-curso-crear").selectpicker("refresh");
         }
     });
     $("#select-curso-crear").change(function () {
@@ -208,12 +250,25 @@ $(document).ready(function () {
         if (idColegio != "" && idLapso != "" && idCurso != "") {
             CargarMaterias();
         }
+        else {
+            //Blanqueando lista de docentes
+            $("#select-profesor-crear").find('option').remove().end().append("<option>Seleccione un profesor...</option>");
+            $("#select-profesor-crear").selectpicker("refresh");
+
+            //Blanqueando lista de materias
+            $("#select-materia-crear").find('option').remove().end().append("<option>Seleccione una materia...</option>");
+            $("#select-materia-crear").selectpicker("refresh");
+        }
     });
     $("#select-materia-crear").change(function () {
         idMateria = $(this).val();
 
         if (idColegio != "" && idLapso != "" && idCurso != "" && idMateria != "") {
             CargarProfesores();
+        }
+        else {
+            $("#select-profesor-crear").find('option').remove().end().append("<option>Seleccione un profesor...</option>");
+            $("#select-profesor-crear").selectpicker("refresh");
         }
     });
     $("#select-profesor-crear").change(function () {

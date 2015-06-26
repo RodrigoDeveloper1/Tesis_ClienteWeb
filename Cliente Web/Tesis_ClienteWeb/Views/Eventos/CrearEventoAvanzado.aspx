@@ -7,31 +7,27 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Datos del nuevo evento-->
-    <% using (Html.BeginForm("CrearEventoAvanzado", "Eventos", FormMethod.Post, new
-               {
-                   @class = "form",
-                   @role = "form"
-               }))
-       { %>
-    <%: Html.AntiForgeryToken() %>
+    <% using (Html.BeginForm("CrearEventoAvanzado", "Eventos", FormMethod.Post, new { @class = "form",
+        @role = "form" })) { %>
 
+        <%: Html.AntiForgeryToken() %>
     
-    <div class="row">
-     <!-- Lista de colegios -->
-        <div class="col-xs-8">
-            <%: Html.LabelFor(m => m.idColegio) %>
-            <%: Html.DropDownListFor(m => m.idColegio, Model.selectListColegios, "Seleccione el colegio...", 
-                new { @class = "form-control selectpicker class-cursos",  @id = "select-colegio-crear" })%>
-        </div>  
-        <!-- Año escolar -->
-        <div class="col-xs-4">
-            <%: Html.LabelFor(m => m.labelAnoEscolar) %>
-            <%: Html.TextBoxFor(m => m.labelAnoEscolar, new { @class="form-control", @id="ano-escolar", 
-                @disabled = "disabled"})%>
-            <% Html.HiddenFor(m => m.idAnoEscolar); %>
-        </div>
-    </div>         
-    <!---------------- Fin de Combobox de colegios ------------>
+        <div class="row">
+            <!-- Lista de colegios -->
+            <div class="col-xs-8">
+                <%: Html.LabelFor(m => m.idColegio) %>
+                <%: Html.DropDownListFor(m => m.idColegio, Model.selectListColegios, "Seleccione el colegio...", 
+                    new { @class = "form-control selectpicker class-cursos",  @id = "select-colegio-crear" })%>
+           </div>  
+
+            <!-- Año escolar -->
+            <div class="col-xs-4">
+                <%: Html.LabelFor(m => m.labelAnoEscolar) %>
+                <%: Html.TextBoxFor(m => m.labelAnoEscolar, new { @class="form-control", @id="ano-escolar", 
+                    @disabled = "disabled"})%>
+                <% Html.HiddenFor(m => m.idAnoEscolar); %>
+            </div>
+        </div>         
 
     <!--Separador -->
     <div class="form-group col-xs-12"></div>
@@ -143,7 +139,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
     <script src="../../Scripts/Views/Eventos/CrearEventoAvanzado.js" type="text/javascript"></script>
     <script src="../../Scripts/Views/Colegio/InicializarDatePickers.js" type="text/javascript"></script>    
-    <script src="../../Scripts/Views/Eventos/bootstrap-timepicker.js" type="text/javascript" language="javascript"></script>
+    <script src="../../Scripts/Views/Eventos/bootstrap-timepicker.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="TituloPagina" runat="server">

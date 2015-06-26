@@ -1,31 +1,16 @@
-﻿var idEvaluacion;
-
-function NoExistenEvaluaciones() {
-
-    swal({
-        title: "¡No Existen Evaluaciones!",
-        text: "No existen evaluaciones para la materia en el curso y periodo seleccionados .",
-        type: "warning",
-        confirmButtonColor: "green",
-        showCancelButton: false,
-        closeOnConfirm: true,
-    },
-    function (isConfirm) {
-        window.location.href = 'CargarCalificaciones';
-    });
-
-
-}
+﻿var idEvaluacion = "";
+var idDocente = "";
 
 $(document).ready(function () {
+    idDocente = $('#id-docente').val(); //Obteniendo el id del usuario de la sesión
+
     $("#btn-nueva-evaluacion").click(function (e) { DialogoNuevaEvaluacion(); });
 
-    $('.datepicker').datepicker({
-        beforeShowDay: $.datepicker.noWeekends
-    });        
+    $('.datepicker').datepicker({ beforeShowDay: $.datepicker.noWeekends });        
 
     $("#select-curso").change(function () {
         if ($(this).val() != "") {
+            showProgress();
             $("#select-lapso").find('option').remove().end().append("<option>Cargando lapsos...</option>");
             $("#select-lapso").selectpicker("refresh");
 
@@ -43,12 +28,17 @@ $(document).ready(function () {
                         lista += ('<option value="' + data[i].idLapso + '">' + data[i].nombre + '</option>');
 
                     }
-                    console.log("Entro 2");
+                    hideProgress();
+
                     $("#select-lapso").find('option').remove().end().append(lista);
                     $("#select-lapso").selectpicker("refresh");
                 }
                 else {
-                    $("#select-lapso").find('option').remove().end().append('<option>No se encontraron lapso activos....</option>');
+                    hideProgress();
+                    swal("¡No hay lapsos!", "No hay lapsos asociados a este curso", "warning");
+
+                    $("#select-lapso").find('option').remove().end().append('<option>No se encontraron' + 
+                        ' lapso activos....</option>');
                     $("#select-lapso").selectpicker("refresh");
                 }
             });
@@ -56,19 +46,23 @@ $(document).ready(function () {
         else {
             $('#select-lapso').find('option').remove().end().append('<option>Seleccione el lapso...</option>');
             $("#select-lapso").selectpicker("refresh");
+
+            $('#select-materia').find('option').remove().end().append('<option>Seleccione la materia...</option>');
+            $("#select-materia").selectpicker("refresh");
+
+            $('#table-lista-evaluaciones').find('tbody').find('tr').remove(); //Limpiando la tabla
         }
     });
-
 
     $("#select-lapso").change(function () {
         idCurso = $("#select-curso option:selected").val();
         idLapso = $(this).val();
+
         if ($(this).val() != "") {
+            showProgress();
 
             $("#select-materia").find('option').remove().end().append("<option>Cargando materias...</option>");
             $("#select-materia").selectpicker("refresh");
-
-
 
             $.post("/Bridge/ObtenerSelectListMaterias",
             {
@@ -80,14 +74,19 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idMateria + '">' + data[i].nombre + '</option>');
-
                     }
-                    console.log("Entro 2");
+                    
                     $("#select-materia").find('option').remove().end().append(lista);
                     $("#select-materia").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
-                    $("#select-materia").find('option').remove().end().append('<option>No se encontraron materias activas....</option>');
+                    hideProgress();
+                    swal('!No hay materias¡', 'No hay materias asociadas al curso', 'warning');
+
+                    $("#select-materia").find('option').remove().end().append('<option>No se encontraron' +
+                        ' materias activas....</option>');
                     $("#select-materia").selectpicker("refresh");
                 }
             });
@@ -95,79 +94,124 @@ $(document).ready(function () {
         else {
             $('#select-materia').find('option').remove().end().append('<option>Seleccione la materia...</option>');
             $("#select-materia").selectpicker("refresh");
+
+            $('#table-lista-evaluaciones').find('tbody').find('tr').remove(); //Limpiando la tabla
         }
     });
-    //Obtener lista de evaluaciones
+
     $("#select-materia").change(function () {
         var lista = "";
+
         if ($(this).val() != "") {
+            showProgress();
+
             $('#table-lista-evaluaciones').find('tbody').find('tr').remove();
             idMateria = $(this).val();
             idCurso = $("#select-curso option:selected").val();
             idLapso = $("#select-lapso option:selected").val();
-            $.post("/Bridge/ObtenerTablaEvaluacionesPorMateriaCursoYLapso",
-            {
-                idMateria: idMateria,
-                idCurso: idCurso,
-                idLapso: idLapso
-            },
-            function (data) {
-                if (data != null && data.length > 0) {
-                    console.log('Entra');
-                    for (var i = 0; i < data.length; i++) {
 
-                        console.log(data[i].tecnica);
+            $.ajax({
+                type: "POST",
+                url: "/Bridge/ObtenerJsonEvaluacionesPor_Curso_Materia_Lapso_Docente",
+                data: {
+                    idMateria: idMateria,
+                    idCurso: idCurso,
+                    idLapso: idLapso,
+                    idDocente: idDocente
+                },
+                error: function () {
+                    hideProgress();
+                    swal('¡Error de carga!', '¡Ha ocurrido un error y no se han podido cargar las ' +
+                        'evaluaciones!', 'error');
+                },
+                success: function (data) {
+                    if (data != null && data.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                            lista += (
+                                '<tr id="' + data[i].idEvaluacion + '">' +
+                                    '<td class="th-evaluacion-prof">' + data[i].nombre + '</td>' +
+                                    '<td class="th-tecnica-prof">' + data[i].tecnica + '</td>' +
+                                    '<td class="th-tipo-prof">' + data[i].actividad + '</td>' +
+                                    '<td class="th-instrumento-prof">' + data[i].instrumento + '</td>' +
+                                    '<td class="th-porcentaje-prof">' + data[i].porcentaje + '</td>' +
+                                    '<td class="th-opcion-prof">' + data[i].fechainicio + '</td>' +
+                                    '<td class="th-opcion-prof">' + data[i].fechafin + '</td>' +
+                                '</tr>');
+                        }
+                        $('#table-lista-evaluaciones').find('tbody').end().append(lista);
 
-                        console.log(data[i].actividad);
-
-                        console.log(data[i].instrumento);
-
-                        lista += ('<tr>' +                                          
-                                    ' <td class="th-evaluacion-prof">' + data[i].nombre + '</td>' +
-                                    ' <td class="th-tecnica-prof">' + data[i].tecnica + '</td>' +
-                                    ' <td class="th-tipo-prof">' + data[i].actividad + '</td>' +
-                                    ' <td class="th-instrumento-prof">' + data[i].instrumento + '</td>' +
-                                    ' <td class="th-porcentaje-prof">' + data[i].porcentaje + '</td>' +
-                                    ' <td class="th-opcion-prof">' + data[i].fechainicio + '</td>' +
-                                    ' <td class="th-opcion-prof">' + data[i].fechafin + '</td>' +
-                                  '</tr>');
+                        hideProgress();
                     }
-                    $('#table-lista-evaluaciones').find('tbody').end().append(lista);
+                    else {
+                        hideProgress();
+                        swal('¡No hay evaluaciones!', '¡La materia, en el lapso seleccionado, no se le han' +
+                            ' asignado evaluaciones aún!');
+
+                        $('#table-lista-evaluaciones').find('tbody').find('tr').remove(); //Limpiando la tabla
+                    }
                 }
-                else {
-                    console.log('Entra');
+            });
+        }
+        else
+            $('#table-lista-evaluaciones').find('tbody').find('tr').remove(); //Limpiando la tabla
+    });
 
-                    lista = ('<tr>' +
-                                    '<td class="th-evaluacion-prof"></td>' +
-                                    '<td class="th-tecnica-prof"></td></td>' +
-                                    '<td class="th-tipo-prof"></td>' +
-                                    ' <td class="th-instrumento-prof"></td>' +
-                                    ' <td class="th-porcentaje-prof"></td>' +
-                                    ' <td class="th-opcion-prof"></td>' +
-                                    ' <td class="th-opcion-prof"></td>' +
-                            '</tr>');
+    $("#table-lista-evaluaciones tbody").on("click", "tr", function () {
+        $(this).closest("tr").siblings().removeClass("activado");
+        $(this).addClass("activado");
 
-                    $('#table-lista-evaluaciones').find('tbody').find('tr').end().append(lista);
+        idEvaluacion = $(this).attr("id"); //Obteniendo el id de la evaluación
+
+        $('#btn-asociacion-indicadores-literales').removeAttr('disabled');
+    });
+
+    $("#btn-asociacion-indicadores-literales").click(function () {
+        if (idEvaluacion != "") {
+            showProgress();
+
+            $.ajax({
+                type: "POST",
+                url: "/Bridge/ObteniendoPorcentajeNotasPor_Evaluacion",
+                data: {
+                    idEvaluacion: idEvaluacion
+                },
+                success: function (data) {
+                    if (data[0].success)
+                    {
+                        if (data[0].porcentaje < 80) {
+                            hideProgress();
+                            swal({
+                                title: "¿Estás seguro?",
+                                text: "Se debería realizar este proceso de asociación únicamente después" +
+                                    " de que la evaluación se le hayan cargado al menos un 80% de las notas" +
+                                    " respectivas. ",
+                                type: "info",
+                                showCancelButton: true,
+                                confirmButtonText: "Continuar",
+                                cancelButtonText: "Regresar",
+                                closeOnConfirm: true,
+                                closeOnCancel: true
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    showProgress();
+                                    window.location.href = 'AsociacionIndicadoresLiterales/?id=' + idEvaluacion;
+                                }
+                            });
+                        }
+                        else
+                            window.location.href = 'AsociacionIndicadoresLiterales/?id=' + idEvaluacion;
+                    }
+                    else {
+                        hideProgress();
+                        swal('Error de operación', 'Ha ocurrido un error. Intente de nuevo', 'error');
+                    }
                 }
             });
         }
         else {
-            lista = ('<tr>' +
-                                    ' <td class="th-evaluacion-prof"></td>' +
-                                    ' <td class="th-tecnica-prof"></td></td>' +
-                                    ' <td class="th-tipo-prof"></td>' +
-                                    ' <td class="th-instrumento-prof"></td>' +
-                                    ' <td class="th-porcentaje-prof"></td>' +
-                                    ' <td class="th-opcion-prof"></td>' +
-                                    ' <td class="th-opcion-prof"></td>' +
-                    '</tr>');
-
-            $('#table-lista-evaluaciones').find('tbody').find('tr').end().append(lista);
+            swal('¿Y la evaluación?', 'Por favor seleccione primero una evaluación', 'warning');
+            $('#btn-asociacion-indicadores-literales').attr("disabled", "disabled");
         }
-    });    
-
- 
-
-
-
+    });
 });

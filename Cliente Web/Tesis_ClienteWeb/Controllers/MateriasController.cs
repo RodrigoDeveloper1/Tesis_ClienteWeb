@@ -63,7 +63,7 @@ namespace Tesis_ClienteWeb.Controllers
                 Subject materia = new Subject();
                 materia.Name = modelo.Name;
                 materia.SubjectCode = modelo.SubjectCode;
-                materia.Pensum = modelo.Pensum;
+                materia.GeneralPurpose = modelo.Pensum;
                 materia.Grade = modelo.Grade;
 
                 School colegio = new School();
@@ -148,7 +148,7 @@ namespace Tesis_ClienteWeb.Controllers
                 Subject materia = _subjectService.ObtenerMateriaPorId(idMateria);
                 materia.Name = nombre;
                 materia.SubjectCode = codigo;
-                materia.Pensum = pensum;
+                materia.GeneralPurpose = pensum;
 
                 _subjectService.ModificarSchoolSubject(materia);
                 TempData["ModificadaMateria"] = "Se modificó correctamente la materia '" + materia.Name + "'";

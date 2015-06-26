@@ -6,8 +6,6 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Datos del nuevo Evento-->   
-
     <div class="row">
      <!-- Lista de colegios -->
         <div class="col-xs-8">
@@ -15,6 +13,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
             <%: Html.DropDownListFor(m => m.idColegio, Model.selectListColegios, "Seleccione el colegio...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-colegio-crear" })%>
         </div>  
+
         <!-- Año escolar -->
         <div class="col-xs-4">
             <%: Html.LabelFor(m => m.labelAnoEscolar) %>
@@ -22,12 +21,11 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
                 @disabled = "disabled"})%>
             <% Html.HiddenFor(m => m.idAnoEscolar); %>
         </div>
-    </div>         
+    </div>   
+          
     <!--Separador -->
     <div class="form-group col-xs-12"></div>   
   
-    <!---------------- Fin de Comboboxde colegios ------------>
-
     <!--Separador -->
     <div class="form-group col-xs-12"></div>
 
@@ -52,7 +50,6 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
                                     <th class="th-descripcion centrar">Descripción</th>
                                     <th class="th-inicio centrar">Inicio</th>
                                     <th class="th-fin centrar">Fin</th>                                   
-                                    <th class="th-tipo centrar">Tipo</th>                                                         
                                     <th class="th-agregar-eventos">
                                         <i class="ui-icon ui-icon-check iconos-comentados" 
                                             id="i-salvar-todas-filas">
@@ -74,7 +71,6 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
                                     <td class="td-descripcion"></td>
                                     <td class="td-inicio"></td>
                                     <td class="td-fin"></td>
-                                    <td class="td-tipo"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -85,7 +81,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
 
         <div class="col-xs-12">
           <a class="" href="../Eventos/CrearEventoAvanzado">
-               <span class="">Crear Evento Avanzado</span>
+               <span class="">Crear evento avanzado</span>
           </a>
         </div>
     </div>
@@ -99,11 +95,10 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
     </div>
 
     <!-- Botones -->
-      
     <div class="row">
          <!-- Botón Agregar -->
         <div class="col-xs-6 text-right">
-            <button type="button" class="btn btn-lg btn-default" id="btn-agregar-eventos">Agregar</button>
+            <button type="button" class="btn btn-lg btn-default" id="btn-agregar-eventos">Crear</button>
         </div>
        
 
@@ -128,13 +123,11 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EventosModel>" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="CSSContent" runat="server">
     <link rel="Stylesheet" href="../../Content/Css/Eventos/CrearEvento.css" type="text/css" />  
-    <link rel="Stylesheet" href="../../Content/Css/Eventos/Eventos.css" type="text/css" />        
-<link href="../../Content/Css/Eventos/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Eventos/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
     <script src="../../Scripts/Views/Eventos/CrearEventos.js" type="text/javascript"></script>
-    <script src="../../Scripts/Views/Eventos/Eventos.js" type="text/javascript"></script>
     <script src="../../Scripts/Views/Colegio/InicializarDatePickers.js" type="text/javascript"></script>    
     <script src="../../Scripts/Views/Eventos/bootstrap-timepicker.js" type="text/javascript"></script>
 </asp:Content>

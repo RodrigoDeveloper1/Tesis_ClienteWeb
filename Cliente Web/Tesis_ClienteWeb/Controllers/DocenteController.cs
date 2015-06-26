@@ -52,7 +52,7 @@ namespace Tesis_ClienteWeb.Controllers
             #region Modificando la lista de CASUS
             foreach(CASU casu in listaCasus)
             {
-                casu.UserId = idDocente;
+                casu.TeacherId = idDocente;
                 try
                 {
                     casuService.ModificarCASU(casu);

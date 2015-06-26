@@ -18,8 +18,10 @@ namespace Tesis_ClienteWeb_Models.POCO
         public bool Gender { get; set; } /* Género: 1 = Másculino. 
                                           *         0 = Femenino.
                                           */
-
+        [Index("Representative_IdentityNumberIndex", IsUnique = true)]
         [Required(ErrorMessage = "Por favor especifique el número de cédula", AllowEmptyStrings= false)]
+        [StringLength(20, ErrorMessage = "El número de identificación debe ser menor a 18 dígitos")]
+        [MaxLength(20)]
         public string IdentityNumber { get; set; } //Cédula de identidad
         
         [Display(Name= "Nombre(s):")]

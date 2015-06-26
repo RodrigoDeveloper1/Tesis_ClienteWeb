@@ -141,22 +141,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.MenuViewModel>" %>
         <div class="col-lg-12">
             <div class="separador"></div>
         </div>
-    </div>
-
-    <!-- Sección Maestras de Estadísticas -->
-    <div class="row">
-        <div class="col-xs-12">
-            <h4 class="subtitulos">Estadísticas</h4>
-        </div>      
-        
-        <div class="col-xs-1">
-            <i class="fa fa-question-circle fa-lg iconos-maestras"></i>
-        </div>
-
-        <div class="col-lg-12">
-            <div class="separador"></div>
-        </div>
-    </div>
+    </div>        
     
     <!-- Sección Maestras de Evaluaciones -->
     <div class="row">
@@ -274,6 +259,8 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.MenuViewModel>" %>
         </div>
     </div>
         
+    
+
     <!-- Sección Maestras de Seguridad -->
     <div class="row">
         <div class="col-xs-12">
@@ -339,20 +326,42 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.MenuViewModel>" %>
         </div>
     </div>
 
+    <!-- Sección Maestras de Razonamiento Vocacional -->
+    <div class="row">
+        <div class="col-xs-12">
+            <h4 class="subtitulos">Razonamiento Vocacional</h4>
+        </div>      
+        
+        <!-- Gestión de notificaciones automáticas -->
+        <div class="col-xs-1">
+            <a class="fa fa-comments-o fa-lg iconos-maestras" href="../Notificaciones/NotificacionesAutomaticas">
+                <span class="icono-mensaje label label-info">Razonamiento Vocacional</span>
+            </a>
+        </div>
+        
+        <div class="col-lg-12">
+            <div class="separador"></div>
+        </div>
+    </div>
+
     <!-- Sección Maestras de Sistema Experto -->
+    <!--
     <div class="row">
         <div class="col-xs-12">
             <h4 class="subtitulos">Sistema Experto</h4>
         </div>      
         
         <div class="col-xs-1">
-            <i class="fa fa-question-circle fa-lg iconos-maestras"></i>
+            <a class="fa fa-bolt fa-lg iconos-maestras" href="SistemaExperto">
+                <span class="icono-mensaje label label-info">Sistema Experto</span>
+            </a>
         </div>
 
         <div class="col-lg-12">
             <div class="separador"></div>
         </div>
     </div>
+    -->
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="CSSContent" runat="server">

@@ -45,9 +45,12 @@ function CargarMaterias(grado) {
 };
 
 function CargarTablaCursos() {
-    var lista = "";
-    $('#table-lista-cursos').find('tbody').find('tr').remove();   
     showProgress();
+
+    var lista = "";
+
+    $('#table-lista-cursos').find('tbody').find('tr').remove();   
+
     $.post("/Cursos/ObtenerSelectListCursosPorColegio",
     {
         idColegio: idColegio

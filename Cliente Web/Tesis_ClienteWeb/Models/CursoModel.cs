@@ -9,7 +9,6 @@ namespace Tesis_ClienteWeb.Models
 {
     public class CursosModel : MaestraListaColegiosModel
     {
-
         public List<Course> listaCursos { get; set; }
 
         public Course Course { get; set; }
@@ -28,7 +27,6 @@ namespace Tesis_ClienteWeb.Models
 
         public string Section { get; set; }
 
-
         public int StudentTotal { get; set; }
              
         public DateTime StartDate { get; set; }
@@ -38,10 +36,11 @@ namespace Tesis_ClienteWeb.Models
         public string Status { get; set; }
 
         public int idAnoEscolar { get; set; }
+
         [Display(Name = "Año escolar activo respectivo:")]
         public string labelAnoEscolar { get; set; }
 
-        // ALumnos
+        // Alumnos
 
         public int ListNumber { get; set; }
 
@@ -52,7 +51,5 @@ namespace Tesis_ClienteWeb.Models
         public string FirstName { get; set; }
 
         public string SecondName { get; set; }
-
-
     }
 }

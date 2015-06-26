@@ -836,6 +836,142 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
 
             return Json(jsonResult);
+        }        
+        public JsonResult ObteniendoPorcentajeNotasPor_Evaluacion(int idEvaluacion)
+        {
+            List<object> jsonResult = new List<object>();
+            AssessmentService assessmentService = new AssessmentService();
+
+            Assessment assessment = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
+            int nroNotas = assessment.Scores.Count();
+            Course course = assessment.CASU.Course;
+
+            double valorPorcentual = (double)(nroNotas * 100) / course.Students.Count();
+
+            jsonResult.Add(new { 
+                success = true,
+                porcentaje = Math.Round(valorPorcentual, 2) 
+            });
+
+            return Json(jsonResult);
+        }
+        public JsonResult ObtenerJsonIndicadoresLiterales(int idCompetencia, int idEvaluacion)
+        {
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+            int nro = 1; //Para la descripción del indicador.
+
+            UnitOfWork unidad = new UnitOfWork();
+            IndicatorService indicatorService = new IndicatorService(unidad);
+            #endregion
+
+            List<Indicator> listaIndicadores = indicatorService
+                .ObteniendoListaIndicadoresPor_Competencia(idCompetencia);
+
+            foreach(Indicator indicator in listaIndicadores)
+            {
+                foreach (IndicatorAssessment IA in indicator.IndicatorAssessments
+                    .Where(m => m.AssessmentId == idEvaluacion))
+                {
+                    IndicatorAssessment auxIA = indicatorService.ObtenerIndicatorAssessmentPor_Id
+                        (IA.IndicatorId, idCompetencia, idEvaluacion);
+
+                    foreach(IndicatorAssignation IAssignation in auxIA.IndicatorAsignations)
+                    {
+                        jsonResult.Add(new
+                        {
+                            Success = true,
+                            CompetencyId = idCompetencia,
+                            IndicatorId = IAssignation.IndicatorId,
+                            AssessmentId = idEvaluacion,
+                            Assignation = IAssignation.Assignation,
+                            Score = IAssignation.LetterScore,
+                            IndicatorDescription = "#" + nro.ToString() + " " + indicator.Description,
+                            PrincipalId = IAssignation.IndicatorAssignationId
+                        });                        
+                    }
+                }
+                nro++;
+            }
+
+            return Json(jsonResult);
+        }
+        public JsonResult CalculoPorcentajeCompetenciaAlcanzado(List<Object> asignaciones, int idEvaluacion)
+        {
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+
+            AssessmentService assessmentService = new AssessmentService();
+            Assessment assessment = new Assessment();
+
+            int proporcion_A = 0, proporcion_B = 0, proporcion_C = 0, proporcion_D = 0, proporcion_E = 0;            
+            int sumatoriaIndicadores_A = 0, sumatoriaIndicadores_B = 0, sumatoriaIndicadores_C = 0,
+                sumatoriaIndicadores_D = 0, sumatoriaIndicadores_E = 0;
+            double calculo_A = 0, calculo_B = 0, calculo_C = 0, calculo_D = 0, calculo_E = 0, 
+                sumatoriaCalculos = 0;
+
+            double calculoFinal;
+            int valorOptimo;
+            int totalAlumnos;
+            int nroIndicadores;
+            #endregion
+
+            #region Obteniendo diccionario de valores de las asignaciones
+            foreach (string bloqueAsignaciones in asignaciones)
+            {
+                string[] bloqueSeparado = bloqueAsignaciones.Split(',');
+
+                sumatoriaIndicadores_A += Convert.ToInt32(bloqueSeparado[0]);
+                sumatoriaIndicadores_B += Convert.ToInt32(bloqueSeparado[1]);
+                sumatoriaIndicadores_C += Convert.ToInt32(bloqueSeparado[2]);
+                sumatoriaIndicadores_D += Convert.ToInt32(bloqueSeparado[3]);
+                sumatoriaIndicadores_E += Convert.ToInt32(bloqueSeparado[4]);                
+            }
+            #endregion
+            #region Obteniendo datos varios
+            assessment = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
+            totalAlumnos = assessment.CASU.Course.Students.Count();
+            nroIndicadores = asignaciones.Count();
+            #endregion
+
+            #region Calculando la proporción de notas de cada literal
+            foreach (Score scoreAux in assessment.Scores)
+            {
+                if (scoreAux.LetterScore.ToUpper().Equals("A")) proporcion_A++;
+                else if (scoreAux.LetterScore.ToUpper().Equals("B")) proporcion_B++;
+                else if (scoreAux.LetterScore.ToUpper().Equals("C")) proporcion_C++;
+                else if (scoreAux.LetterScore.ToUpper().Equals("D")) proporcion_D++;
+                else if (scoreAux.LetterScore.ToUpper().Equals("E")) proporcion_E++;
+            }
+            #region Si no están todas las notas cargadas
+            int sumaProporciones = proporcion_A + proporcion_B + proporcion_C + proporcion_D + proporcion_E;
+
+            if (sumaProporciones != totalAlumnos)
+                proporcion_E += totalAlumnos - sumaProporciones;
+            #endregion
+            #endregion
+            #region Cálculo de cada literal
+            calculo_A = ((double)proporcion_A / totalAlumnos) * 5 * sumatoriaIndicadores_A;
+            calculo_B = ((double)proporcion_B / totalAlumnos) * 4 * sumatoriaIndicadores_B;
+            calculo_C = ((double)proporcion_C / totalAlumnos) * 3 * sumatoriaIndicadores_C;
+            calculo_D = ((double)proporcion_D / totalAlumnos) * 2 * sumatoriaIndicadores_D;
+            calculo_E = ((double)proporcion_E / totalAlumnos) * 1 * sumatoriaIndicadores_E;
+            #endregion
+            #region Sumatoria de cálculos
+            sumatoriaCalculos = calculo_A + calculo_B + calculo_C + calculo_D + calculo_E;
+            #endregion
+            #region Valor óptimo
+            valorOptimo = 5 * (5 * nroIndicadores);
+            #endregion
+            #region Cálculo final
+            calculoFinal = (double)(sumatoriaCalculos * 100) / valorOptimo;
+            #endregion
+            jsonResult.Add(new { 
+                Success = true, 
+                porcentajeCompetencia = Math.Round(calculoFinal, 2) 
+            });
+
+            return Json(jsonResult);
         }
 
         public JsonResult ReportePorEvaluacion(int idEvaluacion)
@@ -868,7 +1004,7 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
             #region Variables obtenidas por la evaluación
             Assessment evaluacion = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
-            User docente = evaluacion.CASU.User;
+            User docente = evaluacion.CASU.Teacher;
             Course curso = evaluacion.CASU.Course;
             Subject materia = evaluacion.CASU.Subject;
             int grado = curso.Grade;
@@ -1831,7 +1967,7 @@ namespace Tesis_ClienteWeb.Controllers
             bool cuatroEvaluaciones = false;
             bool cincoEvaluaciones = false;
             bool seisEvaluaciones = false;
-            float heightCharts1stPage = 660f;
+            float heightCharts1stPage = 640f; 
             float heightCharts2ndPage = 310f;
             Student student;
             #endregion
@@ -1852,7 +1988,7 @@ namespace Tesis_ClienteWeb.Controllers
             Period lapso = casu.Period;
             SchoolYear anoEscolar = lapso.SchoolYear;
             School colegio = anoEscolar.School;
-            User docente = casu.User;
+            User docente = casu.Teacher;
             List<Assessment> listaEvaluaciones = casu.Assessments;
             List<Student> listaEstudiantes = curso.Students.OrderBy(m => m.NumberList).ToList();
             int nroEvaluaciones = listaEvaluaciones.Count();
@@ -1885,10 +2021,20 @@ namespace Tesis_ClienteWeb.Controllers
 
             foreach (KeyValuePair<int, double> valor in listaDefinitivas)
             {
-                if (valor.Value >= 10)
-                    listaEstudiantesAprobadosDefinitiva.Add(valor.Key, valor.Value);
-                else
-                    listaEstudiantesReprobadosDefinitiva.Add(valor.Key, valor.Value);
+                if(grado > 6) //Bachillerato
+                {
+                    if (valor.Value >= 10)
+                        listaEstudiantesAprobadosDefinitiva.Add(valor.Key, valor.Value);
+                    else
+                        listaEstudiantesReprobadosDefinitiva.Add(valor.Key, valor.Value);
+                }
+                else // Primaria
+                {
+                    if (valor.Value >= 2)
+                        listaEstudiantesAprobadosDefinitiva.Add(valor.Key, valor.Value);
+                    else
+                        listaEstudiantesReprobadosDefinitiva.Add(valor.Key, valor.Value);
+                }
             }
             int nroAprobadosDefinitiva = listaEstudiantesAprobadosDefinitiva.Count();
             int nroReprobadosDefinitiva = listaDefinitivas.Count() - nroAprobadosDefinitiva;
@@ -1900,7 +2046,7 @@ namespace Tesis_ClienteWeb.Controllers
             #region Top10MejoresNotas
             Dictionary<int, double> top10MejoresNotas = new Dictionary<int, double>();
 
-            intAux = 1;
+            intAux = 1; //Variable de contol del foreach
             foreach (KeyValuePair<int, double> valor in listaDefinitivas.OrderByDescending(key => key.Value))
             {
                 if (intAux <= 10)
@@ -1915,7 +2061,7 @@ namespace Tesis_ClienteWeb.Controllers
             #region Top10PeoresNotas
             Dictionary<int, double> top10PeoresNotas = new Dictionary<int, double>();
 
-            intAux = 1;
+            intAux = 1; //Variable de contol del foreach
             foreach (KeyValuePair<int, double> valor in listaDefinitivas.OrderBy(key => key.Value))
             {
                 if (intAux <= 10)
@@ -2092,9 +2238,15 @@ namespace Tesis_ClienteWeb.Controllers
             phrase.Add(new Chunk(listaEvaluaciones.Count().ToString() + " evaluaciones", boldFont));
             phrase.Add(new Chunk(". Hasta la fecha de emisión del reporte se han realizado ", normalFont));
             phrase.Add(new Chunk(listaEvaluacionesRealizadas.Count().ToString() + " evaluaciones", boldFont));
-            phrase.Add(new Chunk(", abarcando un ", normalFont));
-            phrase.Add(new Chunk(porcentajeTotalMateria.ToString() + "% ", boldFont));
-            phrase.Add(new Chunk("del total de la asignatura."));
+            if(grado > 6) //Bachillerato
+            {
+                phrase.Add(new Chunk(", abarcando un ", normalFont));
+                phrase.Add(new Chunk(porcentajeTotalMateria.ToString() + "% ", boldFont));
+                phrase.Add(new Chunk("del total de la asignatura."));
+            }
+            else // Primaria
+                phrase.Add(new Chunk(".", normalFont));
+            
             paragraph = new Paragraph(phrase);
             paragraph.SpacingAfter = 10;
             paragraph.Alignment = Element.ALIGN_JUSTIFIED;
@@ -2122,23 +2274,27 @@ namespace Tesis_ClienteWeb.Controllers
                 #region Títulos de los gráficos
                 table = new PdfPTable(3);
                 #region Celda #1
-                paragraph = new Paragraph(new Phrase(new Chunk(evaluacion1.Name + " (" + 
-                    evaluacion1.Percentage + "%)", chartTitlefont)));
+                stringAux = evaluacion1.Name;
+                stringAux += (grado > 6 ? " (" + evaluacion1.Percentage + "%)" : "");
+                paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                 cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                 table.AddCell(cell);
                 #endregion
                 #region Celda #2
-                paragraph = new Paragraph(new Phrase(new Chunk(evaluacion2.Name + " (" +
-                    evaluacion2.Percentage + "%)", chartTitlefont)));
+                stringAux = evaluacion2.Name;
+                stringAux += (grado > 6 ? " (" + evaluacion2.Percentage + "%)" : "");
+                paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                 cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                 table.AddCell(cell);
                 #endregion
                 #region Celda #3
-                paragraph = new Paragraph(new Phrase(new Chunk(evaluacion3.Name + " (" +
-                    evaluacion3.Percentage + "%)", chartTitlefont)));
+                stringAux = evaluacion3.Name;
+                stringAux += (grado > 6 ? " (" + evaluacion3.Percentage + "%)" : "");
+                paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                 cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                 table.AddCell(cell);
                 #endregion
+
                 table.SpacingAfter = 15f;
                 table.WidthPercentage = 100f;
                 document.Add(table);
@@ -2457,16 +2613,18 @@ namespace Tesis_ClienteWeb.Controllers
                 #region Títulos de los gráficos
                 table = (unaEvaluacion ? new PdfPTable(1) : new PdfPTable(2));
                 #region Celda #1
-                paragraph = new Paragraph(new Phrase(new Chunk(evaluacion1.Name + " (" +
-                    evaluacion1.Percentage + "%)", chartTitlefont)));
+                stringAux = evaluacion1.Name;
+                stringAux += (grado > 6 ? " (" + evaluacion1.Percentage + "%)" : "");
+                paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                 cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                 table.AddCell(cell);
                 #endregion
                 #region Celda #2
                 if(!unaEvaluacion)
                 {
-                    paragraph = new Paragraph(new Phrase(new Chunk(evaluacion2.Name + " (" +
-                    evaluacion2.Percentage + "%)", chartTitlefont)));
+                    stringAux = evaluacion2.Name;
+                    stringAux += (grado > 6 ? " (" + evaluacion2.Percentage + "%)" : "");
+                    paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                     cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                     table.AddCell(cell);
                 }
@@ -2762,24 +2920,27 @@ namespace Tesis_ClienteWeb.Controllers
                 #region Títulos de los gráficos
                 table = (cuatroEvaluaciones ? new PdfPTable(1) : (cincoEvaluaciones ? new PdfPTable(2) : new PdfPTable(3)));
                 #region Celda #1
-                paragraph = new Paragraph(new Phrase(new Chunk(evaluacion1.Name + " (" +
-                    evaluacion1.Percentage + "%)", chartTitlefont)));
+                stringAux = evaluacion1.Name;
+                stringAux += (grado > 6 ? " (" + evaluacion1.Percentage + "%)" : "");
+                paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                 cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                 table.AddCell(cell);
                 #endregion
                 #region Celda #2
                 if (!cuatroEvaluaciones)
                 {
-                    paragraph = new Paragraph(new Phrase(new Chunk(evaluacion2.Name + " (" +
-                        evaluacion2.Percentage + "%)", chartTitlefont)));
+                    stringAux = evaluacion2.Name;
+                    stringAux += (grado > 6 ? " (" + evaluacion2.Percentage + "%)" : "");
+                    paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                     cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                     table.AddCell(cell);
 
                     #region Celda #3
                     if (!cincoEvaluaciones)
                     {
-                        paragraph = new Paragraph(new Phrase(new Chunk(evaluacion3.Name + " (" +
-                            evaluacion3.Percentage + "%)", chartTitlefont)));
+                        stringAux = evaluacion3.Name;
+                        stringAux += (grado > 6 ? " (" + evaluacion3.Percentage + "%)" : "");
+                        paragraph = new Paragraph(new Phrase(new Chunk(stringAux, chartTitlefont)));
                         cell = new PdfPCell(paragraph) { HorizontalAlignment = Element.ALIGN_CENTER, Border = 0 };
                         table.AddCell(cell);
                     }
@@ -3120,8 +3281,26 @@ namespace Tesis_ClienteWeb.Controllers
             phrase.Add(new Chunk("        Según los resultados obtenidos en cada evaluación, el promedio de " + 
                 "notas alcanzado en el período escolar establecido (", normalFont));
             phrase.Add(new Chunk(lapso.Name, boldFont));
-            phrase.Add(new Chunk("), hasta la fecha de emisión de este reporte, es de ", normalFont));
-            phrase.Add(new Chunk(Math.Round(promedio,2).ToString() + " puntos", boldFont));
+            phrase.Add(new Chunk("), hasta la fecha de emisión de este reporte, es ", normalFont));
+            #region Bachillerato
+            if (grado > 6) //Bachillerato
+            {
+                phrase.Add(new Chunk("de ", normalFont));
+                phrase.Add(new Chunk(Math.Round(promedio, 2).ToString() + " puntos", boldFont));
+            }
+            #endregion
+            #region Primaria
+            else //Primaria
+            {
+                if (Math.Round(promedio) == 1) stringAux = "A";
+                else if (Math.Round(promedio) == 2) stringAux = "B";
+                else if (Math.Round(promedio) == 3) stringAux = "C";
+                else if (Math.Round(promedio) == 4) stringAux = "D";
+                else if (Math.Round(promedio) == 5) stringAux = "E";
+
+                phrase.Add(new Chunk("el literal " + stringAux, boldFont));
+            }
+            #endregion
             phrase.Add(new Chunk(". A continuación se presenta el porcentaje de alumnos que aprobaron," +
                 " en comparación con aquellos que reprobaron la materia: ", normalFont));
             paragraph = new Paragraph(phrase);
@@ -3294,13 +3473,19 @@ namespace Tesis_ClienteWeb.Controllers
             chartArea.AxisX.MinorTickMark.Enabled = false;
             chartArea.AxisX.LabelAutoFitMinFontSize = 7;
 
-            intAux = 0;
+            intAux = 0; //Variable de control del ciclo
             foreach(KeyValuePair<int, double> valor in top10MejoresNotas)
             {
                 if(intAux <= 9)
                 {
+                    #region Bachillerato
                     if (grado > 6) //Bachillerato
-                        stringAux = "(" + Math.Round(valor.Value) + ") ";                    
+                        stringAux = "(" + Math.Round(valor.Value) + ") ";
+                    #endregion
+                    #region Primaria
+                    else //Primaria
+                        stringAux = "";
+                    #endregion
 
                     student = studentService.ObtenerAlumnoPorId(valor.Key);
                     stringAux = stringAux + student.FirstLastName + " " + student.SecondLastName + ", " +
@@ -3392,8 +3577,14 @@ namespace Tesis_ClienteWeb.Controllers
             {
                 if (intAux <= 9)
                 {
+                    #region Bachillerato
                     if (grado > 6) //Bachillerato
                         stringAux = "(" + Math.Round(valor.Value) + ") ";
+                    #endregion
+                    #region Primaria
+                    else //Primaria
+                        stringAux = "";
+                    #endregion
 
                     student = studentService.ObtenerAlumnoPorId(valor.Key);
                     stringAux = stringAux + student.FirstLastName + " " + student.SecondLastName + ", " +
@@ -3502,10 +3693,31 @@ namespace Tesis_ClienteWeb.Controllers
                 #endregion
                 #region Celda #3
                 intAux = Convert.ToInt32(Math.Round(listaDefinitivas[listaEstudiantes[i].StudentId]));
-                if (intAux >= 10) //Aprobado
-                    phrase = new Phrase(new Chunk(intAux.ToString(), cellFont));
-                else //Aplazado
-                    phrase = new Phrase(new Chunk(intAux.ToString(), cellFont_red));
+                #region Bachillerato
+                if (grado > 6) //Bachillerato
+                {
+                    if (intAux >= 10) //Aprobado
+                        phrase = new Phrase(new Chunk(intAux.ToString(), cellFont));
+                    else //Aplazado
+                        phrase = new Phrase(new Chunk(intAux.ToString(), cellFont_red));
+                }
+                #endregion
+                #region Primaria
+                else
+                {
+                    stringAux = "";
+                    if (intAux == 1) stringAux = "E";
+                    else if (intAux == 2) stringAux = "D";
+                    else if (intAux == 3) stringAux = "C";
+                    else if (intAux == 4) stringAux = "B";
+                    else if (intAux == 5) stringAux = "A";
+
+                    if (intAux >=2) //Aprobado
+                        phrase = new Phrase(new Chunk(stringAux, cellFont));
+                    else
+                        phrase = new Phrase(new Chunk(stringAux, cellFont_red));
+                }
+                #endregion
 
                 cell = new PdfPCell(phrase)
                 {
@@ -3586,11 +3798,33 @@ namespace Tesis_ClienteWeb.Controllers
                 #endregion
                 #region Celda #3
                 intAux = Convert.ToInt32(Math.Round(listaDefinitivas[listaEstudiantes[i].StudentId]));
-                if (intAux >= 10) //Aprobado
-                    phrase = new Phrase(new Chunk(intAux.ToString(), cellFont));
-                else //Aplazado
-                    phrase = new Phrase(new Chunk(intAux.ToString(), cellFont_red));
 
+                #region Bachillerato
+                if (grado > 6) //Bachillerato
+                {
+                    if (intAux >= 10) //Aprobado
+                        phrase = new Phrase(new Chunk(intAux.ToString(), cellFont));
+                    else //Aplazado
+                        phrase = new Phrase(new Chunk(intAux.ToString(), cellFont_red));
+                }
+                #endregion
+                #region Primaria
+                else
+                {
+                    stringAux = "";
+                    if (intAux == 1) stringAux = "E";
+                    else if (intAux == 2) stringAux = "D";
+                    else if (intAux == 3) stringAux = "C";
+                    else if (intAux == 4) stringAux = "B";
+                    else if (intAux == 5) stringAux = "A";
+
+                    if (intAux >= 2) //Aprobado
+                        phrase = new Phrase(new Chunk(stringAux, cellFont));
+                    else
+                        phrase = new Phrase(new Chunk(stringAux, cellFont_red));
+                }
+                #endregion
+                
                 cell = new PdfPCell(phrase)
                 {
                     BorderWidthRight = 1.75f,
@@ -6067,6 +6301,227 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(jsonResult);
         }
+        public bool Estadisticas_Movil(int idEvaluacion)
+        {
+            ObteniendoSesion();
+
+            #region Declaración de variables
+            AssessmentService assessmentService = new AssessmentService();
+            Assessment assessment = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
+            CASU casu = assessment.CASU;
+            int grado = casu.Course.Grade;
+            List<Student> listaEstudiantes = casu.Course.Students;
+            List<Score> listaNotas = assessment.Scores;
+
+            List<Student> listaEstudiantesAprobados = new List<Student>();
+            List<Student> listaEstudiantesReprobados = new List<Student>();
+
+            #region Path
+            string ServerSide_name = "Estadistica" + "C" + _session.SCHOOLID + "Y" +
+                _session.SCHOOLYEARID + "E" + idEvaluacion.ToString() + "U" + _session.USERID;
+
+            string path = Path.Combine(HttpRuntime.AppDomainAppPath, 
+                ConstantRepository.STATISTICS_SERVER_REMAINS_DIRECTORY, 
+                ServerSide_name + "_GraficoParaEstadisticas_PieChart.png");
+
+            string path2 = Path.Combine(HttpRuntime.AppDomainAppPath,
+                ConstantRepository.STATISTICS_SERVER_REMAINS_DIRECTORY,
+                ServerSide_name + "_GraficoParaEstadisticas_Top10Mejores.png");
+            #endregion
+            #endregion
+            #region Gráfico #1
+            #region Obtneniendo lista de estudiantes aprobados/reprobados
+            foreach (Score scoreAux in listaNotas)
+            {
+                #region Bachillerato
+                if (grado > 6)
+                {
+                    if (scoreAux.NumberScore >= 10)
+                        listaEstudiantesAprobados.Add(scoreAux.Student); //Aprobado
+                    else
+                        listaEstudiantesReprobados.Add(scoreAux.Student); //Reprobado
+                }
+                #endregion
+                #region Primaria
+                else
+                {
+                    if (scoreAux.ToIntLetterScore(scoreAux.LetterScore) > 1)
+                        listaEstudiantesAprobados.Add(scoreAux.Student); //Aprobado
+                    else
+                        listaEstudiantesReprobados.Add(scoreAux.Student); //Reprobado
+                }
+                #endregion
+            }
+            int nroEstudiantesReprobados = listaEstudiantes.Count() - listaEstudiantesAprobados.Count();
+            #endregion
+            #region Creando la imágen PieChart
+            Dictionary<string, int> data
+                = new Dictionary<string, int> { 
+                    { "Aprobados:", listaEstudiantesAprobados.Count() }, 
+                    { "Reprobados:", nroEstudiantesReprobados } };
+
+            Chart chart = new Chart();
+            chart.AntiAliasing = AntiAliasingStyles.All;
+            chart.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
+            chart.Width = 180;
+            chart.Height = 180;
+
+            ChartArea chartArea = new ChartArea();
+            chart.ChartAreas.Add(chartArea);
+
+            Series chartSeries = new Series();
+            chartSeries.ChartType = SeriesChartType.Pie;
+            chartSeries.Label = "#AXISLABEL #VALY (#PERCENT{P0})";
+            chartSeries.BorderColor = Color.Black;
+            chartSeries.BorderWidth = 2;
+            chartSeries.LabelForeColor = Color.White;
+
+            foreach (var item in data) { chartSeries.Points.AddXY(item.Key, item.Value); }
+            chartSeries.Points[0].Color = Color.Blue;
+            chartSeries.Points[1].Color = Color.Red;
+            chart.Series.Add(chartSeries);
+            chart.SaveImage(path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imágenes desde rutas
+            System.Drawing.Image img1 = System.Drawing.Image.FromFile(path);
+            #endregion
+            #region Transformando imagen a array binario
+            MemoryStream stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            byte[] imageByte1 = stream1.ToArray();
+            string imageBase64_1 = Convert.ToBase64String(imageByte1);
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Invocando el Web Service
+            WS_MobileBridge.Service1SoapClient WSClient = new WS_MobileBridge.Service1SoapClient();
+            WSClient.StatisticsImageGenerator(
+                ConstantRepository.MOBILE_STATISTICS_CODE_AprobadosVsReprobados,
+                casu.CourseId, 
+                casu.Period.SchoolYear.SchoolYearId, 
+                casu.Period.SchoolYear.School.SchoolId,
+                imageBase64_1);
+            #endregion
+            #endregion
+            #region Gráfico #2
+            #region Declaración de variables
+            System.Drawing.Font graphBarChartFont = new System.Drawing.Font("Almanac MT", 8);
+            System.Drawing.Font graphBarChartFontAxisTitle = new System.Drawing.Font("Helvetica", 8);
+            string stringAux = "";
+            #endregion
+            #region Obteniendo la lista top 10 mejores notas
+            List<Score> top10MejoresNotas = (grado > 6 ?
+                listaNotas.OrderByDescending(m => m.NumberScore).Take(10).ToList() :
+                listaNotas.OrderByDescending(m => m.ToIntLetterScore(m.LetterScore)).Take(10).ToList());
+            #endregion
+            #region Definiendo la data
+            Dictionary<int, float> data2 = new Dictionary<int, float>();
+            for (int i = 1; i <= 10; i++)
+            {
+                if (grado > 6) //Bachillerato
+                    data2.Add(i, top10MejoresNotas[i - 1].NumberScore);
+                else //Primaria
+                    data2.Add(i, top10MejoresNotas[i - 1].ToIntLetterScore(top10MejoresNotas[i - 1].LetterScore));
+            }
+            #endregion
+            #region Desarrollando la gráfica
+            chart = new Chart();
+            chart.AntiAliasing = AntiAliasingStyles.All;
+            chart.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
+            chart.Width = 255;
+            chart.Height = 278;
+
+            chartArea = new ChartArea();
+            chartArea.AxisY.LabelStyle.Enabled = true;
+            chartArea.AxisY.LabelStyle.ForeColor = Color.Black;
+            chartArea.AxisY.LabelStyle.Font = graphBarChartFont;
+            chartArea.AxisY.LabelStyle.Format = "{0:0}";
+            chartArea.AxisY.LabelStyle.IsEndLabelVisible = true;
+            chartArea.AxisY.ArrowStyle = AxisArrowStyle.Triangle;
+            chartArea.AxisY.IsLabelAutoFit = true;
+            chartArea.AxisY.LineColor = Color.Blue;
+            chartArea.AxisY.Maximum = (grado > 6 ? 20 : 5);
+            chartArea.AxisY.Title = "Notas obtenidas";
+            chartArea.AxisY.TitleFont = graphBarChartFontAxisTitle;
+            chartArea.AxisY.MajorGrid.Enabled = true;
+            chartArea.AxisY.MajorGrid.LineColor = Color.Lavender;
+            chartArea.AxisY.MajorGrid.LineWidth = 6;
+            chartArea.AxisY.MajorTickMark.Enabled = true;
+            chartArea.AxisY.MajorTickMark.LineColor = Color.Blue;
+            chartArea.AxisY.MinorTickMark.Enabled = false;
+            if (grado <= 6)//Primaria
+            {
+                chartArea.AxisY.CustomLabels.Add(0, 1, "E");
+                chartArea.AxisY.CustomLabels.Add(1, 2, "D");
+                chartArea.AxisY.CustomLabels.Add(2, 3, "C");
+                chartArea.AxisY.CustomLabels.Add(3, 4, "B");
+                chartArea.AxisY.CustomLabels.Add(4, 5, "A");
+            }
+
+            chartArea.AxisX.LabelStyle.Enabled = true;
+            chartArea.AxisX.LabelStyle.ForeColor = Color.Black;
+            chartArea.AxisX.LabelStyle.Font = graphBarChartFont;
+            chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;
+            chartArea.AxisX.ArrowStyle = AxisArrowStyle.Triangle;
+            chartArea.AxisX.LineColor = Color.Blue;
+            chartArea.AxisX.Maximum = 11;
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisX.MajorTickMark.Enabled = false;
+            chartArea.AxisX.MinorTickMark.Enabled = false;
+            chartArea.AxisX.LabelAutoFitMinFontSize = 7;
+
+            for (int i = 0; i <= 10; i++)
+            {
+                if (i != 10)
+                {
+                    if (grado > 6) //Bachillerato
+                        stringAux = "(" + top10MejoresNotas[i].NumberScore + ") ";
+                    else //Primaria
+                        stringAux = "(" + top10MejoresNotas[i].LetterScore + ") ";
+
+                    stringAux = stringAux + top10MejoresNotas[i].Student.FirstLastName + " " +
+                        top10MejoresNotas[i].Student.SecondLastName + ", " +
+                        top10MejoresNotas[i].Student.FirstName;
+
+                    chartArea.AxisX.CustomLabels.Add(i + 0.5, i + 1.5, stringAux);
+                }
+            }
+            chart.ChartAreas.Add(chartArea);
+
+            chartSeries = new Series();
+            chartSeries.ChartType = SeriesChartType.Column;
+            chartSeries.Color = Color.Blue;
+            chartSeries.BorderColor = Color.DarkBlue;
+            chartSeries.BackGradientStyle = GradientStyle.LeftRight;
+            foreach (var item in data2) { chartSeries.Points.AddXY(item.Key, item.Value); }
+            chart.Series.Add(chartSeries);
+
+            chart.SaveImage(path2, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imágenes desde rutas
+            img1 = System.Drawing.Image.FromFile(path);
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            imageBase64_1 = Convert.ToBase64String(imageByte1);
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Invocando el Web Service
+            WSClient = new WS_MobileBridge.Service1SoapClient();
+            WSClient.StatisticsImageGenerator(
+                ConstantRepository.MOBILE_STATISTICS_CODE_Top10ResultadosDestacados,
+                casu.CourseId,
+                casu.Period.SchoolYear.SchoolYearId,
+                casu.Period.SchoolYear.School.SchoolId,
+                imageBase64_1);
+            #endregion
+            #endregion
+            
+            return true;
+        }
 
         public JsonResult CargarArchivoExcelAlumnosEnTabla_Prueba()
         {            
@@ -6382,6 +6837,43 @@ namespace Tesis_ClienteWeb.Controllers
 
             return listaColegiosPersonales;
         }
+
+        public JsonResult ObtenerJsonEvaluacionesPor_Curso_Materia_Lapso_Docente(int idMateria, int idCurso,
+            int idLapso, string idDocente)
+        {
+            #region Declaración de variables
+            List<Assessment> listaEvaluaciones = new List<Assessment>();
+            List<object> jsonResult = new List<object>();
+            AssessmentService assessmentService = new AssessmentService();
+            int Grado = 0;
+            #endregion
+
+            #region Obteniendo lista de evaluaciones
+            listaEvaluaciones = assessmentService
+                .ObtenerListaEvaluacionesPor_Curso_Materia_Docente_Lapso(idMateria, idCurso, idDocente, idLapso);
+            #endregion
+            #region Transformando lista de evaluaciones a JsonResult
+            foreach (Assessment evaluacion in listaEvaluaciones)
+            {
+                Grado = evaluacion.CASU.Course.Grade;
+
+                jsonResult.Add(new
+                {
+                    nombre = evaluacion.Name,
+                    tecnica = evaluacion.Technique,
+                    actividad = evaluacion.Activity,
+                    instrumento = evaluacion.Instrument,
+                    porcentaje = (Grado <= 6 ? "N/A" : evaluacion.Percentage.ToString()),
+                    fechainicio = evaluacion.StartDate.ToString(),
+                    fechafin = evaluacion.FinishDate.ToString(),
+                    idEvaluacion = evaluacion.AssessmentId
+                });
+            }
+            #endregion
+
+            return Json(jsonResult);
+        }        
+
         public JsonResult ObtenerAnosEscolaresSinPeriodos(int idColegio)
         {
             #region Declaración de variables
@@ -6422,18 +6914,38 @@ namespace Tesis_ClienteWeb.Controllers
             CourseService _courseService = new CourseService();
             #endregion
             #region Obtener lista de profesores
-            listaProfesores = _courseService.ObtenerListaProfesoresPorLapsoCursoMateria
-                (int.Parse(idLapso), int.Parse(idCurso), int.Parse(idMateria)).ToList<User>();
+            listaProfesores = _courseService.ObtenerListaProfesoresPorLapsoCursoMateria(
+                int.Parse(idLapso), 
+                int.Parse(idCurso), 
+                int.Parse(idMateria)
+            );
             #endregion
 
-            foreach (User profesor in listaProfesores)
+            #region Validación de lista nula
+            if (listaProfesores.Count == 0 ||
+               (listaProfesores.Count == 1 && listaProfesores[0] == null))
             {
-                jsonResult.Add(new
-                {
-                    nombre = profesor.UserName,
-                    idProfesor = profesor.Id,
+                jsonResult.Add(new { 
+                    Success = false ,
+                    TipoError = "No docentes"
                 });
             }
+            #endregion
+            #region Devolviendo la lista de docentes
+            else
+            {
+                foreach (User profesor in listaProfesores)
+                {
+                    jsonResult.Add(new
+                    {
+                        Success = true,
+                        nombre = profesor.LastName + ", " + profesor.Name,
+                        idProfesor = profesor.Id,
+                    });
+                }
+            }
+            #endregion
+
             return Json(jsonResult);
         }
         public JsonResult ObtenerTablaMateriaPorIdColegio(int idColegio)
@@ -6453,7 +6965,7 @@ namespace Tesis_ClienteWeb.Controllers
                 {
                     nombre = materia.Name,
                     codigo = materia.SubjectCode,
-                    pensum = materia.Pensum,
+                    pensum = materia.GeneralPurpose,
                     idMateria = materia.SubjectId,
                     grado = materia.Grade
                 });
@@ -6483,7 +6995,7 @@ namespace Tesis_ClienteWeb.Controllers
                 {
                     nombre = materia.Name,
                     codigo = materia.SubjectCode,
-                    pensum = materia.Pensum,
+                    pensum = materia.GeneralPurpose,
                     idMateria = materia.SubjectId,
 
                 });
@@ -6511,7 +7023,7 @@ namespace Tesis_ClienteWeb.Controllers
                 {
                     nombre = materia.Name,
                     codigo = materia.SubjectCode,
-                    pensum = materia.Pensum,
+                    pensum = materia.GeneralPurpose,
                     idMateria = materia.SubjectId,
 
                 });
@@ -6545,7 +7057,7 @@ namespace Tesis_ClienteWeb.Controllers
                         success = true,
                         nombre = materia.Name,
                         codigo = materia.SubjectCode,
-                        pensum = materia.Pensum,
+                        pensum = materia.GeneralPurpose,
                         idMateria = materia.SubjectId,
                         grado = materia.Grade
                     });
@@ -6619,7 +7131,7 @@ namespace Tesis_ClienteWeb.Controllers
             {
                 nombre = materia.Name,
                 codigo = materia.SubjectCode,
-                pensum = materia.Pensum
+                pensum = materia.GeneralPurpose
 
             });
 
@@ -6637,14 +7149,13 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
             #region Obteniendo lista de estudiantes y curso
             listaEstudiantes = _studentService.ObtenerListaEstudiantePorCurso(idCurso)
-                               .OrderBy(m => m.FirstLastName).ThenBy(m => m.SecondLastName).ToList();
-            //  .ToList<Student>();
+                .OrderBy(m => m.FirstLastName).ThenBy(m => m.SecondLastName).ToList();
+            
             Curso = _courseService.ObtenerCursoPor_Id(idCurso);
             #endregion
             #region Transformando lista de estudiantes a JsonResult
             foreach (Student estudiante in listaEstudiantes)
             {
-
                 jsonResult.Add(new
                 {
                     numerolista = estudiante.NumberList,
@@ -6660,6 +7171,7 @@ namespace Tesis_ClienteWeb.Controllers
 
 
             #endregion
+
             return Json(jsonResult);
         }
         public JsonResult ObtenerDetalleCurso(int idCurso)
@@ -6744,8 +7256,7 @@ namespace Tesis_ClienteWeb.Controllers
             _studentService.GuardarStudent(estudiante);
             #endregion
         }
-        public JsonResult ObtenerTablaEvaluacionesPorMateriaCursoYLapso(int idMateria, int idCurso,
-            int idLapso)
+        public JsonResult ObtenerTablaEvaluacionesPorMateriaCursoYLapso(int idMateria, int idCurso, int idLapso)
         {
             ObteniendoSesion();
 
@@ -6759,8 +7270,7 @@ namespace Tesis_ClienteWeb.Controllers
 
             #region Obteniendo lista de evaluaciones
             listaEvaluaciones = assessmentService
-                .ObtenerListaEvaluacionesPor_Curso_Materia_Docente_Lapso(idMateria, idCurso,
-                _session.USERID, idLapso);
+                .ObtenerListaEvaluacionesPor_Curso_Materia_Docente_Lapso(idMateria, idCurso, _session.USERID, idLapso);
             #endregion
             #region Transformando lista de evaluaciones a JsonResult
             foreach (Assessment evaluacion in listaEvaluaciones)

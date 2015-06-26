@@ -24,8 +24,8 @@ namespace Tesis_ClienteWeb_Models.POCO
         public List<Assessment> Assessments { get; set; }
 
         //Not Required - Fluent API
-        public string UserId { get; set; }
-        public User User { get; set; }
+        public string TeacherId { get; set; }
+        public User Teacher { get; set; }
 
         public CASU()
         {

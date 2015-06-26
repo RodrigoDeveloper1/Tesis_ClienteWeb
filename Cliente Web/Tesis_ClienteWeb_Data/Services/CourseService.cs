@@ -87,11 +87,14 @@ namespace Tesis_ClienteWeb_Data.Services
         #region Obtener cursos
         /// <summary>
         /// Método que obtiene el curso en específico.
+        /// Nota: Obtiene la lista de CASUS en detalle - Rodrigo Uzcátegui. 24-05-15
         /// </summary>
         /// <param name="id">El id del curso</param>
         /// <returns>El curso</returns>
         public Course ObtenerCursoPor_Id(int id)
         {
+            CASUService casuService = new CASUService(this._unidad);
+
             Course curso = (
                 from Course c in _unidad.RepositorioCourse._dbset
                     .Include("Students")
@@ -99,6 +102,12 @@ namespace Tesis_ClienteWeb_Data.Services
                 where c.CourseId == id
                 select c)
                     .FirstOrDefault<Course>();
+
+            for (int i = 0; i <= curso.CASUs.Count() - 1; i++ )
+            {
+                curso.CASUs[i] = casuService.ObtenerCASUPor_Ids(curso.CASUs[i].CourseId,
+                    curso.CASUs[i].PeriodId, curso.CASUs[i].SubjectId);
+            }
 
             return curso;
         }
@@ -115,7 +124,7 @@ namespace Tesis_ClienteWeb_Data.Services
                 from CASU casu in _unidad.RepositorioCASU._dbset
                 where casu.Course.Name == nombre &&
                       casu.Period.SchoolYear.SchoolYearId == idAnoEscolar &&
-                      casu.User.Id == idDocente
+                      casu.Teacher.Id == idDocente
                 select casu.Course)
                     .FirstOrDefault<Course>();
 
@@ -187,7 +196,7 @@ namespace Tesis_ClienteWeb_Data.Services
             Course curso = (
                 from CASU casu in _unidad.RepositorioCASU._dbset
                 where casu.Period.SchoolYear.SchoolYearId == idAnoEscolar && //Validación de año escolar
-                      casu.UserId == idUsuario && //Validación del usuario
+                      casu.TeacherId == idUsuario && //Validación del usuario
                       casu.Subject.Name == notificacion.Attribution /* Estableciendo que si la notificación
                                                                      * tiene que ver con una materia en 
                                                                      * específico, resultará ese curso.
@@ -216,7 +225,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Course")
                     .Include("Period.SchoolYear")
                 where casu.Period.SchoolYear.SchoolYearId == idAnoEscolar &&
-                      casu.UserId == idDocente
+                      casu.TeacherId == idDocente
                 select casu)
                     .ToList<CASU>();
 
@@ -254,7 +263,7 @@ namespace Tesis_ClienteWeb_Data.Services
             List<Course> listaCursos = (
                 from CASU casu in _unidad.RepositorioCASU._dbset
                     .Include("Period.SchoolYear")
-                where casu.User.Id == id &&
+                where casu.Teacher.Id == id &&
                       casu.Period.SchoolYear.SchoolYearId == idAnoEscolar
                 select casu.Course)
                     .ToHashSet<Course>()
@@ -265,16 +274,20 @@ namespace Tesis_ClienteWeb_Data.Services
 
         public List<User> ObtenerListaProfesoresPorLapsoCursoMateria(int idLapso, int idCurso, int idMateria)
         {
-            HashSet<User> listaProfesores = (from CASU casu in _unidad.RepositorioCASU._dbset
-                                .Include("Subject")
-                                .Include("Period")
-                                .Include("Course")
-                                .Include("User")
-                                 where casu.Period.PeriodId == idLapso && casu.Course.CourseId == idCurso
-                                 && casu.Subject.SubjectId == idMateria
-                                 select casu.User).ToHashSet<User>();
+            List<User> listaProfesores = (
+                from CASU casu in _unidad.RepositorioCASU._dbset
+                    .Include("Subject")
+                    .Include("Period")
+                    .Include("Course")
+                    .Include("Teacher")
+                where casu.Period.PeriodId == idLapso && 
+                      casu.Course.CourseId == idCurso && 
+                      casu.Subject.SubjectId == idMateria
+                select casu.Teacher)
+                    .ToHashSet<User>()
+                    .ToList<User>();
 
-            return listaProfesores.ToList<User>();
+            return listaProfesores;
         }
         public List<Course> ObtenerListaCursosPorColegio(int idColegio)
         {

@@ -1,50 +1,8 @@
-﻿thead,
-tbody,
-tr, 
-td,
-th
-{ 
-    display: block; 
-}
-
-tr:after 
-{
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-
-thead th 
-{
-    /*height: 30px;*/
-    height: 60px;
-}
-
-tbody 
-{
-    /*height: 120px;*/
-    height: 260px;
-    overflow-y: auto;
-}
-
-thead th,
-tbody td 
-{
-    /*width: 19.2%;*/
-    float: left;
-}
-
-.th-nombre { width: 16%; }
-.td-nombre { width: 17%; }
-.th-descripcion { width: 27%; }
-.td-descripcion { width: 26%; }
-.th-inicio { width: 15%; }
-.td-inicio { width: 15%; }
-.th-fin { width: 15%; }
-.td-fin { width: 15%; }
-.th-tipo { width: 20%; }
-.td-tipo { width: 20%; }
+﻿#i-add-fila-eventos, 
+#i-salvar-todas-filas, 
+#i-eliminar-todas-filas,
+.i-agregar-eventos,
+.i-eliminar-fila-eventos { cursor: pointer; }
 
 #table-lista-eventos > tbody > tr.active > td { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
 #table-lista-eventos tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }

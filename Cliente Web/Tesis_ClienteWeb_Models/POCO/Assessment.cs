@@ -12,6 +12,7 @@ namespace Tesis_ClienteWeb_Models.POCO
         [Key]
         public int AssessmentId { get; set; }
 
+        [Display(Name="Nombre de la evaluación:")]
         [Required(ErrorMessage = "Por favor insertar el nombre de la evaluación", AllowEmptyStrings = false)]
         [StringLength(80, ErrorMessage = "El nombre debe tener un máximo de 80 caracteres")]
         [MaxLength(80)]
@@ -63,11 +64,14 @@ namespace Tesis_ClienteWeb_Models.POCO
 
         public List<Score> Scores { get; set; }
 
+        public List<IndicatorAssessment> IndicatorAssessments { get; set; }
+
         public Event Event { get; set; }
 
         public Assessment()
         {
             this.Scores = new List<Score>();
+            this.IndicatorAssessments = new List<IndicatorAssessment>();
         }
      }
 }

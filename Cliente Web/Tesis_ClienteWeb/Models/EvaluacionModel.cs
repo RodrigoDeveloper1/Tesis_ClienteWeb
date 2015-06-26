@@ -10,8 +10,6 @@ namespace Tesis_ClienteWeb.Models
 {
     public class EvaluacionModel : MaestraListaColegiosModel
     {
-        public EvaluacionModel() { }
-
         public Assessment Evaluacion { get; set; }              
 
         public List<Assessment> listaEvaluaciones { get; set; }
@@ -79,5 +77,36 @@ namespace Tesis_ClienteWeb.Models
         public List<string> listaInstrumentosNormal;
 
         public List<string> listaTecnicasNormal;
+
+        public EvaluacionModel()
+        {
+            selectListTipos = new SelectList(new Dictionary<string, string>());
+            selectListInstrumentos = new SelectList(new Dictionary<string, string>());
+            selectListTecnicas = new SelectList(new Dictionary<string, string>());
+            selectListCursos = new SelectList(new Dictionary<string, string>());
+            selectListProfesores = new SelectList(new Dictionary<string, string>());
+            selectListMaterias = new SelectList(new Dictionary<string, string>());
+            selectListLapsos = new SelectList(new Dictionary<string, string>());
+
+            listaTiposNormal = new List<string>();
+            listaInstrumentosNormal = new List<string>();
+            listaTecnicasNormal = new List<string>();
+        }
+    }
+
+    public class MatrizIndicadoresLiteralesModel : MaestraModel
+    {
+        public Assessment assessment { get; set; }
+
+        [Required(ErrorMessage = "Por favor seleccione una competencia.", AllowEmptyStrings = false)]
+        [Display(Name = "Lista de competencias:")]
+        public int idCompetencia { get; set; }
+        public SelectList selectListCompetencies { get; set; }
+
+        public MatrizIndicadoresLiteralesModel(Assessment assessment)
+        {
+            this.assessment = assessment;
+            this.selectListCompetencies = new SelectList(new Dictionary<string, string>());
+        }
     }
 }

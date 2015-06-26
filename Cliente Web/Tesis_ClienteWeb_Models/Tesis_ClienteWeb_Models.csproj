@@ -118,6 +118,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="POCO\Competency.cs" />
+    <Compile Include="POCO\Content.cs" />
+    <Compile Include="POCO\ContentBlock.cs" />
+    <Compile Include="POCO\Indicator.cs" />
+    <Compile Include="POCO\IndicatorAssessment.cs" />
+    <Compile Include="POCO\IndicatorAssignation.cs" />
     <Compile Include="POCO\Institute.cs" />
     <Compile Include="POCO\RelatedCareer.cs" />
     <Compile Include="POCO\Country.cs" />
@@ -169,7 +175,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

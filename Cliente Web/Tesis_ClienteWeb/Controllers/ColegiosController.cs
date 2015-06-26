@@ -83,6 +83,9 @@ namespace Tesis_ClienteWeb.Controllers
             colegio.DateOfCreation = new DateTime(model.colegio.DateOfCreation.Year,
                 model.colegio.DateOfCreation.Month, model.colegio.DateOfCreation.Day);
             colegio.Status = (model.estatusColegio.Equals("Activo") ? true : false);
+            colegio.Phone1 = model.colegio.Phone1;
+            colegio.Phone2 = model.colegio.Phone2;
+            colegio.Address = model.colegio.Address;
             #endregion
             #region Definiendo el año escolar
             if(colegio.Status && model.estatusPeriodoEscolar != null)

@@ -39,6 +39,8 @@ $(document).ready(function () {
         $("#select-curso").selectpicker("refresh");
 
         if (idColegio != "") {
+            showProgress();
+
             $.ajax({
                 type: "POST",
                 url: "/Bridge/ObtenerAnoEscolarActivoEnLabel",
@@ -91,6 +93,8 @@ $(document).ready(function () {
                                     idEstudiante = 0
                                     representante1_id = 0;
                                     representante2_id = 0;
+
+                                    hideProgress();
                                 }
                                 else {
                                     idCurso = 0;
@@ -121,6 +125,8 @@ $(document).ready(function () {
                                     idEstudiante = 0
                                     representante1_id = 0;
                                     representante2_id = 0;
+
+                                    hideProgress();
                                 }                                                                
                             }
                         });
@@ -156,9 +162,11 @@ $(document).ready(function () {
                         idEstudiante = 0
                         representante1_id = 0;
                         representante2_id = 0;
+
+                        hideProgress();
                     }
                 }
-            });
+            });            
         }
         else {
             idCurso = 0;
@@ -201,6 +209,8 @@ $(document).ready(function () {
         $("#select-estudiantes").selectpicker("refresh");
 
         if (idCurso != null) {
+            showProgress();
+
             $.ajax({
                 type: "POST",
                 url: "/Bridge/ObtenerJsonEstudiantesPorCurso",
@@ -239,6 +249,8 @@ $(document).ready(function () {
                         idEstudiante = 0
                         representante1_id = 0;
                         representante2_id = 0;
+
+                        hideProgress();
                     }
                     else {
                         idCurso = 0;
@@ -266,6 +278,8 @@ $(document).ready(function () {
                         idEstudiante = 0
                         representante1_id = 0;
                         representante2_id = 0;
+
+                        hideProgress();
                     }
                 }
             });
@@ -304,6 +318,8 @@ $(document).ready(function () {
         idEstudiante = $(this).val();
         
         if (idEstudiante != null) {
+            showProgress();
+
             $.ajax({
                 type: "POST",
                 url: "/Bridge/ObtenerJsonInfoRepresentantes",
@@ -315,7 +331,7 @@ $(document).ready(function () {
                     poseeRepresentante_2 = data[0].poseeRepresentante_2;
 
                     if(data[0].success)
-                    {
+                    {                        
                         if (data[0].poseeRepresentantes) {
                             $('#cedula-representante-1').val(data[0].representante1_cedula);
                             $('#select-sexo-1').val(data[0].representante1_sexo);
@@ -336,7 +352,9 @@ $(document).ready(function () {
                                 $('#apellido-2-representante-2').val(data[0].representante2_apellido2);
                                 $('#correo-2').val(data[0].representante2_correo);
 
-                                representante2_id = data[1].representante2_id;
+                                representante2_id = data[0].representante2_id;
+
+                                hideProgress();
                             }
                             else {
                                 $("#div-alerta-no-representante-2").show(400).delay(5000).slideUp(400);
@@ -344,7 +362,11 @@ $(document).ready(function () {
                                 
                                 ClearTextBoxRepresentante_1();
                                 ClearTextBoxRepresentante_2();
+
+                                hideProgress();
                             }
+
+                            hideProgress();
                         }
                         else {
                             $("#div-alerta-no-representantes").show(400).delay(5000).slideUp(400);
@@ -353,12 +375,18 @@ $(document).ready(function () {
 
                             ClearTextBoxRepresentante_1();
                             ClearTextBoxRepresentante_2();
+
+                            hideProgress();
                         }
+
+                        hideProgress();
                     }
                     else {
                         $("#div-alerta-no-alumno").show(400).delay(5000).slideUp(400);
                         representante1_id = 0;
                         representante2_id = 0;
+
+                        hideProgress();
                     }
                 }
             });
@@ -369,7 +397,7 @@ $(document).ready(function () {
 
             idEstudiante = 0
             representante1_id = 0;
-            representante2_id = 0;
+            representante2_id = 0;            
         }
     });
 });

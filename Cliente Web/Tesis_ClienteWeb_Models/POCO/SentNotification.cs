@@ -39,6 +39,10 @@ namespace Tesis_ClienteWeb_Models.POCO
         //Not Required - Fluent API
         public Course Course { get; set; }
 
-        
+        public SentNotification()
+        {
+            Read = false;
+            Sent = false;
+        }
     }
 }

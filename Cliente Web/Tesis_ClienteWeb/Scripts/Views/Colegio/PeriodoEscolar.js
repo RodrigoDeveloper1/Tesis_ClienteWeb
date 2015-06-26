@@ -5,6 +5,8 @@ $(document).ready(function () {
     //Obtener lista de años escolares
     $("#select-colegio").change(function () {
         if ($(this).val() != "") {
+            showProgress();
+
             $("#select-ano-escolar").find('option').remove().end().append("<option>Cargando años " +
                 "escolares...</option>");
             $("#select-ano-escolar").selectpicker("refresh");
@@ -26,6 +28,8 @@ $(document).ready(function () {
 
                         $("#select-ano-escolar").find('option').remove().end().append(lista);
                         $("#select-ano-escolar").selectpicker("refresh");
+
+                        hideProgress();
                     }
                     else {
                         $("#select-ano-escolar").find('option').remove().end().append('<option>No se ' +
@@ -33,9 +37,13 @@ $(document).ready(function () {
                         $("#select-ano-escolar").selectpicker("refresh");
 
                         idAnoEscolar = "";
+
+                        hideProgress();
                     }
                 }
             });
+
+            
         }
         else {
             $("#select-ano-escolar").find('option').remove().end().append('<option>Seleccione el año ' +

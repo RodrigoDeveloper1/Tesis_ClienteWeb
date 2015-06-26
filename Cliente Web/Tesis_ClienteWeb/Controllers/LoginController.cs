@@ -131,7 +131,10 @@ namespace Tesis_ClienteWeb.Controllers
                             await UserManager.ResetAccessFailedCountAsync(usuario.Id);
                             InicializarSesion(usuario);
 
-                            return RedirectToAction("Inicio", "Index");
+                            if (Session["RoleName"].ToString().Equals("Administrador"))
+                                return RedirectToAction("Menu", "Administrador");
+                            else
+                                return RedirectToAction("Inicio", "Index");
                         }
                     case SignInStatus.Failure:
                     default:
