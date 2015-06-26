@@ -2370,7 +2370,6 @@
     <Content Include="Views\Eventos\CrearEvento.aspx" />
     <Content Include="Views\Index\Inicio.aspx" />
     <Content Include="Views\Materias\CrearMateria.aspx" />
-    <Content Include="Views\Materias\GestionMaterias.aspx" />
     <Content Include="Views\Materias\ModificarMateria.aspx" />
     <Content Include="Views\Materias\Materias.aspx" />
     <Content Include="Views\Notificaciones\NotificacionesAutomaticas.aspx" />
