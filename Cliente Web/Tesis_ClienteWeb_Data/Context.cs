@@ -16,7 +16,8 @@ namespace Tesis_ClienteWeb_Data
         public Context()
             : base("Context", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<Context>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Configuration>());
         }
         #endregion
 
