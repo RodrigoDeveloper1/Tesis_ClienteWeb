@@ -653,6 +653,10 @@ namespace Tesis_ClienteWeb.Controllers
                 });
             }
             #endregion
+            #region Validación de lista de eventos vacía
+            if (jsonResult.Count == 0)
+                jsonResult.Add(new { Success = false });
+            #endregion
 
             return Json(jsonResult);
         }

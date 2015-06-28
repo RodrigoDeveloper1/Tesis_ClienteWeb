@@ -104,8 +104,6 @@
             if (r[0].Success) {
                 for (var i = 0; i < r.length; i++) {
                     if (r[i].restadiasfechas >= 2) {
-                        console.log('Entra caso I');
-
                         var newEvent1 = {
                             id: r[i].id,
                             title: 'Inicio - ' + r[i].name,
@@ -115,9 +113,8 @@
                             deleteevent: r[i].deleteevent,
                             backgroundColor: '#' + r[i].color
                         };
-                        $('#calendar').fullCalendar('renderEvent', newEvent1, 'stick');
-                        console.log('Entra caso II');
 
+                        $('#calendar').fullCalendar('renderEvent', newEvent1, 'stick');
                         var newEvent2 = {
                             id: r[i].id,
                             title: 'Fin - ' + r[i].name,
@@ -130,8 +127,6 @@
                         $('#calendar').fullCalendar('renderEvent', newEvent2, 'stick');
                     }
                     else {
-                        console.log('Entra caso III');
-
                         var newEvent3 = {
                             id: r[i].id,
                             title: r[i].name,
