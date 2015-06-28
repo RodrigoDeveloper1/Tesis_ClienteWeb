@@ -29,131 +29,77 @@
 
     <!-- Diálogo Nuevo Evento -->
     <div id="dialog-nuevo-evento">
-        <div class="row div-interior-dialog">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-10">
-                    <label id="" class="pull-left" for="input-titulo-evento">Título del Evento:</label>
-                    <input type="text" class="form-control pull-right" id="tituloevento" />
-                </div>
+        <div class="row">
+            <!-- Título del evento -->
+            <div class="col-xs-7">
+                <label class="pull-left" for="tituloevento">Título del Evento:</label>
+                <input type="text" class="form-control" id="tituloevento"/>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
+            <!-- Color del evento -->
+            <div class="col-xs-5" id="div-color">
+                <label for="border-color">Color:</label>
+                <input type="text" id="colorevento" value="0000ff" name="border-color" class="pick-a-color form-control">
             </div>
 
-            <div class="row">
-                <div class="col-xs-10">
-                    <label id="" class="pull-left" for="descripcionevento">Descripción del Evento:</label>
-                    <textarea rows="3" cols="50" type="text" class="form-control pull-right" id="descripcionevento">
-            </textarea>
-                </div>
+            <!-- Separador con línea -->
+            <div class="col-xs-12"><div class="separador"></div></div>
+
+            <!-- Descripción del evento -->
+            <div class="col-xs-12">
+                <label id="" for="descripcionevento">Descripción del Evento:</label>
+                <textarea rows="3" cols="50" class="form-control" id="descripcionevento"></textarea>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
+            <!-- Separador con línea -->
+            <div class="col-xs-12"><div class="separador"></div></div>
+
+            <!-- Separador con línea -->
+            <div class="col-xs-12"><div class="separador"></div></div>
+
+            <!-- Lista de tipos de eventos -->
+            <div class="col-xs-12">
+                <label for="select-seleccionartipoevento">Tipo:</label>
+                <select class="selectpicker form-control" id="select-seleccionartipoevento" 
+                data-style="btn-primary" data-live-search="true">
+                    <option selected disabled>Seleccione un tipo de evento...</option>
+                    
+                    <% foreach (var eventType in Model.listaTiposEventos) { %>
+                    <option value="<%: eventType %>"><%: eventType%></option>
+                    <% } %>
+                </select>
             </div>
 
-            <div class="row">
-                <div class="col-lg-10">
-                    <label for="border-color">Color:</label>
-                    <input type="text" id="colorevento" value="0000ff" name="border-color" class="pick-a-color form-control">
-                </div>
+            <!-- Separador con línea -->
+            <div class="col-xs-12"><div class="separador"></div></div>
+            
+            <!-- Fecha de inicio -->
+            <div class="col-xs-5">
+                <label for="fecha-inicio">Fecha inicio:</label>
+                <input type="text" class="datepicker form-control" id="fecha-inicio" />
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
+            <!-- Hora de inicio -->
+            <div class="col-xs-4 input-append input-group bootstrap-timepicker" id="div-hora-inicio">
+                <span class="input-group-addon" id="span-hora-inicio"><i class="fa fa-clock-o"></i></span>
+                <input type="text" id="horainicioevento" class="add-on form-control" aria-describedby="span-hora-inicio">
+            </div>
+            
+
+            <!-- Separador con línea -->
+            <div class="col-xs-12"><div class="separador"></div></div>
+
+            <!-- Fecha de Finalización -->
+            <div class=" col-xs-5">
+                <label for="fecha-finalizacion">Fecha fin:</label>
+                <input type="text" class="datepicker form-control" id="fecha-finalizacion" />
             </div>
 
-            <div class="row">
-                <div class="col-lg-10 ">
-                    <label for="select-seleccionartipoevento">Tipo:</label>
-                    <select class="selectpicker form-control" id="select-seleccionartipoevento" data-style="btn-primary"
-                        data-live-search="true">
-                        <option selected disabled>Seleccione un tipo de evento...</option>
-
-                        <% foreach (var eventType in Model.listaTiposEventos)
-                           { %>
-
-                        <option value="<%: eventType %>"><%: eventType%></option>
-                        <% } %>
-                    </select>
-                </div>
+            <!-- Hora fin -->
+            <div class="col-xs-4 input-append input-group bootstrap-timepicker" id="div-hora-fin">
+                <span class="input-group-addon" id="span-hora-fin"><i class="fa fa-clock-o"></i></span>
+                <input type="text" id="horaeventofin" class="add-on form-control" aria-describedby="span-hora-fin">
             </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Fecha de Inicio -->
-                <div class=" col-xs-10">
-                    <label for="fecha-inicio">Fecha inicio:</label>
-                    <input type="text" class="datepicker form-control" id="fecha-inicio" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Hora inicio -->
-                <div class="col-xs-5 input-append bootstrap-timepicker">
-                    <label for="horainicioevento">Hora Inicio:</label>
-                    <input type="text" id="horainicioevento" class="add-on form-control ">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <!-- Fecha de Finalización -->
-                <div class=" col-xs-10">
-                    <label for="fecha-finalizacion">Fecha finalización:</label>
-                    <input type="text" class="datepicker form-control" id="fecha-finalizacion" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
-            </div>
-
-            <div class=" row">
-                <!-- Hora fin -->
-                <div class="col-xs-5 input-append bootstrap-timepicker">
-                    <label for="horaeventofin">Hora Fin:</label>
-                    <input type="text" id="horaeventofin" class="add-on form-control">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="separador"></div>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -171,8 +117,10 @@
     <link href="../../Content/Plug-ins/fullcalendar-2.1.1/fullcalendar.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/Plug-ins/bootstrap-timepicker-gh-pages/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/Plug-ins/fullcalendar-2.1.1/fullcalendar.print.css" rel="stylesheet" type="text/css" media="print"/>
-    <link href="../../Content/Css/Eventos/Eventos.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/Plug-ins/pick-a-color-master/build/1.2.3/css/pick-a-color-1.2.3.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="../../Content/Css/Eventos/Eventos.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Eventos/DialogoNuevoEvento.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
@@ -180,6 +128,7 @@
     <script src="../../Content/Plug-ins/fullcalendar-2.1.1/lib/moment.min.js" type="text/javascript"></script>
     <script src="../../Content/Plug-ins/fullcalendar-2.1.1/fullcalendar.js" type="text/javascript"></script>
     <script src="../../Scripts/Views/Eventos/Eventos.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Eventos/DialogoNuevoEvento.js" type="text/javascript"></script>
     <script src="../../Content/Plug-ins/fullcalendar-2.1.1/lang/es.js" type="text/javascript"></script>
     <script src="../../Content/Plug-ins/pick-a-color-master/src/js/pick-a-color.js" type="text/javascript"></script>
     <script src="../../Content/Plug-ins/pick-a-color-master/build/dependencies/tinycolor-0.9.15.min.js" type="text/javascript"></script>

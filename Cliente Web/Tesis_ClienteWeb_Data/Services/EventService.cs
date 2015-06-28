@@ -353,7 +353,6 @@ namespace Tesis_ClienteWeb_Data.Services
             #endregion
         }
 
-
         /// <summary>
         /// Método que crea eventos personalizados del sistema, según el tipo de acción que ocurra. Dentro del 
         /// método se especifia la acción a tomar según el caso.
@@ -423,6 +422,60 @@ namespace Tesis_ClienteWeb_Data.Services
             }
             #endregion
         }
+        /// <summary>
+        /// Método que salva el evento personalizado.
+        /// Rodrigo Uzcátegui - 27-06-15
+        /// </summary>
+        /// <param name="categoria">La categoría del evento</param>
+        /// <param name="evento">El evento a guardar</param>
+        /// <returns>True = Guardado correctamente</returns>
+        public bool CrearEventoPersonal(int categoria, Event evento, User user)
+        {
+            #region Declaracion de variables
+            NotificationService notificationService = new NotificationService(this._unidad);
+            evento.DeleteEvent = true; //Evento personal
+            #endregion
+
+            switch (categoria)
+            {
+                #region Case: Evento de un día
+                case ConstantRepository.PERSONAL_EVENT_CATEGORY_1_DAY:
+                    #region Evento #1
+                    evento.Notifications = notificationService.CrearNotificacionAutomatica(
+                        ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_1_DAY, evento, user);
+                    #endregion
+                    break;
+                case ConstantRepository.PERSONAL_EVENT_CATEGORY_VARIOUS_DAYS:
+                    #region Evento #1
+                    evento.Notifications = notificationService.CrearNotificacionAutomatica(
+                        ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_EVENT_VARIOUS_DAYS, evento, user);
+                    #endregion
+                    break;
+                #endregion
+            };
+
+            #region Salvando el evento personalizado
+            try
+            {
+                _unidad.RepositorioEvent.Add(evento);
+                _unidad.Save();
+
+                return true;
+            }
+            #endregion
+            #region Catch de errores
+            catch (Exception e)
+            {
+                throw e;
+            }
+            #endregion
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <param name="assessment"></param>
+        /// <returns></returns>
         public Event CrearEventoPersonal_SinGuardar(int categoria, Assessment assessment)
         {
             #region Declaracion de variables
@@ -713,7 +766,37 @@ namespace Tesis_ClienteWeb_Data.Services
 
             return listaEventos;
         }
+        /// <summary>
+        /// Método que obtiene la lista de eventos por usuario
+        /// 
+        /// Rodrigo Uzcátegui - 28-03-15
+        /// </summary>
+        /// <returns>La lista de eventos respectiva</returns>
+        public List<Event> ObtenerListaEventosPor_Usuario(string UserId, DateTime fecha)
+        {
+            UserService service = new UserService(this._unidad);
+            User usuario = service.ObtenerUsuarioPorId(UserId);
+            List<Event> listaEventos = usuario.Events;
 
+            return listaEventos;
+        }
+        public List<Event> ObtenerListaEventosPor_SUsuario(DateTime fecha)
+        {
+            UserService service = new UserService(this._unidad);
+            User usuario = service.ObtenerUsuarioPorId(_session.USERID);
+            List<Event> listaEventos = new List<Event>();
+
+            foreach (Event evento in usuario.Events)
+            {
+                if ((evento.StartDate.Month == fecha.Month &&
+                     evento.StartDate.Year == fecha.Year) ||
+                    (evento.FinishDate.Month == fecha.Month &&
+                     evento.FinishDate.Year == fecha.Year))
+                    listaEventos.Add(evento);
+            }
+
+            return listaEventos;
+        }
 
 
 
@@ -774,37 +857,7 @@ namespace Tesis_ClienteWeb_Data.Services
 
             return lista;
         }
-        /// <summary>
-        /// Método que obtiene la lista de eventos por usuario
-        /// 
-        /// Rodrigo Uzcátegui - 28-03-15
-        /// </summary>
-        /// <returns>La lista de eventos respectiva</returns>
-        public List<Event> ObtenerListaEventosPor_SUsuario()
-        {
-            UserService service = new UserService(this._unidad);
-            User usuario = service.ObtenerUsuarioPorId(_session.USERID);
-            List<Event> listaEventos = usuario.Events;
-
-            return listaEventos;
-        }
-        public List<Event> ObtenerListaEventosPor_SUsuario(DateTime fecha)
-        {
-            UserService service = new UserService(this._unidad);
-            User usuario = service.ObtenerUsuarioPorId(_session.USERID);
-            List<Event> listaEventos = new List<Event>();
-
-            foreach (Event evento in usuario.Events)
-            {
-                if ((evento.StartDate.Month == fecha.Month && 
-                     evento.StartDate.Year == fecha.Year) || 
-                    (evento.FinishDate.Month == fecha.Month &&
-                     evento.FinishDate.Year == fecha.Year))
-                    listaEventos.Add(evento);
-            }
-
-            return listaEventos;
-        }
+        
 
 
 

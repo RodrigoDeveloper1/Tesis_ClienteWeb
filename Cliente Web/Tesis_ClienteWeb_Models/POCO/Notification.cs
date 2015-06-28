@@ -41,7 +41,7 @@ namespace Tesis_ClienteWeb_Models.POCO
         public string Message { get; set; }
                 
         public bool Automatic { get; set; }
-        
+                
         public User User { get; set; }
 
         public List<SentNotification> SentNotifications { get; set; }

@@ -284,54 +284,160 @@ namespace Tesis_ClienteWeb.Controllers
             return RedirectToAction("CrearEventoAvanzado");
         }
 
-
-
-
-
-
-
-
-
         [HttpGet]
         public ActionResult CalendarioEventos()
         {
+            ConfiguracionInicial(_controlador, "CalendarioEventos");
+
             EventosModel modelo = new EventosModel();
+
             #region Mensajes TempData
             if (TempData["NuevoEvento"] != null)
             {
                 modelo.MostrarAclamaciones = "block";
                 modelo.MensajeAclamacion = TempData["NuevoEvento"].ToString();
             }
-            if (TempData["NuevoEventoError"] != null)
+            else if (TempData["NuevoEventoError"] != null)
             {
                 ModelState.AddModelError("", TempData["NuevoEventoError"].ToString());
                 modelo.MostrarErrores = "block";
             }
-            if (TempData["ErrorFechasEvento"] != null)
+            else if (TempData["ErrorFechasEvento"] != null)
             {
                 ModelState.AddModelError("", TempData["ErrorFechasEvento"].ToString());
                 modelo.MostrarErrores = "block";
             }
-            if (TempData["EventosNoAgregados"] != null)
+            else if (TempData["EventosNoAgregados"] != null)
             {
                 ModelState.AddModelError("", TempData["EventosNoAgregados"].ToString());
                 modelo.MostrarErrores = "block";
             }
-
+            else if (TempData["Error"] != null)
+            {
+                ModelState.AddModelError("", TempData["Error"].ToString());
+                modelo.MostrarErrores = "block";
+            }
             #endregion         
             
             return View(modelo);
         }
 
-        
+        [HttpPost]
+        public JsonResult CrearEventoProf(string name, string description, string startdate, string finishdate,
+            string starthour, string endhour, string color, string tipoevento)
+        {
+            ConfiguracionInicial(_controlador, "CrearEventoProf");
+
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+
+            UnitOfWork unidad = new UnitOfWork();
+            UserService userService = new UserService(unidad);
+            EventService eventService = new EventService(unidad);
+            SchoolYearService schoolYearService = new SchoolYearService(unidad);
+
+            DateTime StartDate = new DateTime();
+            DateTime EndDate = new DateTime();
+            #endregion
+            #region Validación del modelo
+            if(name == null || name.Equals("")) 
+            { 
+                TempData["Error"] = "Por favor, especifique un nombre para el evento";
+                jsonResult.Add(new { Success = false });
+
+                return Json(jsonResult);
+            }
+            else if (description == null || description.Equals("")){
+                TempData["Error"] = "Por favor, especifique una descripción para el evento";
+                jsonResult.Add(new { Success = false });
+
+                return Json(jsonResult);
+            }
+            else if (finishdate == null || finishdate.Equals("")) 
+            {
+                TempData["Error"] = "Por favor, especifique una fecha de inicio para el evento";
+                jsonResult.Add(new { Success = false });
+
+                return Json(jsonResult);
+            }
+            else if (startdate == null || startdate.Equals(""))
+            {
+                TempData["Error"] = "Por favor, especifique una fecha de finalización para el evento";
+                jsonResult.Add(new { Success = false });
+
+                return Json(jsonResult);
+            }
+            #endregion
+            #region Validación de las fechas
+            StartDate = Convert.ToDateTime(startdate);
+            EndDate = Convert.ToDateTime(finishdate);
+
+            if(StartDate > EndDate) {
+                TempData["Error"] = "La fecha de inicio del evento es mayor a la fecha de finalización.";
+                jsonResult.Add(new { Success = false });
+
+                return Json(jsonResult);
+            }
+            #endregion
+
+            #region Obteniendo datos del usuario de la sesión
+            User user = userService.ObtenerUsuarioPorId(_session.USERID);
+            School school = user.School;
+            SchoolYear schoolYear = schoolYearService.ObtenerAnoEscolarActivoPorColegio(school.SchoolId);
+            #endregion
+            #region Definiendo el nuevo evento
+            try
+            {
+                #region Evento
+                Event evento = new Event()
+                {
+                    Name = name,
+                    Description = description,
+                    StartDate = StartDate,
+                    FinishDate = EndDate,
+                    StartHour = starthour,
+                    EndHour = endhour,
+                    Color = color,
+                    EventType = tipoevento,
+                    DeleteEvent = true,
+                    SchoolYear = schoolYear,
+                };
+                evento.Users.Add(user);
+                #endregion
+                #region Evento de un día
+                if (evento.StartDate == evento.FinishDate)
+                    eventService.CrearEventoPersonal(ConstantRepository.PERSONAL_EVENT_CATEGORY_1_DAY, evento, user);
+                #endregion
+                #region Evento de varios días
+                else
+                    eventService.CrearEventoPersonal(ConstantRepository.PERSONAL_EVENT_CATEGORY_VARIOUS_DAYS, 
+                        evento, user);
+                #endregion
+
+                jsonResult.Add(new { Success = true });
+                TempData["NuevoEvento"] = "Se ha agregado correctamente el evento: '" + name + "'";
+
+                return Json(jsonResult);
+            }
+            #endregion
+            #region Catch del error
+            catch (Exception e)
+            {
+                TempData["NuevoEventoError"] = e.Message;
+                jsonResult.Add(new { Success = false });
+
+                return Json(jsonResult);
+            }
+            #endregion
+        }
 
 
 
 
-        #region Pantalla Crear Evento Avanzado
-        
-        
-        #endregion
+
+        // Por revisar - Rodrigo Uzcátegui (26-06-15)
+
+
         #region Pantalla Gestión de Eventos
 
         [HttpGet]
@@ -403,76 +509,7 @@ namespace Tesis_ClienteWeb.Controllers
             return Json(listaeventosaenviar, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public ActionResult CrearEventoProf(string name, string description, string startdate, string finishdate,
-                                        string starthour, string endhour, string color, string tipoevento)
-                    {
-
-                        UnitOfWork _unidad = new UnitOfWork();
-                        UserService _userService = new UserService(_unidad);
-                        EventService _eventService = new EventService(_unidad);
-                        SchoolYearService _schoolYearService = new SchoolYearService(_unidad);
-                         string idsession = (string)Session["UserId"];
-                         User usuarioevento = _userService.ObtenerUsuarioPorId(idsession);
-                         School colegio = usuarioevento.School;
-                         #region Obteniendo año escolar
-                         SchoolYear añoEscolar = _schoolYearService.ObtenerAnoEscolarActivoPorColegio(colegio.SchoolId);
-                         #endregion
-                        try
-                        {
-                            Event evento = new Event()
-                            {
-                                Name = name,
-                                Description = description,
-                                StartDate = Convert.ToDateTime(startdate),
-                                FinishDate = Convert.ToDateTime(finishdate),
-                                StartHour = starthour,
-                                EndHour = endhour,
-                                Color = color,
-                                EventType = tipoevento,
-                                DeleteEvent = true,
-                                SchoolYear = añoEscolar,
-                                
-                            };
-                               if (evento.StartDate <= evento.FinishDate)
-                            {
-                                try
-                                {
-                                    if (evento.StartDate == evento.FinishDate)
-                                    {
-                                        _eventService.CrearEventoPersonalizado(ConstantRepository
-                                   .PERSONAL_EVENT_CATEGORY_1_DAY, evento, usuarioevento);
-                                    }
-                                    else
-                                    {
-                                       _eventService.CrearEventoPersonalizado(ConstantRepository
-                                       .PERSONAL_EVENT_CATEGORY_VARIOUS_DAYS, evento, usuarioevento);
-                                    }
-
-                                }
-                                catch (Exception e)
-                                {
-                                    TempData["NuevoEventoError"] = e.Message;
-                                    return RedirectToAction("CalendarioEventos");
-                                }
-                            }
-                            else
-                            {
-                                TempData["ErrorFechasEvento"] = "No se puede agregar el evento debido a que la " +
-                                    "fecha de inicio es mayor a la fecha fin";
-                                return RedirectToAction("CalendarioEventos");
-                            }
-
-                               TempData["NuevoEvento"] = "Se agregaron correctamente los eventos '"; 
-                        }
-                        catch (Exception e)
-                        {
-                            TempData["EventError"] = e.Message;
-                            return RedirectToAction("CalendarioEventos");
-                        }
-
-                        return Json(true);
-        }
+        
 
         [HttpPost]
         public ActionResult EliminarEvento(int id)

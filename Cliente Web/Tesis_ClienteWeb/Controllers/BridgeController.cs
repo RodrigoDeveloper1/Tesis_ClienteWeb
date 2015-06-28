@@ -621,23 +621,25 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(jsonResult);
         }
-        public JsonResult ObtenerJsonListaEventosDeHoy(string idUsuario)
+        public JsonResult ObtenerJsonListaEventosDeHoy()
         {
+            ObteniendoSesion();
+
             #region Declaración de variables
             List<object> jsonResult = new List<object>();
             List<Event> listaEventos = new List<Event>();
             EventService service = new EventService();
             DateTime dateTime = DateTime.Now;
             #endregion
-
             #region Obteniendo la lista de eventos
-            listaEventos = service.ObtenerListaEventosPor_SUsuario(dateTime);
+            listaEventos = service.ObtenerListaEventosPor_Usuario(_session.USERID, dateTime);
             #endregion
             #region Creando el objeto JSON
             foreach (Event evento in listaEventos)
             {
                 jsonResult.Add(new
                 {
+                    Success = true,
                     id = evento.EventId,
                     name = evento.Name,
                     description = evento.Description,

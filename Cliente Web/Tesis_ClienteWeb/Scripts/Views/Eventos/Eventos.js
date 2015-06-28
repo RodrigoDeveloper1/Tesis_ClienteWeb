@@ -1,57 +1,5 @@
-﻿function DialogoNuevoEvento() {
-    console.log("function DialogoNuevoEvento()");
-
-    $("#dialog-nuevo-evento").dialog({
-        draggable: false,
-        dialogClass: "no-close",
-        height: 640,
-        hide: "explode",
-        modal: true,
-        resizable: false,
-        show: "puff",
-        title: "Nuevo Evento",
-        width: 420,
-        buttons: {
-            "Cargar": function () {
-                console.log("Acción: click -> Botón Cargar");
-
-                var name = $("#tituloevento").val();
-                var tipoevento = $("#select-seleccionartipoevento option:selected").val();
-                var descripcion = $("#descripcionevento").val();
-                console.log(descripcion);
-                var startdate = $("#fecha-inicio").val();
-                var finishdate = $("#fecha-finalizacion").val();
-                var horainicio = $("#horainicioevento").val();
-                var horafin = $("#horaeventofin").val();
-                var color = $("#colorevento").val();
-                $.ajax({
-                    url: "/Eventos/CrearEventoProf",
-                    type: "POST",
-                    data: {
-                        "Name": name,
-                        "Description": descripcion,
-                        "StartDate": startdate,
-                        "FinishDate": finishdate,
-                        "StartHour": horainicio,
-                        "EndHour": horafin,
-                        "Color": color,
-                        "TipoEvento": tipoevento
-                    }
-                });
-
-                $(this).dialog("close");
-            },
-            "Cerrar": function () {
-                console.log("Acción: click -> Botón Cerrar");
-                $(this).dialog("close");
-            }
-        }, close: function (r) {
-            window.location.href = 'CalendarioEventos';
-        }
-    });
-}
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
+    //Obteniendo el id del usuario
     var calendar = $('#calendar').fullCalendar({
         lang: 'es',
         defaultView: 'month',
@@ -148,45 +96,59 @@ $(document).ready(function () {
     var fecha = moment.format();
 
     //Carga de los eventos en el momento de renderizar la ventana
+    showProgress();
     $.ajax({
         url: "/Bridge/ObtenerJsonListaEventosDeHoy",
-        type: "POST"
-    }).done(function (r) {
-        for (var i = 0; i < r.length; i++) {
-            if (r[i].restadiasfechas >= 2) {
-                var newEvent1 = {
-                    id: r[i].id,
-                    title: 'Inicio - ' + r[i].name,
-                    description: 'Inicio - ' + r[i].description,
-                    start: r[i].startdate + 'T' + r[i].starthour,
-                    end: r[i].startdate + 'T' + r[i].starthour,
-                    deleteevent: r[i].deleteevent,
-                    backgroundColor: '#' + r[i].color
+        type: "POST",
+        success: function (r) {
+            if (r[0].Success) {
+                for (var i = 0; i < r.length; i++) {
+                    if (r[i].restadiasfechas >= 2) {
+                        console.log('Entra caso I');
+
+                        var newEvent1 = {
+                            id: r[i].id,
+                            title: 'Inicio - ' + r[i].name,
+                            description: 'Inicio - ' + r[i].description,
+                            start: r[i].startdate + 'T' + r[i].starthour,
+                            end: r[i].startdate + 'T' + r[i].starthour,
+                            deleteevent: r[i].deleteevent,
+                            backgroundColor: '#' + r[i].color
+                        };
+                        $('#calendar').fullCalendar('renderEvent', newEvent1, 'stick');
+                        console.log('Entra caso II');
+
+                        var newEvent2 = {
+                            id: r[i].id,
+                            title: 'Fin - ' + r[i].name,
+                            description: 'Fin - ' + r[i].description,
+                            start: r[i].finishdate + 'T' + r[i].endhour,
+                            end: r[i].finishdate + 'T' + r[i].endhour,
+                            deleteevent: r[i].deleteevent,
+                            backgroundColor: '#' + r[i].color
+                        };
+                        $('#calendar').fullCalendar('renderEvent', newEvent2, 'stick');
+                    }
+                    else {
+                        console.log('Entra caso III');
+
+                        var newEvent3 = {
+                            id: r[i].id,
+                            title: r[i].name,
+                            description: r[i].description,
+                            start: r[i].startdate + 'T' + r[i].starthour,
+                            end: r[i].finishdate + 'T' + r[i].endhour,
+                            deleteevent: r[i].deleteevent,
+                            backgroundColor: '#' + r[i].color
+                        };
+
+                        $('#calendar').fullCalendar('renderEvent', newEvent3, 'stick');
+                    }
                 };
-                $('#calendar').fullCalendar('renderEvent', newEvent1, 'stick');
-                var newEvent2 = {
-                    id: r[i].id,
-                    title: 'Fin - ' + r[i].name,
-                    description: 'Fin - ' + r[i].description,
-                    start: r[i].finishdate + 'T' + r[i].endhour,
-                    end: r[i].finishdate + 'T' + r[i].endhour,
-                    deleteevent: r[i].deleteevent,
-                    backgroundColor: '#' + r[i].color
-                };
-                $('#calendar').fullCalendar('renderEvent', newEvent2, 'stick');
-            } else {
-                var newEvent3 = {
-                    id: r[i].id,
-                    title: r[i].name,
-                    description: r[i].description,
-                    start: r[i].startdate + 'T' + r[i].starthour,
-                    end: r[i].finishdate + 'T' + r[i].endhour,
-                    deleteevent: r[i].deleteevent,
-                    backgroundColor: '#' + r[i].color
-                };
-                $('#calendar').fullCalendar('renderEvent', newEvent3, 'stick');
+
+                hideProgress();
             }
-        };
+        }
     });
 
     //Configuración de los componentes de tipo fecha y timepicker
@@ -204,11 +166,7 @@ $(document).ready(function () {
         showMeridian: false,
         defaultTime: 'current'
     });
-
     //Fin de Configuración de los componentes de tipo fecha y timepicker
-    $("#btn-crear-evento").click(function () {
-        DialogoNuevoEvento();
-    });
 
     //Al hacer click al botón de atrás
     $(".fc-corner-left").click(function () {

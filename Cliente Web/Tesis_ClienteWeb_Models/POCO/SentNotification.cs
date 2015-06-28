@@ -26,6 +26,13 @@ namespace Tesis_ClienteWeb_Models.POCO
         [Required]
         public bool Sent { get; set; }
 
+        /// <summary>
+        /// Campo definido para establecer qué notificación es nueva y cuál no para los representantes del 
+        /// cliente móvil.
+        /// </summary>
+        [Required]
+        public bool New { get; set; }
+
         //Required - Fluent API
         public int NotificationId { get; set; }
         public Notification Notification { get; set; }
@@ -41,8 +48,9 @@ namespace Tesis_ClienteWeb_Models.POCO
 
         public SentNotification()
         {
-            Read = false;
-            Sent = false;
+            this.Read = false;
+            this.Sent = false;
+            this.New = true;
         }
     }
 }

@@ -839,6 +839,24 @@ namespace Tesis_ClienteWeb_Data.Services
             return notificacion;
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         public bool CrearNotificacionAutomaticaConSalvadoNotas(int categoria,
            User profesor, Assessment evaluacion, Subject materia, string nota, UnitOfWork _unidad)
         {
@@ -894,9 +912,6 @@ namespace Tesis_ClienteWeb_Data.Services
             #endregion
             return true;
         }
-        
-                       
-        
 
         public bool GuardarNotificationNotas(Notification notification)
         {
