@@ -1,5 +1,4 @@
-﻿
-	#wrap {
+﻿	#wrap {
 		width: 1100px;
 		margin: 0 auto;
 	}
@@ -64,22 +63,7 @@
 		/*width: 900px;*/
 	}
 	
-    /************************************* Diálogo Nuevo Evento *******************************************/
-#dialog-nuevo-evento { display: none; }
-
-#dialog-nuevo-evento  .div-interior-dialog 
-{
-    width: 28em;
-    height: 3em;
-}
-
-#dialog-nuevo-evento  .div-interior-dialog div
-{
-    text-align: justify; 
-    font-size: 13px; 
-}
-
-/*********************************** Fin de Diálogo Nuevo Evento **************************************/
+    
 
 
 #mensaje-error { 

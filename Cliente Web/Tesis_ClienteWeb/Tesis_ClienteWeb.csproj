@@ -270,6 +270,7 @@
     <Content Include="Content\Css\Eventos\bootstrap-timepicker.css" />
     <Content Include="Content\Css\Eventos\CrearEvento.css" />
     <Content Include="Content\Css\Eventos\CrearEventoAvanzado.css" />
+    <Content Include="Content\Css\Eventos\DialogoNuevoEvento.css" />
     <Content Include="Content\Css\Eventos\Eventos.css" />
     <Content Include="Content\Css\Eventos\pick-a-color-1.2.3.min.css" />
     <Content Include="Content\Css\Index\Inicio.css" />
@@ -2273,6 +2274,7 @@
     <Content Include="Scripts\Views\Evaluaciones\TablaEvaluaciones.js" />
     <Content Include="Scripts\Views\Eventos\CrearEventoAvanzado.js" />
     <Content Include="Scripts\Views\Eventos\CrearEventos.js" />
+    <Content Include="Scripts\Views\Eventos\DialogoNuevoEvento.js" />
     <Content Include="Scripts\Views\Eventos\GestionEventos.js" />
     <Content Include="Scripts\Views\Index\Index.js" />
     <Content Include="Content\Images\Maestra\loading.gif" />
@@ -2393,6 +2395,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />

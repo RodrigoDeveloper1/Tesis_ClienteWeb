@@ -1,0 +1,11 @@
+﻿#dialog-nuevo-evento { 
+    display: none; 
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+input { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+textarea { resize: none; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+.ui-dialog-title { color: black !important; }
+#div-color .dropdown-toggle { height: 34px; }
+#div-hora-inicio { padding-top: 27px; }
+#div-hora-fin { padding-top: 27px; }
