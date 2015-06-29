@@ -6419,10 +6419,17 @@ namespace Tesis_ClienteWeb.Controllers
             Dictionary<int, float> data2 = new Dictionary<int, float>();
             for (int i = 1; i <= 10; i++)
             {
-                if (grado > 6) //Bachillerato
-                    data2.Add(i, top10MejoresNotas[i - 1].NumberScore);
-                else //Primaria
-                    data2.Add(i, top10MejoresNotas[i - 1].ToIntLetterScore(top10MejoresNotas[i - 1].LetterScore));
+                try
+                {
+                    if (grado > 6) //Bachillerato
+                        data2.Add(i, top10MejoresNotas[i - 1].NumberScore);
+                    else //Primaria
+                        data2.Add(i, top10MejoresNotas[i - 1].ToIntLetterScore(top10MejoresNotas[i - 1].LetterScore));
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    data2.Add(i, 1);
+                }
             }
             #endregion
             #region Desarrollando la gráfica
