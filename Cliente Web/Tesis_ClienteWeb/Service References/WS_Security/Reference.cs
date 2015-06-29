@@ -8,68 +8,82 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Tesis_ClienteWeb.WS_MobileBridge {
+namespace Tesis_ClienteWeb.WS_Security {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WS_MobileBridge.Service1Soap")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="WS_Security.Service1Soap")]
     public interface Service1Soap {
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento StudentId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Assessments", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse Assessments(Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest request);
+        Tesis_ClienteWeb.WS_Security.AssessmentsResponse Assessments(Tesis_ClienteWeb.WS_Security.AssessmentsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Assessments", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse> AssessmentsAsync(Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.AssessmentsResponse> AssessmentsAsync(Tesis_ClienteWeb.WS_Security.AssessmentsRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento StudentId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CourseInfo", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse CourseInfo(Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest request);
+        Tesis_ClienteWeb.WS_Security.CourseInfoResponse CourseInfo(Tesis_ClienteWeb.WS_Security.CourseInfoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CourseInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse> CourseInfoAsync(Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CourseInfoResponse> CourseInfoAsync(Tesis_ClienteWeb.WS_Security.CourseInfoRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento UserId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Home", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.HomeResponse Home(Tesis_ClienteWeb.WS_MobileBridge.HomeRequest request);
+        Tesis_ClienteWeb.WS_Security.HomeResponse Home(Tesis_ClienteWeb.WS_Security.HomeRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Home", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.HomeResponse> HomeAsync(Tesis_ClienteWeb.WS_MobileBridge.HomeRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.HomeResponse> HomeAsync(Tesis_ClienteWeb.WS_Security.HomeRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento Username del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Login", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.LoginResponse Login(Tesis_ClienteWeb.WS_MobileBridge.LoginRequest request);
+        Tesis_ClienteWeb.WS_Security.LoginResponse Login(Tesis_ClienteWeb.WS_Security.LoginRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Login", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.LoginResponse> LoginAsync(Tesis_ClienteWeb.WS_MobileBridge.LoginRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.LoginResponse> LoginAsync(Tesis_ClienteWeb.WS_Security.LoginRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento UserId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Notifications", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse Notifications(Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest request);
+        Tesis_ClienteWeb.WS_Security.NotificationsResponse Notifications(Tesis_ClienteWeb.WS_Security.NotificationsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Notifications", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse> NotificationsAsync(Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.NotificationsResponse> NotificationsAsync(Tesis_ClienteWeb.WS_Security.NotificationsRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento UserId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NewNotifications", ReplyAction="*")]
+        Tesis_ClienteWeb.WS_Security.NewNotificationsResponse NewNotifications(Tesis_ClienteWeb.WS_Security.NewNotificationsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/NewNotifications", ReplyAction="*")]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.NewNotificationsResponse> NewNotificationsAsync(Tesis_ClienteWeb.WS_Security.NewNotificationsRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento SchoolId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Statistics", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse Statistics(Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest request);
+        Tesis_ClienteWeb.WS_Security.StatisticsResponse Statistics(Tesis_ClienteWeb.WS_Security.StatisticsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Statistics", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse> StatisticsAsync(Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StatisticsResponse> StatisticsAsync(Tesis_ClienteWeb.WS_Security.StatisticsRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento imageBase64 del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/StatisticsImageGenerator", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse StatisticsImageGenerator(Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest request);
+        Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse StatisticsImageGenerator(Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/StatisticsImageGenerator", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse> StatisticsImageGeneratorAsync(Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse> StatisticsImageGeneratorAsync(Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento UserId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/StudentsInfo", ReplyAction="*")]
-        Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse StudentsInfo(Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest request);
+        Tesis_ClienteWeb.WS_Security.StudentsInfoResponse StudentsInfo(Tesis_ClienteWeb.WS_Security.StudentsInfoRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/StudentsInfo", ReplyAction="*")]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse> StudentsInfoAsync(Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest request);
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StudentsInfoResponse> StudentsInfoAsync(Tesis_ClienteWeb.WS_Security.StudentsInfoRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento ArrayIds del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateNotifications", ReplyAction="*")]
+        Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse UpdateNotifications(Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UpdateNotifications", ReplyAction="*")]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse> UpdateNotificationsAsync(Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -79,12 +93,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class AssessmentsRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Assessments", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.AssessmentsRequestBody Body;
         
         public AssessmentsRequest() {
         }
         
-        public AssessmentsRequest(Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequestBody Body) {
+        public AssessmentsRequest(Tesis_ClienteWeb.WS_Security.AssessmentsRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -121,12 +135,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class AssessmentsResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AssessmentsResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.AssessmentsResponseBody Body;
         
         public AssessmentsResponse() {
         }
         
-        public AssessmentsResponse(Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponseBody Body) {
+        public AssessmentsResponse(Tesis_ClienteWeb.WS_Security.AssessmentsResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -155,12 +169,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class CourseInfoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="CourseInfo", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.CourseInfoRequestBody Body;
         
         public CourseInfoRequest() {
         }
         
-        public CourseInfoRequest(Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequestBody Body) {
+        public CourseInfoRequest(Tesis_ClienteWeb.WS_Security.CourseInfoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -193,12 +207,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class CourseInfoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="CourseInfoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.CourseInfoResponseBody Body;
         
         public CourseInfoResponse() {
         }
         
-        public CourseInfoResponse(Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponseBody Body) {
+        public CourseInfoResponse(Tesis_ClienteWeb.WS_Security.CourseInfoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -227,12 +241,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class HomeRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Home", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.HomeRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.HomeRequestBody Body;
         
         public HomeRequest() {
         }
         
-        public HomeRequest(Tesis_ClienteWeb.WS_MobileBridge.HomeRequestBody Body) {
+        public HomeRequest(Tesis_ClienteWeb.WS_Security.HomeRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -261,12 +275,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class HomeResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="HomeResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.HomeResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.HomeResponseBody Body;
         
         public HomeResponse() {
         }
         
-        public HomeResponse(Tesis_ClienteWeb.WS_MobileBridge.HomeResponseBody Body) {
+        public HomeResponse(Tesis_ClienteWeb.WS_Security.HomeResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -295,12 +309,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class LoginRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Login", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.LoginRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.LoginRequestBody Body;
         
         public LoginRequest() {
         }
         
-        public LoginRequest(Tesis_ClienteWeb.WS_MobileBridge.LoginRequestBody Body) {
+        public LoginRequest(Tesis_ClienteWeb.WS_Security.LoginRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -333,12 +347,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class LoginResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="LoginResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.LoginResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.LoginResponseBody Body;
         
         public LoginResponse() {
         }
         
-        public LoginResponse(Tesis_ClienteWeb.WS_MobileBridge.LoginResponseBody Body) {
+        public LoginResponse(Tesis_ClienteWeb.WS_Security.LoginResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -367,12 +381,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class NotificationsRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Notifications", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.NotificationsRequestBody Body;
         
         public NotificationsRequest() {
         }
         
-        public NotificationsRequest(Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequestBody Body) {
+        public NotificationsRequest(Tesis_ClienteWeb.WS_Security.NotificationsRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -401,12 +415,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class NotificationsResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="NotificationsResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.NotificationsResponseBody Body;
         
         public NotificationsResponse() {
         }
         
-        public NotificationsResponse(Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponseBody Body) {
+        public NotificationsResponse(Tesis_ClienteWeb.WS_Security.NotificationsResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -432,15 +446,83 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class NewNotificationsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="NewNotifications", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.NewNotificationsRequestBody Body;
+        
+        public NewNotificationsRequest() {
+        }
+        
+        public NewNotificationsRequest(Tesis_ClienteWeb.WS_Security.NewNotificationsRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class NewNotificationsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string UserId;
+        
+        public NewNotificationsRequestBody() {
+        }
+        
+        public NewNotificationsRequestBody(string UserId) {
+            this.UserId = UserId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class NewNotificationsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="NewNotificationsResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.NewNotificationsResponseBody Body;
+        
+        public NewNotificationsResponse() {
+        }
+        
+        public NewNotificationsResponse(Tesis_ClienteWeb.WS_Security.NewNotificationsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class NewNotificationsResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string NewNotificationsResult;
+        
+        public NewNotificationsResponseBody() {
+        }
+        
+        public NewNotificationsResponseBody(string NewNotificationsResult) {
+            this.NewNotificationsResult = NewNotificationsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class StatisticsRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="Statistics", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.StatisticsRequestBody Body;
         
         public StatisticsRequest() {
         }
         
-        public StatisticsRequest(Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequestBody Body) {
+        public StatisticsRequest(Tesis_ClienteWeb.WS_Security.StatisticsRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -477,12 +559,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class StatisticsResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="StatisticsResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.StatisticsResponseBody Body;
         
         public StatisticsResponse() {
         }
         
-        public StatisticsResponse(Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponseBody Body) {
+        public StatisticsResponse(Tesis_ClienteWeb.WS_Security.StatisticsResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -511,12 +593,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class StatisticsImageGeneratorRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="StatisticsImageGenerator", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequestBody Body;
         
         public StatisticsImageGeneratorRequest() {
         }
         
-        public StatisticsImageGeneratorRequest(Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequestBody Body) {
+        public StatisticsImageGeneratorRequest(Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -561,12 +643,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class StatisticsImageGeneratorResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="StatisticsImageGeneratorResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponseBody Body;
         
         public StatisticsImageGeneratorResponse() {
         }
         
-        public StatisticsImageGeneratorResponse(Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponseBody Body) {
+        public StatisticsImageGeneratorResponse(Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -588,12 +670,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class StudentsInfoRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="StudentsInfo", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequestBody Body;
+        public Tesis_ClienteWeb.WS_Security.StudentsInfoRequestBody Body;
         
         public StudentsInfoRequest() {
         }
         
-        public StudentsInfoRequest(Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequestBody Body) {
+        public StudentsInfoRequest(Tesis_ClienteWeb.WS_Security.StudentsInfoRequestBody Body) {
             this.Body = Body;
         }
     }
@@ -622,12 +704,12 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
     public partial class StudentsInfoResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="StudentsInfoResponse", Namespace="http://tempuri.org/", Order=0)]
-        public Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponseBody Body;
+        public Tesis_ClienteWeb.WS_Security.StudentsInfoResponseBody Body;
         
         public StudentsInfoResponse() {
         }
         
-        public StudentsInfoResponse(Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponseBody Body) {
+        public StudentsInfoResponse(Tesis_ClienteWeb.WS_Security.StudentsInfoResponseBody Body) {
             this.Body = Body;
         }
     }
@@ -649,13 +731,74 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface Service1SoapChannel : Tesis_ClienteWeb.WS_MobileBridge.Service1Soap, System.ServiceModel.IClientChannel {
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateNotificationsRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateNotifications", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequestBody Body;
+        
+        public UpdateNotificationsRequest() {
+        }
+        
+        public UpdateNotificationsRequest(Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequestBody Body) {
+            this.Body = Body;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1SoapClient : System.ServiceModel.ClientBase<Tesis_ClienteWeb.WS_MobileBridge.Service1Soap>, Tesis_ClienteWeb.WS_MobileBridge.Service1Soap {
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class UpdateNotificationsRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string ArrayIds;
+        
+        public UpdateNotificationsRequestBody() {
+        }
+        
+        public UpdateNotificationsRequestBody(string ArrayIds) {
+            this.ArrayIds = ArrayIds;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class UpdateNotificationsResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="UpdateNotificationsResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponseBody Body;
+        
+        public UpdateNotificationsResponse() {
+        }
+        
+        public UpdateNotificationsResponse(Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class UpdateNotificationsResponseBody {
+        
+        public UpdateNotificationsResponseBody() {
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface Service1SoapChannel : Tesis_ClienteWeb.WS_Security.Service1Soap, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class Service1SoapClient : System.ServiceModel.ClientBase<Tesis_ClienteWeb.WS_Security.Service1Soap>, Tesis_ClienteWeb.WS_Security.Service1Soap {
         
         public Service1SoapClient() {
         }
@@ -677,222 +820,271 @@ namespace Tesis_ClienteWeb.WS_MobileBridge {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.Assessments(Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest request) {
+        Tesis_ClienteWeb.WS_Security.AssessmentsResponse Tesis_ClienteWeb.WS_Security.Service1Soap.Assessments(Tesis_ClienteWeb.WS_Security.AssessmentsRequest request) {
             return base.Channel.Assessments(request);
         }
         
         public string Assessments(string StudentId, string CourseId, string SubjectId) {
-            Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequestBody();
+            Tesis_ClienteWeb.WS_Security.AssessmentsRequest inValue = new Tesis_ClienteWeb.WS_Security.AssessmentsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.AssessmentsRequestBody();
             inValue.Body.StudentId = StudentId;
             inValue.Body.CourseId = CourseId;
             inValue.Body.SubjectId = SubjectId;
-            Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).Assessments(inValue);
+            Tesis_ClienteWeb.WS_Security.AssessmentsResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).Assessments(inValue);
             return retVal.Body.AssessmentsResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.AssessmentsAsync(Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.AssessmentsResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.AssessmentsAsync(Tesis_ClienteWeb.WS_Security.AssessmentsRequest request) {
             return base.Channel.AssessmentsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse> AssessmentsAsync(string StudentId, string CourseId, string SubjectId) {
-            Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.AssessmentsRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.AssessmentsResponse> AssessmentsAsync(string StudentId, string CourseId, string SubjectId) {
+            Tesis_ClienteWeb.WS_Security.AssessmentsRequest inValue = new Tesis_ClienteWeb.WS_Security.AssessmentsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.AssessmentsRequestBody();
             inValue.Body.StudentId = StudentId;
             inValue.Body.CourseId = CourseId;
             inValue.Body.SubjectId = SubjectId;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).AssessmentsAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).AssessmentsAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.CourseInfo(Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest request) {
+        Tesis_ClienteWeb.WS_Security.CourseInfoResponse Tesis_ClienteWeb.WS_Security.Service1Soap.CourseInfo(Tesis_ClienteWeb.WS_Security.CourseInfoRequest request) {
             return base.Channel.CourseInfo(request);
         }
         
         public string CourseInfo(string StudentId, string PeriodId) {
-            Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequestBody();
+            Tesis_ClienteWeb.WS_Security.CourseInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.CourseInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CourseInfoRequestBody();
             inValue.Body.StudentId = StudentId;
             inValue.Body.PeriodId = PeriodId;
-            Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).CourseInfo(inValue);
+            Tesis_ClienteWeb.WS_Security.CourseInfoResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CourseInfo(inValue);
             return retVal.Body.CourseInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.CourseInfoAsync(Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CourseInfoResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.CourseInfoAsync(Tesis_ClienteWeb.WS_Security.CourseInfoRequest request) {
             return base.Channel.CourseInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse> CourseInfoAsync(string StudentId, string PeriodId) {
-            Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.CourseInfoRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CourseInfoResponse> CourseInfoAsync(string StudentId, string PeriodId) {
+            Tesis_ClienteWeb.WS_Security.CourseInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.CourseInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CourseInfoRequestBody();
             inValue.Body.StudentId = StudentId;
             inValue.Body.PeriodId = PeriodId;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).CourseInfoAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CourseInfoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.HomeResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.Home(Tesis_ClienteWeb.WS_MobileBridge.HomeRequest request) {
+        Tesis_ClienteWeb.WS_Security.HomeResponse Tesis_ClienteWeb.WS_Security.Service1Soap.Home(Tesis_ClienteWeb.WS_Security.HomeRequest request) {
             return base.Channel.Home(request);
         }
         
         public string Home(string UserId) {
-            Tesis_ClienteWeb.WS_MobileBridge.HomeRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.HomeRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.HomeRequestBody();
+            Tesis_ClienteWeb.WS_Security.HomeRequest inValue = new Tesis_ClienteWeb.WS_Security.HomeRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.HomeRequestBody();
             inValue.Body.UserId = UserId;
-            Tesis_ClienteWeb.WS_MobileBridge.HomeResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).Home(inValue);
+            Tesis_ClienteWeb.WS_Security.HomeResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).Home(inValue);
             return retVal.Body.HomeResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.HomeResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.HomeAsync(Tesis_ClienteWeb.WS_MobileBridge.HomeRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.HomeResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.HomeAsync(Tesis_ClienteWeb.WS_Security.HomeRequest request) {
             return base.Channel.HomeAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.HomeResponse> HomeAsync(string UserId) {
-            Tesis_ClienteWeb.WS_MobileBridge.HomeRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.HomeRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.HomeRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.HomeResponse> HomeAsync(string UserId) {
+            Tesis_ClienteWeb.WS_Security.HomeRequest inValue = new Tesis_ClienteWeb.WS_Security.HomeRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.HomeRequestBody();
             inValue.Body.UserId = UserId;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).HomeAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).HomeAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.LoginResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.Login(Tesis_ClienteWeb.WS_MobileBridge.LoginRequest request) {
+        Tesis_ClienteWeb.WS_Security.LoginResponse Tesis_ClienteWeb.WS_Security.Service1Soap.Login(Tesis_ClienteWeb.WS_Security.LoginRequest request) {
             return base.Channel.Login(request);
         }
         
         public string Login(string Username, string Password) {
-            Tesis_ClienteWeb.WS_MobileBridge.LoginRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.LoginRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.LoginRequestBody();
+            Tesis_ClienteWeb.WS_Security.LoginRequest inValue = new Tesis_ClienteWeb.WS_Security.LoginRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.LoginRequestBody();
             inValue.Body.Username = Username;
             inValue.Body.Password = Password;
-            Tesis_ClienteWeb.WS_MobileBridge.LoginResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).Login(inValue);
+            Tesis_ClienteWeb.WS_Security.LoginResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).Login(inValue);
             return retVal.Body.LoginResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.LoginResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.LoginAsync(Tesis_ClienteWeb.WS_MobileBridge.LoginRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.LoginResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.LoginAsync(Tesis_ClienteWeb.WS_Security.LoginRequest request) {
             return base.Channel.LoginAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.LoginResponse> LoginAsync(string Username, string Password) {
-            Tesis_ClienteWeb.WS_MobileBridge.LoginRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.LoginRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.LoginRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.LoginResponse> LoginAsync(string Username, string Password) {
+            Tesis_ClienteWeb.WS_Security.LoginRequest inValue = new Tesis_ClienteWeb.WS_Security.LoginRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.LoginRequestBody();
             inValue.Body.Username = Username;
             inValue.Body.Password = Password;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).LoginAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).LoginAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.Notifications(Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest request) {
+        Tesis_ClienteWeb.WS_Security.NotificationsResponse Tesis_ClienteWeb.WS_Security.Service1Soap.Notifications(Tesis_ClienteWeb.WS_Security.NotificationsRequest request) {
             return base.Channel.Notifications(request);
         }
         
         public string Notifications(string UserId) {
-            Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequestBody();
+            Tesis_ClienteWeb.WS_Security.NotificationsRequest inValue = new Tesis_ClienteWeb.WS_Security.NotificationsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.NotificationsRequestBody();
             inValue.Body.UserId = UserId;
-            Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).Notifications(inValue);
+            Tesis_ClienteWeb.WS_Security.NotificationsResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).Notifications(inValue);
             return retVal.Body.NotificationsResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.NotificationsAsync(Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.NotificationsResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.NotificationsAsync(Tesis_ClienteWeb.WS_Security.NotificationsRequest request) {
             return base.Channel.NotificationsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse> NotificationsAsync(string UserId) {
-            Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.NotificationsRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.NotificationsResponse> NotificationsAsync(string UserId) {
+            Tesis_ClienteWeb.WS_Security.NotificationsRequest inValue = new Tesis_ClienteWeb.WS_Security.NotificationsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.NotificationsRequestBody();
             inValue.Body.UserId = UserId;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).NotificationsAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).NotificationsAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.Statistics(Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest request) {
+        Tesis_ClienteWeb.WS_Security.NewNotificationsResponse Tesis_ClienteWeb.WS_Security.Service1Soap.NewNotifications(Tesis_ClienteWeb.WS_Security.NewNotificationsRequest request) {
+            return base.Channel.NewNotifications(request);
+        }
+        
+        public string NewNotifications(string UserId) {
+            Tesis_ClienteWeb.WS_Security.NewNotificationsRequest inValue = new Tesis_ClienteWeb.WS_Security.NewNotificationsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.NewNotificationsRequestBody();
+            inValue.Body.UserId = UserId;
+            Tesis_ClienteWeb.WS_Security.NewNotificationsResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).NewNotifications(inValue);
+            return retVal.Body.NewNotificationsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.NewNotificationsResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.NewNotificationsAsync(Tesis_ClienteWeb.WS_Security.NewNotificationsRequest request) {
+            return base.Channel.NewNotificationsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.NewNotificationsResponse> NewNotificationsAsync(string UserId) {
+            Tesis_ClienteWeb.WS_Security.NewNotificationsRequest inValue = new Tesis_ClienteWeb.WS_Security.NewNotificationsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.NewNotificationsRequestBody();
+            inValue.Body.UserId = UserId;
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).NewNotificationsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tesis_ClienteWeb.WS_Security.StatisticsResponse Tesis_ClienteWeb.WS_Security.Service1Soap.Statistics(Tesis_ClienteWeb.WS_Security.StatisticsRequest request) {
             return base.Channel.Statistics(request);
         }
         
         public string Statistics(string SchoolId, string SchoolYearId, string CourseId) {
-            Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequestBody();
+            Tesis_ClienteWeb.WS_Security.StatisticsRequest inValue = new Tesis_ClienteWeb.WS_Security.StatisticsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.StatisticsRequestBody();
             inValue.Body.SchoolId = SchoolId;
             inValue.Body.SchoolYearId = SchoolYearId;
             inValue.Body.CourseId = CourseId;
-            Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).Statistics(inValue);
+            Tesis_ClienteWeb.WS_Security.StatisticsResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).Statistics(inValue);
             return retVal.Body.StatisticsResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.StatisticsAsync(Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StatisticsResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.StatisticsAsync(Tesis_ClienteWeb.WS_Security.StatisticsRequest request) {
             return base.Channel.StatisticsAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse> StatisticsAsync(string SchoolId, string SchoolYearId, string CourseId) {
-            Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StatisticsResponse> StatisticsAsync(string SchoolId, string SchoolYearId, string CourseId) {
+            Tesis_ClienteWeb.WS_Security.StatisticsRequest inValue = new Tesis_ClienteWeb.WS_Security.StatisticsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.StatisticsRequestBody();
             inValue.Body.SchoolId = SchoolId;
             inValue.Body.SchoolYearId = SchoolYearId;
             inValue.Body.CourseId = CourseId;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).StatisticsAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).StatisticsAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.StatisticsImageGenerator(Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest request) {
+        Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse Tesis_ClienteWeb.WS_Security.Service1Soap.StatisticsImageGenerator(Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest request) {
             return base.Channel.StatisticsImageGenerator(request);
         }
         
         public void StatisticsImageGenerator(int type, int CourseId, int SchoolYearId, int SchoolId, string imageBase64) {
-            Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequestBody();
+            Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest inValue = new Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequestBody();
             inValue.Body.type = type;
             inValue.Body.CourseId = CourseId;
             inValue.Body.SchoolYearId = SchoolYearId;
             inValue.Body.SchoolId = SchoolId;
             inValue.Body.imageBase64 = imageBase64;
-            Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).StatisticsImageGenerator(inValue);
+            Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).StatisticsImageGenerator(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.StatisticsImageGeneratorAsync(Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.StatisticsImageGeneratorAsync(Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest request) {
             return base.Channel.StatisticsImageGeneratorAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse> StatisticsImageGeneratorAsync(int type, int CourseId, int SchoolYearId, int SchoolId, string imageBase64) {
-            Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse> StatisticsImageGeneratorAsync(int type, int CourseId, int SchoolYearId, int SchoolId, string imageBase64) {
+            Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest inValue = new Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorRequestBody();
             inValue.Body.type = type;
             inValue.Body.CourseId = CourseId;
             inValue.Body.SchoolYearId = SchoolYearId;
             inValue.Body.SchoolId = SchoolId;
             inValue.Body.imageBase64 = imageBase64;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).StatisticsImageGeneratorAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).StatisticsImageGeneratorAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.StudentsInfo(Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest request) {
+        Tesis_ClienteWeb.WS_Security.StudentsInfoResponse Tesis_ClienteWeb.WS_Security.Service1Soap.StudentsInfo(Tesis_ClienteWeb.WS_Security.StudentsInfoRequest request) {
             return base.Channel.StudentsInfo(request);
         }
         
         public string StudentsInfo(string UserId) {
-            Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequestBody();
+            Tesis_ClienteWeb.WS_Security.StudentsInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.StudentsInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.StudentsInfoRequestBody();
             inValue.Body.UserId = UserId;
-            Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse retVal = ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).StudentsInfo(inValue);
+            Tesis_ClienteWeb.WS_Security.StudentsInfoResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).StudentsInfo(inValue);
             return retVal.Body.StudentsInfoResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse> Tesis_ClienteWeb.WS_MobileBridge.Service1Soap.StudentsInfoAsync(Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest request) {
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StudentsInfoResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.StudentsInfoAsync(Tesis_ClienteWeb.WS_Security.StudentsInfoRequest request) {
             return base.Channel.StudentsInfoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse> StudentsInfoAsync(string UserId) {
-            Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest inValue = new Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequest();
-            inValue.Body = new Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoRequestBody();
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.StudentsInfoResponse> StudentsInfoAsync(string UserId) {
+            Tesis_ClienteWeb.WS_Security.StudentsInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.StudentsInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.StudentsInfoRequestBody();
             inValue.Body.UserId = UserId;
-            return ((Tesis_ClienteWeb.WS_MobileBridge.Service1Soap)(this)).StudentsInfoAsync(inValue);
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).StudentsInfoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse Tesis_ClienteWeb.WS_Security.Service1Soap.UpdateNotifications(Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest request) {
+            return base.Channel.UpdateNotifications(request);
+        }
+        
+        public void UpdateNotifications(string ArrayIds) {
+            Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest inValue = new Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequestBody();
+            inValue.Body.ArrayIds = ArrayIds;
+            Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).UpdateNotifications(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.UpdateNotificationsAsync(Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest request) {
+            return base.Channel.UpdateNotificationsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse> UpdateNotificationsAsync(string ArrayIds) {
+            Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest inValue = new Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.UpdateNotificationsRequestBody();
+            inValue.Body.ArrayIds = ArrayIds;
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).UpdateNotificationsAsync(inValue);
         }
     }
 }

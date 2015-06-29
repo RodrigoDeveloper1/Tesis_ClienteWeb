@@ -6,24 +6,24 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-------------------------------- Combobox de cursos  y materias -------------------------------------->
+    <!-- Combobox de cursos  y materias -->
     <div class="row">
         <!-- Lista de cursos -->
-        <div class="col-xs-12">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
             <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
             new { @class = "form-control selectpicker class-cursos",  @id = "select-curso" })%>
         </div>
-        <!--Separador -->
-        <div class="form-group col-xs-12"></div>
+
         <!-- Lista de lapsos -->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idLapso) %>
             <%: Html.DropDownListFor(m => m.idLapso, Model.selectListLapsos, "Seleccione el lapso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-lapso" })%>
         </div>
+
         <!-- Lista de materias -->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idMateria) %>
             <%: Html.DropDownListFor(m => m.idMateria, Model.selectListMaterias, "Seleccione la materia...", 
             new { @class = "form-control selectpicker class-cursos",  @id = "select-materia" })%>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="9NyUP6ks3Qzb1/+EyteH36M9Kec=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="f/wcZfoVjXynshMk3MMO0xPuvpE=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="Service1Soap">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="Service1Soap" contract="WS_MobileBridge.Service1Soap" bindingType="basicHttpBinding" address="http://localhost:22392/Security.asmx" bindingConfiguration="Service1Soap">
+    <endpoint name="Service1Soap" contract="WS_Security.Service1Soap" bindingType="basicHttpBinding" address="http://faroatenaswebservices.apphb.com:16466/Security.asmx" bindingConfiguration="Service1Soap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:22392/Security.asmx</serializedValue>
+          <serializedValue>http://faroatenaswebservices.apphb.com:16466/Security.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -127,7 +127,7 @@
           <serializedValue>Service1Soap</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WS_MobileBridge.Service1Soap</serializedValue>
+          <serializedValue>WS_Security.Service1Soap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

@@ -76,6 +76,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="NewNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewNotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NewNotificationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="Statistics">
         <s:complexType>
           <s:sequence>
@@ -120,6 +134,16 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="UpdateNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArrayIds" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateNotificationsResponse">
+        <s:complexType />
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AssessmentsSoapIn">
@@ -152,6 +176,12 @@
   <wsdl:message name="NotificationsSoapOut">
     <wsdl:part name="parameters" element="tns:NotificationsResponse" />
   </wsdl:message>
+  <wsdl:message name="NewNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:NewNotifications" />
+  </wsdl:message>
+  <wsdl:message name="NewNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:NewNotificationsResponse" />
+  </wsdl:message>
   <wsdl:message name="StatisticsSoapIn">
     <wsdl:part name="parameters" element="tns:Statistics" />
   </wsdl:message>
@@ -169,6 +199,12 @@
   </wsdl:message>
   <wsdl:message name="StudentsInfoSoapOut">
     <wsdl:part name="parameters" element="tns:StudentsInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateNotifications" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateNotificationsResponse" />
   </wsdl:message>
   <wsdl:portType name="Service1Soap">
     <wsdl:operation name="Assessments">
@@ -191,6 +227,10 @@
       <wsdl:input message="tns:NotificationsSoapIn" />
       <wsdl:output message="tns:NotificationsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="NewNotifications">
+      <wsdl:input message="tns:NewNotificationsSoapIn" />
+      <wsdl:output message="tns:NewNotificationsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="Statistics">
       <wsdl:input message="tns:StatisticsSoapIn" />
       <wsdl:output message="tns:StatisticsSoapOut" />
@@ -202,6 +242,10 @@
     <wsdl:operation name="StudentsInfo">
       <wsdl:input message="tns:StudentsInfoSoapIn" />
       <wsdl:output message="tns:StudentsInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotifications">
+      <wsdl:input message="tns:UpdateNotificationsSoapIn" />
+      <wsdl:output message="tns:UpdateNotificationsSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
@@ -251,6 +295,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="NewNotifications">
+      <soap:operation soapAction="http://tempuri.org/NewNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Statistics">
       <soap:operation soapAction="http://tempuri.org/Statistics" style="document" />
       <wsdl:input>
@@ -271,6 +324,15 @@
     </wsdl:operation>
     <wsdl:operation name="StudentsInfo">
       <soap:operation soapAction="http://tempuri.org/StudentsInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotifications">
+      <soap:operation soapAction="http://tempuri.org/UpdateNotifications" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -326,6 +388,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="NewNotifications">
+      <soap12:operation soapAction="http://tempuri.org/NewNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Statistics">
       <soap12:operation soapAction="http://tempuri.org/Statistics" style="document" />
       <wsdl:input>
@@ -353,13 +424,22 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="UpdateNotifications">
+      <soap12:operation soapAction="http://tempuri.org/UpdateNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="Service1">
     <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
-      <soap:address location="http://localhost:22392/Security.asmx" />
+      <soap:address location="http://faroatenaswebservices.apphb.com:16466/Security.asmx" />
     </wsdl:port>
     <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
-      <soap12:address location="http://localhost:22392/Security.asmx" />
+      <soap12:address location="http://faroatenaswebservices.apphb.com:16466/Security.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

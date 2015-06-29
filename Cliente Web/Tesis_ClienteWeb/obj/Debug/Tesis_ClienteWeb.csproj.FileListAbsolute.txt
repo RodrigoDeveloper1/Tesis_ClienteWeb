@@ -337,3 +337,5 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Sy
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Newtonsoft.Json.dll

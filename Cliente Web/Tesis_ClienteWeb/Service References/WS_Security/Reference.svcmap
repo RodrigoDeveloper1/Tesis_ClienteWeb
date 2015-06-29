@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="81860f8f-1644-405d-b79c-3ff5d02b959d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2b846063-96e9-49e6-9388-46b8339b5516" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:22392/Security.asmx?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://faroatenaswebservices.apphb.com/Security.asmx?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Security.wsdl" MetadataType="Wsdl" ID="752cd064-09d7-44de-8539-dca8c319d787" SourceId="1" SourceUrl="http://localhost:22392/Security.asmx?wsdl" />
+    <MetadataFile FileName="Security.wsdl" MetadataType="Wsdl" ID="fc15c32d-b043-430d-97ae-db32936c9415" SourceId="1" SourceUrl="http://faroatenaswebservices.apphb.com/Security.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

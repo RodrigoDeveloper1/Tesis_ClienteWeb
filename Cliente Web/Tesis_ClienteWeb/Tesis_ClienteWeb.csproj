@@ -225,7 +225,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WS_MobileBridge\Reference.cs">
+    <Compile Include="Service References\WS_Security\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -2313,9 +2313,9 @@
     <Content Include="Scripts\Views\Notificaciones\NuevaNotificacion.js" />
     <Content Include="Scripts\Views\Index\Reportes.js" />
     <Content Include="Scripts\Views\Representantes\ListadoRepresentantes.js" />
-    <None Include="Service References\WS_MobileBridge\configuration91.svcinfo" />
-    <None Include="Service References\WS_MobileBridge\configuration.svcinfo" />
-    <None Include="Service References\WS_MobileBridge\Reference.svcmap">
+    <None Include="Service References\WS_Security\configuration91.svcinfo" />
+    <None Include="Service References\WS_Security\configuration.svcinfo" />
+    <None Include="Service References\WS_Security\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -2408,28 +2408,34 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.AssessmentsResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.AssessmentsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.CourseInfoResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.CourseInfoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.HomeResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.HomeResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.LoginResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.LoginResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.NotificationsResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.NewNotificationsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.StatisticsImageGeneratorResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.NotificationsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.StatisticsResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.StatisticsImageGeneratorResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WS_MobileBridge\Tesis_ClienteWeb.WS_MobileBridge.StudentsInfoResponse.datasource">
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.StatisticsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.StudentsInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
   </ItemGroup>
@@ -2612,7 +2618,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Service References\WS_MobileBridge\Security.wsdl" />
+    <None Include="Service References\WS_Security\Security.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tesis_ClienteWeb_Data\Tesis_ClienteWeb_Data.csproj">
@@ -2628,7 +2634,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WS_MobileBridge\" />
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WS_Security\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

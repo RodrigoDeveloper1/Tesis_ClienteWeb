@@ -6321,20 +6321,8 @@ namespace Tesis_ClienteWeb.Controllers
 
             List<Student> listaEstudiantesAprobados = new List<Student>();
             List<Student> listaEstudiantesReprobados = new List<Student>();
-
-            #region Path
-            string ServerSide_name = "Estadistica" + "C" + _session.SCHOOLID + "Y" +
-                _session.SCHOOLYEARID + "E" + idEvaluacion.ToString() + "U" + _session.USERID;
-
-            string path = Path.Combine(HttpRuntime.AppDomainAppPath, 
-                ConstantRepository.STATISTICS_SERVER_REMAINS_DIRECTORY, 
-                ServerSide_name + "_GraficoParaEstadisticas_PieChart.png");
-
-            string path2 = Path.Combine(HttpRuntime.AppDomainAppPath,
-                ConstantRepository.STATISTICS_SERVER_REMAINS_DIRECTORY,
-                ServerSide_name + "_GraficoParaEstadisticas_Top10Mejores.png");
             #endregion
-            #endregion
+
             #region Gráfico #1
             #region Obtneniendo lista de estudiantes aprobados/reprobados
             foreach (Score scoreAux in listaNotas)
@@ -6386,10 +6374,16 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(path, ChartImageFormat.Png);
             #endregion
-            #region Obteniendo imágenes desde rutas
-            System.Drawing.Image img1 = System.Drawing.Image.FromFile(path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            MemoryStream memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            //System.Drawing.Image img1 = System.Drawing.Image.FromFile(path);
+            System.Drawing.Image img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
             #endregion
             #region Transformando imagen a array binario
             MemoryStream stream1 = new MemoryStream();
@@ -6400,7 +6394,8 @@ namespace Tesis_ClienteWeb.Controllers
             img1.Dispose();
             #endregion
             #region Invocando el Web Service
-            WS_MobileBridge.Service1SoapClient WSClient = new WS_MobileBridge.Service1SoapClient();
+            WS_Security.Service1SoapClient WSClient = new WS_Security.Service1SoapClient();
+
             WSClient.StatisticsImageGenerator(
                 ConstantRepository.MOBILE_STATISTICS_CODE_AprobadosVsReprobados,
                 casu.CourseId, 
@@ -6501,11 +6496,15 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data2) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-
-            chart.SaveImage(path2, ChartImageFormat.Png);
             #endregion
-            #region Obteniendo imágenes desde rutas
-            img1 = System.Drawing.Image.FromFile(path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(path2, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
             #endregion
             #region Transformando imagen a array binario
             stream1 = new MemoryStream();
@@ -6516,7 +6515,8 @@ namespace Tesis_ClienteWeb.Controllers
             img1.Dispose();
             #endregion
             #region Invocando el Web Service
-            WSClient = new WS_MobileBridge.Service1SoapClient();
+            WSClient = new WS_Security.Service1SoapClient();
+
             WSClient.StatisticsImageGenerator(
                 ConstantRepository.MOBILE_STATISTICS_CODE_Top10ResultadosDestacados,
                 casu.CourseId,
