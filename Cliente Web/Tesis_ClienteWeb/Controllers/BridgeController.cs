@@ -6321,6 +6321,7 @@ namespace Tesis_ClienteWeb.Controllers
 
             List<Student> listaEstudiantesAprobados = new List<Student>();
             List<Student> listaEstudiantesReprobados = new List<Student>();
+            List<Score> top10MejoresNotas = new List<Score>();
             #endregion
 
             #region Gráfico #1
@@ -6411,7 +6412,7 @@ namespace Tesis_ClienteWeb.Controllers
             string stringAux = "";
             #endregion
             #region Obteniendo la lista top 10 mejores notas
-            List<Score> top10MejoresNotas = (grado > 6 ?
+            top10MejoresNotas = (grado > 6 ?
                 listaNotas.OrderByDescending(m => m.NumberScore).Take(10).ToList() :
                 listaNotas.OrderByDescending(m => m.ToIntLetterScore(m.LetterScore)).Take(10).ToList());
             #endregion
@@ -6426,7 +6427,7 @@ namespace Tesis_ClienteWeb.Controllers
                     else //Primaria
                         data2.Add(i, top10MejoresNotas[i - 1].ToIntLetterScore(top10MejoresNotas[i - 1].LetterScore));
                 }
-                catch (IndexOutOfRangeException)
+                catch (ArgumentOutOfRangeException)
                 {
                     data2.Add(i, 1);
                 }
@@ -6482,14 +6483,21 @@ namespace Tesis_ClienteWeb.Controllers
             {
                 if (i != 10)
                 {
-                    if (grado > 6) //Bachillerato
-                        stringAux = "(" + top10MejoresNotas[i].NumberScore + ") ";
-                    else //Primaria
-                        stringAux = "(" + top10MejoresNotas[i].LetterScore + ") ";
+                    try
+                    {
+                        if (grado > 6) //Bachillerato
+                            stringAux = "(" + top10MejoresNotas[i].NumberScore + ") ";
+                        else //Primaria
+                            stringAux = "(" + top10MejoresNotas[i].LetterScore + ") ";
 
-                    stringAux = stringAux + top10MejoresNotas[i].Student.FirstLastName + " " +
-                        top10MejoresNotas[i].Student.SecondLastName + ", " +
-                        top10MejoresNotas[i].Student.FirstName;
+                        stringAux = stringAux + top10MejoresNotas[i].Student.FirstLastName + " " +
+                            top10MejoresNotas[i].Student.SecondLastName + ", " +
+                            top10MejoresNotas[i].Student.FirstName;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        stringAux = "N/A";
+                    }
 
                     chartArea.AxisX.CustomLabels.Add(i + 0.5, i + 1.5, stringAux);
                 }
