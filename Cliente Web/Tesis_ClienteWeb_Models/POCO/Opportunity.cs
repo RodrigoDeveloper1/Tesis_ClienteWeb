@@ -22,8 +22,11 @@ namespace Tesis_ClienteWeb_Models.POCO
 
         public int Term { get; set; }
 
+        public List<Subject> Subjects { get; set; }
+
         public Opportunity()
         {
+            this.Subjects = new List<Subject>();
         }
      }
 }

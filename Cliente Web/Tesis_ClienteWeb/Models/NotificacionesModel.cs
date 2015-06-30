@@ -86,13 +86,13 @@ namespace Tesis_ClienteWeb.Models
         }
     }
 
-    public class BuzonNotificaciones : MaestraListaColegiosModel
+    public class BuzonNotificacionesModel : MaestraListaColegiosModel
     {
+        public List<object> listaNotificacionesObject { get; set; }
 
-
-        public BuzonNotificaciones()
+        public BuzonNotificacionesModel()
         {
-
+            this.listaNotificacionesObject = new List<object>();
         }
     }
 }

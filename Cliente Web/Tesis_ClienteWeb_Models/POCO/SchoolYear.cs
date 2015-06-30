@@ -36,12 +36,14 @@ namespace Tesis_ClienteWeb_Models.POCO
         public List<Period> Periods { get; set; }
         public List<Event> Events { get; set; }
         public List<Notification> Notifications { get; set; }
+        public List<PsychologicalTest> PsychologicalTests { get; set; }
 
         public SchoolYear()
         {
             this.Periods = new List<Period>();
             this.Events = new List<Event>();
             this.Notifications = new List<Notification>();
+            this.PsychologicalTests = new List<PsychologicalTest>();
         }
     }
 }

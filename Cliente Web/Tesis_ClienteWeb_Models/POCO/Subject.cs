@@ -35,11 +35,14 @@ namespace Tesis_ClienteWeb_Models.POCO
 
         public List<Competency> Competencies { get; set; }
 
+        public List<Opportunity> Opportunities { get; set; }
+
         public Subject()
         {
             this.CASUs = new List<CASU>();
             this.ContentBlocks = new List<ContentBlock>();
             this.Competencies = new List<Competency>();
+            this.Opportunities = new List<Opportunity>();
         }
     }
 }

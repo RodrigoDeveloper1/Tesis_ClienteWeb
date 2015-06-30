@@ -236,7 +236,7 @@ namespace Tesis_ClienteWeb_Data.Services
                 listaCursos.Add(casu.Course);
             }
 
-            return listaCursos;
+            return listaCursos.ToHashSet<Course>().ToList<Course>();
         }
 
 

@@ -92,6 +92,7 @@ C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Data\bin
 C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.csprojResolveAssemblyReference.cache
 C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.dll
 C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\Tesis_ClienteWeb_Data.dll.config
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\Tesis_ClienteWeb_Data.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\Tesis_ClienteWeb_Data.pdb
@@ -145,6 +146,5 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\es\Microsoft.AspNet.Identity.Core.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\bin\es\System.Web.Mvc.resources.dll
-C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb_Data\obj\Debug\Tesis_ClienteWeb_Data.pdb

@@ -125,9 +125,11 @@
     <Compile Include="POCO\IndicatorAssessment.cs" />
     <Compile Include="POCO\IndicatorAssignation.cs" />
     <Compile Include="POCO\Institute.cs" />
+    <Compile Include="POCO\PsychologicalTest.cs" />
     <Compile Include="POCO\RelatedCareer.cs" />
     <Compile Include="POCO\Country.cs" />
     <Compile Include="POCO\Region.cs" />
+    <Compile Include="POCO\PsychologicalTest_Score.cs" />
     <Compile Include="POCO\State.cs" />
     <Compile Include="POCO\Core.cs" />
     <Compile Include="POCO\Opportunity.cs" />

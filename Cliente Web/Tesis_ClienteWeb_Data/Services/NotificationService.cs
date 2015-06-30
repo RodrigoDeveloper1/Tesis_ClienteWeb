@@ -935,6 +935,36 @@ namespace Tesis_ClienteWeb_Data.Services
         #endregion
         #region Obtener notificaciones
         /// <summary>
+        /// Método que obtiene la notificación según el id por parámetro.
+        /// Rodrigo Uzcátegui - 29-06-15
+        /// </summary>
+        /// <param name="idNotificacion">El id de la notificación</param>
+        /// <returns>La notificación respectiva</returns>
+        public Notification ObtenerNotificacionPor_Id(int idNotificacion)
+        {
+            Notification notification = (
+                from Notification notifAux in _unidad.RepositorioNotification._dbset
+                    .Include("SentNotifications")
+                    .Include("Event")
+                    .Include("SchoolYear")
+                where notifAux.NotificationId == idNotificacion
+                select notifAux)
+                    .FirstOrDefault<Notification>();
+
+            #region Obteniendo los datos completos de las SentNotifications
+            List<SentNotification> listaSN = new List<SentNotification>();
+            foreach(SentNotification SN in notification.SentNotifications)
+            {
+                 listaSN.Add(
+                     this.ObtenerSentNotificationPor_Id(notification.NotificationId, SN.SentNotificationId));
+            }
+            notification.SentNotifications = listaSN;
+            #endregion
+            
+            return notification;
+        }
+        
+        /// <summary>
         /// Método que obtiene la lista de notificaciones personales según el colegio.
         /// </summary>
         /// <returns>La lista de notificaciones personales respectiva.</returns>
@@ -1055,11 +1085,15 @@ namespace Tesis_ClienteWeb_Data.Services
         /// <param name="idUsuario">Id del usuario</param>
         /// <param name="idAnoEscolar">Id del año escolar</param>
         /// <returns>La lista de notificaciones respectiva</returns>
-        public List<Notification> ObtenerListaNotificacionesPor_Usuario_AnoEscolar(string idUsuario, 
+        public List<Notification> ObtenerListaNotificacionesPor_Docente_AnoEscolar(string idUsuario, 
             int idAnoEscolar)
         {
-            CourseService courseService = new CourseService(this._unidad);
-            List<Course> listaCursos = courseService.ObtenerListaCursoPor_Docente_AnoEscolar(idUsuario, idAnoEscolar);
+            #region Obteniendo la lista de Cursos asociados al docente
+            CourseService courseService = new CourseService();
+            List<Course> listaCursos = 
+                courseService.ObtenerListaCursoPor_Docente_AnoEscolar(idUsuario, idAnoEscolar);
+            #endregion
+
             List<Notification> listaNotificaciones = new List<Notification>();
 
             foreach(Course course in listaCursos)
@@ -1073,18 +1107,70 @@ namespace Tesis_ClienteWeb_Data.Services
                 where n.User.Id == idUsuario ||
                       n.Course.CourseId == course.CourseId
                 select n.Notification)
+                    .OrderByDescending(m => m.DateOfCreation)
                     .ToList<Notification>();
 
                 foreach(Notification notification in listaAux)
                 {
-                    listaNotificaciones.Add(notification);
+                    listaNotificaciones.Add(this.ObtenerNotificacionPor_Id(notification.NotificationId));
                 }
             }
 
             return listaNotificaciones;
         }
         #endregion
+        #region Obtener SentNotifications
+        /// <summary>
+        /// Método que obtiene el SentNotifications respectivo según los id por parámetro.
+        /// Rodrigo Uzcátegui - 29-06-15
+        /// </summary>
+        /// <param name="NotificationId">El id de la notificación asociada</param>
+        /// <param name="SentNotificationId">El id del SentNotification asociado</param>
+        /// <returns>El SentNotification respectivo</returns>
+        public SentNotification ObtenerSentNotificationPor_Id(int NotificationId, int SentNotificationId)
+        {
+            SentNotification SN = (
+                from SentNotification SNAux in _unidad.RepositorioSentNotification._dbset
+                    .Include("Notification")
+                    .Include("Student")
+                    .Include("User")
+                    .Include("Course")
+                where SNAux.NotificationId == NotificationId &&
+                      SNAux.SentNotificationId == SentNotificationId
+                select SNAux)
+                    .FirstOrDefault<SentNotification>();
+
+            return SN;
+        }
+        /// <summary>
+        /// Método que obtiene el SentNotification asociado según el id de la notificación y el usuario 
+        /// remitido. 
+        /// Rodrigo Uzcátegui - 29-06-15
+        /// </summary>
+        /// <param name="NotificationId">Id de la notificación respectiva.</param>
+        /// <param name="UserId">El id del usuario dirigido.</param>
+        /// <returns>El SentNotification respectivo</returns>
+        public SentNotification ObtenerSentNotificationPor_Notification_DocenteDirigido(int NotificationId, 
+            string UserId)
+        {
+            SentNotification SN = (
+               from SentNotification SNAux in _unidad.RepositorioSentNotification._dbset
+                   .Include("Notification")
+                   .Include("Student")
+                   .Include("User")
+                   .Include("Course")
+               where SNAux.NotificationId == NotificationId &&
+                     SNAux.User.Id == UserId
+               select SNAux)
+                   .FirstOrDefault<SentNotification>();
+
+            return SN;
+        }
+        #endregion
         #region Otros métodos
+        
+
+
         public List<string> ObtenerListaTiposAlerta()
         {
             /* Tipo de alerta es la categoría a la que va asociada esa notificación, los tipos de categorías 

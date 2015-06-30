@@ -73,15 +73,9 @@ $(document).ready(function () {
 
     //Para visualizar el mensaje de la notificación
     $('.btn-mensaje').click(function () {
-        console.log("entra");
-
         mensajeNotificacion = $(this).find("span").html();
 
-        
-        console.log(mensajeNotificacion);
-
         $('#p-mensaje-notificacion').html(mensajeNotificacion);
-
         $('#div-cuerpo-mensaje-notificacion p').css("display", "block");
 
         DialogoMensajeNotificaction();

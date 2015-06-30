@@ -225,6 +225,24 @@ namespace Tesis_ClienteWeb_Data
                 .WithMany(m => m.IndicatorAsignations)
                 .HasForeignKey(m => new { m.IndicatorId, m.CompetencyId, m.AssessmentId });
             #endregion
+            #region PsychologicalTest_Score
+            //Primary Keys
+            modelBuilder.Entity<PsychologicalTest_Score>()
+                .HasKey(k => new {k.ReasoningType, k.PsychologicalTestId, k.StudentId });
+            modelBuilder.Entity<Student>().HasMany(k => k.PsychologicalTest_Scores);
+            modelBuilder.Entity<PsychologicalTest>().HasMany(k => k.PsychologicalTest_Scores);
+
+            //Relationships
+            modelBuilder.Entity<PsychologicalTest_Score>()
+                .HasRequired(t => t.Student)
+                .WithMany(t => t.PsychologicalTest_Scores)
+                .HasForeignKey(t => t.StudentId);
+
+            modelBuilder.Entity<PsychologicalTest_Score>()
+                .HasRequired(t => t.PsychologicalTest)
+                .WithMany(t => t.PsychologicalTest_Scores)
+                .HasForeignKey(t => t.PsychologicalTestId);
+            #endregion
         }
         #endregion
         #region Create Context

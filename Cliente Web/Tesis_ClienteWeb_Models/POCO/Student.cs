@@ -51,12 +51,15 @@ namespace Tesis_ClienteWeb_Models.POCO
 
         public List<SentNotification> ReceivedNotifications { get; set; }
 
+        public List<PsychologicalTest_Score> PsychologicalTest_Scores { get; set; }
+
         public Student()
         {
             this.Courses = new List<Course>();
             this.Representatives = new List<Representative>();
             this.Scores = new List<Score>();
             this.ReceivedNotifications = new List<SentNotification>(); //Lista de notificaciones recibidas
+            this.PsychologicalTest_Scores = new List<PsychologicalTest_Score>();
         }
    }
 }

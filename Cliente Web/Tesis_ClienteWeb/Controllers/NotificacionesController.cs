@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
@@ -182,26 +183,49 @@ namespace Tesis_ClienteWeb.Controllers
             return Json(jsonResult);
         }
 
-
-
-
-
-
-
-
-
-
-
-        
-
-        
-
-        
-        
-
         [HttpGet]
         public ActionResult Buzon()
         {
+            ConfiguracionInicial(_controlador, "Buzon");
+            #region Declaración del modelo
+            BuzonNotificacionesModel model = new BuzonNotificacionesModel();
+            #endregion
+            #region Declaración de servicios
+            NotificationService notificationService = new NotificationService();
+            CourseService courseService = new CourseService();
+            #endregion
+            #region Obteniendo la lista de cursos del docente de la sesión activa
+            List<Course> listaCursos = courseService.ObtenerListaCursoPor_Docente_AnoEscolar(_session.USERID,
+                _session.SCHOOLYEARID);
+            #endregion
+            #region Obteniendo la lista de notificaciones
+            List<Notification> listaNotificaciones = notificationService
+                .ObtenerListaNotificacionesPor_Docente_AnoEscolar(_session.USERID, _session.SCHOOLYEARID);
+
+            foreach(Notification notificacion in listaNotificaciones)
+            {
+                foreach(Course curso in listaCursos)
+                {
+                    foreach(SentNotification SN in notificacion.SentNotifications)
+                    {
+                        if((SN.User != null && SN.User.Id.Equals(_session.USERID)) ||
+                           (SN.Course != null && SN.Course.CourseId == curso.CourseId))
+                        {
+                            model.listaNotificacionesObject.Add(new
+                            {
+                                Success = true,
+                                NotificationId = notificacion.NotificationId,
+                                SentNotificationId = SN.SentNotificationId,
+                                Notification = notificacion.Message
+                            });
+                        }
+                    }
+                }
+            }
+            #endregion
+                        
+            return View(model);
+
             #region Código anterior
             /*
             #region Inicialización de variables
@@ -235,15 +259,24 @@ namespace Tesis_ClienteWeb.Controllers
              */
 
             #endregion
-            ObteniendoSesion();
-            NotificationService notificationService = new NotificationService();
-            BuzonNotificaciones model = new BuzonNotificaciones();
-
-            List<Notification> listaNotificaciones = notificationService
-                .ObtenerListaNotificacionesPor_Usuario_AnoEscolar(_session.USERID, _session.SCHOOLYEARID);
-            
-            return View(model);
         }
+
+
+
+
+
+
+
+
+
+        
+
+        
+
+        
+        
+
+        //Por revisar - Rodrigo Uzcátegui (29-06-15)
 
         [HttpPost]       
         public ActionResult CrearNotificacion(string titulo, string mensaje, string atribucion, 

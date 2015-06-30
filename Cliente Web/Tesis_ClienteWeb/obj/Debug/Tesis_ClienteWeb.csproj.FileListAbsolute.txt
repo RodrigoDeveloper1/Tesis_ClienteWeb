@@ -270,6 +270,7 @@ C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\bin\es\S
 C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
 C:\Users\Mr. Fabio\Desktop\Tesis Workspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
+C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll.config
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Tesis_ClienteWeb.pdb
@@ -334,8 +335,5 @@ C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Mi
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.AspNet.Identity.Owin.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\es\System.Web.Optimization.resources.dll
-C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.csprojResolveAssemblyReference.cache
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.dll
 C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\obj\Debug\Tesis_ClienteWeb.pdb
-C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\Rodrigo\Documents\TesisWorkspace\Cliente Web\Tesis_ClienteWeb\bin\Newtonsoft.Json.dll

@@ -2379,7 +2379,6 @@
     <Content Include="Views\Notificaciones\Buzon.aspx" />
     <Content Include="Views\Login\Index.aspx" />
     <Content Include="Views\Colegios\CrearPeriodoEscolar.aspx" />
-    <Content Include="Views\Profile\Profile.aspx" />
     <Content Include="Views\Reportes\GenerarReporte.aspx" />
     <Content Include="Views\Representantes\GestionRepresentantes.aspx" />
     <Content Include="Views\Representantes\ListadoRepresentantes.aspx" />
