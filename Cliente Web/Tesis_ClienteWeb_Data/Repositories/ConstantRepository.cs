@@ -229,6 +229,7 @@ namespace Tesis_ClienteWeb_Data.Repositories
 
         public const int MOBILE_STATISTICS_CODE_AprobadosVsReprobados = 1;
         public const int MOBILE_STATISTICS_CODE_Top10ResultadosDestacados = 2;
+        public const int MOBILE_STATISTICS_CODE_Top10ResultadosDeficientes = 3;
         #endregion
         #region Constantes de acciones de menú de Maestras
         public const int MASTER_ACTION_ALUMNOS_AGREGAR_ALUMNOS = 1;
@@ -440,7 +441,7 @@ namespace Tesis_ClienteWeb_Data.Repositories
         }
         #endregion
         #endregion
-        
+
         #region Otras constantes
         /// <summary>
         /// Constante que guarda el id del primer colegio que se mostrará para los usuarios administradores
@@ -455,6 +456,9 @@ namespace Tesis_ClienteWeb_Data.Repositories
         /// 2. Mostrar en el calendario de fechas días previos y posteriores a las del año escolar.
         /// </summary>
         public const int MONTH_NUMBER_EXTENSION_LIMIT = 1;
+
+        public const string MobileAPK_Path = "~/App_Uploads/MobileAPK";
+        public const string APKFileName = "app-release.apk";
 
         #region Constant: SEX_LIST_SHORT
         private static readonly ReadOnlyCollection<string> _sex_list_short =

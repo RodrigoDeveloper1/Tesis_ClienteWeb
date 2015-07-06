@@ -861,6 +861,289 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(jsonResult);
         }
+        public JsonResult ObtenerNotaDefinitivaPor_Materia(int idCurso, int idMateria)
+        {
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+            List<Student> listaEstudiantes = new List<Student>();
+            List<Assessment> listaEvaluaciones = new List<Assessment>();
+
+            Course curso = new Course();
+            Score notaAux = new Score();
+            int totalNotas = 0;
+            float definitiva1 = 0;
+            float definitiva2 = 0;
+            float definitiva3 = 0;
+            double definitivaFinal1 = 0;
+            double definitivaFinal2 = 0;
+            double definitivaFinal3 = 0;
+            double definitivaFinalBachillerato1 = 0;
+            double definitivaFinalBachillerato2 = 0;
+            double definitivaFinalBachillerato3 = 0;
+            float porcentaje = 0;
+            string definitivaPrimaria1 = "";
+            string definitivaPrimaria2 = "";
+            string definitivaPrimaria3 = "";
+            double definitivaFinalMateria = 0;
+            double definitivaFinalMateriaPrimaria = 0;
+            string finalMateriaPrimaria = "";
+            string color = "";
+            string colorfuente = "";
+            #endregion
+            #region Declaración de servicios
+            UnitOfWork unidad = new UnitOfWork();
+            StudentService studentService = new StudentService(unidad);
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            CourseService courseService = new CourseService(unidad);
+            #endregion
+            
+            #region Obteniendo la lista de estudiantes por curso
+            listaEstudiantes = studentService.ObtenerListaEstudiantePorCurso(idCurso);
+            #endregion
+            #region Definiendo el grado: Primaria o Bachillerato
+            curso = courseService.ObtenerCursoPor_Id(idCurso);
+            bool primaria = (curso.Grade <= 6 ? true : false);
+            #endregion
+
+            foreach (Student estudiante in listaEstudiantes)
+            {
+                #region 1er Lapso
+                listaEvaluaciones = assessmentService.ObtenerListaEvaluacionesPor_Curso_Materia_Lapso(idCurso,
+                    idMateria, ConstantRepository.PERIOD_ONE);
+
+                foreach (Assessment evaluacion in listaEvaluaciones)
+                {
+                    notaAux = evaluacion.Scores.Where(m => m.StudentId == estudiante.StudentId).FirstOrDefault<Score>();
+
+                    if (primaria)
+                    {
+                        if (notaAux.LetterScore.Equals("A")) definitiva1 += 5;
+                        else if (notaAux.LetterScore.Equals("B")) definitiva1 += 4;
+                        else if (notaAux.LetterScore.Equals("C")) definitiva1 += 3;
+                        else if (notaAux.LetterScore.Equals("D")) definitiva1 += 2;
+                        else if (notaAux.LetterScore.Equals("E")) definitiva1 += 1;
+                    }
+                    else
+                    {
+                        porcentaje = (float)evaluacion.Percentage / 100;
+                        if (notaAux == null)
+                            definitiva1 += 0;
+                        else
+                            definitiva1 += (notaAux.NumberScore * porcentaje);
+                    }
+                }
+
+
+                definitivaFinal1 = Math.Round(definitiva1 / listaEvaluaciones.Count);
+
+                if (primaria)
+                {
+                    if (definitivaFinal1 <= 5 &&
+               definitivaFinal1 > 4)
+                        definitivaPrimaria1 = "A";
+                    else if (definitivaFinal1 <= 4 &&
+               definitivaFinal1 > 3)
+                        definitivaPrimaria1 = "B";
+                    else if (definitivaFinal1 <= 3 &&
+               definitivaFinal1 > 2)
+                        definitivaPrimaria1 = "C";
+                    else if (definitivaFinal1 <= 2 &&
+               definitivaFinal1 > 1)
+                        definitivaPrimaria1 = "D";
+                    else if (definitivaFinal1 <= 1)
+                        definitivaPrimaria1 = "E";
+                }
+                else
+                {
+                    definitivaFinalBachillerato1 = Math.Round(definitiva1 / listaEvaluaciones.Count());
+                }
+
+                notaAux = new Score();
+                #endregion
+                #region 2do Lapso
+                listaEvaluaciones = assessmentService.ObtenerListaEvaluacionesPor_Curso_Materia_Lapso(idCurso,
+                    idMateria, ConstantRepository.PERIOD_TWO);
+
+                foreach (Assessment evaluacion in listaEvaluaciones)
+                {
+
+                    notaAux = evaluacion.Scores.Where(m => m.StudentId == estudiante.StudentId).FirstOrDefault<Score>();
+
+
+                    if (primaria)
+                    {
+                        if (notaAux.LetterScore.Equals("A")) definitiva2 += 5;
+                        else if (notaAux.LetterScore.Equals("B")) definitiva2 += 4;
+                        else if (notaAux.LetterScore.Equals("C")) definitiva2 += 3;
+                        else if (notaAux.LetterScore.Equals("D")) definitiva2 += 2;
+                        else if (notaAux.LetterScore.Equals("E")) definitiva2 += 1;
+                    }
+                    else
+                    {
+                        porcentaje = (float)evaluacion.Percentage / 100;
+                        if (notaAux == null)
+                            definitiva2 += 0;
+                        else
+                            definitiva2 += (notaAux.NumberScore * porcentaje);
+                    }
+                }
+
+                definitivaFinal2 = Math.Round(definitiva2 / listaEvaluaciones.Count);
+                if (primaria)
+                {
+                    if (definitivaFinal2 <= 5 &&
+                   definitivaFinal2 > 4)
+                        definitivaPrimaria2 = "A";
+                    else if (definitivaFinal2 <= 4 &&
+                   definitivaFinal2 > 3)
+                        definitivaPrimaria2 = "B";
+                    else if (definitivaFinal2 <= 3 &&
+                   definitivaFinal2 > 2)
+                        definitivaPrimaria2 = "C";
+                    else if (definitivaFinal2 <= 2 &&
+                   definitivaFinal2 > 1)
+                        definitivaPrimaria2 = "D";
+                    else if (definitivaFinal2 <= 1)
+                        definitivaPrimaria2 = "E";
+                }
+                else
+                {
+                    definitivaFinalBachillerato2 = Math.Round(definitiva2 / listaEvaluaciones.Count());
+                }
+
+
+                notaAux = new Score();
+                #endregion
+                #region 3er Lapso
+                listaEvaluaciones = assessmentService.ObtenerListaEvaluacionesPor_Curso_Materia_Lapso(idCurso,
+                    idMateria, ConstantRepository.PERIOD_THREE);
+
+                foreach (Assessment evaluacion in listaEvaluaciones)
+                {
+                    notaAux = evaluacion.Scores.Where(m => m.StudentId == estudiante.StudentId).FirstOrDefault<Score>();
+
+                    if (primaria)
+                    {
+                        if (notaAux.LetterScore.Equals("A")) definitiva3 += 5;
+                        else if (notaAux.LetterScore.Equals("B")) definitiva3 += 4;
+                        else if (notaAux.LetterScore.Equals("C")) definitiva3 += 3;
+                        else if (notaAux.LetterScore.Equals("D")) definitiva3 += 2;
+                        else if (notaAux.LetterScore.Equals("E")) definitiva3 += 1;
+                    }
+                    else
+                        porcentaje = (float)evaluacion.Percentage / 100;
+                    definitiva3 += (notaAux.NumberScore * porcentaje);
+                }
+
+                definitivaFinal3 = Math.Round(definitiva3 / listaEvaluaciones.Count);
+                if (primaria)
+                {
+                    if (definitivaFinal3 <= 5 &&
+                   definitivaFinal3 > 4)
+                        definitivaPrimaria3 = "A";
+                    else if (definitivaFinal3 <= 4 &&
+                   definitivaFinal3 > 3)
+                        definitivaPrimaria3 = "B";
+                    else if (definitivaFinal3 <= 3 &&
+                   definitivaFinal3 > 2)
+                        definitivaPrimaria3 = "C";
+                    else if (definitivaFinal3 <= 2 &&
+                   definitivaFinal3 > 1)
+                        definitivaPrimaria3 = "D";
+                    else if (definitivaFinal3 <= 1)
+                        definitivaPrimaria3 = "E";
+
+                }
+                else
+                {
+                    definitivaFinalBachillerato3 = Math.Round(definitiva3 / listaEvaluaciones.Count());
+                }
+
+
+
+                definitivaFinalMateria = definitivaFinal1 + definitivaFinal2 + definitivaFinal3;
+                definitivaFinalMateriaPrimaria = Math.Round(definitivaFinalMateria / 3);
+
+                if (primaria)
+                {
+                    if (definitivaFinalMateriaPrimaria <= 5 &&
+                   definitivaFinalMateriaPrimaria > 4)
+                        finalMateriaPrimaria = "A";
+                    else if (definitivaFinalMateriaPrimaria <= 4 &&
+                   definitivaFinalMateriaPrimaria > 3)
+                        finalMateriaPrimaria = "B";
+                    else if (definitivaFinalMateriaPrimaria <= 3 &&
+                   definitivaFinalMateriaPrimaria > 2)
+                        finalMateriaPrimaria = "C";
+                    else if (definitivaFinalMateriaPrimaria <= 2 &&
+                   definitivaFinalMateriaPrimaria > 1)
+                        finalMateriaPrimaria = "D";
+                    else if (definitivaFinalMateriaPrimaria <= 1)
+                        finalMateriaPrimaria = "E";
+
+                    if (finalMateriaPrimaria != "E")
+                    {
+                        color = "#CEC";
+                        colorfuente = "green";
+                    }
+                    else
+                    {
+                        color = "#f9998e";
+                        colorfuente = "red";
+                    }
+                }
+                else
+                {
+                    definitivaFinalMateria = Math.Round(definitiva1) + Math.Round(definitiva2) +
+                        Math.Round(definitiva3);
+
+                    definitivaFinalMateria = Math.Round(definitivaFinalMateria / 3);
+
+                    if (definitivaFinalMateria >= 10)
+                    {
+                        color = "#CEC";
+                        colorfuente = "green";
+                    }
+                    else
+                    {
+                        color = "#f9998e";
+                        colorfuente = "red";
+                    }
+                }
+
+                jsonResult.Add(new
+                {
+                    success = true,
+                    idEstudiante = estudiante.StudentId,
+                    numLista = estudiante.NumberList,
+                    alumnoNombre = estudiante.FirstName,
+                    alumnoApellido = estudiante.FirstLastName + " " + estudiante.SecondLastName,
+                    primaria = primaria,
+                    definitivaLapso1 = (primaria ? definitivaPrimaria1 : Math.Round(definitiva1).ToString()),
+                    definitivaLapso2 = (primaria ? definitivaPrimaria2 : Math.Round(definitiva2).ToString()),
+                    definitivaLapso3 = (primaria ? definitivaPrimaria3 : Math.Round(definitiva3).ToString()),
+                    definitivaFinal = (primaria ? finalMateriaPrimaria : definitivaFinalMateria.ToString()),
+                    color = color,
+                    colorfuente = colorfuente,
+                });
+
+                //Reiniciando valores
+                definitiva1 = 0;
+                definitiva2 = 0;
+                definitiva3 = 0;
+                definitivaFinal1 = 0;
+                definitivaFinal2 = 0;
+                definitivaFinal3 = 0;
+                definitivaPrimaria1 = "";
+                definitivaPrimaria2 = "";
+                definitivaPrimaria3 = "";
+                notaAux = new Score();
+                #endregion
+            }
+
+            return Json(jsonResult);
+        }
+
         public JsonResult ObtenerJsonIndicadoresLiterales(int idCompetencia, int idEvaluacion)
         {
             #region Declaración de variables
@@ -1103,9 +1386,10 @@ namespace Tesis_ClienteWeb.Controllers
             string logo_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_UTILITIES_DIRECTORY), ConstantRepository.REPORT_LOGO);
             string subHeaderBackground_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_UTILITIES_DIRECTORY), ConstantRepository.REPORT_SUBHEADER_BACKGROUND);
 
-            string ServerSide_name = "ReportePorEvaluacion" + "C" + _session.SCHOOLID + "Y" +
-                _session.SCHOOLYEARID + "E" + idEvaluacion.ToString() + "U" + _session.USERID + "-" +
-                DateTime.Now.ToString("yyyy-MM-dd") + "H" + DateTime.Now.ToString("HH-mm-ss");
+            //string ServerSide_name = "ReportePorEvaluacion" + "C" + _session.SCHOOLID + "Y" +
+                //_session.SCHOOLYEARID + "E" + idEvaluacion.ToString() + "U" + _session.USERID + "-" +
+                //DateTime.Now.ToString("yyyy-MM-dd") + "H" + DateTime.Now.ToString("HH-mm-ss");
+            string ServerSide_name = "ReportePorEvaluacion";
 
             string pdfFile_ServerSide_name = ServerSide_name + ".pdf";
 
@@ -1137,7 +1421,8 @@ namespace Tesis_ClienteWeb.Controllers
             #region Configuración del documento
             #region Declarando documento, escritor PDF
             Document document = new Document(PageSize.LETTER, 36, 36, 7, 36);
-            FileStream fileStream = new FileStream(pdfFile_ServerSide_path, FileMode.CreateNew);
+            FileStream fileStream = new FileStream(pdfFile_ServerSide_path, FileMode.Create);
+            //MemoryStream fileStream = new MemoryStream();
             PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
             #endregion
             #region Definiendo metadata
@@ -1332,9 +1617,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_PieChart_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            MemoryStream memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            System.Drawing.Image img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            MemoryStream stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            byte[] imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 450f, document.PageSize.Height - 780f);
             document.Add(image);
@@ -1486,9 +1789,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data2) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_BarChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_BarChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 570, document.PageSize.Height - 440f);
             document.Add(image);
@@ -1573,9 +1894,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data3) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_BarChart2_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart2_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_BarChart2_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart2_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 302, document.PageSize.Height - 440f);
             document.Add(image);
@@ -1918,9 +2257,27 @@ namespace Tesis_ClienteWeb.Controllers
 
             chart.Series.Add(chartSeries);
             chart.Series["Pie Chart 2"]["PieLabelStyle"] = "Outside";
-            chart.SaveImage(reportRemains_PieChart2_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart2_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart2_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart2_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 635f, document.PageSize.Height - 618f);
             document.Add(image);
@@ -1929,16 +2286,24 @@ namespace Tesis_ClienteWeb.Controllers
             #region Pasos finales
             document.Close();
 
-            jsonResult.Add(new
-            {
+            jsonResult.Add(new {
                 success = true,
-                path = pdfFile_ServerSide_path
+                path = pdfFile_ServerSide_path,                
             });
 
             TempData["Evaluación"] = true;
-            #endregion
 
             return Json(jsonResult);
+            #endregion
+
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("Content-Disposition", "attachment; filename=Reporte_por_evaluación_Faro_Atenas.pdf");
+
+            //return new FileStreamResult(fileStream, "application/pdf") {
+                //FileDownloadName = "Reporte_por_evaluación_Faro_Atenas.pdf"
+            //};
+                        
+            //return File(fileStream, "application/pdf", "Reporte por evaluación - Faro Atenas.pdf");
         }
         public JsonResult ReportePorMateria(int idMateria, int idLapso, int idCurso)
         {
@@ -1948,6 +2313,11 @@ namespace Tesis_ClienteWeb.Controllers
             List<object> jsonResult = new List<object>();
 
             #region Variables utilitarias
+            MemoryStream memoryStream;
+            System.Drawing.Image img1;
+            MemoryStream stream1;
+            byte[] imageByte1;
+
             iTextSharp.text.Image image;
             Chart chart;
             ChartArea chartArea;
@@ -2087,10 +2457,11 @@ namespace Tesis_ClienteWeb.Controllers
             string subHeaderBackground_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_UTILITIES_DIRECTORY), ConstantRepository.REPORT_SUBHEADER_BACKGROUND);
             string noData_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_UTILITIES_DIRECTORY), ConstantRepository.REPORT_NODATA);
 
-            string ServerSide_name = "ReportePorMateria" + "C" + _session.SCHOOLID + "Y" +
-                _session.SCHOOLYEARID + "M" + idMateria.ToString() + "P" + lapso.PeriodId.ToString() + 
-                "C" + curso.CourseId.ToString() + "U" + _session.USERID + "-" +
-                DateTime.Now.ToString("yyyy-MM-dd") + "H" + DateTime.Now.ToString("HH-mm-ss");
+            //string ServerSide_name = "ReportePorMateria" + "C" + _session.SCHOOLID + "Y" +
+                //_session.SCHOOLYEARID + "M" + idMateria.ToString() + "P" + lapso.PeriodId.ToString() + 
+                //"C" + curso.CourseId.ToString() + "U" + _session.USERID + "-" +
+                //DateTime.Now.ToString("yyyy-MM-dd") + "H" + DateTime.Now.ToString("HH-mm-ss");
+            string ServerSide_name = "ReportePorMateria";
 
             string pdfFile_ServerSide_name = ServerSide_name + ".pdf";
 
@@ -2127,7 +2498,7 @@ namespace Tesis_ClienteWeb.Controllers
             #region Configuración del documento
             #region Declarando documento, escritor PDF
             Document document = new Document(PageSize.LETTER, 36, 36, 7, 36);
-            FileStream fileStream = new FileStream(pdfFile_ServerSide_path, FileMode.CreateNew);
+            FileStream fileStream = new FileStream(pdfFile_ServerSide_path, FileMode.Create);
             PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
             #endregion
             #region Definiendo metadata
@@ -2364,10 +2735,28 @@ namespace Tesis_ClienteWeb.Controllers
                     chartSeries.Points[0].Color = Color.Blue;
                     chartSeries.Points[1].Color = Color.Red;
                     chart.Series.Add(chartSeries);
-                    chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
                     #endregion
-
-                    image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                    #region Definiendo un Memory Stream para guardar la imagen
+                    memoryStream = new MemoryStream();
+                    chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                    //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+                    #endregion
+                    #region Obteniendo imagen desde MemoryStream
+                    img1 = System.Drawing.Image.FromStream(memoryStream);
+                    memoryStream.Close();
+                    #endregion
+                    #region Transformando imagen a array binario
+                    stream1 = new MemoryStream();
+                    img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                    imageByte1 = stream1.ToArray();
+                    stream1.Dispose();
+                    img1.Dispose();
+                    #endregion
+                    #region Obteniendo imagen desde array binario
+                    //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                    image = iTextSharp.text.Image.GetInstance(imageByte1);
+                    memoryStream.Close();
+                    #endregion
                 }
                 #endregion
                 #region No hay notas
@@ -2439,10 +2828,28 @@ namespace Tesis_ClienteWeb.Controllers
                     chartSeries.Points[0].Color = Color.Blue;
                     chartSeries.Points[1].Color = Color.Red;
                     chart.Series.Add(chartSeries);
-                    chart.SaveImage(reportRemains_PieChart2_path, ChartImageFormat.Png);
                     #endregion
-
-                    image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart2_path);
+                    #region Definiendo un Memory Stream para guardar la imagen
+                    memoryStream = new MemoryStream();
+                    chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                    //chart.SaveImage(reportRemains_PieChart2_path, ChartImageFormat.Png);
+                    #endregion
+                    #region Obteniendo imagen desde MemoryStream
+                    img1 = System.Drawing.Image.FromStream(memoryStream);
+                    memoryStream.Close();
+                    #endregion
+                    #region Transformando imagen a array binario
+                    stream1 = new MemoryStream();
+                    img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                    imageByte1 = stream1.ToArray();
+                    stream1.Dispose();
+                    img1.Dispose();
+                    #endregion
+                    #region Obteniendo imagen desde array binario
+                    //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart2_path);
+                    image = iTextSharp.text.Image.GetInstance(imageByte1);
+                    memoryStream.Close();
+                    #endregion                                        
                 }
                 #endregion
                 #region No hay notas
@@ -2514,10 +2921,28 @@ namespace Tesis_ClienteWeb.Controllers
                     chartSeries.Points[0].Color = Color.Blue;
                     chartSeries.Points[1].Color = Color.Red;
                     chart.Series.Add(chartSeries);
-                    chart.SaveImage(reportRemains_PieChart3_path, ChartImageFormat.Png);
                     #endregion
-
-                    image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart3_path);
+                    #region Definiendo un Memory Stream para guardar la imagen
+                    memoryStream = new MemoryStream();
+                    chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                    //chart.SaveImage(reportRemains_PieChart3_path, ChartImageFormat.Png);
+                    #endregion
+                    #region Obteniendo imagen desde MemoryStream
+                    img1 = System.Drawing.Image.FromStream(memoryStream);
+                    memoryStream.Close();
+                    #endregion
+                    #region Transformando imagen a array binario
+                    stream1 = new MemoryStream();
+                    img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                    imageByte1 = stream1.ToArray();
+                    stream1.Dispose();
+                    img1.Dispose();
+                    #endregion
+                    #region Obteniendo imagen desde array binario
+                    //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart3_path);
+                    image = iTextSharp.text.Image.GetInstance(imageByte1);
+                    memoryStream.Close();
+                    #endregion                                        
                 }
                 #endregion
                 #region No hay notas
@@ -2919,7 +3344,7 @@ namespace Tesis_ClienteWeb.Controllers
                 catch (ArgumentOutOfRangeException)
                 {
                     evaluacion3 = null;
-                    cincoEvaluaciones = true;
+                    if(!cuatroEvaluaciones) cincoEvaluaciones = true;
                 }
                 #endregion
                 #endregion
@@ -3016,10 +3441,28 @@ namespace Tesis_ClienteWeb.Controllers
                     chartSeries.Points[0].Color = Color.Blue;
                     chartSeries.Points[1].Color = Color.Red;
                     chart.Series.Add(chartSeries);
-                    chart.SaveImage(reportRemains_PieChart4_path, ChartImageFormat.Png);
                     #endregion
-
-                    image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart4_path);
+                    #region Definiendo un Memory Stream para guardar la imagen
+                    memoryStream = new MemoryStream();
+                    chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                    //chart.SaveImage(reportRemains_PieChart4_path, ChartImageFormat.Png);
+                    #endregion
+                    #region Obteniendo imagen desde MemoryStream
+                    img1 = System.Drawing.Image.FromStream(memoryStream);
+                    memoryStream.Close();
+                    #endregion
+                    #region Transformando imagen a array binario
+                    stream1 = new MemoryStream();
+                    img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                    imageByte1 = stream1.ToArray();
+                    stream1.Dispose();
+                    img1.Dispose();
+                    #endregion
+                    #region Obteniendo imagen desde array binario
+                    //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart4_path);
+                    image = iTextSharp.text.Image.GetInstance(imageByte1);
+                    memoryStream.Close();
+                    #endregion                                        
                 }
                 #endregion
                 #region No hay notas
@@ -3098,10 +3541,28 @@ namespace Tesis_ClienteWeb.Controllers
                         chartSeries.Points[0].Color = Color.Blue;
                         chartSeries.Points[1].Color = Color.Red;
                         chart.Series.Add(chartSeries);
-                        chart.SaveImage(reportRemains_PieChart5_path, ChartImageFormat.Png);
                         #endregion
-
-                        image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart5_path);
+                        #region Definiendo un Memory Stream para guardar la imagen
+                        memoryStream = new MemoryStream();
+                        chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                        //chart.SaveImage(reportRemains_PieChart5_path, ChartImageFormat.Png);
+                        #endregion
+                        #region Obteniendo imagen desde MemoryStream
+                        img1 = System.Drawing.Image.FromStream(memoryStream);
+                        memoryStream.Close();
+                        #endregion
+                        #region Transformando imagen a array binario
+                        stream1 = new MemoryStream();
+                        img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                        imageByte1 = stream1.ToArray();
+                        stream1.Dispose();
+                        img1.Dispose();
+                        #endregion
+                        #region Obteniendo imagen desde array binario
+                        //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart5_path);
+                        image = iTextSharp.text.Image.GetInstance(imageByte1);
+                        memoryStream.Close();
+                        #endregion
                     }
                     #endregion
                     #region No hay notas
@@ -3178,10 +3639,28 @@ namespace Tesis_ClienteWeb.Controllers
                             chartSeries.Points[0].Color = Color.Blue;
                             chartSeries.Points[1].Color = Color.Red;
                             chart.Series.Add(chartSeries);
-                            chart.SaveImage(reportRemains_PieChart6_path, ChartImageFormat.Png);
                             #endregion
-
-                            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart6_path);
+                            #region Definiendo un Memory Stream para guardar la imagen
+                            memoryStream = new MemoryStream();
+                            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                            //chart.SaveImage(reportRemains_PieChart6_path, ChartImageFormat.Png);
+                            #endregion
+                            #region Obteniendo imagen desde MemoryStream
+                            img1 = System.Drawing.Image.FromStream(memoryStream);
+                            memoryStream.Close();
+                            #endregion
+                            #region Transformando imagen a array binario
+                            stream1 = new MemoryStream();
+                            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                            imageByte1 = stream1.ToArray();
+                            stream1.Dispose();
+                            img1.Dispose();
+                            #endregion
+                            #region Obteniendo imagen desde array binario
+                            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart6_path);
+                            image = iTextSharp.text.Image.GetInstance(imageByte1);
+                            memoryStream.Close();
+                            #endregion
                         }
                         #endregion
                         #region No hay notas
@@ -3346,9 +3825,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_PieChart7_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart7_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart7_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart7_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 450f, document.PageSize.Height - 735f);
             document.Add(image);
@@ -3512,9 +4009,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data2) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_BarChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_BarChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 570, document.PageSize.Height - 440f);
             document.Add(image);
@@ -3610,9 +4125,28 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data3) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_BarChart2_path, ChartImageFormat.Png);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_BarChart2_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart2_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
 
-            image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart2_path);
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 302, document.PageSize.Height - 440f);
             document.Add(image);
@@ -3872,6 +4406,11 @@ namespace Tesis_ClienteWeb.Controllers
             List<object> jsonResult = new List<object>();
 
             #region Variables utilitarias
+            MemoryStream memoryStream;
+            System.Drawing.Image img1;
+            MemoryStream stream1;
+            byte[] imageByte1;
+
             int intAux = 0;
             iTextSharp.text.Image image;
             Chart chart;
@@ -4278,9 +4817,10 @@ namespace Tesis_ClienteWeb.Controllers
             string logo_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_UTILITIES_DIRECTORY), ConstantRepository.REPORT_LOGO);
             string subHeaderBackground_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_UTILITIES_DIRECTORY), ConstantRepository.REPORT_SUBHEADER_BACKGROUND);
 
-            string ServerSide_name = "ReportePorCurso" + "C" + _session.SCHOOLID + "Y" +
-                _session.SCHOOLYEARID + "C" + idCurso.ToString() + "U" + _session.USERID + "-" +
-                DateTime.Now.ToString("yyyy-MM-dd") + "H" + DateTime.Now.ToString("HH-mm-ss");
+            //string ServerSide_name = "ReportePorCurso" + "C" + _session.SCHOOLID + "Y" +
+                //_session.SCHOOLYEARID + "C" + idCurso.ToString() + "U" + _session.USERID + "-" +
+                //DateTime.Now.ToString("yyyy-MM-dd") + "H" + DateTime.Now.ToString("HH-mm-ss");
+            string ServerSide_name = "ReportePorCurso";
 
             string pdfFile_ServerSide_name = ServerSide_name + ".pdf";
             string pdfFile_ServerSide_path = Path.Combine(Server.MapPath(ConstantRepository.REPORT_SERVER_DOWNLOAD_DIRECTORY), pdfFile_ServerSide_name);
@@ -4314,7 +4854,7 @@ namespace Tesis_ClienteWeb.Controllers
             #region Configuración del documento
             #region Declarando documento, escritor PDF
             Document document = new Document(PageSize.LETTER, 36, 36, 7, 36);
-            FileStream fileStream = new FileStream(pdfFile_ServerSide_path, FileMode.CreateNew);
+            FileStream fileStream = new FileStream(pdfFile_ServerSide_path, FileMode.Create);
             PdfWriter writer = PdfWriter.GetInstance(document, fileStream);
             #endregion
             #region Definiendo metadata
@@ -4663,9 +5203,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion                        
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 450f, document.PageSize.Height - 640f);
             document.Add(image);
@@ -4756,9 +5314,28 @@ namespace Tesis_ClienteWeb.Controllers
                             chartSeries.Points[0].Color = Color.Blue;
                             chartSeries.Points[1].Color = Color.Red;
                             chart.Series.Add(chartSeries);
-                            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
                             #endregion
-                            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                            #region Definiendo un Memory Stream para guardar la imagen
+                            memoryStream = new MemoryStream();
+                            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+                            #endregion
+                            #region Obteniendo imagen desde MemoryStream
+                            img1 = System.Drawing.Image.FromStream(memoryStream);
+                            memoryStream.Close();
+                            #endregion
+                            #region Transformando imagen a array binario
+                            stream1 = new MemoryStream();
+                            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                            imageByte1 = stream1.ToArray();
+                            stream1.Dispose();
+                            img1.Dispose();
+                            #endregion
+                            #region Obteniendo imagen desde array binario
+                            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                            image = iTextSharp.text.Image.GetInstance(imageByte1);
+                            memoryStream.Close();
+                            #endregion
                         }
                         #endregion
                         #region No hay notas
@@ -4962,9 +5539,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 450f, document.PageSize.Height - 640f);
             document.Add(image);
@@ -5055,9 +5650,28 @@ namespace Tesis_ClienteWeb.Controllers
                             chartSeries.Points[0].Color = Color.Blue;
                             chartSeries.Points[1].Color = Color.Red;
                             chart.Series.Add(chartSeries);
-                            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
                             #endregion
-                            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                            #region Definiendo un Memory Stream para guardar la imagen
+                            memoryStream = new MemoryStream();
+                            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+                            #endregion
+                            #region Obteniendo imagen desde MemoryStream
+                            img1 = System.Drawing.Image.FromStream(memoryStream);
+                            memoryStream.Close();
+                            #endregion
+                            #region Transformando imagen a array binario
+                            stream1 = new MemoryStream();
+                            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                            imageByte1 = stream1.ToArray();
+                            stream1.Dispose();
+                            img1.Dispose();
+                            #endregion
+                            #region Obteniendo imagen desde array binario
+                            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                            image = iTextSharp.text.Image.GetInstance(imageByte1);
+                            memoryStream.Close();
+                            #endregion
                         }
                         #endregion
                         #region No hay notas
@@ -5261,9 +5875,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 450f, document.PageSize.Height - 640f);
             document.Add(image);
@@ -5354,9 +5986,28 @@ namespace Tesis_ClienteWeb.Controllers
                             chartSeries.Points[0].Color = Color.Blue;
                             chartSeries.Points[1].Color = Color.Red;
                             chart.Series.Add(chartSeries);
-                            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
                             #endregion
-                            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                            #region Definiendo un Memory Stream para guardar la imagen
+                            memoryStream = new MemoryStream();
+                            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+                            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+                            #endregion
+                            #region Obteniendo imagen desde MemoryStream
+                            img1 = System.Drawing.Image.FromStream(memoryStream);
+                            memoryStream.Close();
+                            #endregion
+                            #region Transformando imagen a array binario
+                            stream1 = new MemoryStream();
+                            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+                            imageByte1 = stream1.ToArray();
+                            stream1.Dispose();
+                            img1.Dispose();
+                            #endregion
+                            #region Obteniendo imagen desde array binario
+                            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+                            image = iTextSharp.text.Image.GetInstance(imageByte1);
+                            memoryStream.Close();
+                            #endregion
                         }
                         #endregion
                         #region No hay notas
@@ -5534,9 +6185,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.Points[0].Color = Color.Blue;
             chartSeries.Points[1].Color = Color.Red;
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_PieChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_PieChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 450f, document.PageSize.Height - 520f);
             document.Add(image);
@@ -5676,9 +6345,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data2) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_BarChart1_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart1_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_BarChart1_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart1_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 570, document.PageSize.Height - 440f);
             document.Add(image);
@@ -5760,9 +6447,27 @@ namespace Tesis_ClienteWeb.Controllers
             chartSeries.BackGradientStyle = GradientStyle.LeftRight;
             foreach (var item in data3) { chartSeries.Points.AddXY(item.Key, item.Value); }
             chart.Series.Add(chartSeries);
-            chart.SaveImage(reportRemains_BarChart2_path, ChartImageFormat.Png);
-
-            image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart2_path);
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(reportRemains_BarChart2_path, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Obteniendo imagen desde array binario
+            //image = iTextSharp.text.Image.GetInstance(reportRemains_BarChart2_path);
+            image = iTextSharp.text.Image.GetInstance(imageByte1);
+            memoryStream.Close();
+            #endregion
             image.Alignment = Element.ALIGN_CENTER;
             image.SetAbsolutePosition(document.PageSize.Width - 302, document.PageSize.Height - 440f);
             document.Add(image);
@@ -6396,6 +7101,7 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
             #region Invocando el Web Service
             WS_Security.Service1SoapClient WSClient = new WS_Security.Service1SoapClient();
+            WS_Security_localhost.Service1 WSClient_localhost = new WS_Security_localhost.Service1();
 
             WSClient.StatisticsImageGenerator(
                 ConstantRepository.MOBILE_STATISTICS_CODE_AprobadosVsReprobados,
@@ -6540,7 +7246,143 @@ namespace Tesis_ClienteWeb.Controllers
                 imageBase64_1);
             #endregion
             #endregion
-            
+            #region Gráfico #3
+            #region Declaración de variables
+            graphBarChartFont = new System.Drawing.Font("Almanac MT", 8);
+            graphBarChartFontAxisTitle = new System.Drawing.Font("Helvetica", 8);
+            stringAux = "";
+            #endregion
+            #region Obteniendo la lista top 10 mejores notas
+            top10MejoresNotas = (grado > 6 ?
+                listaNotas.OrderBy(m => m.NumberScore).Take(10).ToList() :
+                listaNotas.OrderBy(m => m.ToIntLetterScore(m.LetterScore)).Take(10).ToList());
+            #endregion
+            #region Definiendo la data
+            data2 = new Dictionary<int, float>();
+            for (int i = 1; i <= 10; i++)
+            {
+                try
+                {
+                    if (grado > 6) //Bachillerato
+                        data2.Add(i, top10MejoresNotas[i - 1].NumberScore);
+                    else //Primaria
+                        data2.Add(i, top10MejoresNotas[i - 1].ToIntLetterScore(top10MejoresNotas[i - 1].LetterScore));
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    data2.Add(i, 1);
+                }
+            }
+            #endregion
+            #region Desarrollando la gráfica
+            chart = new Chart();
+            chart.AntiAliasing = AntiAliasingStyles.All;
+            chart.TextAntiAliasingQuality = TextAntiAliasingQuality.High;
+            chart.Width = 255;
+            chart.Height = 278;
+
+            chartArea = new ChartArea();
+            chartArea.AxisY.LabelStyle.Enabled = true;
+            chartArea.AxisY.LabelStyle.ForeColor = Color.Black;
+            chartArea.AxisY.LabelStyle.Font = graphBarChartFont;
+            chartArea.AxisY.LabelStyle.Format = "{0:0}";
+            chartArea.AxisY.LabelStyle.IsEndLabelVisible = true;
+            chartArea.AxisY.ArrowStyle = AxisArrowStyle.Triangle;
+            chartArea.AxisY.IsLabelAutoFit = true;
+            chartArea.AxisY.LineColor = Color.Blue;
+            chartArea.AxisY.Maximum = (grado > 6 ? 20 : 5);
+            chartArea.AxisY.Title = "Notas obtenidas";
+            chartArea.AxisY.TitleFont = graphBarChartFontAxisTitle;
+            chartArea.AxisY.MajorGrid.Enabled = true;
+            chartArea.AxisY.MajorGrid.LineColor = Color.Lavender;
+            chartArea.AxisY.MajorGrid.LineWidth = 6;
+            chartArea.AxisY.MajorTickMark.Enabled = true;
+            chartArea.AxisY.MajorTickMark.LineColor = Color.Blue;
+            chartArea.AxisY.MinorTickMark.Enabled = false;
+            if (grado <= 6)//Primaria
+            {
+                chartArea.AxisY.CustomLabels.Add(0, 1, "E");
+                chartArea.AxisY.CustomLabels.Add(1, 2, "D");
+                chartArea.AxisY.CustomLabels.Add(2, 3, "C");
+                chartArea.AxisY.CustomLabels.Add(3, 4, "B");
+                chartArea.AxisY.CustomLabels.Add(4, 5, "A");
+            }
+
+            chartArea.AxisX.LabelStyle.Enabled = true;
+            chartArea.AxisX.LabelStyle.ForeColor = Color.Black;
+            chartArea.AxisX.LabelStyle.Font = graphBarChartFont;
+            chartArea.AxisX.LabelStyle.IsEndLabelVisible = true;
+            chartArea.AxisX.ArrowStyle = AxisArrowStyle.Triangle;
+            chartArea.AxisX.LineColor = Color.Blue;
+            chartArea.AxisX.Maximum = 11;
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisX.MajorTickMark.Enabled = false;
+            chartArea.AxisX.MinorTickMark.Enabled = false;
+            chartArea.AxisX.LabelAutoFitMinFontSize = 7;
+
+            for (int i = 0; i <= 10; i++)
+            {
+                if (i != 10)
+                {
+                    try
+                    {
+                        if (grado > 6) //Bachillerato
+                            stringAux = "(" + top10MejoresNotas[i].NumberScore + ") ";
+                        else //Primaria
+                            stringAux = "(" + top10MejoresNotas[i].LetterScore + ") ";
+
+                        stringAux = stringAux + top10MejoresNotas[i].Student.FirstLastName + " " +
+                            top10MejoresNotas[i].Student.SecondLastName + ", " +
+                            top10MejoresNotas[i].Student.FirstName;
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        stringAux = "N/A";
+                    }
+
+                    chartArea.AxisX.CustomLabels.Add(i + 0.5, i + 1.5, stringAux);
+                }
+            }
+            chart.ChartAreas.Add(chartArea);
+
+            chartSeries = new Series();
+            chartSeries.ChartType = SeriesChartType.Column;
+            chartSeries.Color = Color.Red;
+            chartSeries.BorderColor = Color.DarkRed;
+            chartSeries.BackGradientStyle = GradientStyle.LeftRight;
+            foreach (var item in data2) { chartSeries.Points.AddXY(item.Key, item.Value); }
+            chart.Series.Add(chartSeries);
+            #endregion
+            #region Definiendo un Memory Stream para guardar la imagen
+            memoryStream = new MemoryStream();
+            chart.SaveImage(memoryStream, ChartImageFormat.Png);
+            //chart.SaveImage(path2, ChartImageFormat.Png);
+            #endregion
+            #region Obteniendo imagen desde MemoryStream
+            img1 = System.Drawing.Image.FromStream(memoryStream);
+            memoryStream.Close();
+            #endregion
+            #region Transformando imagen a array binario
+            stream1 = new MemoryStream();
+            img1.Save(stream1, System.Drawing.Imaging.ImageFormat.Bmp);
+            imageByte1 = stream1.ToArray();
+            imageBase64_1 = Convert.ToBase64String(imageByte1);
+            stream1.Dispose();
+            img1.Dispose();
+            #endregion
+            #region Invocando el Web Service
+            WSClient = new WS_Security.Service1SoapClient();
+            //WSClient_localhost = new WS_Security_localhost.Service1();
+
+            WSClient.StatisticsImageGenerator(
+                ConstantRepository.MOBILE_STATISTICS_CODE_Top10ResultadosDeficientes,
+                casu.CourseId,
+                casu.Period.SchoolYear.SchoolYearId,
+                casu.Period.SchoolYear.School.SchoolId,
+                imageBase64_1);
+            #endregion
+            #endregion
+
             return true;
         }
 
@@ -7252,7 +8094,7 @@ namespace Tesis_ClienteWeb.Controllers
             {
                 jsonResult.Add(new
                 {
-                    nombre = alumno.FirstLastName + "," + alumno.FirstName,
+                    nombre = alumno.FirstLastName + ", " + alumno.FirstName,
                     idAlumno = alumno.StudentId,
                 });
             }

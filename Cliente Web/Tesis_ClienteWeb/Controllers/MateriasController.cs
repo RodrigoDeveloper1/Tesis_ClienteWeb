@@ -163,18 +163,10 @@ namespace Tesis_ClienteWeb.Controllers
             return true;
         }
 
-
-
-
-
-
-
-
-
-        //Por revisar - Rodrigo Uzcátegui - 12/05/15
         public ActionResult Materias()
         {
-            ObteniendoSesion();
+            ConfiguracionInicial(_controlador, "ListadoMaterias");
+            
             #region Inicializando variables
             MateriasModel model = new MateriasModel();
             List<Course> listaCursos;
@@ -186,11 +178,20 @@ namespace Tesis_ClienteWeb.Controllers
             listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             model.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
-           // model.listaMaterias = _subjectService.ObtenerListaMaterias().ToList();
+            // model.listaMaterias = _subjectService.ObtenerListaMaterias().ToList();
             #endregion
 
             return View(model);
         }
+
+
+
+
+
+
+
+        //Por revisar - Rodrigo Uzcátegui - 12/05/15
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]

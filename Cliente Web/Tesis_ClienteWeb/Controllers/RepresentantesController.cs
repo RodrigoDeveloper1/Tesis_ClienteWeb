@@ -11,34 +11,34 @@ namespace Tesis_ClienteWeb.Controllers
 {
     public class RepresentantesController : MaestraController
     {
-        #region Declaración de variables
-        private RepresentativeService _representativeService;
-        private CourseService _courseService;
-        private StudentService _studentService;
-        #endregion
+        private string _controlador = "Representantes";
+        private BridgeController _puente = new BridgeController();
 
-        #region Pantalla Listado Representantes
         [HttpGet]
         public ActionResult ListadoRepresentantes()
         {
-            ObteniendoSesion();
+            ConfiguracionInicial(_controlador, "ListadoRepresentantesDocentes");
+
             #region Inicializando variables
-            GestionRepresentantesModel model = new GestionRepresentantesModel(); 
+            GestionRepresentantesModel model = new GestionRepresentantesModel();
             List<Course> listaCursos;
-            _representativeService = (_representativeService == null ? new RepresentativeService() : _representativeService);           
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
+            RepresentativeService representativeService = new RepresentativeService();
+            CourseService courseService = new CourseService();
             #endregion
-            #region Inicializando SelectList de colegios
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+            
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
+
             model.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
-            #endregion
 
             return View(model);
         }
 
-        #endregion
+
+
+
+        //Por revisar - Rodrigo Uzcátegui (06-07-15)
+
         #region Pantalla Modificar Representantes
         [HttpGet]
         public ActionResult ModificarRepresentantes(int id)
@@ -107,12 +107,15 @@ namespace Tesis_ClienteWeb.Controllers
             List<Representative> listaRepresentantes = new List<Representative>();
             Student Alumno = new Student();
             List<object> jsonResult = new List<object>();
-            _studentService = (_studentService == null ? new StudentService() : _studentService);
-            _representativeService = (_representativeService == null ? new RepresentativeService() : _representativeService);
+            StudentService studentService = new StudentService();
+            RepresentativeService representativeService = new RepresentativeService();
             #endregion
             #region Obteniendo lista de estudiantes y curso
-            listaRepresentantes = _representativeService.ObtenerListaRepresentantesPorAlumno(idEstudiante)
-                               .OrderBy(m => m.LastName).ThenBy(m => m.SecondLastName).ToList();
+            listaRepresentantes = 
+                representativeService.ObtenerListaRepresentantesPorAlumno(idEstudiante)
+                    .OrderBy(m => m.LastName)
+                    .ThenBy(m => m.SecondLastName)
+                    .ToList();
             #endregion
             #region Transformando lista de representantes a JsonResult
             foreach (Representative representante in listaRepresentantes)

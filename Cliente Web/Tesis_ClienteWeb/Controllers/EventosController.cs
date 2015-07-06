@@ -379,6 +379,13 @@ namespace Tesis_ClienteWeb.Controllers
                 return Json(jsonResult);
             }
             #endregion
+            #region Configurando el formato de las horas
+            string[] auxHour = starthour.Split(':');
+            starthour = (auxHour[0].Count() == 1 ? "0" + starthour : starthour);
+
+            auxHour = endhour.Split(':');
+            endhour = (auxHour[0].Count() == 1 ? "0" + endhour : endhour);
+            #endregion
 
             #region Obteniendo datos del usuario de la sesión
             User user = userService.ObtenerUsuarioPorId(_session.USERID);
@@ -431,12 +438,38 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
         }
 
+        [HttpPost]
+        public JsonResult EliminarEvento(int id)
+        {
+            ConfiguracionInicial(_controlador, "EliminarEvento");
+
+            UnitOfWork unidad = new UnitOfWork();
+            EventService eventService = new EventService(unidad);
+            List<object> jsonResult = new List<object>();
+
+            try 
+            {
+                Event evento = eventService.ObtenerEventoPorId(id);
+                eventService.EliminarEvento(id);
+
+                jsonResult.Add(new { Success = true });
+            }
+            catch (Exception e) 
+            {
+                TempData["Error"] = e.Message;
+                jsonResult.Add(new { Success = true });
+            }
+
+            return Json(jsonResult);
+        }
+
+
+
 
 
 
 
         // Por revisar - Rodrigo Uzcátegui (26-06-15)
-
 
         #region Pantalla Gestión de Eventos
 
@@ -478,8 +511,7 @@ namespace Tesis_ClienteWeb.Controllers
 
         #endregion
         #region Gestión de Eventos
-
-
+        
         [HttpPost]
         public JsonResult GetListaEventosCalendarioMaestra(int idColegio)
         {
@@ -508,31 +540,6 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(listaeventosaenviar, JsonRequestBehavior.AllowGet);
         }
-
-        
-
-        [HttpPost]
-        public ActionResult EliminarEvento(int id)
-        {
-            UnitOfWork _unidad = new UnitOfWork();
-            EventService eventosService = new EventService(_unidad);
-            NotificationService _notificationService = new NotificationService(_unidad);
-            Event evento = eventosService.ObtenerEventoPorId(id);
-            List<Notification> listanotificaciones = evento.Notifications.ToList<Notification>();
-                        
-            while (listanotificaciones.Count > 0) 
-            {
-                _notificationService.EliminarNotification(listanotificaciones[0].NotificationId);
-                
-            }
-
-            
-            eventosService.EliminarEvento(id);
-            return RedirectToAction("Eventos", "CalendarioEventos");
-        }
-
         #endregion
     }
-
-
 }

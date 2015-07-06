@@ -23,6 +23,27 @@ namespace Tesis_ClienteWeb.WS_Security {
         System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.AssessmentsResponse> AssessmentsAsync(Tesis_ClienteWeb.WS_Security.AssessmentsRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento StudentId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Careers", ReplyAction="*")]
+        Tesis_ClienteWeb.WS_Security.CareersResponse Careers(Tesis_ClienteWeb.WS_Security.CareersRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Careers", ReplyAction="*")]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CareersResponse> CareersAsync(Tesis_ClienteWeb.WS_Security.CareersRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento CareerId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CareersInfo", ReplyAction="*")]
+        Tesis_ClienteWeb.WS_Security.CareersInfoResponse CareersInfo(Tesis_ClienteWeb.WS_Security.CareersInfoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CareersInfo", ReplyAction="*")]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CareersInfoResponse> CareersInfoAsync(Tesis_ClienteWeb.WS_Security.CareersInfoRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento CoreId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CoreInfo", ReplyAction="*")]
+        Tesis_ClienteWeb.WS_Security.CoreInfoResponse CoreInfo(Tesis_ClienteWeb.WS_Security.CoreInfoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CoreInfo", ReplyAction="*")]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CoreInfoResponse> CoreInfoAsync(Tesis_ClienteWeb.WS_Security.CoreInfoRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento StudentId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CourseInfo", ReplyAction="*")]
         Tesis_ClienteWeb.WS_Security.CourseInfoResponse CourseInfo(Tesis_ClienteWeb.WS_Security.CourseInfoRequest request);
         
@@ -35,6 +56,13 @@ namespace Tesis_ClienteWeb.WS_Security {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Home", ReplyAction="*")]
         System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.HomeResponse> HomeAsync(Tesis_ClienteWeb.WS_Security.HomeRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento InstituteId del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InstituteInfo", ReplyAction="*")]
+        Tesis_ClienteWeb.WS_Security.InstituteInfoResponse InstituteInfo(Tesis_ClienteWeb.WS_Security.InstituteInfoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/InstituteInfo", ReplyAction="*")]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.InstituteInfoResponse> InstituteInfoAsync(Tesis_ClienteWeb.WS_Security.InstituteInfoRequest request);
         
         // CODEGEN: Se está generando un contrato de mensaje, ya que el nombre de elemento Username del espacio de nombres http://tempuri.org/ no está marcado para aceptar valores nil.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Login", ReplyAction="*")]
@@ -159,6 +187,214 @@ namespace Tesis_ClienteWeb.WS_Security {
         
         public AssessmentsResponseBody(string AssessmentsResult) {
             this.AssessmentsResult = AssessmentsResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CareersRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="Careers", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.CareersRequestBody Body;
+        
+        public CareersRequest() {
+        }
+        
+        public CareersRequest(Tesis_ClienteWeb.WS_Security.CareersRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CareersRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string StudentId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string SchoolId;
+        
+        public CareersRequestBody() {
+        }
+        
+        public CareersRequestBody(string StudentId, string SchoolId) {
+            this.StudentId = StudentId;
+            this.SchoolId = SchoolId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CareersResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CareersResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.CareersResponseBody Body;
+        
+        public CareersResponse() {
+        }
+        
+        public CareersResponse(Tesis_ClienteWeb.WS_Security.CareersResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CareersResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string CareersResult;
+        
+        public CareersResponseBody() {
+        }
+        
+        public CareersResponseBody(string CareersResult) {
+            this.CareersResult = CareersResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CareersInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CareersInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.CareersInfoRequestBody Body;
+        
+        public CareersInfoRequest() {
+        }
+        
+        public CareersInfoRequest(Tesis_ClienteWeb.WS_Security.CareersInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CareersInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string CareerId;
+        
+        public CareersInfoRequestBody() {
+        }
+        
+        public CareersInfoRequestBody(string CareerId) {
+            this.CareerId = CareerId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CareersInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CareersInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.CareersInfoResponseBody Body;
+        
+        public CareersInfoResponse() {
+        }
+        
+        public CareersInfoResponse(Tesis_ClienteWeb.WS_Security.CareersInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CareersInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string CareersInfoResult;
+        
+        public CareersInfoResponseBody() {
+        }
+        
+        public CareersInfoResponseBody(string CareersInfoResult) {
+            this.CareersInfoResult = CareersInfoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CoreInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CoreInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.CoreInfoRequestBody Body;
+        
+        public CoreInfoRequest() {
+        }
+        
+        public CoreInfoRequest(Tesis_ClienteWeb.WS_Security.CoreInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CoreInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string CoreId;
+        
+        public CoreInfoRequestBody() {
+        }
+        
+        public CoreInfoRequestBody(string CoreId) {
+            this.CoreId = CoreId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CoreInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CoreInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.CoreInfoResponseBody Body;
+        
+        public CoreInfoResponse() {
+        }
+        
+        public CoreInfoResponse(Tesis_ClienteWeb.WS_Security.CoreInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CoreInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string CoreInfoResult;
+        
+        public CoreInfoResponseBody() {
+        }
+        
+        public CoreInfoResponseBody(string CoreInfoResult) {
+            this.CoreInfoResult = CoreInfoResult;
         }
     }
     
@@ -299,6 +535,78 @@ namespace Tesis_ClienteWeb.WS_Security {
         
         public HomeResponseBody(string HomeResult) {
             this.HomeResult = HomeResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class InstituteInfoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="InstituteInfo", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.InstituteInfoRequestBody Body;
+        
+        public InstituteInfoRequest() {
+        }
+        
+        public InstituteInfoRequest(Tesis_ClienteWeb.WS_Security.InstituteInfoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class InstituteInfoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string InstituteId;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string CareerId;
+        
+        public InstituteInfoRequestBody() {
+        }
+        
+        public InstituteInfoRequestBody(string InstituteId, string CareerId) {
+            this.InstituteId = InstituteId;
+            this.CareerId = CareerId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class InstituteInfoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="InstituteInfoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public Tesis_ClienteWeb.WS_Security.InstituteInfoResponseBody Body;
+        
+        public InstituteInfoResponse() {
+        }
+        
+        public InstituteInfoResponse(Tesis_ClienteWeb.WS_Security.InstituteInfoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class InstituteInfoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string InstituteInfoResult;
+        
+        public InstituteInfoResponseBody() {
+        }
+        
+        public InstituteInfoResponseBody(string InstituteInfoResult) {
+            this.InstituteInfoResult = InstituteInfoResult;
         }
     }
     
@@ -849,6 +1157,83 @@ namespace Tesis_ClienteWeb.WS_Security {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tesis_ClienteWeb.WS_Security.CareersResponse Tesis_ClienteWeb.WS_Security.Service1Soap.Careers(Tesis_ClienteWeb.WS_Security.CareersRequest request) {
+            return base.Channel.Careers(request);
+        }
+        
+        public string Careers(string StudentId, string SchoolId) {
+            Tesis_ClienteWeb.WS_Security.CareersRequest inValue = new Tesis_ClienteWeb.WS_Security.CareersRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CareersRequestBody();
+            inValue.Body.StudentId = StudentId;
+            inValue.Body.SchoolId = SchoolId;
+            Tesis_ClienteWeb.WS_Security.CareersResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).Careers(inValue);
+            return retVal.Body.CareersResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CareersResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.CareersAsync(Tesis_ClienteWeb.WS_Security.CareersRequest request) {
+            return base.Channel.CareersAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CareersResponse> CareersAsync(string StudentId, string SchoolId) {
+            Tesis_ClienteWeb.WS_Security.CareersRequest inValue = new Tesis_ClienteWeb.WS_Security.CareersRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CareersRequestBody();
+            inValue.Body.StudentId = StudentId;
+            inValue.Body.SchoolId = SchoolId;
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CareersAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tesis_ClienteWeb.WS_Security.CareersInfoResponse Tesis_ClienteWeb.WS_Security.Service1Soap.CareersInfo(Tesis_ClienteWeb.WS_Security.CareersInfoRequest request) {
+            return base.Channel.CareersInfo(request);
+        }
+        
+        public string CareersInfo(string CareerId) {
+            Tesis_ClienteWeb.WS_Security.CareersInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.CareersInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CareersInfoRequestBody();
+            inValue.Body.CareerId = CareerId;
+            Tesis_ClienteWeb.WS_Security.CareersInfoResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CareersInfo(inValue);
+            return retVal.Body.CareersInfoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CareersInfoResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.CareersInfoAsync(Tesis_ClienteWeb.WS_Security.CareersInfoRequest request) {
+            return base.Channel.CareersInfoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CareersInfoResponse> CareersInfoAsync(string CareerId) {
+            Tesis_ClienteWeb.WS_Security.CareersInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.CareersInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CareersInfoRequestBody();
+            inValue.Body.CareerId = CareerId;
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CareersInfoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tesis_ClienteWeb.WS_Security.CoreInfoResponse Tesis_ClienteWeb.WS_Security.Service1Soap.CoreInfo(Tesis_ClienteWeb.WS_Security.CoreInfoRequest request) {
+            return base.Channel.CoreInfo(request);
+        }
+        
+        public string CoreInfo(string CoreId) {
+            Tesis_ClienteWeb.WS_Security.CoreInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.CoreInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CoreInfoRequestBody();
+            inValue.Body.CoreId = CoreId;
+            Tesis_ClienteWeb.WS_Security.CoreInfoResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CoreInfo(inValue);
+            return retVal.Body.CoreInfoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CoreInfoResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.CoreInfoAsync(Tesis_ClienteWeb.WS_Security.CoreInfoRequest request) {
+            return base.Channel.CoreInfoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.CoreInfoResponse> CoreInfoAsync(string CoreId) {
+            Tesis_ClienteWeb.WS_Security.CoreInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.CoreInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.CoreInfoRequestBody();
+            inValue.Body.CoreId = CoreId;
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).CoreInfoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         Tesis_ClienteWeb.WS_Security.CourseInfoResponse Tesis_ClienteWeb.WS_Security.Service1Soap.CourseInfo(Tesis_ClienteWeb.WS_Security.CourseInfoRequest request) {
             return base.Channel.CourseInfo(request);
         }
@@ -898,6 +1283,33 @@ namespace Tesis_ClienteWeb.WS_Security {
             inValue.Body = new Tesis_ClienteWeb.WS_Security.HomeRequestBody();
             inValue.Body.UserId = UserId;
             return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).HomeAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Tesis_ClienteWeb.WS_Security.InstituteInfoResponse Tesis_ClienteWeb.WS_Security.Service1Soap.InstituteInfo(Tesis_ClienteWeb.WS_Security.InstituteInfoRequest request) {
+            return base.Channel.InstituteInfo(request);
+        }
+        
+        public string InstituteInfo(string InstituteId, string CareerId) {
+            Tesis_ClienteWeb.WS_Security.InstituteInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.InstituteInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.InstituteInfoRequestBody();
+            inValue.Body.InstituteId = InstituteId;
+            inValue.Body.CareerId = CareerId;
+            Tesis_ClienteWeb.WS_Security.InstituteInfoResponse retVal = ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).InstituteInfo(inValue);
+            return retVal.Body.InstituteInfoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.InstituteInfoResponse> Tesis_ClienteWeb.WS_Security.Service1Soap.InstituteInfoAsync(Tesis_ClienteWeb.WS_Security.InstituteInfoRequest request) {
+            return base.Channel.InstituteInfoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Tesis_ClienteWeb.WS_Security.InstituteInfoResponse> InstituteInfoAsync(string InstituteId, string CareerId) {
+            Tesis_ClienteWeb.WS_Security.InstituteInfoRequest inValue = new Tesis_ClienteWeb.WS_Security.InstituteInfoRequest();
+            inValue.Body = new Tesis_ClienteWeb.WS_Security.InstituteInfoRequestBody();
+            inValue.Body.InstituteId = InstituteId;
+            inValue.Body.CareerId = CareerId;
+            return ((Tesis_ClienteWeb.WS_Security.Service1Soap)(this)).InstituteInfoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

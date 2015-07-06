@@ -13,6 +13,7 @@ using Tesis_ClienteWeb.App_Start;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using Tesis_ClienteWeb_Data.Repositories;
+using System.IO;
 
 namespace Tesis_ClienteWeb.Controllers
 {
@@ -209,6 +210,35 @@ namespace Tesis_ClienteWeb.Controllers
                 return RedirectToAction("Inicio", "Index");
             }
             #endregion
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public JsonResult DownloadAPK()
+        {
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+            #endregion
+            #region Definiendo path
+            string path = Path.Combine(Server.MapPath(ConstantRepository.MobileAPK_Path), 
+                ConstantRepository.APKFileName);
+            #endregion
+            #region Devolviendo objeto JSON
+            jsonResult.Add(new
+            {
+                success = true,
+                path = path,
+            });
+            #endregion
+
+            return Json(jsonResult);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult DownloadAPK_Response(string path)
+        {
+            return File(path, "binary/octet-stream", ConstantRepository.APKFileName);
         }
 
         private void InicializarSesion(User usuario)

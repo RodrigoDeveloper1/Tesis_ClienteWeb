@@ -32,28 +32,23 @@ namespace Tesis_ClienteWeb_Data.Repositories
 
         public SessionVariablesRepository()
         {
-            if (HttpContext.Current == null)
+            try
             {
-                throw new Exception();
+                this._Administrador = (bool)HttpContext.Current.Session["Administrador"];
+                this._Coordinador = (bool)HttpContext.Current.Session["Coordinador"];
+                this._UserId = HttpContext.Current.Session["UserId"].ToString();
+                this._Username = HttpContext.Current.Session["UserName"].ToString();
+                this._RoleId = HttpContext.Current.Session["RoleId"].ToString();
+                this._RoleName = HttpContext.Current.Session["RoleName"].ToString();
+                this._SchoolId = Convert.ToInt32(HttpContext.Current.Session["SchoolId"]);
+                this._SchoolYearId = Convert.ToInt32(HttpContext.Current.Session["SchoolYearId"]);
+                this._StartDate = Convert.ToDateTime(HttpContext.Current.Session["StartDate"]);
+                this._DateOfCompletion = Convert.ToDateTime(HttpContext.Current.Session["DateOfCompletion"]);
             }
-            else
+            catch (NullReferenceException)
             {
-                if (!HttpContext.Current.Session.IsNewSession)
-                {
-                    this._Administrador = (bool)HttpContext.Current.Session["Administrador"];
-                    this._Coordinador = (bool)HttpContext.Current.Session["Coordinador"];
-                    this._UserId = HttpContext.Current.Session["UserId"].ToString();
-                    this._Username = HttpContext.Current.Session["UserName"].ToString();
-                    this._RoleId = HttpContext.Current.Session["RoleId"].ToString();
-                    this._RoleName = HttpContext.Current.Session["RoleName"].ToString();
-                    this._SchoolId = Convert.ToInt32(HttpContext.Current.Session["SchoolId"]);
-                    this._SchoolYearId = Convert.ToInt32(HttpContext.Current.Session["SchoolYearId"]);
-                    this._StartDate = Convert.ToDateTime(HttpContext.Current.Session["StartDate"]);
-                    this._DateOfCompletion = Convert.ToDateTime(HttpContext.Current.Session["DateOfCompletion"]);
-                }
-                else
-                    throw new SessionExpiredException();
-            }            
+                throw new SessionExpiredException();
+            }
         }
     }
 }

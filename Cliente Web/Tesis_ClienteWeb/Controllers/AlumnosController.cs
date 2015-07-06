@@ -16,6 +16,7 @@ namespace Tesis_ClienteWeb.Controllers
         private string _controlador = "Alumnos";
         private BridgeController _puente = new BridgeController();
 
+        #region Acciones para maestras
         [HttpGet]
         public ActionResult AgregarAlumno()
         {
@@ -660,13 +661,13 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(jsonResult);
         }
-
-        #region Pantalla Alumnos Principal
-
-       
+        #endregion
+        #region Acciones para docentes
+        [HttpGet]
         public ActionResult Alumnos()
         {
-            ObteniendoSesion();
+            ConfiguracionInicial(_controlador, "ListadoAlumnosDocentes");
+
             #region Inicializando variables
             StudentService _studentService = new StudentService();
             CourseService _courseService = new CourseService();
@@ -684,7 +685,6 @@ namespace Tesis_ClienteWeb.Controllers
 
             return View(model);
         }
-
         #endregion
     }
 }

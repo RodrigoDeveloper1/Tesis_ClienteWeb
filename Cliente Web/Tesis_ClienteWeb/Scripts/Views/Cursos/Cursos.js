@@ -157,6 +157,8 @@ $(document).ready(function () {
         }
     });
     $('#table-lista-cursos tbody tr').click(function (e) {
+        showProgress();
+
         var state = $(this).hasClass('active');
         $('.active').removeClass('active');
 
@@ -164,7 +166,6 @@ $(document).ready(function () {
             $(this).addClass('active');
         }
                 
-
         var lista = "";
         var detallecurso_parte_1 = "";
         var detallecurso_parte_2 = "";
@@ -177,6 +178,7 @@ $(document).ready(function () {
             $('#Detalle-Curso-Panel-Div-Parte-2').find('p').remove();
             $('#Detalle-Curso-Panel-Div-Parte-2').find('ul').remove();
             $('#detalle_rendimiento').find('p').remove();
+
             idCurso = $(this).attr('id');
                      
             $.ajax({
@@ -184,111 +186,115 @@ $(document).ready(function () {
                 type: "POST",
                 data: {
                     "idCurso": idCurso
-                }                
-            }).done(function (data) {
-                if (data != null && data.length > 0) {
+                },
+                success: function (data) {
+                    if (data != null && data.length > 0) {
+                        $.ajax({
+                            url: "/Bridge/ObtenerDetalleCurso",
+                            type: "POST",
+                            data: {
+                                "idCurso": idCurso
+                            },
+                            success: function (data2) {
+                                detallecurso_parte_1 = (
+                                    '<p>' +
+                                       '<strong>Grado del curso: </strong>' +
+                                       '<span id="span-grado">' + data2[0].nombrecurso + '</span>' +
+                                    '</p>' +
+                                    '<p>' +
+                                        '<strong>Número de alumnos: </strong>' +
+                                        '<span id="span-nro-alumnos">' + data2[0].numeroestudiantes + '</span>' +
+                                    '</p>' +
+                                    '<p>' +
+                                        '<strong>Lapso en curso: </strong>' +
+                                        '<span id="span-lapso">' + data2[0].lapsoencurso + '</span>' +
+                                    '</p>' +
+                                    '<p>' +
+                                        '<strong>Período escolar: </strong>' +
+                                        '<span id="span-periodo-escolar">' + data2[0].periodoescolar + '</span>' +
+                                    '</p>'
+                                );
 
-                    $.ajax({
-                        url: "/Bridge/ObtenerDetalleCurso",
-                        type: "POST",
-                        data: {
-                            "idCurso": idCurso
-                        }
+                                $('#Detalle-Curso-Panel-Div-Parte-1').find('p').end().append(detallecurso_parte_1);
 
-                    }).done(function (data2) {
+                                detallecurso_parte_2 = ('<p><strong>Lapsos: </strong></p>');
+                                $('#Detalle-Curso-Panel-Div-Parte-2').find('p').end().append(detallecurso_parte_2);
+
+                                detallecurso_parte_3 = (
+                                '<ul><li>I Lapso: <span id="span-lapso-I">' + data2[0].primerlapso + '</span></li>' +
+                                '<li>II Lapso: <span id="span-lapso-II">' + data2[0].segundolapso + '</span></li>' +
+                                '<li>III Lapso: <span id="span-lapso-III">' + data2[0].tercerlapso + '</span></li></ul>'
+                                );
+                                $('#Detalle-Curso-Panel-Div-Parte-2').find('ul').end().append(detallecurso_parte_3);
+
+                                detallecurso_parte_4 = (
+                                   '  <p><strong>Cantidad de materias: </strong>' +
+                                    '<span>' + data2[0].cantidadMaterias + '</span></p>' +
+                                '<p> <strong>Cantidad de evaluaciones: </strong>' +
+                                ' <span>' + data2[0].cantidadEvaluaciones + '</span></p>'
+                                );
+
+                                $('#detalle_rendimiento').find('p').end().append(detallecurso_parte_4);
+
+                                for (var i = 0; i < data.length; i++) {
+                                    lista += (
+                                        '<tr>' +
+                                            '<td class="td-numero-alumno">' + data[i].numerolista + '</td>' +
+                                            '<td class="td-apellidos-alumno">' + data[i].apellido1 + ", " + data[i].apellido2 + '</td>' +
+                                            '<td class="td-nombres-alumno">' + data[i].nombre1 + ", " + data[i].nombre2 + '</td>' +
+                                        '</tr>');
+                                }
+                                $('#table-lista-alumnos').find('tbody').end().append(lista);
+                                hideProgress();
+                            }
+                        });
+                    }
+                    else {
+                        lista = (
+                            '<tr>' +
+                                '<td class="td-numero-alumno"></td>' +
+                                '<td class="td-nombres-alumno"></td>' +
+                                '<td class="td-nombres-alumno"></td>' +
+                            '</tr>');
+
+                        $('#table-lista-alumnos').find('tbody').find('tr').end().append(lista);
 
                         detallecurso_parte_1 = (
-                       '<p><strong>Grado del curso: </strong><span id="span-grado">' + data2[0].nombrecurso + '</span></p>' +
-                       '<p><strong>Número de alumnos: </strong><span id="span-nro-alumnos">' + data2[0].numeroestudiantes + '</span>' +
-                       '<p><strong>Lapso en curso: </strong><span id="span-lapso">' + data2[0].lapsoencurso + '</span>'+
-                        ' <p><strong>Período escolar: </strong><span id="span-periodo-escolar">' + data2[0].periodoescolar + '</span></p>' 
-                     
+                       '<p><strong>Grado del curso: </strong><span id="span-grado"></span></p>' +
+                       '<p><strong>Número de alumnos: </strong><span id="span-nro-alumnos"></span>' +
+                       '<p><strong>Lapso en curso: </strong><span id="span-lapso"></span>'
+
                        );
                         $('#Detalle-Curso-Panel-Div-Parte-1').find('p').end().append(detallecurso_parte_1);
 
                         detallecurso_parte_2 = (
+                          ' <p><strong>Período escolar: </strong><span id="span-periodo-escolar"></span></p>' +
                           '<p><strong>Lapsos: </strong></p>'
-                        );
+                          );
                         $('#Detalle-Curso-Panel-Div-Parte-2').find('p').end().append(detallecurso_parte_2);
 
                         detallecurso_parte_3 = (
-                        '<ul><li>I Lapso: <span id="span-lapso-I">' + data2[0].primerlapso + '</span></li>' +
-                        '<li>II Lapso: <span id="span-lapso-II">' + data2[0].segundolapso + '</span></li>' +
-                        '<li>III Lapso: <span id="span-lapso-III">' + data2[0].tercerlapso + '</span></li></ul>'
+                        '<ul><li>I Lapso: <span id="span-lapso-I"></span></li>' +
+                        '<li>II Lapso: <span id="span-lapso-II"></span></li>' +
+                        '<li>III Lapso: <span id="span-lapso-III"></span></li></ul>'
                         );
                         $('#Detalle-Curso-Panel-Div-Parte-2').find('ul').end().append(detallecurso_parte_3);
 
-                        detallecurso_parte_4 = (
-                           '  <p><strong>Cantidad de materias: </strong>' +
-                            '<span>' + data2[0].cantidadMaterias + '</span></p>' +
-                        '<p> <strong>Cantidad de evaluaciones: </strong>'+
-                        ' <span>' + data2[0].cantidadEvaluaciones + '</span></p>'
-                    
-                      );
-                        $('#detalle_rendimiento').find('p').end().append(detallecurso_parte_4);
-
-                    });
-
-
-                    for (var i = 0; i < data.length; i++) {
-
-                        lista += ('<tr>' +                         
-                                    '<td class="td-numero-alumno">' + data[i].numerolista + '</td>' +
-                                    '<td class="td-apellidos-alumno">' + data[i].apellido1 + ", " + data[i].apellido2 + '</td>' +
-                                    '<td class="td-nombres-alumno">' + data[i].nombre1 + ", " + data[i].nombre2 + '</td>' +
-                                  '</tr>');
+                        hideProgress();
                     }
-                    $('#table-lista-alumnos').find('tbody').end().append(lista);
-
-                   
-
-                }
-                else {
-
-                    lista = ('<tr>' +                                    
-                                    '<td class="td-numero-alumno"></td>' +
-                                    '<td class="td-nombres-alumno"></td>' +
-                                    '<td class="td-nombres-alumno"></td>' +
-                            '</tr>');
-
-                    $('#table-lista-alumnos').find('tbody').find('tr').end().append(lista);
-
-                    detallecurso_parte_1 = (
-                   '<p><strong>Grado del curso: </strong><span id="span-grado"></span></p>' +
-                   '<p><strong>Número de alumnos: </strong><span id="span-nro-alumnos"></span>' +
-                   '<p><strong>Lapso en curso: </strong><span id="span-lapso"></span>' 
-                   
-                   );
-                    $('#Detalle-Curso-Panel-Div-Parte-1').find('p').end().append(detallecurso_parte_1);
-
-                    detallecurso_parte_2 = (
-                      ' <p><strong>Período escolar: </strong><span id="span-periodo-escolar"></span></p>' +
-                      '<p><strong>Lapsos: </strong></p>'
-                      );
-                    $('#Detalle-Curso-Panel-Div-Parte-2').find('p').end().append(detallecurso_parte_2);
-
-                    detallecurso_parte_3 = (
-                    '<ul><li>I Lapso: <span id="span-lapso-I"></span></li>' +
-                    '<li>II Lapso: <span id="span-lapso-II"></span></li>' +
-                    '<li>III Lapso: <span id="span-lapso-III"></span></li></ul>'
-                    );
-                    $('#Detalle-Curso-Panel-Div-Parte-2').find('ul').end().append(detallecurso_parte_3);
-
-
                 }
             })
         }
         else {
-
             $('#table-lista-alumnos').find('tbody').find('tr').remove();
             $('#Detalle-Curso-Panel-Div-Parte-1').find('p').remove();
             $('#Detalle-Curso-Panel-Div-Parte-2').find('p').remove();
             $('#Detalle-Curso-Panel-Div-Parte-2').find('ul').remove();
 
             lista = ('<tr>' +
-                                    '<td class="td-numero-alumno"></td>' +
-                                    '<td class="td-apellidos-alumno"></td>' +
-                                    '<td class="td-nombres-alumno"></td>' +
+                        '<td class="td-numero-alumno"></td>' +
+                        '<td class="td-apellidos-alumno"></td>' +
+                        '<td class="td-nombres-alumno"></td>' +
                     '</tr>');
 
             $('#table-lista-alumnos').find('tbody').find('tr').end().append(lista);
@@ -314,11 +320,7 @@ $(document).ready(function () {
             '<li>III Lapso: <span id="span-lapso-III"></span></li></ul>'
             );
             $('#Detalle-Curso-Panel-Div-Parte-2').find('ul').end().append(detallecurso_parte_3);
-
         }
-
-
-                
     });
 
     //Configuración de los componentes de tipo fecha
@@ -424,6 +426,12 @@ $(document).ready(function () {
         AgregarCurso();
     });
     $("#boton_est_curso").click(function (e) {
+        showProgress();
         location.href = '/Estadisticas/EstadisticasCursos';
+    });
+
+    $("#btn-detalles-alumnos").click(function () {
+        showProgress();
+        window.location.href = '/Alumnos/Alumnos';
     });
 });

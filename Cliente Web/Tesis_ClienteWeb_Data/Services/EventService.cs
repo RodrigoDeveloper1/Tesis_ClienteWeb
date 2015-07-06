@@ -471,11 +471,12 @@ namespace Tesis_ClienteWeb_Data.Services
             #endregion
         }
         /// <summary>
-        /// 
+        /// Método que crea un evento personal (evento creado por un usuario, a pesar de que puede que sea 
+        /// automático) sin guardar en base de datos.
         /// </summary>
-        /// <param name="categoria"></param>
-        /// <param name="assessment"></param>
-        /// <returns></returns>
+        /// <param name="categoria">La categoría del evento a crear</param>
+        /// <param name="assessment">La evaluación asociada a ese evento</param>
+        /// <returns>El evento a devolver.</returns>
         public Event CrearEventoPersonal_SinGuardar(int categoria, Assessment assessment)
         {
             #region Declaracion de variables
@@ -510,9 +511,27 @@ namespace Tesis_ClienteWeb_Data.Services
                     evento.Description = assessment.Name + " " + assessment.CASU.Subject.Name + " " +
                         assessment.CASU.Course.Name;
                     evento.StartDate = assessment.StartDate;
-                    evento.StartHour = assessment.StartHour;
                     evento.FinishDate = assessment.FinishDate;
-                    evento.EndHour = assessment.EndHour;
+                    #region Configurando el formato de las horas
+                    #region Hora de inicio
+                    string stringAux = (assessment.StartHour == null ? 
+                        (DateTime.Today.ToString("hh") + ":" +
+                        DateTime.Today.ToString("mm") + ":" +
+                        DateTime.Today.ToString("ss")) : assessment.StartHour);
+
+                    string[] auxHour = stringAux.Split(':');
+                    evento.StartHour = (auxHour[0].Count() == 1 ? "0" + stringAux : stringAux);
+                    #endregion
+                    #region Hora de finalización
+                    stringAux = (assessment.EndHour == null ?
+                        (DateTime.Today.ToString("hh") + ":" +
+                        DateTime.Today.ToString("mm") + ":" +
+                        DateTime.Today.ToString("ss")) : assessment.EndHour);
+
+                    auxHour = stringAux.Split(':');
+                    evento.EndHour = (auxHour[0].Count() == 1 ? "0" + stringAux : stringAux);
+                    #endregion
+                    #endregion
                     evento.SchoolYear = assessment.CASU.Period.SchoolYear;
                     evento.Users.Add(assessment.CASU.Teacher); //Docente respectivo
 

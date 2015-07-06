@@ -90,6 +90,7 @@ namespace Tesis_ClienteWeb.Controllers
             modelo.selectListTecnicas = new SelectList(listaTecnicas, "Value");
             List<string> listaInstrumentos = ConstantRepository.INSTRUMENT_LIST.ToList();
             modelo.selectListInstrumentos = new SelectList(listaInstrumentos, "Value");
+
             return View(modelo);
         }
 
@@ -295,7 +296,7 @@ namespace Tesis_ClienteWeb.Controllers
                 evaluacion.Technique = technique;
                 evaluacion.Instrument = instrument;                
                 evaluacion.Event.StartDate = fechaInicio;
-                evaluacion.Event.FinishDate = fechaInicio;
+                evaluacion.Event.FinishDate = fechaFin;
                 #region Definiendo las nuevas notificaciones
                 if (evaluacion.StartDate != fechaInicio && evaluacion.FinishDate != fechaFin)
                 {
@@ -367,30 +368,7 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
             return true;
         }
-
-        [HttpPost]
-        public bool EliminarEvaluacion(int id)
-        {
-            ConfiguracionInicial(_controlador, "EliminarEvaluacion");
-            UnitOfWork _unidad = new UnitOfWork();
-            AssessmentService assessmentService = new AssessmentService(_unidad);
-            EventService eventService = new EventService(_unidad);
-            Event evento = eventService.ObtenerEventoPor_Evaluacion(id);
-
-            try
-            {
-                assessmentService.EliminarAssessment(id);
-                if(evento != null)
-                    eventService.EliminarEvento(evento.EventId);
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
+                
         [HttpGet]
         public ActionResult CrearEvaluacionAvanzada()
         {
@@ -455,7 +433,7 @@ namespace Tesis_ClienteWeb.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["ModelError"] = ModelState.Select(m => m.Value).ToList();
-                return RedirectToAction("CrearColegio");
+                return RedirectToAction("CrearEvaluacionAvanzada");
             }
             #endregion
             #region Declaración de servicios
@@ -530,6 +508,7 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
         }
         #endregion
+
         #region Sección Usuario Docente
         [HttpGet]
         public ActionResult Evaluaciones()
@@ -641,297 +620,169 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(jsonResult);
         }
-        #endregion
 
-        
-        
-
-        //Por revisar - Rodrigo Uzcátegui 13-05-15
-        [HttpGet]
-        public ActionResult ModificarEvaluacionProfesor()
-        {
-            ObteniendoSesion();
-            EvaluacionModel modelo = new EvaluacionModel();
-
-            #region Mensajes TempData
-            if (TempData["ModificadaEvaluacion"] != null)
-            {
-                modelo.MostrarAclamaciones = "block";
-                modelo.MensajeAclamacion = TempData["ModificadaEvaluacion"].ToString();
-            }
-            if (TempData["EvaluacionError"] != null)
-            {
-                ModelState.AddModelError("", TempData["EvaluacionError"].ToString());
-                modelo.MostrarErrores = "block";
-            }
-            if (TempData["ErrorNoHayEvaluacionesAgregadas"] != null)
-            {
-                ModelState.AddModelError("", TempData["ErrorNoHayEvaluacionesAgregadas"].ToString());
-                modelo.MostrarErrores = "block";
-            }
-            #endregion
-
-            CourseService _courseService = new CourseService();
-            List<Course> listaCursos = new List<Course>();
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
-            listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
-            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
-            List<Subject> listaMaterias = new List<Subject>();
-            modelo.selectListMaterias = new SelectList(listaMaterias, "SubjectId", "Name");
-            List<Period> listaLapsos = new List<Period>();
-            modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
-            List<string> listaTipos = ConstantRepository.ACTIVITY_LIST.ToList();
-            modelo.listaTiposNormal = listaTipos;
-            List<string> listaTecnicas = ConstantRepository.TECHNIQUE_LIST.ToList();
-            modelo.listaTecnicasNormal = listaTecnicas;
-            List<string> listaInstrumentos = ConstantRepository.INSTRUMENT_LIST.ToList();
-            modelo.listaInstrumentosNormal = listaInstrumentos;
-            return View(modelo);
-        }
-
-        [HttpPost]
-        public bool ModificarEvaluacionCreadaProfesor(string name, string percentage, string startdate,
-            string finishdate, string starthour, string endhour, string activity, string technique,
-            string instrument, int assessmentid, string courseId, string periodId, string subjectId)
-        {
-            #region Inicializando servicios
-            UnitOfWork _unidad = new UnitOfWork();
-            AssessmentService assessmentService = new AssessmentService(_unidad);
-            CASUService _casuService = new CASUService(_unidad);
-            CourseService _courseService = new CourseService(_unidad);
-            UserService _userService = new UserService(_unidad);
-            EventService _eventService = new EventService(_unidad);
-            SessionVariablesRepository _sesssion = new SessionVariablesRepository();
-            #endregion
-            #region Declaración de variables
-            DateTime fechaInicio = Convert.ToDateTime(startdate);
-            DateTime fechaFin = Convert.ToDateTime(finishdate);
-            #endregion
-
-            Assessment evaluacion = assessmentService.ObtenerEvaluacionPor_Id(assessmentid);
-            Event evento = evaluacion.Event;
-/*
-            #region Modificando evento asociado
-            if (evaluacion.StartDate != fechaInicio)
-                evaluacion.evento.StartDate = fechaInicio;
-            if (evaluacion.FinishDate != fechaFin)
-                evaluacion.evento.FinishDate = fechaFin;
-            if (evaluacion.StartHour != starthour)
-                evaluacion.evento.StartHour = starthour;
-            if (evaluacion.EndHour != endhour)
-                evaluacion.evento.EndHour = endhour;
-            if (evaluacion.Name != name)
-                evaluacion.evento.Name = name;
-
-            #endregion
-*/
-
-            #region Definiendo nuevo Assessment
-            try
-            {
-              
-                
-
-                evaluacion.AssessmentId = assessmentid;
-                evaluacion.Name = name;
-                evaluacion.Percentage = int.Parse(percentage);
-                evaluacion.StartHour = starthour;
-                evaluacion.EndHour = endhour;
-                evaluacion.Activity = activity;
-                evaluacion.Technique = technique;
-                evaluacion.Instrument = instrument;
-                evaluacion.Event = evento;
-
-            #endregion
-
-
-
-
-
-                #region modificando Assessment
-
-                assessmentService.ModificarAssessment(evaluacion);
-                TempData["ModificadaEvaluacion"] = "Se modificó correctamente la evaluación '" + evaluacion.Name + "'";
-            }
-            catch (Exception e)
-            {
-                TempData["EvaluacionError"] = e.Message;
-            }
-
-                #endregion
-
-
-
-            return true;
-        }
-                
         [HttpGet]
         public ActionResult CrearEvaluacionProfesor()
         {
-            ObteniendoSesion();
-            EvaluacionModel modelo = new EvaluacionModel();
+            ConfiguracionInicial(_controlador, "CrearEvaluacionProfesor");
+
+            #region Declaración de variables
+            EvaluacionModel model = new EvaluacionModel();
             CourseService _courseService = new CourseService();
+            #endregion
             #region Mensajes TempData
             if (TempData["NuevaEvaluacion"] != null)
             {
-                modelo.MostrarAclamaciones = "block";
-                modelo.MensajeAclamacion = TempData["NuevaEvaluacion"].ToString();
+                model.MostrarAclamaciones = "block";
+                model.MensajeAclamacion = TempData["NuevaEvaluacion"].ToString();
             }
-            if (TempData["NuevaEvaluacionError"] != null)
+            else if (TempData["NuevaEvaluacionError"] != null)
             {
                 ModelState.AddModelError("", TempData["NuevaEvaluacionError"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["ErrorPorcEvaluacion"] != null)
+            else if (TempData["Error"] != null)
+            {
+                ModelState.AddModelError("", TempData["Error"].ToString());
+                model.MostrarErrores = "block";
+            }
+            else if (TempData["ErrorPorcEvaluacion"] != null)
             {
                 ModelState.AddModelError("", TempData["ErrorPorcEvaluacion"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["ErrorFechasEvaluacion"] != null)
+            else if (TempData["ErrorFechasEvaluacion"] != null)
             {
                 ModelState.AddModelError("", TempData["ErrorFechasEvaluacion"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["ColegioNoSeleccionado"] != null)
+            else if (TempData["ColegioNoSeleccionado"] != null)
             {
                 ModelState.AddModelError("", TempData["ColegioNoSeleccionado"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["CursoNoSeleccionado"] != null)
+            else if (TempData["CursoNoSeleccionado"] != null)
             {
                 ModelState.AddModelError("", TempData["CursoNoSeleccionado"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["LapsoNoSeleccionado"] != null)
+            else if (TempData["LapsoNoSeleccionado"] != null)
             {
                 ModelState.AddModelError("", TempData["LapsoNoSeleccionado"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["MateriaNoSeleccionada"] != null)
+            else if (TempData["MateriaNoSeleccionada"] != null)
             {
                 ModelState.AddModelError("", TempData["MateriaNoSeleccionada"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["ProfesorNoSeleccionado"] != null)
+            else if (TempData["ProfesorNoSeleccionado"] != null)
             {
                 ModelState.AddModelError("", TempData["ProfesorNoSeleccionado"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-            if (TempData["EvaluacionesNoAgregadas"] != null)
+            else if (TempData["EvaluacionesNoAgregadas"] != null)
             {
                 ModelState.AddModelError("", TempData["EvaluacionesNoAgregadas"].ToString());
-                modelo.MostrarErrores = "block";
+                model.MostrarErrores = "block";
             }
-
             #endregion
+
+            #region Obteniendo la lista de cursos
             List<Course> listaCursos = new List<Course>();
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+            listaCursos = _courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
-            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+            model.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+            #endregion
+
             List<Subject> listaMaterias = new List<Subject>();
-            modelo.selectListMaterias = new SelectList(listaMaterias, "SubjectId", "Name");
+            model.selectListMaterias = new SelectList(listaMaterias, "SubjectId", "Name");
+
             List<Period> listaLapsos = new List<Period>();
-            modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+            model.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
             List<User> listaProfesores = new List<User>();
-            modelo.selectListProfesores = new SelectList(listaProfesores, "UserId", "Name");
+            model.selectListProfesores = new SelectList(listaProfesores, "UserId", "Name");
+
             List<string> listaTipos = ConstantRepository.ACTIVITY_LIST.ToList();
-            modelo.selectListTipos = new SelectList(listaTipos, "Value");
+            model.selectListTipos = new SelectList(listaTipos, "Value");
+
             List<string> listaTecnicas = ConstantRepository.TECHNIQUE_LIST.ToList();
-            modelo.selectListTecnicas = new SelectList(listaTecnicas, "Value");
+            model.selectListTecnicas = new SelectList(listaTecnicas, "Value");
+
             List<string> listaInstrumentos = ConstantRepository.INSTRUMENT_LIST.ToList();
-            modelo.selectListInstrumentos = new SelectList(listaInstrumentos, "Value");
-            return View(modelo);
+            model.selectListInstrumentos = new SelectList(listaInstrumentos, "Value");
+
+            return View(model);
         }
 
         [HttpPost]
         public bool CrearEvaluacionProfesor(List<Object> values)
         {
-            SessionVariablesRepository _session = new SessionVariablesRepository();
+            //Si entra en [HttpGet] CrearEvaluacionProfesor(), no necesita de ConfiguracionInicial();
+            ObteniendoSesion();
             #region Obteniendo ids
             int schoolId = _session.SCHOOLID;
             int periodId = 0;
             int courseId = 0;
             int subjectId = 0;
             string userId = _session.USERID;
-
-            #endregion
-            #region Validación de id del colegio
-            //Dentro de la lista de valores, el primer valor debe ser el id del colegio.
-            if (values == null || values[0].ToString() == "")
-            {
-                TempData["ColegioNoSeleccionado"] = "Por favor seleccione un colegio.";
-                return false;
-            }
-            else
-                schoolId = Convert.ToInt32(values[0]);
             #endregion
             #region Validación de id del lapso
-            //Dentro de la lista de valores, el tercer valor debe ser el id del lapso.
-            if (values.Count == 1 || values[1].ToString() == "")
+            //Dentro de la lista de valores, el primer valor debe ser el id del lapso.
+            if (values.Count == 1 || values[0].ToString() == "")
             {
                 TempData["LapsoNoSeleccionado"] = "Por favor seleccione un lapso.";
                 return false;
             }
             else
-                periodId = Convert.ToInt32(values[1]);
+                periodId = Convert.ToInt32(values[0]);
             #endregion
             #region Validación de id del curso
             //Dentro de la lista de valores, el segundo valor debe ser el id del curso.
-            if (values.Count == 2 || values[2].ToString() == "")
+            if (values.Count == 2 || values[1].ToString() == "")
             {
                 TempData["CursoNoSeleccionado"] = "Por favor seleccione un curso.";
                 return false;
             }
             else
-                courseId = Convert.ToInt32(values[2]);
+                courseId = Convert.ToInt32(values[1]);
             #endregion
             #region Validación de id de la materia
-            //Dentro de la lista de valores, el cuarto valor debe ser el id de la materia.
-            if (values.Count == 3 || values[3].ToString() == "")
+            //Dentro de la lista de valores, el tercer valor debe ser el id de la materia.
+            if (values.Count == 3 || values[2].ToString() == "")
             {
                 TempData["MateriaNoSeleccionada"] = "Por favor seleccione una materia.";
                 return false;
             }
             else
-                subjectId = Convert.ToInt32(values[3]);
-            #endregion
-            #region Validación de id del profesor
-            //Dentro de la lista de valores, el quinto valor debe ser el id del profesor.
-            if (values.Count == 4 || values[4].ToString() == "")
-            {
-                TempData["ProfesorNoSeleccionado"] = "Por favor seleccione un profesor.";
-                return false;
-            }
-            else
-                userId = values[4].ToString();
+                subjectId = Convert.ToInt32(values[2]);
             #endregion
             #region Validación de evaluaciones añadidas
-            if (values.Count == 5)
+            if (values.Count == 3)
             {
                 TempData["EvaluacionesNoAgregadas"] = "Por favor inserte al menos una evaluación.";
                 return false;
             }
             #endregion
+            
             #region Inicializando servicios
-            UnitOfWork _unidad = new UnitOfWork();
-            AssessmentService assessmentService = new AssessmentService(_unidad);
-            CASUService _casuService = new CASUService(_unidad);
-            UserService _userService = new UserService(_unidad);
-            CourseService _courseService = new CourseService(_unidad);
-            EventService _eventService = new EventService(_unidad);
-            PeriodService _periodService = new PeriodService(_unidad);
-            SubjectService _subjectService = new SubjectService(_unidad);
-            SchoolYearService _schoolYearService = new SchoolYearService(_unidad);
+            UnitOfWork unidad = new UnitOfWork();
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            CASUService casuService = new CASUService(unidad);
+            EventService eventService = new EventService(unidad);
+            #endregion
+            #region Obteniendo el CASU respectivo
+            CASU casu = casuService.ObtenerCASUPor_Ids(courseId, periodId, subjectId);
             #endregion
             #region Ciclo de asignación de la lista de evaluaciones
             try
             {
-                for (int i = 5; i <= values.Count - 1; i++)
+                /* A partir del valor #3, de la lista de valores (List<Object> values), empiezan las 
+                 * evaluaciones agregadas*/
+                for (int i = 3; i <= values.Count - 1; i++)
                 {
-                    string[] valores = values[i].ToString().Split(',');
-
+                    string[] valores = values[i].ToString().Split(','); //Separando los datos de la evaluación
                     #region Creación de nueva evaluacion
                     Assessment evaluacion = new Assessment();
                     evaluacion.Name = valores[0].ToString();
@@ -941,7 +792,8 @@ namespace Tesis_ClienteWeb.Controllers
                     evaluacion.StartHour = null;
                     evaluacion.EndHour = null;
                     evaluacion.Activity = valores[4].ToString();
-
+                    evaluacion.CASU = casu;
+                    #region Definiendo el tipo de instrumento y el tipo de técnica
                     #region Prueba
                     if (evaluacion.Activity.Equals("Prueba"))
                     {
@@ -971,71 +823,221 @@ namespace Tesis_ClienteWeb.Controllers
                     }
                     #endregion
                     #endregion
-                    #region Obteniendo listaAssessments para validar porcentaje
-                    CASU casu = _casuService.ObtenerCASUPor_Ids(courseId, periodId, subjectId, _session.USERID);
-                    int porcentaje = 0;
-                   
-                        List<Assessment> listaEvaluacionesParaPorcentaje = casu.Assessments;
-                         porcentaje = 0;
+                    #endregion
+                    #region Validación del porcentaje asociado
+                    int porcentaje = assessmentService
+                        .ObtenerTotalPorcentajeEvaluacionesPor_Lapso_Curso_Materia(periodId, courseId, subjectId);
+                    int porcentajeFinal = porcentaje + evaluacion.Percentage;
 
-                        foreach (Assessment evaluporc in listaEvaluacionesParaPorcentaje)
-                        {
-                            porcentaje = porcentaje + evaluporc.Percentage;
-                        }
-                  
+                    if (porcentajeFinal > 100)
+                    {
+                        TempData["Error"] = "No se puede agregar la evaluación debido a que su " +
+                            "porcentaje excede al máximo permitido (100%). Actualmente para el curso está " +
+                            "asignado el: " + porcentaje + "% del total.";
+
+                        return false;
+                    }
+                    #endregion
+                    #region Validación de las fechas de la evaluación
+                    if (evaluacion.StartDate > evaluacion.FinishDate)
+                    {
+                        TempData["Error"] = "No se puede agregar la evaluación debido a que la fecha de " + 
+                            "inicio es mayor a la fecha fin";
+                        return false;
+                    }
                     #endregion
                     #region Agregando evaluación a la bd
-                    int porcentFinal = porcentaje + evaluacion.Percentage;
-                    if (porcentFinal <= 100)
+                    try
                     {
-                        if (evaluacion.StartDate <= evaluacion.FinishDate)
-                        {
-                            try
-                            {
-                                evaluacion.CASU = casu;
-                                assessmentService.GuardarAssessment(evaluacion);
-                            }
-                            catch (Exception e)
-                            {
-                                TempData["NuevaEvaluacionError"] = e.Message;
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            TempData["ErrorFechasEvaluacion"] = "No se puede agregar la evaluación debido" +
-                                " a que la fecha de inicio es mayor a la fecha fin";
-
-                            return false;
-                        }
+                        evaluacion.Event = eventService.CrearEventoPersonal_SinGuardar(
+                                ConstantRepository.PERSONAL_EVENT_CATEGORY_NEW_ASSESSMENT, evaluacion);
+                        assessmentService.GuardarAssessment(evaluacion);
                     }
-                    else
+                    #endregion
+                    #region Catch del error
+                    catch (Exception e)
                     {
-                        TempData["ErrorPorcEvaluacion"] = "No se puede agregar la evaluación debido a que su " +
-                            "porcentaje excede el máximo permitido (100%)";
+                        TempData["Error"] = e.Message;
                         return false;
                     }
                     #endregion
                 }
 
-                TempData["NuevaEvaluacion"] = "Se agregaron correctamente las evaluaciones '";
+                if (values.Count - 1 > 3)
+                    TempData["NuevaEvaluacion"] = "Se agregaron correctamente las evaluaciones.";
+                else
+                    TempData["NuevaEvaluacion"] = "Se agregó correctamente la evaluación.";
+
                 return true;
             }
             #endregion
             #region Catch del error
             catch (Exception e)
             {
-                TempData["NuevaEvaluacionError"] = e.Message;
+                TempData["Error"] = e.Message;
+
                 return false;
             }
             #endregion
         }
 
         [HttpGet]
+        public ActionResult ModificarEvaluacionProfesor()
+        {
+            ConfiguracionInicial(_controlador, "ModificarEvaluacionProfesor");
+            
+            EvaluacionModel modelo = new EvaluacionModel();
+
+            #region Mensajes TempData
+            if (TempData["ModificadaEvaluacion"] != null)
+            {
+                modelo.MostrarAclamaciones = "block";
+                modelo.MensajeAclamacion = TempData["ModificadaEvaluacion"].ToString();
+            }
+            if (TempData["EvaluacionError"] != null)
+            {
+                ModelState.AddModelError("", TempData["EvaluacionError"].ToString());
+                modelo.MostrarErrores = "block";
+            }
+            if (TempData["ErrorNoHayEvaluacionesAgregadas"] != null)
+            {
+                ModelState.AddModelError("", TempData["ErrorNoHayEvaluacionesAgregadas"].ToString());
+                modelo.MostrarErrores = "block";
+            }
+            #endregion
+
+            CourseService _courseService = new CourseService();
+            List<Course> listaCursos = new List<Course>();
+            listaCursos = _courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
+            listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
+            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
+            List<Subject> listaMaterias = new List<Subject>();
+            modelo.selectListMaterias = new SelectList(listaMaterias, "SubjectId", "Name");
+
+            List<Period> listaLapsos = new List<Period>();
+            modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
+            List<string> listaTipos = ConstantRepository.ACTIVITY_LIST.ToList();
+            modelo.listaTiposNormal = listaTipos;
+
+            List<string> listaTecnicas = ConstantRepository.TECHNIQUE_LIST.ToList();
+            modelo.listaTecnicasNormal = listaTecnicas;
+
+            List<string> listaInstrumentos = ConstantRepository.INSTRUMENT_LIST.ToList();
+            modelo.listaInstrumentosNormal = listaInstrumentos;
+
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public bool ModificarEvaluacionCreadaProfesor(string name, string percentage, string startdate,
+            string finishdate, string starthour, string endhour, string activity, string technique,
+            string instrument, int assessmentid, string courseId, string periodId, string subjectId)
+        {
+            //Si entra en [HttpGet] ModificarEvaluacion(), no necesita de ConfiguracionInicial();
+            #region Declaración de servicios
+            UnitOfWork unidad = new UnitOfWork();
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            NotificationService notificationService = new NotificationService(unidad);
+            #endregion
+            #region Declaración de variables
+            DateTime fechaInicio = Convert.ToDateTime(startdate);
+            DateTime fechaFin = Convert.ToDateTime(finishdate);
+            List<Notification> listaNotificaciones = new List<Notification>();
+            #endregion
+            #region Obteniendo la evaluación
+            Assessment evaluacion = assessmentService.ObtenerEvaluacionPor_Id(assessmentid);
+            #endregion
+            #region Asociando nuevos datos a la evaluación
+            try
+            {
+                evaluacion.Name = name;
+                evaluacion.Percentage = int.Parse(percentage);
+                evaluacion.StartHour = starthour;
+                evaluacion.EndHour = endhour;
+                evaluacion.Activity = activity;
+                evaluacion.Technique = technique;
+                evaluacion.Instrument = instrument;
+                evaluacion.Event.StartDate = fechaInicio;
+                evaluacion.Event.FinishDate = fechaFin;
+                #region Definiendo las nuevas notificaciones
+                if (evaluacion.StartDate != fechaInicio && evaluacion.FinishDate != fechaFin)
+                {
+                    #region La evaluación no es de un solo día
+                    if (evaluacion.StartDate != evaluacion.FinishDate)
+                    {
+                        evaluacion.StartDate = fechaInicio;
+                        evaluacion.FinishDate = fechaFin;
+
+                        listaNotificaciones = notificationService.CrearNotificacionAutomatica(
+                            ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_ASSESSMENT_BOTH_DATES,
+                            evaluacion);
+                    }
+                    #endregion
+                    #region La evaluación es de un solo día
+                    else
+                    {
+                        evaluacion.StartDate = fechaInicio;
+                        evaluacion.FinishDate = fechaInicio;
+
+                        listaNotificaciones = notificationService.CrearNotificacionAutomatica(
+                            ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_ASSESSMENT_START_DATE,
+                            evaluacion);
+                    }
+                    #endregion
+                }
+                else //Solo se modificó una de las fechas
+                {
+                    #region Se modificó la fecha inicial
+                    if (evaluacion.StartDate != fechaInicio)
+                    {
+                        evaluacion.StartDate = fechaInicio;
+
+                        listaNotificaciones = notificationService.CrearNotificacionAutomatica(
+                            ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_ASSESSMENT_START_DATE,
+                            evaluacion);
+                    }
+                    #endregion
+                    #region Se modificó la fecha final
+                    else if (evaluacion.FinishDate != fechaFin)
+                    {
+                        evaluacion.FinishDate = fechaFin;
+
+                        listaNotificaciones = notificationService.CrearNotificacionAutomatica(
+                            ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_ASSESSMENT_FINISH_DATE,
+                            evaluacion);
+                    }
+                    #endregion
+                }
+                #endregion
+                #region Ciclo de asignación de las notificaciones nuevas
+                foreach (Notification notification in listaNotificaciones)
+                {
+                    evaluacion.Event.Notifications.Add(notification);
+                }
+                #endregion
+
+                assessmentService.ModificarAssessment(evaluacion);
+
+                TempData["ModificadaEvaluacion"] = "Se modificó correctamente la evaluación '" +
+                    evaluacion.Name + "'";
+            }
+            #endregion
+            #region Catch del error
+            catch (Exception e)
+            {
+                TempData["EvaluacionError"] = e.Message;
+            }
+            #endregion
+            return true;
+        }
+
+        [HttpGet]
         public ActionResult CrearEvaluacionAvanzadaProfesor()
         {
-            ObteniendoSesion();
-            EvaluacionModel modelo = new EvaluacionModel();
+            ConfiguracionInicial(_controlador, "CrearEvaluacionAvanzadaProfesor");
+            CrearEvaluacionAvanzadaModel modelo = new CrearEvaluacionAvanzadaModel();
 
             #region Mensajes TempData
             if (TempData["NuevaEvaluacionAvanzada"] != null)
@@ -1043,49 +1045,74 @@ namespace Tesis_ClienteWeb.Controllers
                 modelo.MostrarAclamaciones = "block";
                 modelo.MensajeAclamacion = TempData["NuevaEvaluacionAvanzada"].ToString();
             }
-            if (TempData["NuevaEvaluacionAvanzadaError"] != null)
+            else if (TempData["ModelError"] != null)
+            {
+                modelo.MostrarErrores = "block";
+                foreach (ModelState error in (List<ModelState>)TempData["ModelError"])
+                {
+                    if (error.Errors.Count != 0)
+                        ModelState.AddModelError("", error.Errors[0].ErrorMessage);
+                }
+            }
+            else if (TempData["NuevaEvaluacionAvanzadaError"] != null)
             {
                 ModelState.AddModelError("", TempData["NuevaEvaluacionAvanzadaError"].ToString());
                 modelo.MostrarErrores = "block";
             }
-            if (TempData["ErrorPorcEvaluacionAvanzada"] != null)
+            else if (TempData["ErrorPorcEvaluacionAvanzada"] != null)
             {
                 ModelState.AddModelError("", TempData["ErrorPorcEvaluacionAvanzada"].ToString());
                 modelo.MostrarErrores = "block";
             }
-            if (TempData["ErrorFechasEvaluacionAvanzada"] != null)
+            else if (TempData["ErrorFechasEvaluacionAvanzada"] != null)
             {
                 ModelState.AddModelError("", TempData["ErrorFechasEvaluacionAvanzada"].ToString());
                 modelo.MostrarErrores = "block";
             }
-
             #endregion
 
             CourseService _courseService = new CourseService();
             List<Course> listaCursos = new List<Course>();
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+            listaCursos = _courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
             List<Subject> listaMaterias = new List<Subject>();
             modelo.selectListMaterias = new SelectList(listaMaterias, "SubjectId", "Name");
+
             List<Period> listaLapsos = new List<Period>();
             modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
-            List<User> listaProfesores = new List<User>();
-            modelo.selectListProfesores = new SelectList(listaProfesores, "UserId", "Name");
+
             List<string> listaTipos = ConstantRepository.ACTIVITY_LIST.ToList();
             modelo.selectListTipos = new SelectList(listaTipos, "Value");
+
             List<string> listaTecnicas = ConstantRepository.TECHNIQUE_LIST.ToList();
             modelo.selectListTecnicas = new SelectList(listaTecnicas, "Value");
+
             List<string> listaInstrumentos = ConstantRepository.INSTRUMENT_LIST.ToList();
             modelo.selectListInstrumentos = new SelectList(listaInstrumentos, "Value");
+
             return View(modelo);
         }
 
         [HttpPost]
-        public ActionResult CrearEvaluacionAvanzadaProfesor(EvaluacionModel modelo)
+        public ActionResult CrearEvaluacionAvanzadaProfesor(CrearEvaluacionAvanzadaModel modelo)
         {
-            SessionVariablesRepository _session = new SessionVariablesRepository();
+            //Si entra en [HttpGet] CrearEvaluacionAvanzadaProfesor(), no necesita de ConfiguracionInicial();
+            ObteniendoSesion();
+            #region Validando el modelo
+            if (!ModelState.IsValid)
+            {
+                TempData["ModelError"] = ModelState.Select(m => m.Value).ToList();
+                return RedirectToAction("CrearEvaluacionAvanzadaProfesor");
+            }
+            #endregion
+            #region Declaración de servicios
+            UnitOfWork unidad = new UnitOfWork();
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            EventService eventService = new EventService(unidad);
+            CASUService casuService = new CASUService(unidad);
+            #endregion
             #region Obteniendo ids
             int courseId = modelo.idCurso;
             int subjectId = modelo.idMateria;
@@ -1093,16 +1120,8 @@ namespace Tesis_ClienteWeb.Controllers
             int periodId = modelo.idLapso;
             int schoolId = _session.SCHOOLID;
             #endregion
-            #region Inicializando servicios
-            UnitOfWork _unidad = new UnitOfWork();
-            AssessmentService assessmentService = new AssessmentService(_unidad);
-            CASUService _casuService = new CASUService(_unidad);
-            UserService _userService = new UserService(_unidad);
-            CourseService _courseService = new CourseService(_unidad);
-            EventService _eventService = new EventService(_unidad);
-            PeriodService _periodService = new PeriodService(_unidad);
-            SubjectService _subjectService = new SubjectService(_unidad);
-            SchoolYearService _schoolYearService = new SchoolYearService(_unidad);
+            #region Obteniendo el CASU respectivo
+            CASU casu = casuService.ObtenerCASUPor_Ids(courseId, periodId, subjectId);
             #endregion
             #region Definiendo nuevo Assessment
             Assessment evaluacion = new Assessment();
@@ -1115,51 +1134,75 @@ namespace Tesis_ClienteWeb.Controllers
             evaluacion.Activity = modelo.TipoEvaluacion;
             evaluacion.Technique = modelo.TecnicaEvaluacion;
             evaluacion.Instrument = modelo.InstrumentoEvaluacion;
+            evaluacion.CASU = casu;
             #endregion
-            #region Obteniendo listaAssessments para validar porcentaje
-            CASU casu = _casuService.ObtenerCASUPor_Ids(courseId, periodId, subjectId, _session.USERID);
-            List<Assessment> listaEvaluacionesParaPorcentaje = casu.Assessments;
-            int porcentaje = 0;
-            foreach (Assessment evaluporc in listaEvaluacionesParaPorcentaje)
+            #region Validación del porcentaje asociado
+            int porcentaje = assessmentService
+                .ObtenerTotalPorcentajeEvaluacionesPor_Lapso_Curso_Materia(periodId, courseId, subjectId);
+            int porcentajeFinal = porcentaje + evaluacion.Percentage;
+
+            if (porcentajeFinal > 100)
             {
-                porcentaje = porcentaje + evaluporc.Percentage;
+                TempData["NuevaEvaluacionAvanzadaError"] = "No se puede agregar la evaluación debido a que su " +
+                    "porcentaje excede al máximo permitido (100%). Actualmente para el curso está " +
+                    "asignado el: " + porcentaje + "% del total.";
+                return RedirectToAction("CrearEvaluacionAvanzadaProfesor");
             }
             #endregion
-            #region agregando evaluación a la bd
-            int porcentFinal = porcentaje + evaluacion.Percentage;
-            if (porcentFinal <= 100)
+            #region Validación de las fechas de la evaluación
+            if (evaluacion.StartDate > evaluacion.FinishDate)
             {
-                if (evaluacion.StartDate <= evaluacion.FinishDate)
-                {
-                    try
-                    {
-                        evaluacion.CASU = casu;
-                        assessmentService.GuardarAssessment(evaluacion);
-
-
-                        TempData["NuevaEvaluacionAvanzada"] = "Se agregó correctamente la evaluación '" +
-                            evaluacion.Name + "'";
-                    }
-                    catch (Exception e)
-                    {
-                        TempData["NuevaEvaluacionAvanzadaError"] = e.Message;
-                    }
-                }
-                else
-                {
-                    TempData["ErrorFechasEvaluacionAvanzada"] = "No se puede agregar la evaluación debido a que la " +
-                        "fecha de inicio es mayor a la fecha fin";
-
-                }
+                TempData["NuevaEvaluacionAvanzadaError"] = "No se puede agregar la evaluación debido" +
+                    " a que la fecha de inicio es mayor a la fecha fin";
+                return RedirectToAction("CrearEvaluacionAvanzadaProfesor");
             }
-            else
-            {
-                TempData["ErrorPorcEvaluacionAvanzada"] = "No se puede agregar la evaluación debido a que su " +
-                    "porcentaje excede el máximo permitido (100%)";
-            }
-
             #endregion
-            return RedirectToAction("CrearEvaluacionAvanzada");
+            #region Agregando evaluación a la bd
+            try
+            {
+                evaluacion.Event = eventService.CrearEventoPersonal_SinGuardar(
+                        ConstantRepository.PERSONAL_EVENT_CATEGORY_NEW_ASSESSMENT, evaluacion);
+                assessmentService.GuardarAssessment(evaluacion);
+
+                TempData["NuevaEvaluacionAvanzada"] = "Se ha agregado con éxito la evaluación: '" +
+                    evaluacion.Name + " (" + evaluacion.Percentage + ")'. ";
+
+                return RedirectToAction("CrearEvaluacionAvanzadaProfesor");
+            }
+            #endregion
+            #region Catch del error
+            catch (Exception e)
+            {
+                TempData["NuevaEvaluacionAvanzadaError"] = e.Message;
+                return RedirectToAction("CrearEvaluacionAvanzadaProfesor");
+            }
+            #endregion
         }
+        #endregion
+
+        #region Acciones para todos los usuarios
+        [HttpPost]
+        public bool EliminarEvaluacion(int id)
+        {
+            ConfiguracionInicial(_controlador, "EliminarEvaluacion");
+            UnitOfWork _unidad = new UnitOfWork();
+            AssessmentService assessmentService = new AssessmentService(_unidad);
+            EventService eventService = new EventService(_unidad);
+            Event evento = eventService.ObtenerEventoPor_Evaluacion(id);
+
+            try
+            {
+                assessmentService.EliminarAssessment(id);
+                if (evento != null)
+                    eventService.EliminarEvento(evento.EventId);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        #endregion
     }
 }

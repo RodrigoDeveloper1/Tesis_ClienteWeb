@@ -6,26 +6,26 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
- <div class="row">
-<!-- Lista de cursos -->
-        <div class="col-xs-6">
+    <!-- Lista de cursos -->
+    <div class="row">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
             <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
             new { @class = "form-control selectpicker class-cursos",  @id = "select-curso" })%>
         </div>
     </div>
-<!-------------------------------- Fin de Combobox de cursos -------------------------------------->
 
-<!-------------------------------- Inicio tabla alumnos -------------------------------------->
-    
-    
+    <!--Separador -->
     <div class="row">
-        <!--Separador -->
         <div class="form-group col-xs-12"></div>
+        <div class="form-group col-xs-12"></div>
+    </div>
 
+    <!-- Inicio tabla alumnos -->
+    <div class="row">
         <!-- Panel de Lista de Alumnos -->
         <div class="col-xs-12">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <strong>Lista de alumnos</strong>
                 </div>
@@ -45,7 +45,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                              
                                 <tr> 
                                     <td class="td-apellidos-alumno"></td>
                                     <td class="td-apellidos-alumno"></td>
@@ -54,29 +53,27 @@
                                     <td class="td-nombres-alumno"></td>
                                     <td class="td-nombres-alumno"></td>                            
                                 </tr>
-                               
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    
-    
-  <div class="row">
-        <div class="col-lg-12">
-            <div class="separador"></div>
-        </div>
     </div>
-            </div>
-    <!----------------------------------- Fin de Fila de Tabla de alumnos ------------------------------------>
+    
+    <!-- Separador -->
+    <div class="row">
+        <div class="col-lg-12"><div class="separador"></div></div>
+    </div>
+    
     <div class="row">
         <div class="col-xs-12">
             <h4 class="subtitulos">Información del curso seleccionado</h4>
         </div>
-        </div>
-    <!------------------------------------ Panel de detalles del curso ---------------------------------->
-    <div class="row">
         
+        <!-- Separador -->
+        <div class="form-group col-xs-12"></div>
+
+        <!-- Detalles de cursos -->
         <div class="col-xs-7">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -107,23 +104,24 @@
                 </div>
             </div>
         </div>
-        <!--------------------------------- Fin de Panel de detalles del curso ------------------------------>
-        <!-------------------------------- Panel de datos estadísticos del curso ---------------------------->
+        
+        <!-- Panel de datos estadísticos del curso -->
         <div class="col-xs-5" >
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <strong>Datos estadísticos</strong>
                 </div>
+
                 <div class="panel-body">
                     <div class="col-xs-12" id="detalle_rendimiento">
                        <p>
-                            <strong>Cantidad de materias: </strong>
-                            <span></span>
-                        </p>
-                        <p>
-                            <strong>Cantidad de evaluaciones: </strong>
-                            <span></span>
-                        </p>
+                           <strong>Cantidad de materias: </strong>
+                           <span></span>
+                       </p>
+                       <p>
+                           <strong>Cantidad de evaluaciones: </strong>
+                           <span></span>
+                       </p>
                     </div>
 
                     <div class="col-xs-12">
@@ -136,25 +134,28 @@
                 </div>
             </div>
         </div>
-        <!----------------------------- Fin de Panel de datos estadísticos del curso ------------------------>
-        </div>
-     <!-- Botón Cancelar -->
+    </div>
+
+    <!-- Botón Cancelar -->
+    <div class="row">
         <div class="col-xs-12 text-center">            
-        <% using (Html.BeginForm("Inicio", "Index", FormMethod.Get, new
-            {
-                @class = "form",
-                @role = "form"
-            }))
-            { %>
+        <% using (Html.BeginForm("Inicio", "Index", FormMethod.Get, new { @class = "form", @role = "form" }))
+        { %>
             <button class="btn btn-lg btn-default" type="submit">
                 Cancelar
             </button>
         <% } %>
         </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="row">
+        <div class="form-group col-xs-12"></div>
+    </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="CSSContent" runat="server">
-    <link href="../../Content/Css/Alumnos/ListaAlumnos.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Css/Alumnos/ListaAlumnosDocentes.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
@@ -162,5 +163,5 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="TituloPagina" runat="server">
-Listado de alumnos
+    Listado de alumnos
 </asp:Content>

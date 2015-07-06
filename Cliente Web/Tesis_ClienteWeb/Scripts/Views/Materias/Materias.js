@@ -1,6 +1,4 @@
 ﻿function DialogoNuevaMateria() {
-    console.log("function DialogoNuevaMateria()");
-
     $("#dialog-nueva-materia").dialog({
         draggable: false,
         dialogClass: "no-close",
@@ -13,9 +11,6 @@
         width: 470,
         buttons: {
             "Cargar": function () {
-                console.log("Acción: click -> Botón Cargar");
-
-
                 var name = $("#nombrenuevamateria").val();
                 var nombrecurso = $("#select-curso-crear-materia option:selected").text();
 
@@ -31,7 +26,6 @@
                 $(this).dialog("close");
             },
             "Cerrar": function () {
-                console.log("Acción: click -> Botón Cerrar");
                 $(this).dialog("close");
             }
         },
@@ -44,7 +38,6 @@
 var idMateria;
 
 function ModificarMateria() {
-    console.log("Entro mi brother 1");
     var name = $("#nombre-materia-modif").val();
     var codigo = $("#codigo-materia-modif").val();
     var pensum = $("#pensum-materia-modif").val();
@@ -68,12 +61,7 @@ function ModificarMateria() {
     }).done(function () {
         window.location.href = 'ModificarMateria';
     });
-
-
 }
-
-
-
 
 $(document).ready(function () {
     $('#btnReload').click(function () {
@@ -114,9 +102,12 @@ $(document).ready(function () {
     //Obtener tabla de alumnos 
     $("#select-curso").change(function () {
         var lista = "";
+        console.log($(this).val());
+
         if ($(this).val() != "") {
             $('#table-lista-materias').find('tbody').find('tr').remove();
             idCurso = $(this).val();
+            showProgress();
 
             $.post("/Bridge/ObtenerTablaMateriasPorIdCurso",
             {
@@ -124,37 +115,26 @@ $(document).ready(function () {
             },
             function (data) {
                 if (data != null && data.length > 0) {
-                    console.log('Entra');
                     for (var i = 0; i < data.length; i++) {
-                        lista += ('<tr>' +
-                                    '<td class="th-nombre">' + data[i].nombre + '</td>' +
-                                    '<td class="th-codigo">' + data[i].codigo + '</td>' +
-                                    '<td class="th-pensum">' + data[i].pensum + '</td>' +                                    
-                                  '</tr>');
+                        lista +=
+                            ('<tr>' +
+                                '<td class="th-nombre">' + data[i].nombre + '</td>' +
+                                '<td class="th-codigo">' + data[i].codigo + '</td>' +
+                                '<td class="th-pensum">' + data[i].pensum + '</td>' +
+                            '</tr>');
                     }
+
                     $('#table-lista-materias').find('tbody').end().append(lista);
+                    hideProgress();
                 }
                 else {
-                    console.log('Entra');
-
-                    lista = ('<tr>' +
-                                   '<td class="th-nombre"></td>' +
-                                    '<td class="th-codigo"></td>' +
-                                    '<td class="th-pensum"></td>' +
-                            '</tr>');
-
-                    $('#table-lista-materias').find('tbody').find('tr').end().append(lista);
+                    $('#table-lista-materias').find('tbody').find('tr').remove();
+                    hideProgress();
                 }
             });
         }
         else {
-            lista = ('<tr>' +
-                                   '<td class="th-nombre"></td>' +
-                                    '<td class="th-codigo"></td>' +
-                                    '<td class="th-pensum"></td>' +
-                    '</tr>');
-
-            $('#table-lista-materias').find('tbody').find('tr').end().append(lista);
+            $('#table-lista-materias').find('tbody').find('tr').remove();
         }
     });
 
@@ -216,8 +196,6 @@ $(document).ready(function () {
 
         }
     });
-
-    
 
     $("#select-colegio-modif").change(function () {
 

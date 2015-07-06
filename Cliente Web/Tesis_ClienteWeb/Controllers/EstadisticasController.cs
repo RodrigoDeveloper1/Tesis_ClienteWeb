@@ -12,77 +12,76 @@ namespace Tesis_ClienteWeb.Controllers
 {
     public class EstadisticasController : MaestraController
     {
-        private CourseService _courseService;
-        private SubjectService _subjectService;
-        private SchoolYearService _schoolYearService;
+        private string _controlador = "Estadisticas";
+        private BridgeController _puente = new BridgeController();
 
-        #region Pantalla Estadísticas
         public ActionResult EstadisticasEvaluaciones(EstadisticasModel model)
         {
-            ObteniendoSesion();
-            #region inicializando variable
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
-            _subjectService = (_subjectService == null ? new SubjectService() : _subjectService);
-            _schoolYearService = new SchoolYearService();
+            ConfiguracionInicial(_controlador, "EstadisticasEvaluaciones");
+            
+            #region Declaración de variables
+            CourseService courseService = new CourseService();
+            SubjectService subjectService = new SubjectService();
+            SchoolYearService schoolYearService = new SchoolYearService();
             List<Course> listaCursos;
             List<Subject> listaMaterias;
             #endregion
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             model.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
             listaMaterias = new List<Subject>();
             model.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name");
+
             List<Period> listaLapsos = new List<Period>();
             model.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
             List<Assessment> listaEvaluaciones = new List<Assessment>();
             model.selectListEvaluaciones = new SelectList(listaEvaluaciones, "AssessmentId", "Name");
+
             return View(model);
         }
+        
         public ActionResult EstadisticasMaterias(EstadisticasModel model)
         {
-            ObteniendoSesion();
-            #region inicializando variable
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
-            _subjectService = (_subjectService == null ? new SubjectService() : _subjectService);
-            _schoolYearService = new SchoolYearService();
+            ConfiguracionInicial(_controlador, "EstadisticasMaterias");
+            #region Declaración de variables
+            CourseService courseService = new CourseService();
             List<Course> listaCursos;
             List<Subject> listaMaterias;
             #endregion
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             model.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
             listaMaterias = new List<Subject>();
             model.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name");
+
             List<Period> listaLapsos = new List<Period>();
             model.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
            return View(model);
         }
 
         public ActionResult EstadisticasCursos(EstadisticasModel model)
         {
-            ObteniendoSesion();
-            #region inicializando variable
-            _courseService = (_courseService == null ? new CourseService() : _courseService);
-            _schoolYearService = new SchoolYearService();
+            ConfiguracionInicial(_controlador, "EstadisticasCursos");
+
+            #region Declaración de variables
+            CourseService courseService = new CourseService();
             List<Course> listaCursos;
             #endregion
-            string idsession = (string)Session["UserId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             model.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");           
+
             List<Period> listaLapsos = new List<Period>();
             model.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
             return View(model);
         }
-
-
-
-        #endregion
-
-        #region prueba pdf
-
-        #endregion
     }
 }

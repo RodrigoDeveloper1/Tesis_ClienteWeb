@@ -22,5 +22,15 @@ namespace Tesis_ClienteWeb.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:22392/Security.asmx")]
+        public string Tesis_ClienteWeb_WS_Security_localhost_Service1 {
+            get {
+                return ((string)(this["Tesis_ClienteWeb_WS_Security_localhost_Service1"]));
+            }
+        }
     }
 }

@@ -231,6 +231,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Web References\WS_Security_localhost\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -246,9 +251,11 @@
     <Content Include="Content\Css\Alumnos\GestionAlumnos.css" />
     <Content Include="Content\Css\Alumnos\GestionTablasAlumnos.css" />
     <Content Include="Content\Css\Alumnos\ListaAlumnos.css" />
+    <Content Include="Content\Css\Alumnos\ListaAlumnosDocentes.css" />
     <Content Include="Content\Css\Alumnos\ManejadorArchivosAlumnos.css" />
     <Content Include="Content\Css\Alumnos\Representantes.css" />
     <Content Include="Content\Css\Atribuciones\Atribuciones.css" />
+    <Content Include="Content\Css\Calificaciones\Definitivas.css" />
     <Content Include="Content\Css\Calificaciones\GestionCalificaciones.css" />
     <Content Include="Content\Css\Calificaciones\ModificarCalificaciones.css" />
     <Content Include="Content\Css\Calificaciones\handsontable.full.css" />
@@ -295,6 +302,15 @@
     <Content Include="Content\Images\Maestra\letrasblanco2.png" />
     <Content Include="Content\Images\Maestra\logosinletras.png" />
     <Content Include="Content\Images\Otras\back.png" />
+    <Content Include="Content\Images\Reports\Header.png" />
+    <Content Include="Content\Images\Reports\Logo.png" />
+    <Content Include="Content\Images\Reports\No-data.png" />
+    <Content Include="Content\Images\Reports\No-data_100.png" />
+    <Content Include="Content\Images\Reports\No-data_110.png" />
+    <Content Include="Content\Images\Reports\No-data_130.png" />
+    <Content Include="Content\Images\Reports\No-data_150.png" />
+    <Content Include="Content\Images\Reports\No-data_90.png" />
+    <Content Include="Content\Images\Reports\SubHeader.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Plug-ins\AdminLTE-2.1.1\dist\css\AdminLTE.css" />
     <Content Include="Content\Plug-ins\AdminLTE-2.1.1\dist\css\AdminLTE.min.css" />
@@ -2313,6 +2329,10 @@
     <Content Include="Scripts\Views\Notificaciones\NuevaNotificacion.js" />
     <Content Include="Scripts\Views\Index\Reportes.js" />
     <Content Include="Scripts\Views\Representantes\ListadoRepresentantes.js" />
+    <Content Include="App_Uploads\Reports_ServerSide\ReportePorEvaluacion.pdf" />
+    <Content Include="App_Uploads\Reports_ServerSide\ReportePorMateria.pdf" />
+    <Content Include="App_Uploads\Reports_ServerSide\ReportePorCurso.pdf" />
+    <Content Include="App_Uploads\MobileAPK\app-release.apk" />
     <None Include="Service References\WS_Security\configuration91.svcinfo" />
     <None Include="Service References\WS_Security\configuration.svcinfo" />
     <None Include="Service References\WS_Security\Reference.svcmap">
@@ -2386,6 +2406,11 @@
     <Content Include="Views\Representantes\ModificarRepresentantes.aspx" />
     <Content Include="Views\Representantes\Representantes.aspx" />
     <Content Include="Views\Shared\Header.ascx" />
+    <Content Include="Web References\WS_Security_localhost\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\WS_Security_localhost\Security.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -2437,6 +2462,19 @@
     <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.UpdateNotificationsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.CareersInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.CareersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.CoreInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WS_Security\Tesis_ClienteWeb.WS_Security.InstituteInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Web References\WS_Security_localhost\Security.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
@@ -2637,6 +2675,19 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WS_Security\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost:22392/Security.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WS_Security_localhost\</RelPath>
+      <UpdateFromURL>http://localhost:22392/Security.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Tesis_ClienteWeb_WS_Security_localhost_Service1</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

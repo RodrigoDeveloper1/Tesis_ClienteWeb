@@ -15,6 +15,7 @@ namespace Tesis_ClienteWeb.Controllers
         private string _controlador = "Cursos";
         private BridgeController _puente = new BridgeController();
 
+        #region Acciones de maestras
         [HttpGet]
         public ActionResult CrearCurso()
         {
@@ -205,40 +206,40 @@ namespace Tesis_ClienteWeb.Controllers
             }
             return true;
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //Por revisar - Rodrigo Uzcátegui 12-05-15
-        #region Pantalla Cursos
+        #endregion
+        #region Acciones para docentes
         public ActionResult ListaCursos(CursosModel modelo)
         {
-            ObteniendoSesion();
+            ConfiguracionInicial(_controlador, "ListaCursos");
 
-
-            #region Inicializando variables
+            #region Declaración de variables
             CursosModel model = new CursosModel();
             List<Course> listaCursos;
             CourseService _courseService = new CourseService();
             #endregion
-            #region Inicializando SelectList de Cursos
-            string idsession = (string)Session["UserId"];
-            int idcolegio = (int)Session["SchoolId"];
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+
+            listaCursos = _courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
-            SchoolYearService _schoolYearService = new SchoolYearService();
             model.listaCursos = listaCursos;
-            model.SchoolYear = _schoolYearService.ObtenerAnoEscolarActivoPorColegio(idcolegio);
-            #endregion
+
+            SchoolYearService _schoolYearService = new SchoolYearService();
+            model.SchoolYear = _schoolYearService.ObtenerAnoEscolarActivoPorColegio(_session.SCHOOLID);
 
             return View(model);
         }
+        #endregion
+
+
+
+
+
+
+
+
+
+        //Por revisar - Rodrigo Uzcátegui 12-05-15
+        #region Pantalla Cursos
+        
         #endregion
         #region pantalla gestion cursos
         

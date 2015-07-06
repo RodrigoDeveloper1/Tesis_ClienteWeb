@@ -51,6 +51,8 @@
                                     <% int NotificationId = Convert.ToInt32(NotificationObject.GetType().GetProperty("NotificationId").GetValue(NotificationObject, null).ToString()); %>
                                     <% int SentNotificationId = Convert.ToInt32(NotificationObject.GetType().GetProperty("SentNotificationId").GetValue(NotificationObject, null).ToString()); %>
                                     <% string Notification = NotificationObject.GetType().GetProperty("Notification").GetValue(NotificationObject, null).ToString(); %>
+                                    <% int NotificationLength = Notification.Length; %>
+                                    <% string NotificationCutted = Notification.Substring(0, 41) + "...";%>
 
                                     <tr id="<%: NotificationId %>">
                                         <td><input type="checkbox" /></td>
@@ -61,7 +63,8 @@
                                             <a href="read-mail.html">Prueba</a>
                                         </td>
                                         <td class="mailbox-subject">
-                                            <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                                            <b>AdminLTE 2.0 Issue</b> - 
+                                            <%: (NotificationLength > 41 ? NotificationCutted : Notification) %>
                                         </td>
                                         <td class="mailbox-attachment"></td>
                                         <td class="mailbox-date">5 mins ago</td>

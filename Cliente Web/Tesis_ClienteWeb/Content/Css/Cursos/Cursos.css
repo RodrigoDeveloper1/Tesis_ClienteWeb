@@ -36,7 +36,10 @@
 }
 
 #table-lista-cursos > tbody > tr.active > td { background-color: #B9C2DF !important; /*Azul semi-oscuro*/ }
-#table-lista-cursos tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }
+#table-lista-cursos tbody tr:hover { 
+    background-color: #B9C2DF; /*Azul semi-oscuro*/ 
+    cursor: pointer;
+}
 
 #div-table-lista-cursos
 {

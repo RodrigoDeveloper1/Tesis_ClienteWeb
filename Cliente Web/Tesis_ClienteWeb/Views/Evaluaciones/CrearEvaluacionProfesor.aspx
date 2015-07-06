@@ -7,35 +7,28 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Datos de la nueva evaluación-->
-   
-
     <div class="row">
-           <!-- Lista de cursos -->
-        <div class="col-xs-8">
+        <!-- Lista de cursos -->
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
             <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-curso-crear" })%>
-        </div>     
-        
+        </div>
+
         <!-- Lista de lapsos -->
         <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idLapso) %>
             <%: Html.DropDownListFor(m => m.idLapso, Model.selectListLapsos, "Seleccione el lapso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-lapso-crear" })%>
         </div>
-       
-    </div>         
-    <!--Separador -->
-    <div class="form-group col-xs-12"></div>   
-    <div class="row">          
+
         <!-- Lista de materias -->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idMateria) %>
             <%: Html.DropDownListFor(m => m.idMateria, Model.selectListMaterias, "Seleccione la materia...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-materia-crear" })%>
         </div>
     </div>
-    <!---------------- Fin de Comboboxde colegios, lapsos, cursos, profesores y materias ------------>
 
     <!--Separador -->
     <div class="form-group col-xs-12"></div>
@@ -45,8 +38,8 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
         <div class="separador"></div>
     </div>
 
-    <div class="row">       
-          <!-- Panel de lista de evaluaciones -->
+    <div class="row">
+        <!-- Panel de lista de evaluaciones -->
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading"><strong>Lista de evaluaciones a agregar:</strong></div>
@@ -54,23 +47,21 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
 
                     <!-- Tabla de evaluaciones editable -->
                     <div class="col-xs-12" id="div-table-lista-evaluaciones-cargar">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="table-lista-evaluaciones">
                             <thead>
                                 <tr>
                                     <th class="th-nombre centrar">Nombre</th>
                                     <th class="th-porcentaje centrar">%</th>
                                     <th class="th-inicio centrar">Inicio</th>
-                                    <th class="th-fin centrar">Fin</th>                                   
-                                    <th class="th-tipo centrar">Tipo</th>                                                         
+                                    <th class="th-fin centrar">Fin</th>
+                                    <th class="th-tipo centrar">Tipo</th>
                                     <th class="th-agregar-evaluaciones">
-                                        <i class="ui-icon ui-icon-check iconos-comentados" 
-                                            id="i-salvar-todas-filas">
-                                        </i>
+                                        <i class="ui-icon ui-icon-check iconos-comentados"
+                                            id="i-salvar-todas-filas"></i>
                                     </th>
                                     <th class="th-eliminar-evaluaciones">
-                                        <i class="fa fa-minus-circle iconos-comentados" 
-                                            id="i-eliminar-todas-filas">
-                                        </i>
+                                        <i class="fa fa-minus-circle iconos-comentados"
+                                            id="i-eliminar-todas-filas"></i>
                                     </th>
                                 </tr>
                             </thead>
@@ -93,9 +84,9 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
         </div>
 
         <div class="col-xs-12">
-          <a class="" href="../Evaluaciones/CrearEvaluacionAvanzadaProfesor">
-               <span class="">Crear Evaluación Avanzada</span>
-          </a>
+            <a class="" href="../Evaluaciones/CrearEvaluacionAvanzadaProfesor">
+                <span class="">Crear Evaluación Avanzada</span>
+            </a>
         </div>
     </div>
 
@@ -108,14 +99,14 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
     </div>
 
     <!-- Botones -->
-      
+
     <div class="row">
         <!-- Botón: Agregar -->
-         <!-- Botón Agregar -->
+        <!-- Botón Agregar -->
         <div class="col-xs-6 text-right">
             <button type="button" class="btn btn-lg btn-default" id="btn-agregar-evaluaciones">Agregar</button>
         </div>
-       
+
 
         <!-- Botón Cancelar -->
         <div class="col-xs-6 text-left">

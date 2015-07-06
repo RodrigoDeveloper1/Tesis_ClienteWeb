@@ -14,16 +14,13 @@
         },
         eventLimit: true, // allow "more" link when too many events
         eventClick: function (calEvent, jsEvent, view) {
-
             mensajeEvento = calEvent.description;
             eliminareventobool = calEvent.deleteevent;
+
             $('#p-mensaje-evento').html(mensajeEvento);
             $('#div-cuerpo-mensaje-evento p').css("display", "block");
 
-            console.log(eliminareventobool);
-
             if (eliminareventobool == true) {
-
                 $("#dialog-mensaje").dialog({
                     draggable: false,
                     height: 220,
@@ -39,6 +36,7 @@
                         },
                         "Eliminar Evento": function () {
                             $(this).dialog("close");
+
                             swal({
                                 title: "¿Estás Seguro?",
                                 text: "¡No serás capaz de recuperar este evento!",
@@ -46,31 +44,54 @@
                                 confirmButtonColor: "#DD6B55",
                                 confirmButtonText: "¡Si, bórralo!",
                                 cancelButtonText: "¡No, cancelalo!",
-                                closeOnConfirm: false,
+                                closeOnConfirm: true,
                                 closeOnCancel: false
                             }, function (isConfirm) {
                                 if (isConfirm) {
-                                    console.log("Entro");
+                                    showProgress();
+
                                     calendar.fullCalendar('removeEvents', calEvent.id);
-                                    swal("¡Borrado!", "Su evento ha sido borrado.", "success");
-                                    jQuery.post(
-                                    "/Eventos/EliminarEvento"
-                                    , { "id": calEvent.id }
-                                ).done(function (data) {
 
-                                    setTimeout("location.href ='/Eventos/CalendarioEventos';", 3000) /* 3 seconds */
-                                });
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Eventos/EliminarEvento",
+                                        data: {
+                                            id: calEvent.id
+                                        },
+                                        success: function (data) {
+                                            hideProgress();
 
-                                } else {
+                                            swal("¡Borrado!", "Su evento ha sido borrado.", "success");
+                                        },
+                                        error: function (data) {
+                                            hideProgress();
+
+                                            swal({
+                                                title: "Error",
+                                                text: "Ha ocurrido un error que ha impedido que se borre" +
+                                                    " el evento.",
+                                                type: "error",
+                                                showCancelButton: false,
+                                                closeOnConfirm: true,
+                                            },
+                                            function (isConfirm) {
+                                                if (isConfirm) {
+                                                    showProgress();
+                                                    window.location.href = 'CalendarioEventos';
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                                else {
                                     swal("¡Cancelado!", "Su evento está a salvo :)", "error");
                                 }
                             });
                         }
                     }
                 });
-
-            } else {
-
+            }
+            else {
                 if (eliminareventobool == false) {
                     $("#dialog-mensaje").dialog({
                         draggable: false,

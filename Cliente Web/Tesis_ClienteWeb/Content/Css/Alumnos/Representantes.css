@@ -15,3 +15,6 @@
     overflow-y: auto;
     height: 15em;
 }
+
+#table-lista-alumnos tbody tr:hover { cursor: pointer; }
+#table-lista-alumnos tbody tr:hover { background-color: #B9C2DF; /*Azul semi-oscuro*/ }

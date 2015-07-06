@@ -19,8 +19,6 @@
                 var horainicio = $("#horainicioevento").val();
                 var horafin = $("#horaeventofin").val();
                 var color = $("#colorevento").val();
-
-                $(this).dialog("close");
                 showProgress();
 
                 $.ajax({

@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Assessments">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CourseId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SubjectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssessmentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AssessmentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Careers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SchoolId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CareersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CareersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CareersInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CareerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CareersInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CareersInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoreInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoreId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoreInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoreInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CourseInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PeriodId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CourseInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CourseInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Home">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HomeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HomeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InstituteInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InstituteId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CareerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InstituteInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InstituteInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Notifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NotificationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewNotificationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NewNotificationsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Statistics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SchoolId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SchoolYearId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CourseId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatisticsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StatisticsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatisticsImageGenerator">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="CourseId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SchoolYearId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SchoolId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="imageBase64" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StatisticsImageGeneratorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="StudentsInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StudentsInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentsInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateNotifications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ArrayIds" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateNotificationsResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AssessmentsSoapIn">
+    <wsdl:part name="parameters" element="tns:Assessments" />
+  </wsdl:message>
+  <wsdl:message name="AssessmentsSoapOut">
+    <wsdl:part name="parameters" element="tns:AssessmentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CareersSoapIn">
+    <wsdl:part name="parameters" element="tns:Careers" />
+  </wsdl:message>
+  <wsdl:message name="CareersSoapOut">
+    <wsdl:part name="parameters" element="tns:CareersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CareersInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:CareersInfo" />
+  </wsdl:message>
+  <wsdl:message name="CareersInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:CareersInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoreInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:CoreInfo" />
+  </wsdl:message>
+  <wsdl:message name="CoreInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:CoreInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CourseInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:CourseInfo" />
+  </wsdl:message>
+  <wsdl:message name="CourseInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:CourseInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="HomeSoapIn">
+    <wsdl:part name="parameters" element="tns:Home" />
+  </wsdl:message>
+  <wsdl:message name="HomeSoapOut">
+    <wsdl:part name="parameters" element="tns:HomeResponse" />
+  </wsdl:message>
+  <wsdl:message name="InstituteInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:InstituteInfo" />
+  </wsdl:message>
+  <wsdl:message name="InstituteInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:InstituteInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="NotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:Notifications" />
+  </wsdl:message>
+  <wsdl:message name="NotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:NotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="NewNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:NewNotifications" />
+  </wsdl:message>
+  <wsdl:message name="NewNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:NewNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatisticsSoapIn">
+    <wsdl:part name="parameters" element="tns:Statistics" />
+  </wsdl:message>
+  <wsdl:message name="StatisticsSoapOut">
+    <wsdl:part name="parameters" element="tns:StatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="StatisticsImageGeneratorSoapIn">
+    <wsdl:part name="parameters" element="tns:StatisticsImageGenerator" />
+  </wsdl:message>
+  <wsdl:message name="StatisticsImageGeneratorSoapOut">
+    <wsdl:part name="parameters" element="tns:StatisticsImageGeneratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="StudentsInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:StudentsInfo" />
+  </wsdl:message>
+  <wsdl:message name="StudentsInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:StudentsInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNotificationsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateNotifications" />
+  </wsdl:message>
+  <wsdl:message name="UpdateNotificationsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateNotificationsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="Assessments">
+      <wsdl:input message="tns:AssessmentsSoapIn" />
+      <wsdl:output message="tns:AssessmentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Careers">
+      <wsdl:input message="tns:CareersSoapIn" />
+      <wsdl:output message="tns:CareersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CareersInfo">
+      <wsdl:input message="tns:CareersInfoSoapIn" />
+      <wsdl:output message="tns:CareersInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoreInfo">
+      <wsdl:input message="tns:CoreInfoSoapIn" />
+      <wsdl:output message="tns:CoreInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CourseInfo">
+      <wsdl:input message="tns:CourseInfoSoapIn" />
+      <wsdl:output message="tns:CourseInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Home">
+      <wsdl:input message="tns:HomeSoapIn" />
+      <wsdl:output message="tns:HomeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InstituteInfo">
+      <wsdl:input message="tns:InstituteInfoSoapIn" />
+      <wsdl:output message="tns:InstituteInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Notifications">
+      <wsdl:input message="tns:NotificationsSoapIn" />
+      <wsdl:output message="tns:NotificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NewNotifications">
+      <wsdl:input message="tns:NewNotificationsSoapIn" />
+      <wsdl:output message="tns:NewNotificationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Statistics">
+      <wsdl:input message="tns:StatisticsSoapIn" />
+      <wsdl:output message="tns:StatisticsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StatisticsImageGenerator">
+      <wsdl:input message="tns:StatisticsImageGeneratorSoapIn" />
+      <wsdl:output message="tns:StatisticsImageGeneratorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentsInfo">
+      <wsdl:input message="tns:StudentsInfoSoapIn" />
+      <wsdl:output message="tns:StudentsInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotifications">
+      <wsdl:input message="tns:UpdateNotificationsSoapIn" />
+      <wsdl:output message="tns:UpdateNotificationsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Assessments">
+      <soap:operation soapAction="http://tempuri.org/Assessments" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Careers">
+      <soap:operation soapAction="http://tempuri.org/Careers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CareersInfo">
+      <soap:operation soapAction="http://tempuri.org/CareersInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoreInfo">
+      <soap:operation soapAction="http://tempuri.org/CoreInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CourseInfo">
+      <soap:operation soapAction="http://tempuri.org/CourseInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Home">
+      <soap:operation soapAction="http://tempuri.org/Home" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstituteInfo">
+      <soap:operation soapAction="http://tempuri.org/InstituteInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Notifications">
+      <soap:operation soapAction="http://tempuri.org/Notifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewNotifications">
+      <soap:operation soapAction="http://tempuri.org/NewNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Statistics">
+      <soap:operation soapAction="http://tempuri.org/Statistics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatisticsImageGenerator">
+      <soap:operation soapAction="http://tempuri.org/StatisticsImageGenerator" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentsInfo">
+      <soap:operation soapAction="http://tempuri.org/StudentsInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotifications">
+      <soap:operation soapAction="http://tempuri.org/UpdateNotifications" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Assessments">
+      <soap12:operation soapAction="http://tempuri.org/Assessments" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Careers">
+      <soap12:operation soapAction="http://tempuri.org/Careers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CareersInfo">
+      <soap12:operation soapAction="http://tempuri.org/CareersInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoreInfo">
+      <soap12:operation soapAction="http://tempuri.org/CoreInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CourseInfo">
+      <soap12:operation soapAction="http://tempuri.org/CourseInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Home">
+      <soap12:operation soapAction="http://tempuri.org/Home" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstituteInfo">
+      <soap12:operation soapAction="http://tempuri.org/InstituteInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Notifications">
+      <soap12:operation soapAction="http://tempuri.org/Notifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewNotifications">
+      <soap12:operation soapAction="http://tempuri.org/NewNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Statistics">
+      <soap12:operation soapAction="http://tempuri.org/Statistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StatisticsImageGenerator">
+      <soap12:operation soapAction="http://tempuri.org/StatisticsImageGenerator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentsInfo">
+      <soap12:operation soapAction="http://tempuri.org/StudentsInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateNotifications">
+      <soap12:operation soapAction="http://tempuri.org/UpdateNotifications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://localhost:22392/Security.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://localhost:22392/Security.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

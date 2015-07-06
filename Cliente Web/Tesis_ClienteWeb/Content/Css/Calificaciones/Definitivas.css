@@ -1,0 +1,9 @@
+﻿#table-lista-notas thead .th-1er-lapso,
+#table-lista-notas thead .th-2do-lapso,
+#table-lista-notas thead .th-3er-lapso,
+#table-lista-notas thead .th-definitiva { text-align: center; }
+
+#table-lista-notas tbody .td-1er-lapso,
+#table-lista-notas tbody .td-2do-lapso,
+#table-lista-notas tbody .td-3er-lapso,
+#table-lista-notas tbody .td-definitiva { text-align: center; }

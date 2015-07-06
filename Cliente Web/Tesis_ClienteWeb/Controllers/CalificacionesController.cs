@@ -154,184 +154,12 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
         }
 
-
-        //Por verificar - Rodrigo Uzcátegui 25-06-15
-
-        #region Pantalla Modificar Evaluaciones
-      
-        [HttpGet]
-        public ActionResult ModificarCalificaciones(CalificacionesModel modelo)
-        {
-            ObteniendoSesion();
-            #region inicializando variable
-            CourseService _courseService = new CourseService();
-            SubjectService _subjectService = new SubjectService();
-            SchoolYearService _schoolYearService = new SchoolYearService();
-            List<Course> listaCursos;
-            List<Subject> listaMaterias;
-            #endregion
-            #region Mensajes TempData
-            if (TempData["NuevoScore"] != null)
-            {
-                modelo.MostrarAclamaciones = "block";
-                modelo.MensajeAclamacion = TempData["NuevoScore"].ToString();
-            }
-            if (TempData["NuevoScoreError"] != null)
-            {
-                ModelState.AddModelError("", TempData["NuevoScoreError"].ToString());
-                modelo.MostrarErrores = "block";
-            }
-            if (TempData["PrimariaScoreError"] != null)
-            {
-                ModelState.AddModelError("", TempData["PrimariaScoreError"].ToString());
-                modelo.MostrarErrores = "block";
-            }
-            if (TempData["BachilleratoScoreError"] != null)
-            {
-                ModelState.AddModelError("", TempData["BachilleratoScoreError"].ToString());
-                modelo.MostrarErrores = "block";
-            }
-            if (TempData["NotasEnBlanco"] != null)
-            {
-                ModelState.AddModelError("", TempData["NotasEnBlanco"].ToString());
-                modelo.MostrarErrores = "block";
-            }
-            #endregion
-            string idsession = (string)Session["UserId"];
-
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
-            listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
-            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
-            listaMaterias = new List<Subject>();
-            modelo.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name");
-            List<Period> listaLapsos = new List<Period>();
-            modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
-            List<Student> listaAlumnos = new List<Student>();
-            modelo.selectListEstudiantes = new SelectList(listaAlumnos, "StudentId", "Name");
-            List<Assessment> listaEvaluaciones = new List<Assessment>();
-            modelo.selectListEvaluaciones = new SelectList(listaEvaluaciones, "AssessmentId", "Name");
-            return View(modelo);
-        }
-
-        [HttpPost]
-        public bool ModificarCalificaciones(int idCurso, int idAlumno, int idEvaluacion,
-                   string nota, int idMateria)
-        {
-            #region Inicializando servicios
-            UnitOfWork unidad = new UnitOfWork();
-            ScoreService scoreService = new ScoreService(unidad);
-            CourseService courseService = new CourseService(unidad);
-            UserService userService = new UserService(unidad);
-            AssessmentService assessmentService = new AssessmentService(unidad);
-            SubjectService subjectService = new SubjectService(unidad);
-            NotificationService notificationService = new NotificationService(unidad);
-            #endregion
-            Course curso = courseService.ObtenerCursoPor_Id(idCurso);
-            string idsession = (string)Session["UserId"];
-            User profesor = userService.ObtenerUsuarioPorId(idsession);
-            int grado = curso.Grade;
-
-            #region Validación de nota en blanco
-            if (nota == "")
-            {
-                TempData["NotasEnBlanco"] = "Por favor agregue por lo menos una nota.";
-                return false;
-            }
-            #endregion
-            #region Validacion de formato de nota
-           
-                if (grado == 1 || grado == 2 || grado == 3 || grado == 4 || grado == 5
-                    || grado == 6)
-                {
-                    int notaNum;
-                    bool res = int.TryParse(nota, out notaNum);
-
-                    if (res == true)
-                    {
-                        TempData["PrimariaScoreError"] =
-                            "Un curso de primaria solo acepta las siguientes notas: A,B,C,D,E. No acepta números";
-                        return false;
-                    }
-
-                }
-                else
-                {
-                    int notaNum;
-                    bool res = int.TryParse(nota, out notaNum);
-
-                    if (res == false)
-                    {
-                        TempData["BachilleratoScoreError"] =
-                            "Un curso de secundaria solo acepta números como notas";
-                        return false;
-                    }
-                }
-
-            
-
-            #endregion
-            #region Modificación
-            try
-            {
-               
-                    #region Creación de nuevo score
-                    Score nota1 = new Score();
-                    nota1.StudentId = idAlumno;
-                    nota1.AssessmentId = idEvaluacion;
-                    Assessment evaluacion = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
-                    Subject materia = subjectService.ObtenerMateriaPorId(idMateria);
-                   
-                    
-                        if (grado == 1 || grado == 2 || grado == 3 || grado == 4 || grado == 5
-                            || grado == 6)
-                        {
-
-                            nota1.NumberScore = 0;
-                            nota1.LetterScore = nota;
-                            notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, profesor, evaluacion, materia, nota1.LetterScore, unidad);
-
-                        }
-                        else
-                        {
-
-                            nota1.NumberScore = Convert.ToInt32(nota);
-                            nota1.LetterScore = "";
-                            notificationService.CrearNotificacionAutomaticaConSalvadoNotas(ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, profesor, evaluacion, materia, nota, unidad);
-                        }
-
-                    #endregion
-                        #region Modificando score de la bd
-                        try
-                        {
-                            scoreService.ModificarScore(nota1);
-                        }
-                        catch (Exception e)
-                        {
-                            TempData["NuevoScoreError"] = e.Message;
-                            return false;
-                        }
-                        #endregion
-                    
-                
-            #endregion
-                TempData["NuevoScore"] = "Se modificó correctamente la nota '";
-                return true;
-            }
-            catch (Exception e)
-            {
-                TempData["NuevoScoreError"] = e.Message;
-                return false;
-            }
-        }
-
-        #endregion
-        #region Pantalla Gestión Calificaciones
         [HttpGet]
         public ActionResult GestionCalificaciones(CalificacionesModel modelo)
         {
+            ConfiguracionInicial(_controlador, "GestionCalificaciones");
 
-            ObteniendoSesion();
-            #region inicializando variable
+            #region Inicialización de variables
             CourseService courseService = new CourseService();
             SubjectService subjectService = new SubjectService();
             SchoolYearService schoolYearService = new SchoolYearService();
@@ -365,25 +193,26 @@ namespace Tesis_ClienteWeb.Controllers
                 modelo.MostrarErrores = "block";
             }
             #endregion
-            string idsession = (string)Session["UserId"];
 
-            listaCursos = courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+            listaCursos = courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
             listaMaterias = new List<Subject>();
             modelo.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name");
+
             List<Period> listaLapsos = new List<Period>();
             modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
             return View(modelo);
         }
-        
-        #endregion
-        #region Pantalla Definitivas
+
         [HttpGet]
-        public ActionResult Definitivas(CalificacionesModel modelo)
+        public ActionResult ModificarCalificaciones(CalificacionesModel modelo)
         {
-            ObteniendoSesion();
-            #region inicializando variable
+            ConfiguracionInicial(_controlador, "ModificarCalificaciones");
+
+            #region Declaración de variables
             CourseService _courseService = new CourseService();
             SubjectService _subjectService = new SubjectService();
             SchoolYearService _schoolYearService = new SchoolYearService();
@@ -391,26 +220,190 @@ namespace Tesis_ClienteWeb.Controllers
             List<Subject> listaMaterias;
             #endregion
             #region Mensajes TempData
-          
+            if (TempData["NuevoScore"] != null)
+            {
+                modelo.MostrarAclamaciones = "block";
+                modelo.MensajeAclamacion = TempData["NuevoScore"].ToString();
+            }
+            if (TempData["NuevoScoreError"] != null)
+            {
+                ModelState.AddModelError("", TempData["NuevoScoreError"].ToString());
+                modelo.MostrarErrores = "block";
+            }
+            if (TempData["PrimariaScoreError"] != null)
+            {
+                ModelState.AddModelError("", TempData["PrimariaScoreError"].ToString());
+                modelo.MostrarErrores = "block";
+            }
+            if (TempData["BachilleratoScoreError"] != null)
+            {
+                ModelState.AddModelError("", TempData["BachilleratoScoreError"].ToString());
+                modelo.MostrarErrores = "block";
+            }
             if (TempData["NotasEnBlanco"] != null)
             {
                 ModelState.AddModelError("", TempData["NotasEnBlanco"].ToString());
                 modelo.MostrarErrores = "block";
             }
             #endregion
-            string idsession = (string)Session["UserId"];
 
-            listaCursos = _courseService.ObtenerListaCursosPor_Docente(idsession, _session.SCHOOLYEARID).ToList<Course>();
+            listaCursos = _courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
             listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
             modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
             listaMaterias = new List<Subject>();
             modelo.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name");
+
             List<Period> listaLapsos = new List<Period>();
             modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
+            List<Student> listaAlumnos = new List<Student>();
+            modelo.selectListEstudiantes = new SelectList(listaAlumnos, "StudentId", "Name");
+
+            List<Assessment> listaEvaluaciones = new List<Assessment>();
+            modelo.selectListEvaluaciones = new SelectList(listaEvaluaciones, "AssessmentId", "Name");
+
             return View(modelo);
         }
-      
-        #endregion
+
+        [HttpPost]
+        public JsonResult ModificarCalificaciones(int idCurso, int idAlumno, int idEvaluacion, string nota, 
+            int idMateria)
+        {
+            ObteniendoSesion();
+
+            #region Inicialización de variables
+            List<object> jsonResult = new List<object>();
+            #endregion
+            #region Inicializando servicios
+            UnitOfWork unidad = new UnitOfWork();
+            ScoreService scoreService = new ScoreService(unidad);
+            CourseService courseService = new CourseService(unidad);
+            UserService userService = new UserService(unidad);
+            AssessmentService assessmentService = new AssessmentService(unidad);
+            SubjectService subjectService = new SubjectService(unidad);
+            NotificationService notificationService = new NotificationService(unidad);
+            #endregion
+            #region Obteniendo datos del curso & docente
+            Course curso = courseService.ObtenerCursoPor_Id(idCurso);
+            User profesor = userService.ObtenerUsuarioPorId(_session.USERID);
+            int grado = curso.Grade;
+            #endregion
+            #region Validación de nota en blanco
+            if (nota == "")
+            {
+                TempData["NotasEnBlanco"] = "Por favor agregue por lo menos una nota.";
+                jsonResult.Add(new { Success = false });
+            }
+            #endregion
+            #region Validacion de formato de nota
+            #region Primaria
+            if (grado <= 6) //Primaria
+            {
+                int notaNum;
+                bool res = int.TryParse(nota, out notaNum);
+
+                if (res == true)
+                {
+                    TempData["PrimariaScoreError"] =
+                        "Un curso de primaria solo acepta las siguientes notas: A,B,C,D,E. No acepta números";
+
+                    jsonResult.Add(new { Success = false });
+                }
+            }
+            #endregion
+            #region Bachillerato
+            else //Bachillerato
+            {
+                int notaNum;
+                bool res = int.TryParse(nota, out notaNum);
+
+                if (res == false)
+                {
+                    TempData["BachilleratoScoreError"] = "Un curso de secundaria solo acepta números como notas";
+                    jsonResult.Add(new { Success = false });
+                }
+                else if (Convert.ToInt32(nota) <= 0 )
+                {
+                    TempData["BachilleratoScoreError"] = "Un curso de secundaria solo acepta como mínimo el 01";
+                    jsonResult.Add(new { Success = false });
+                }
+            }
+            #endregion
+            #endregion
+            #region Modificación de la nota
+            try
+            {
+                #region Creación de nueva nota
+                Score score = new Score();
+                score.StudentId = idAlumno;
+                score.AssessmentId = idEvaluacion;
+                if (grado > 6) score.NumberScore = Convert.ToInt32(nota);
+                else score.LetterScore = nota;
+                #endregion
+                #region Modificando score de la bd
+                scoreService.ModificarScore(score);
+
+                TempData["NuevoScore"] = "Se modificó correctamente la nota";
+                jsonResult.Add(new { Success = true });
+                #endregion
+                #region Creando la notificación respectiva
+                Assessment assessment = assessmentService.ObtenerEvaluacionPor_Id(idEvaluacion);
+
+                Notification auxNotification = notificationService.CrearNotificacionAutomatica(
+                    ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, score, profesor);
+
+                notificationService.GuardarNotification(auxNotification);
+                #endregion
+            }
+            #endregion
+            #region Catch del error
+            catch (Exception e)
+            {
+                TempData["NuevoScoreError"] = e.Message;
+                jsonResult.Add(new { Success = false });
+            }
+            #endregion
+
+            return Json(jsonResult);
+        }
+
+        [HttpGet]
+        public ActionResult Definitivas(CalificacionesModel modelo)
+        {
+            ConfiguracionInicial(_controlador, "Definitivas");
+            #region Declaración de variables
+            CourseService _courseService = new CourseService();
+            SubjectService _subjectService = new SubjectService();
+            SchoolYearService _schoolYearService = new SchoolYearService();
+            List<Course> listaCursos;
+            List<Subject> listaMaterias;
+            #endregion
+            #region Mensajes TempData
+
+            if (TempData["NotasEnBlanco"] != null)
+            {
+                ModelState.AddModelError("", TempData["NotasEnBlanco"].ToString());
+                modelo.MostrarErrores = "block";
+            }
+            #endregion
+
+            listaCursos = _courseService.ObtenerListaCursosPor_Docente(_session.USERID, _session.SCHOOLYEARID);
+            listaCursos = (listaCursos.Count == 0) ? new List<Course>() : listaCursos;
+            modelo.selectListCursos = new SelectList(listaCursos, "CourseId", "Name");
+
+            listaMaterias = new List<Subject>();
+            modelo.selectListMaterias = new SelectList(listaMaterias, "MateriaId", "Name");
+
+            List<Period> listaLapsos = new List<Period>();
+            modelo.selectListLapsos = new SelectList(listaLapsos, "PeriodId", "Name");
+
+            return View(modelo);
+        }
+
+
+        //Por verificar - Rodrigo Uzcátegui 25-06-15
+
         #region Otros Métodos
         [HttpPost]
         public JsonResult ObtenerNotas(int idCurso, int idLapso, int idMateria,

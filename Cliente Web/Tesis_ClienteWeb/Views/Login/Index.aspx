@@ -63,10 +63,10 @@
             <!-- Link de descarga app móvil-->
             <div class="row">
                 <div class="col-xs-offset-8 col-xs-4">
-                    <a class="btn btn-info" role="button">
+                    <button class="btn btn-info" role="button" id="download-app-mobile-btn">
                         <i class="fa fa-key"></i>
                         <strong>Descargar app móvil</strong>
-                    </a>
+                    </button>
                 </div>
             </div>
 

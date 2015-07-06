@@ -84,9 +84,12 @@
                         <a href="../Eventos/CalendarioEventos">
                             <div class="header-next-notifications">
                                 <i class="fa fa-calendar fa-fw"></i> 
-                                <%: Model.ListaEventosHeader[1].Name + " (Desde " +
-                                Model.ListaEventosHeader[1].StartDate.ToShortDateString() + ", hasta " +
-                                Model.ListaEventosHeader[1].FinishDate.ToShortDateString()  + ")"%>
+                                <% if(Model.ListaEventosHeader.Count() >= 2) %>
+                                <% { %>
+                                        <%: Model.ListaEventosHeader[1].Name + " (Desde " +
+                                        Model.ListaEventosHeader[1].StartDate.ToShortDateString() + ", hasta " +
+                                        Model.ListaEventosHeader[1].FinishDate.ToShortDateString() + ")" %>
+                                <% } %>
                             </div>
                         </a>
                     </li>
@@ -94,10 +97,13 @@
                     <li>
                         <a href="../Eventos/CalendarioEventos">
                             <div class="header-next-notifications">
-                                <i class="fa fa-calendar fa-fw"></i> 
-                                <%: Model.ListaEventosHeader[2].Name + " (Desde " +
-                                Model.ListaEventosHeader[2].StartDate.ToShortDateString() + ", hasta " +
-                                Model.ListaEventosHeader[2].FinishDate.ToShortDateString() + ")"%>
+                                <i class="fa fa-calendar fa-fw"></i>
+                                <% if (Model.ListaEventosHeader.Count() >= 3) %>
+                                <% { %>
+                                    <%: Model.ListaEventosHeader[2].Name + " (Desde " +
+                                    Model.ListaEventosHeader[2].StartDate.ToShortDateString() + ", hasta " +
+                                    Model.ListaEventosHeader[2].FinishDate.ToShortDateString() + ")"%>
+                                <% } %>
                             </div>
                         </a>
                     </li>

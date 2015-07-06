@@ -832,6 +832,17 @@ namespace Tesis_ClienteWeb_Data.Services
                 #endregion
                 #region Case: Nota modificada
                 case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE:
+                    #region Notificación #1
+                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
+                    notificacion.Attribution = subject.Name;
+                    notificacion.Message = "La nota obtenida en la evaluación: " + assessment.Name + 
+                        "(" + assessment.Percentage + ") " + "[" + subject.Name + "], ha sido modificada. El" + 
+                        " nuevo resultado es: " + (grado > 6 ? score.NumberScore.ToString() + " puntos." : 
+                        score.LetterScore);
+                    notificacion.SendDate = DateTime.Now;
+                    notificacion.SchoolYear = schoolYear;
+                    notificacion.User = docente;
+                    #endregion
                     break;
                 #endregion
             }
@@ -853,65 +864,6 @@ namespace Tesis_ClienteWeb_Data.Services
 
 
 
-
-
-
-
-        public bool CrearNotificacionAutomaticaConSalvadoNotas(int categoria,
-           User profesor, Assessment evaluacion, Subject materia, string nota, UnitOfWork _unidad)
-        {
-            #region Declaración de variables
-            bool Automatico = true;
-            _session = new SessionVariablesRepository();
-            Notification notificacion = new Notification(Automatico);
-            Notification notificacion2 = new Notification(Automatico);
-            SchoolYearService _schoolYearService = new SchoolYearService(_unidad);
-            SchoolYear anoEscolar = _schoolYearService.ObtenerAnoEscolar(_session.SCHOOLYEARID);
-            #endregion
-
-            switch (categoria)
-            {
-                #region Case: Nueva nota
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_NEW_SCORE:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Aviso;
-                    notificacion.Attribution = materia.Name;
-                    notificacion.Message = "Se han actualizado las notas de la evaluación " + evaluacion.Name;
-                    notificacion.SendDate = DateTime.Now;
-                    notificacion.SchoolYear = anoEscolar;
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
-                    notificacion2.Attribution = materia.Name;
-                    notificacion2.Message = "Su hijo sacó " + nota + " en la evaluación " + evaluacion.Name + ". Materia " + materia.Name + " ";
-                    notificacion2.SendDate = DateTime.Now;
-                    notificacion2.SchoolYear = anoEscolar;
-                    #endregion
-                    break;
-                case ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE:
-                    #region Notificacion #1
-                    notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_Aviso;
-                    notificacion.Attribution = materia.Name;
-                    notificacion.Message = "Se ha modificado la nota de la evaluación " + evaluacion.Name;
-                    notificacion.SendDate = DateTime.Now;
-                    notificacion.SchoolYear = anoEscolar;
-                    #endregion
-                    #region Notificación #2
-                    notificacion2.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
-                    notificacion2.Attribution = materia.Name;
-                    notificacion2.Message = "Luego de actualizar, su hijo sacó " + nota + " en la evaluación " + evaluacion.Name + ". Materia " + materia.Name + " ";
-                    notificacion2.SendDate = DateTime.Now;
-                    notificacion2.SchoolYear = anoEscolar;
-                    #endregion
-                    break;
-                #endregion
-            }
-            #region guardar notif en la bd
-            GuardarNotificationNotas(notificacion);
-            GuardarNotificationNotas(notificacion2);
-            #endregion
-            return true;
-        }
 
         public bool GuardarNotificationNotas(Notification notification)
         {

@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <!-- Lista de cursos -->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
             <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
             new { @class = "form-control selectpicker class-cursos",  @id = "select-curso" })%>

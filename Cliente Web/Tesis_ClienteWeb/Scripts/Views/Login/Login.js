@@ -1,19 +1,14 @@
-﻿
-
-
-$(document).ready(function () {
-    $("#btn-login").click(function (e) {
-
-        console.log("Acción: click -> Botón Iniciar Sesión (#btn-login)");
-        console.log("Ajax.GET: /Index/Inicio()");
-
-        /*$.ajax({
+﻿$(document).ready(function () {
+    $("#download-app-mobile-btn").click(function () {
+        $.ajax({
             type: "POST",
-            url: "/Login/Index",
-            data: {
-                url: "LoQueSea"
+            datatype: "json",
+            url: "/Login/DownloadAPK",
+            success: function (data) { 
+                window.location = '/Login/DownloadAPK_Response/?path=' + data[0].path;
             },
-            dataType: "html"
-        });*/
+            error: function (data) {                
+            }
+        })
     });
 });

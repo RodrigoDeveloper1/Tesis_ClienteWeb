@@ -1,9 +1,7 @@
-﻿var idColegio = 0;
-var idLapso;
-var idCurso;
-var idMateria;
-var idProfesor = 0;
-var UltimoNroEvaluacion;
+﻿var idLapso = "";
+var idCurso = "";
+var idMateria = "";
+var UltimoNroEvaluacion = 0;
 
 // Gestion tabla de evaluaciones
 function Add() {
@@ -235,53 +233,59 @@ function SalvarTodo() {
 }
 // Agregar Evaluaciones
 function AgregarEvaluaciones() {
-    SalvarTodo();
-    $('#div-table-lista-evaluaciones-cargar tr:last').remove(); //Para borrar la última fila con el signo '+'
+    if (idMateria == "")
+        swal("¡Oops!", "Debes seleccionar una materias antes.", "warning");
+    else {
+        showProgress();
+        SalvarTodo();
 
-    var tdNombre;
-    var tdPorcentaje;
-    var tdInicio;
-    var tdFin;
-    var tdTipo;
-    var tdAgregar;
-    var tdEliminar;
-    var evaluacion;
-    var listaEvaluaciones = [];
+        //Para borrar la última fila con el signo '+'
+        $('#div-table-lista-evaluaciones-cargar tr:last').remove();
 
-    listaEvaluaciones.push(idColegio);
-    listaEvaluaciones.push(idLapso);
-    listaEvaluaciones.push(idCurso);
-    listaEvaluaciones.push(idMateria);
-    listaEvaluaciones.push(idProfesor);
+        var tdNombre;
+        var tdPorcentaje;
+        var tdInicio;
+        var tdFin;
+        var tdTipo;
+        var tdAgregar;
+        var tdEliminar;
+        var evaluacion;
+        var listaEvaluaciones = [];
 
-    $('#div-table-lista-evaluaciones-cargar tbody tr').each(function () {
-         tdNombre = $(this).children("td:nth-child(1)").html();
-         tdPorcentaje = $(this).children("td:nth-child(2)").html();
-         tdInicio = $(this).children("td:nth-child(3)").html();
-         tdFin = $(this).children("td:nth-child(4)").html();
-         tdTipo = $(this).children("td:nth-child(5)").html();
-         tdAgregar = $(this).children("td:nth-child(6)").html();
-         tdEliminar = $(this).children("td:nth-child(7)").html();
+        listaEvaluaciones.push(idLapso);
+        listaEvaluaciones.push(idCurso);
+        listaEvaluaciones.push(idMateria);
 
+        $('#div-table-lista-evaluaciones-cargar tbody tr').each(function () {
+            tdNombre = $(this).children("td:nth-child(1)").html();
+            tdPorcentaje = $(this).children("td:nth-child(2)").html();
+            tdInicio = $(this).children("td:nth-child(3)").html();
+            tdFin = $(this).children("td:nth-child(4)").html();
+            tdTipo = $(this).children("td:nth-child(5)").html();
+            tdAgregar = $(this).children("td:nth-child(6)").html();
+            tdEliminar = $(this).children("td:nth-child(7)").html();
 
-         evaluacion = [tdNombre, tdPorcentaje, tdInicio, tdFin, tdTipo];
+            evaluacion = [tdNombre, tdPorcentaje, tdInicio, tdFin, tdTipo];
 
-         listaEvaluaciones.push(evaluacion);
-    });
+            listaEvaluaciones.push(evaluacion);
+        });
 
-    var postData = { values: listaEvaluaciones };
+        var postData = { values: listaEvaluaciones };
 
-    $.ajax({
-        type: "POST",
-        url: "/Evaluaciones/CrearEvaluacionProfesor",
-        traditional: true,
-        data: postData,
-        success: function (r) {
-            window.location.href = 'CrearEvaluacionProfesor';
-        }
-    });
+        $.ajax({
+            type: "POST",
+            url: "/Evaluaciones/CrearEvaluacionProfesor",
+            traditional: true,
+            data: postData,
+            success: function (data) {
+                window.location.href = 'CrearEvaluacionProfesor';
+            },
+            error: function (data) {
+                window.location.href = 'CrearEvaluacionProfesor';
+            }
+        });
+    }        
 }
-
 
 $(document).ready(function () {
     $('.datepicker').datepicker({
@@ -289,13 +293,13 @@ $(document).ready(function () {
     });
 
     $("#select-curso-crear").change(function () {
+        idCurso = $(this).val();
 
-        if ($(this).val() != "") {
+        if (idCurso != "") {
+            showProgress();
 
             $("#select-lapso-crear").find('option').remove().end().append("<option>Cargando lapsos...</option>");
             $("#select-lapso-crear").selectpicker("refresh");
-
-            idCurso = $(this).val();
 
             $.post("/Bridge/ObtenerSelectListLapsosProfesor",
             {
@@ -307,29 +311,39 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idLapso + '">' + data[i].nombre + '</option>');
-
                     }
-                    console.log("Entro 2");
+
                     $("#select-lapso-crear").find('option').remove().end().append(lista);
                     $("#select-lapso-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
-                    $("#select-lapso-crear").find('option').remove().end().append('<option>No se encontraron lapso activos....</option>');
+                    $("#select-lapso-crear").find('option').remove().end()
+                        .append('<option>No se encontraron lapso activos....</option>');
                     $("#select-lapso-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
             });
         }
         else {
             $('#select-lapso-crear').find('option').remove().end().append('<option>Seleccione el lapso...</option>');
             $("#select-lapso-crear").selectpicker("refresh");
+
+            $('#select-materia-crear').find('option').remove().end().append('<option>Seleccione la materia...</option>');
+            $("#select-materia-crear").selectpicker("refresh");
+
+            idCurso = "";
+            idLapso = "";
+            idMateria = "";
         }
     });
-
-
     $("#select-lapso-crear").change(function () {
-        idCurso = $("#select-curso-crear option:selected").val();
         idLapso = $(this).val();
-        if ($(this).val() != "") {
+
+        if (idLapso != "") {
+            showProgress();
 
             $("#select-materia-crear").find('option').remove().end().append("<option>Cargando materias...</option>");
             $("#select-materia-crear").selectpicker("refresh");
@@ -344,24 +358,29 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idMateria + '">' + data[i].nombre + '</option>');
-
                     }
-                    console.log("Entro 2");
+                    
                     $("#select-materia-crear").find('option').remove().end().append(lista);
                     $("#select-materia-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
                     $("#select-materia-crear").find('option').remove().end().append('<option>No se encontraron materias activas....</option>');
                     $("#select-materia-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
             });
         }
         else {
             $('#select-materia-crear').find('option').remove().end().append('<option>Seleccione la materia...</option>');
             $("#select-materia-crear").selectpicker("refresh");
+
+            idLapso = "";
+            idMateria = "";
         }
     });
-    //Obtener lista de evaluaciones
     $("#select-materia-crear").change(function () {
         idMateria = $(this).val();
     });

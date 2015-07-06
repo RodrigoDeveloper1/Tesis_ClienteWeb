@@ -18,6 +18,49 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="Careers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StudentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SchoolId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CareersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CareersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CareersInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CareerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CareersInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CareersInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoreInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoreId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CoreInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoreInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CourseInfo">
         <s:complexType>
           <s:sequence>
@@ -44,6 +87,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="HomeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InstituteInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InstituteId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CareerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InstituteInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InstituteInfoResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -152,6 +210,24 @@
   <wsdl:message name="AssessmentsSoapOut">
     <wsdl:part name="parameters" element="tns:AssessmentsResponse" />
   </wsdl:message>
+  <wsdl:message name="CareersSoapIn">
+    <wsdl:part name="parameters" element="tns:Careers" />
+  </wsdl:message>
+  <wsdl:message name="CareersSoapOut">
+    <wsdl:part name="parameters" element="tns:CareersResponse" />
+  </wsdl:message>
+  <wsdl:message name="CareersInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:CareersInfo" />
+  </wsdl:message>
+  <wsdl:message name="CareersInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:CareersInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CoreInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:CoreInfo" />
+  </wsdl:message>
+  <wsdl:message name="CoreInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:CoreInfoResponse" />
+  </wsdl:message>
   <wsdl:message name="CourseInfoSoapIn">
     <wsdl:part name="parameters" element="tns:CourseInfo" />
   </wsdl:message>
@@ -163,6 +239,12 @@
   </wsdl:message>
   <wsdl:message name="HomeSoapOut">
     <wsdl:part name="parameters" element="tns:HomeResponse" />
+  </wsdl:message>
+  <wsdl:message name="InstituteInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:InstituteInfo" />
+  </wsdl:message>
+  <wsdl:message name="InstituteInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:InstituteInfoResponse" />
   </wsdl:message>
   <wsdl:message name="LoginSoapIn">
     <wsdl:part name="parameters" element="tns:Login" />
@@ -211,6 +293,18 @@
       <wsdl:input message="tns:AssessmentsSoapIn" />
       <wsdl:output message="tns:AssessmentsSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="Careers">
+      <wsdl:input message="tns:CareersSoapIn" />
+      <wsdl:output message="tns:CareersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CareersInfo">
+      <wsdl:input message="tns:CareersInfoSoapIn" />
+      <wsdl:output message="tns:CareersInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CoreInfo">
+      <wsdl:input message="tns:CoreInfoSoapIn" />
+      <wsdl:output message="tns:CoreInfoSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="CourseInfo">
       <wsdl:input message="tns:CourseInfoSoapIn" />
       <wsdl:output message="tns:CourseInfoSoapOut" />
@@ -218,6 +312,10 @@
     <wsdl:operation name="Home">
       <wsdl:input message="tns:HomeSoapIn" />
       <wsdl:output message="tns:HomeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InstituteInfo">
+      <wsdl:input message="tns:InstituteInfoSoapIn" />
+      <wsdl:output message="tns:InstituteInfoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input message="tns:LoginSoapIn" />
@@ -259,6 +357,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Careers">
+      <soap:operation soapAction="http://tempuri.org/Careers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CareersInfo">
+      <soap:operation soapAction="http://tempuri.org/CareersInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoreInfo">
+      <soap:operation soapAction="http://tempuri.org/CoreInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CourseInfo">
       <soap:operation soapAction="http://tempuri.org/CourseInfo" style="document" />
       <wsdl:input>
@@ -270,6 +395,15 @@
     </wsdl:operation>
     <wsdl:operation name="Home">
       <soap:operation soapAction="http://tempuri.org/Home" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstituteInfo">
+      <soap:operation soapAction="http://tempuri.org/InstituteInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -352,6 +486,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Careers">
+      <soap12:operation soapAction="http://tempuri.org/Careers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CareersInfo">
+      <soap12:operation soapAction="http://tempuri.org/CareersInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CoreInfo">
+      <soap12:operation soapAction="http://tempuri.org/CoreInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="CourseInfo">
       <soap12:operation soapAction="http://tempuri.org/CourseInfo" style="document" />
       <wsdl:input>
@@ -363,6 +524,15 @@
     </wsdl:operation>
     <wsdl:operation name="Home">
       <soap12:operation soapAction="http://tempuri.org/Home" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InstituteInfo">
+      <soap12:operation soapAction="http://tempuri.org/InstituteInfo" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -436,10 +606,10 @@
   </wsdl:binding>
   <wsdl:service name="Service1">
     <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
-      <soap:address location="http://faroatenaswebservices.apphb.com:16466/Security.asmx" />
+      <soap:address location="http://faroatenaswebservices.apphb.com:16714/Security.asmx" />
     </wsdl:port>
     <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
-      <soap12:address location="http://faroatenaswebservices.apphb.com:16466/Security.asmx" />
+      <soap12:address location="http://faroatenaswebservices.apphb.com:16714/Security.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

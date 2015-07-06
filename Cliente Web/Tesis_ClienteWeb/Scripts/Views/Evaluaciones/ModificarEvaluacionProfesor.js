@@ -1,9 +1,7 @@
-﻿var idColegio;
-var idLapso;
-var idCurso;
-var idMateria;
-var idProfesor;
-var idEvaluacion;
+﻿var idLapso = "";
+var idCurso = "";
+var idMateria = "";
+var idEvaluacion = "";
 
 
 // Selectlist de curso, lapso, materia, profesor
@@ -142,17 +140,12 @@ function CargarProfesores() {
         })
 }
 
+//Método que carga la tabla con las evaluaciones respectivas
 function CargarTablaEvaluaciones() {
     showProgress();
 
     var lista = "";    
     $('#table-lista-evaluaciones').find('tbody').find('tr').remove();
-
-    console.log(idMateria);
-    console.log(idCurso);
-    console.log(idColegio);
-    console.log(idProfesor);
-    console.log(idLapso);
 
     $.post("/Bridge/ObtenerTablaModificarEvaluaciones_S",
     {
@@ -160,7 +153,7 @@ function CargarTablaEvaluaciones() {
         idCurso: idCurso,
         idLapso: idLapso
     },
-        function (data) {
+    function (data) {
             if (data != null && data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     lista += ('<tr id=' + data[i].idevaluacion + ' >' +
@@ -258,15 +251,16 @@ $(document).ready(function () {
         defaultTime: 'current'
     });
 
-    $("#select-curso-crear").change(function () {
 
-        if ($(this).val() != "") {
+    $("#select-curso-crear").change(function () {
+        idCurso = $(this).val();
+
+        if (idCurso != "") {
 
             $("#select-lapso-crear").find('option').remove().end().append("<option>Cargando lapsos...</option>");
             $("#select-lapso-crear").selectpicker("refresh");
 
-            idCurso = $(this).val();
-
+            showProgress();
             $.post("/Bridge/ObtenerSelectListLapsosProfesor",
             {
                 idCurso: idCurso
@@ -277,28 +271,38 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idLapso + '">' + data[i].nombre + '</option>');
-
                     }
-                    console.log("Entro 2");
+
                     $("#select-lapso-crear").find('option').remove().end().append(lista);
                     $("#select-lapso-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
                     $("#select-lapso-crear").find('option').remove().end().append('<option>No se encontraron lapso activos....</option>');
                     $("#select-lapso-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
             });
         }
         else {
             $('#select-lapso-crear').find('option').remove().end().append('<option>Seleccione el lapso...</option>');
             $("#select-lapso-crear").selectpicker("refresh");
+
+            $('#select-materia-crear').find('option').remove().end().append('<option>Seleccione la materia...</option>');
+            $("#select-materia-crear").selectpicker("refresh");
+            
+            idCurso = "";
+            idLapso = "";
+            idMateria = "";
         }
     });
-
     $("#select-lapso-crear").change(function () {
-        idCurso = $("#select-curso-crear option:selected").val();
         idLapso = $(this).val();
-        if ($(this).val() != "") {
+
+        if (idLapso != "") {
+            showProgress();
 
             $("#select-materia-crear").find('option').remove().end().append("<option>Cargando materias...</option>");
             $("#select-materia-crear").selectpicker("refresh");
@@ -313,130 +317,88 @@ $(document).ready(function () {
 
                     for (var i = 0; i < data.length; i++) {
                         lista += ('<option value="' + data[i].idMateria + '">' + data[i].nombre + '</option>');
-
                     }
-                    console.log("Entro 2");
+
                     $("#select-materia-crear").find('option').remove().end().append(lista);
                     $("#select-materia-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
                 else {
-                    $("#select-materia-crear").find('option').remove().end().append('<option>No se encontraron materias activas....</option>');
+                    $("#select-materia-crear").find('option').remove().end()
+                        .append('<option>No se encontraron materias activas....</option>');
                     $("#select-materia-crear").selectpicker("refresh");
+
+                    hideProgress();
                 }
             });
         }
         else {
             $('#select-materia-crear').find('option').remove().end().append('<option>Seleccione la materia...</option>');
             $("#select-materia-crear").selectpicker("refresh");
+
+            idLapso = "";
+            idMateria = "";
         }
     });
-    
     $("#select-materia-crear").change(function () {
         idMateria = $(this).val();
 
-        var auxId = $(this).val();
-        var arrayId = auxId.split("-");
-        //idMateria = arrayId[0];
-        //idProfesor = arrayId[1];
-
-        if (idLapso != "" && idCurso != "" && idMateria != "")
+        if (idMateria != "")
             CargarTablaEvaluaciones();
     });
 
-   
-
     $('#table-lista-evaluaciones').on('click', 'td.td-eliminar', function (e) {
-
         var selectedId = $(this).attr('id');
-        console.log(selectedId);
 
         swal({
             title: "¿Estás Seguro?",
             text: "¡No serás capaz de recuperar esta evaluación!",
-            type: "warning", showCancelButton: true,
+            type: "warning",
+            showCancelButton: true,
             confirmButtonColor: "#DD6B55",
             confirmButtonText: "¡Si, bórrala!",
             cancelButtonText: "¡No, cancelala!",
-            closeOnConfirm: false,
-            closeOnCancel: false
+            closeOnConfirm: true,
+            closeOnCancel: true
         }, function (isConfirm) {
             if (isConfirm) {
-                console.log(selectedId);
-                swal("¡Borrado!", "Su evaluación ha sido borrada.", "success");
-                jQuery.get(
-                "/Evaluaciones/EliminarEvaluacion"
-                , { "id": selectedId }
-            ).done(function (data) {
-                swal({
-                    title: "¡Eliminada!",
-                    text: "La evaluación acaba de eliminarse.",
-                    type: "success",
-                    confirmButtonColor: "green",
-                    showCancelButton: false,
-                    closeOnConfirm: true,
-                },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        var lista = "";
-                        $('#table-lista-evaluaciones').find('tbody').find('tr').remove();
-                        idMateria = $("#select-materia-modif option:selected").val();
-                        idCurso = $("#select-curso-modif option:selected").val();
-                        idColegio = $("#select-colegio-modif option:selected").val();
-                        idProfesor = $("#select-profesor-modif option:selected").val();
-                        idLapso = $("#select-lapso-modif option:selected").val();
-                        $.post("/Bridge/ObtenerTablaModificarEvaluaciones",
-                        {
-                            idMateria: idMateria,
-                            idCurso: idCurso,
-                            idProfesor: idProfesor,
-                            idLapso: idLapso,
-                            idColegio: idColegio
-                        },
-                        function (data) {
-                            if (data != null && data.length > 0) {
-                                for (var i = 0; i < data.length; i++) {
-                                    lista += ('<tr id=' + data[i].idevaluacion + ' >' +
-                                                ' <td class="td-evaluacion">' + data[i].nombre + '</td>' +
-                                                ' <td class="td-tecnica">' + data[i].tecnica + '</td>' +
-                                                ' <td class="td-tipo">' + data[i].actividad + '</td>' +
-                                                ' <td class="td-instrumento">' + data[i].instrumento + '</td>' +
-                                                ' <td class="td-porcentaje">' + data[i].porcentaje + '</td>' +
-                                                ' <td class="td-opcion">' + data[i].fechainicio + '</td>' +
-                                                ' <td class="td-opcion">' + data[i].fechafin + '</td>' +
-                                                '<td class=td-eliminar id=' + data[i].idevaluacion + '>' +
-                                                    '<a class= "fa fa-ban" ></a>' +
-                                                '</td>' +
-                                              '</tr>');
-                                }
-                                $('#table-lista-evaluaciones').find('tbody').end().append(lista);
-                            }
-                            else {
-                                lista = ('<tr>' +
-                                                '<td class="th-evaluacion"></td>' +
-                                                '<td class="th-tecnica"></td></td>' +
-                                                '<td class="th-tipo"></td>' +
-                                                ' <td class="th-instrumento"></td>' +
-                                                ' <td class="th-porcentaje"></td>' +
-                                                ' <td class="th-opcion"></td>' +
-                                                ' <td class="th-opcion"></td>' +
-                                                ' <td class="th-eliminar"></td>' +
-                                        '</tr>');
+                showProgress();
 
-                                $('#table-lista-evaluaciones').find('tbody').find('tr').end().append(lista);
-                            }
+                $.ajax({
+                    type: "POST",
+                    url: "/Evaluaciones/EliminarEvaluacion",
+                    data: {
+                        id: selectedId
+                    },
+                    success: function () {
+                        swal({
+                            title: "¡Borrado!",
+                            text: "Su evaluación ha sido borrada.",
+                            type: "success",
+                            showCancelButton: false,
+                            closeOnConfirm: true,
+                        },
+                        function (isConfirm) {
+                            window.location.href = 'ModificarEvaluacionProfesor';
+                        });
+                    },
+                    error: function () {
+                        swal({
+                            title: "¡Error!",
+                            text: "Ha ocurrido un error que ha impedido que se elimine la evaluación.",
+                            type: "error",
+                            showCancelButton: false,
+                            closeOnConfirm: true,
+                        },
+                        function (isConfirm) {
+                            window.location.href = 'ModificarEvaluacion';
                         });
                     }
                 });
-
-            });
-            } else {
-                swal("¡Cancelado!", "Su evaluación está a salvo :)", "error");
             }
         });
-
-
     });
-
     $('#table-lista-evaluaciones').on('click', 'tr', function (e) {
         var state = $(this).hasClass('active');
         $('.active').removeClass('active');

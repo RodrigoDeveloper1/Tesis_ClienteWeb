@@ -6,7 +6,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!---------------------------------- Fila de Tabla de Cursos -------------------------------------------->
+    <!-- Fila de Tabla de Cursos -->
     <div class="row">
         <div class="col-lg-12" id="div-table-lista-cursos">
             <table class="table" id="table-lista-cursos">
@@ -19,13 +19,10 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
                     </tr>
                 </thead>
                 <tbody>
-                    <% foreach (var course in Model.listaCursos)
-                       {
-                                                        
-                    %>
+                    <% foreach (var course in Model.listaCursos) { %>
                     <tr id="<%: course.CourseId %>">
                         <td class="td-nombre"><%: course.Name %></td>
-                        <td class="periodo-escolar"><%: Model.SchoolYear.StartDate.ToString("dd-MM-yyyy")%> - 
+                        <td class="periodo-escolar"><%: Model.SchoolYear.StartDate.ToString("dd-MM-yyyy")%> / 
                                                     <%: Model.SchoolYear.EndDate.ToString("dd-MM-yyyy")%></td>
                         <td class="td-status"><%: course.Grade %></td>
                         <td class="td-status"><%: course.Section %></td>
@@ -41,7 +38,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
         </div>
     </div>
 
-    <!---------------------------------------- Fila de detalles de curso ------------------------------------>
+    <!-- Detalles de curso -->
     <div class="row">
         <div class="col-xs-12">
             <h4 class="subtitulos">Información del curso seleccionado</h4>
@@ -107,17 +104,9 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.CursosModel>"%>
                     </div>
                     <div class="col-xs-12">
                         <div class="text-center"> 
-                            <% using (Html.BeginForm("Alumnos", "Alumnnos", FormMethod.Get, new
-                            {
-                                @class = "form",
-                                @role = "form"
-                            }))
-                            { %>
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" id="btn-detalles-alumnos">
                                 <strong>Ver detalles</strong>
                             </button>
-                            <% } %>
-                            
                         </div>
                     </div>
                 </div>

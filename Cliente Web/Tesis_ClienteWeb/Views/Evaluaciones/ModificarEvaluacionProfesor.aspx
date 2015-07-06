@@ -6,27 +6,24 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <!-- Lista de cursos, lapsos & materias -->
     <div class="row">
-    <!-- Lista de cursos -->
-        <div class="col-xs-8">
+        <!-- Lista de cursos -->
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idCurso) %>
             <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione el curso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-curso-crear" })%>
-        </div>     
-        
+        </div>
+
         <!-- Lista de lapsos -->
         <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idLapso) %>
             <%: Html.DropDownListFor(m => m.idLapso, Model.selectListLapsos, "Seleccione el lapso...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-lapso-crear" })%>
         </div>
-       
-    </div>         
-    <!--Separador -->
-    <div class="form-group col-xs-12"></div>   
-    <div class="row">          
+
         <!-- Lista de materias -->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <%: Html.LabelFor(m => m.idMateria) %>
             <%: Html.DropDownListFor(m => m.idMateria, Model.selectListMaterias, "Seleccione la materia...", 
                 new { @class = "form-control selectpicker class-cursos",  @id = "select-materia-crear" })%>
@@ -35,11 +32,8 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
 
     <!--Separador -->
     <div class="form-group col-xs-12"></div>
-
     <!--Separador -->
-    <div class="col-lg-12">
-        <div class="separador"></div>
-    </div>
+    <div class="col-lg-12"><div class="separador"></div></div>
 
     <!-- Tabla de evaluaciones -->
     <div class="row">
@@ -123,7 +117,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
             <div class="form-group col-xs-5 col-xs-offset-2 form-subir">
                 <div class="input-group col-xs-12" id="">
                     <span class="input-group-addon" id="clock-ini"><i class="fa fa-clock-o"></i></span>
-                    <input class="add-on bootstrap-timepicker form-control" 
+                    <input class="add-on bootstrap-timepicker form-control"
                         id="horainicio-evaluacion" aria-describedby="clock-ini">
                 </div>
             </div>
@@ -136,12 +130,12 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
                 <label for="fechafin-evaluacion">Fecha fin:</label>
                 <input class="form-control datepicker" id="fechafin-evaluacion">
             </div>
-        
+
             <!-- Hora de Finalización -->
             <div class="form-group col-xs-5 col-xs-offset-2 form-subir">
                 <div class="input-group col-xs-12" id="">
                     <span class="input-group-addon" id="clock-fin"><i class="fa fa-clock-o"></i></span>
-                    <input class="add-on bootstrap-timepicker form-control" 
+                    <input class="add-on bootstrap-timepicker form-control"
                         id="horafin-evaluacion" aria-describedby="clock-fin">
                 </div>
             </div>
@@ -159,7 +153,7 @@ Inherits="System.Web.Mvc.ViewPage<Tesis_ClienteWeb.Models.EvaluacionModel>" %>
                     <% } %>
                 </select>
             </div>
-        
+
             <!--Separador -->
             <div class="form-group col-xs-12"></div>
 

@@ -30,6 +30,23 @@ namespace Tesis_ClienteWeb.Controllers
             else tituloReporte = "Reporte - Faro Atenas.pdf";
 
             return File(path, "application/pdf", tituloReporte);
+
+            /*#region Descifrando el archivo pdf
+            byte[] pdfBytes = Convert.FromBase64String(path);
+            MemoryStream ms = new MemoryStream(pdfBytes, 0, pdfBytes.Length);
+            ms.Write(pdfBytes, 0, pdfBytes.Length);
+            #endregion*/
+
+            /*Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AppendHeader("Content-Disposition", "inline;filename=data.pdf");
+            Response.BufferOutput = true;
+            byte[] pdf;
+            Response.AddHeader("Content-Length", pdfBytes.Length.ToString());
+            Response.BinaryWrite(pdfBytes);
+            Response.End();*/
+
+            //return new FileStreamResult(ms, "application/pdf");
         }
     }
 }
