@@ -285,10 +285,9 @@ namespace Tesis_ClienteWeb.Controllers
             NotificationService notificationService = new NotificationService(unidad);
             StudentService studentService = new StudentService(unidad);
             #endregion
-            #region Obteniendo datos del curso, docente & alumno
+            #region Obteniendo datos del curso & docente
             Course curso = courseService.ObtenerCursoPor_Id(idCurso);
-            User profesor = userService.ObtenerUsuarioPorId(_session.USERID);
-            Student student = studentService.ObtenerAlumnoPorId(idAlumno);
+            User profesor = userService.ObtenerUsuarioPorId(_session.USERID);            
             int grado = curso.Grade;
             #endregion
             #region Validación de nota en blanco
@@ -302,15 +301,14 @@ namespace Tesis_ClienteWeb.Controllers
             #region Primaria
             if (grado <= 6) //Primaria
             {
-                int notaNum;
-                bool res = int.TryParse(nota, out notaNum);
-
-                if (res == true)
+                if (!(nota.ToUpper().Equals("A") || nota.ToUpper().Equals("B") || nota.ToUpper().Equals("C") ||
+                    nota.ToUpper().Equals("D") || nota.ToUpper().Equals("E")))
                 {
                     TempData["PrimariaScoreError"] =
                         "Un curso de primaria solo acepta las siguientes notas: A,B,C,D,E. No acepta números";
 
                     jsonResult.Add(new { Success = false });
+                    return Json(jsonResult);
                 }
             }
             #endregion
@@ -324,11 +322,13 @@ namespace Tesis_ClienteWeb.Controllers
                 {
                     TempData["BachilleratoScoreError"] = "Un curso de secundaria solo acepta números como notas";
                     jsonResult.Add(new { Success = false });
+                    return Json(jsonResult);
                 }
-                else if (Convert.ToInt32(nota) <= 0 )
+                else if (Convert.ToInt32(nota) <= 0 || Convert.ToInt32(nota) > 20)
                 {
-                    TempData["BachilleratoScoreError"] = "Un curso de secundaria solo acepta como mínimo el 01";
+                    TempData["BachilleratoScoreError"] = "Un curso de secundaria solo acepta valores entre 01 y 20";
                     jsonResult.Add(new { Success = false });
+                    return Json(jsonResult);
                 }
             }
             #endregion
@@ -356,6 +356,8 @@ namespace Tesis_ClienteWeb.Controllers
                     ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, score, profesor);
 
                 #region SentNotification respectivo
+                Student student = studentService.ObtenerAlumnoPorId(idAlumno);
+
                 SentNotification sentNotification = new SentNotification()
                 {
                     Course = null,
