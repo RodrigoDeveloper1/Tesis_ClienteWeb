@@ -283,10 +283,12 @@ namespace Tesis_ClienteWeb.Controllers
             AssessmentService assessmentService = new AssessmentService(unidad);
             SubjectService subjectService = new SubjectService(unidad);
             NotificationService notificationService = new NotificationService(unidad);
+            StudentService studentService = new StudentService(unidad);
             #endregion
-            #region Obteniendo datos del curso & docente
+            #region Obteniendo datos del curso, docente & alumno
             Course curso = courseService.ObtenerCursoPor_Id(idCurso);
             User profesor = userService.ObtenerUsuarioPorId(_session.USERID);
+            Student student = studentService.ObtenerAlumnoPorId(idAlumno);
             int grado = curso.Grade;
             #endregion
             #region Validación de nota en blanco
@@ -352,6 +354,17 @@ namespace Tesis_ClienteWeb.Controllers
 
                 Notification auxNotification = notificationService.CrearNotificacionAutomatica(
                     ConstantRepository.AUTOMATIC_NOTIFICATIONS_CATEGORY_MODIFY_SCORE, score, profesor);
+
+                #region SentNotification respectivo
+                SentNotification sentNotification = new SentNotification()
+                {
+                    Course = null,
+                    Student = student,
+                    User = null
+                };
+
+                auxNotification.SentNotifications.Add(sentNotification);
+                #endregion
 
                 notificationService.GuardarNotification(auxNotification);
                 #endregion

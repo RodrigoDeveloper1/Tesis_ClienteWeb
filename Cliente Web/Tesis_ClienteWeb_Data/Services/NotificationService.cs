@@ -836,7 +836,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
                     notificacion.Attribution = subject.Name;
                     notificacion.Message = "La nota obtenida en la evaluación: " + assessment.Name + 
-                        "(" + assessment.Percentage + ") " + "[" + subject.Name + "], ha sido modificada. El" + 
+                        " (" + assessment.Percentage + "%) " + "[" + subject.Name + "], ha sido modificada. El" + 
                         " nuevo resultado es: " + (grado > 6 ? score.NumberScore.ToString() + " puntos." : 
                         score.LetterScore);
                     notificacion.SendDate = DateTime.Now;
