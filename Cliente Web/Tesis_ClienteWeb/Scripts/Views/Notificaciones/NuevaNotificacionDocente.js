@@ -55,11 +55,12 @@ function DialogoNuevaNotificacion() {
                             showProgress();
 
                             //Validación tipo de sujeto: Todos los representantes
-                            if (elSujeto == "Todos los representantes")
-                            {
+                            if (elSujeto == "Todos los representantes") {
                                 sujeto = "Curso";
                                 elSujeto = idCurso;
                             }
+                            else
+                                sujeto = "Representante";
 
                             $.ajax({
                                 type: "POST",
@@ -69,7 +70,7 @@ function DialogoNuevaNotificacion() {
                                     tipoSujeto: sujeto,
                                     mensajeNotificacion: mensaje,
                                     tipoNotificacion: tipoNotificacion,
-                                    atribucion: "N/A"
+                                    atribucion: ""
                                 },
                                 success: function (enviado) {
                                     if(enviado[0].success) {
@@ -201,10 +202,6 @@ $(document).ready(function () {
 
     $("#select-tipo-notificacion").change(function () {
         tipoNotificacion = $(this).val();
-    });
-
-    $("#select-atribucion").change(function () {
-        atribucion = $(this).val();
     });
     /*Fin de Propiedades de los elementos del diálogo*/
 });

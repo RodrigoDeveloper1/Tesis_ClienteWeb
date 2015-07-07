@@ -190,6 +190,20 @@ namespace Tesis_ClienteWeb.Controllers
             #region Declaración del modelo
             BuzonNotificacionesModel model = new BuzonNotificacionesModel();
             #endregion
+
+            #region Mensajes TempData
+            if(TempData["ErrorNotificacion"] != null)
+            {
+                model.MostrarErrores = "block";
+                ModelState.AddModelError("", TempData["ErrorNotificacion"].ToString());
+            }
+            else if (TempData["ConfirmacionNotificacion"] != null)
+            {
+                model.MostrarAclamaciones = "block";
+                model.MensajeAclamacion = TempData["ConfirmacionNotificacion"].ToString();
+            }
+            #endregion
+
             #region Declaración de servicios
             NotificationService notificationService = new NotificationService();
             CourseService courseService = new CourseService();
