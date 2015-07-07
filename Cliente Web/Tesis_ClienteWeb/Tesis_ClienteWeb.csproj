@@ -288,6 +288,7 @@
     <Content Include="Content\Css\Materias\CrearMateria.css" />
     <Content Include="Content\Css\Materias\Materias.css" />
     <Content Include="Content\Css\Materias\ModificarMateria.css" />
+    <Content Include="Content\Css\Notificaciones\NuevaNotificacionDocente.css" />
     <Content Include="Content\Css\Notificaciones\NuevaNotificacion.css" />
     <Content Include="Content\Css\Notificaciones\TablaNotificaciones.css" />
     <Content Include="Content\Css\Notificaciones\TablaNotificacionesAutomaticas.css" />
@@ -2323,11 +2324,13 @@
     <Content Include="Scripts\Views\Materias\CrearMaterias.js" />
     <Content Include="Scripts\Views\Materias\ModificarMaterias.js" />
     <Content Include="Scripts\Views\Materias\Materias.js" />
+    <Content Include="Scripts\Views\Notificaciones\Buzon.js" />
     <Content Include="Scripts\Views\Notificaciones\Notificaciones.js" />
     <Content Include="Scripts\Views\Notificaciones\NotificacionesAutomaticas.js" />
     <Content Include="Scripts\Views\Notificaciones\NotificacionesPersonalizadas.js" />
     <Content Include="Scripts\Views\Notificaciones\NuevaNotificacion.js" />
     <Content Include="Scripts\Views\Index\Reportes.js" />
+    <Content Include="Scripts\Views\Notificaciones\NuevaNotificacionDocente.js" />
     <Content Include="Scripts\Views\Representantes\ListadoRepresentantes.js" />
     <Content Include="App_Uploads\Reports_ServerSide\ReportePorEvaluacion.pdf" />
     <Content Include="App_Uploads\Reports_ServerSide\ReportePorMateria.pdf" />

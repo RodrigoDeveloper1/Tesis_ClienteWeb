@@ -90,9 +90,55 @@ namespace Tesis_ClienteWeb.Models
     {
         public List<object> listaNotificacionesObject { get; set; }
 
+        public int idAnoEscolar { get; set; }
+        [Display(Name = "Año escolar activo respectivo:")]
+        public string labelAnoEscolar { get; set; }
+
+
+        public List<Notification> listaNotificacionesAutomaticas { get; set; }
+        public List<Notification> listaNotificacionesPersonalizadas { get; set; }
+
+        public List<Student> listaEstudiantes { get; set; }
+        public List<Notification> listaNotificaciones { get; set; }
+
+        [Display(Name = "Tipo de sujeto:")]
+        public string idSujeto { get; set; }
+        public SelectList selectListSujetos { get; set; }
+
+        #region Propiedades para el diálogo 'Nueva notificación'
+        [Display(Name = "Seleccione el sujeto:")]
+        public string idElSujeto { get; set; }
+        public SelectList selectListElSujeto { get; set; }
+
+        [Display(Name = "Seleccione un curso:")]
+        public int idCurso { get; set; }
+        public SelectList selectListCursos { get; set; }
+
+        [Display(Name = "Seleccione el tipo de notificación:")]
+        public int idTipoNotificacion { get; set; }
+        public SelectList selectListTiposNotificacion { get; set; }
+
+        [Display(Name = "Seleccione la atribución (opcional):")]
+        public int idAtribucion { get; set; }
+        public SelectList selectListAtribucion { get; set; }
+
+        [Display(Name = "El mensaje:")]
+        public string mensaje { get; set; }
+        #endregion
+
         public BuzonNotificacionesModel()
         {
             this.listaNotificacionesObject = new List<object>();
+            this.listaEstudiantes = new List<Student>();
+            this.listaNotificaciones = new List<Notification>();
+            this.selectListSujetos = new SelectList(new Dictionary<string, string>());
+            
+            #region Propiedades para el diálogo 'Nueva notificación'
+            this.selectListElSujeto = new SelectList(new Dictionary<string, string>());
+            this.selectListCursos = new SelectList(new Dictionary<string, string>());
+            this.selectListTiposNotificacion = new SelectList(new Dictionary<string, string>());
+            this.selectListAtribucion = new SelectList(new Dictionary<string, string>());
+            #endregion
         }
     }
 }

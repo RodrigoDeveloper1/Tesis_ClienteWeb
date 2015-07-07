@@ -193,6 +193,7 @@ namespace Tesis_ClienteWeb.Controllers
             #region Declaración de servicios
             NotificationService notificationService = new NotificationService();
             CourseService courseService = new CourseService();
+            UserService userService = new UserService();
             #endregion
             #region Obteniendo la lista de cursos del docente de la sesión activa
             List<Course> listaCursos = courseService.ObtenerListaCursoPor_Docente_AnoEscolar(_session.USERID,
@@ -211,19 +212,30 @@ namespace Tesis_ClienteWeb.Controllers
                         if((SN.User != null && SN.User.Id.Equals(_session.USERID)) ||
                            (SN.Course != null && SN.Course.CourseId == curso.CourseId))
                         {
+                            string From = notificacion.Automatic ? "Notif. Automática" : "Prof. " +
+                                notificacion.User.LastName + ", " + notificacion.User.Name;
+
                             model.listaNotificacionesObject.Add(new
                             {
                                 Success = true,
                                 NotificationId = notificacion.NotificationId,
                                 SentNotificationId = SN.SentNotificationId,
-                                Notification = notificacion.Message
+                                Notification = notificacion.Message,
+                                Attribution = notificacion.Attribution,
+                                From = From,
+                                DateOfCreation = notificacion.SendDate.ToString("dd/MM/yyyy")
                             });
                         }
                     }
                 }
             }
             #endregion
-                        
+
+            model.selectListSujetos = _puente.InicializadorListaSujetosNotificacionesDocente(model.selectListSujetos);
+            model.selectListCursos = _puente.InicializadorListaCursosPorDocente(model.selectListCursos, _session.SCHOOLYEARID,
+                _session.USERID);
+            model.selectListAtribucion = _puente.InicializadorListaAtribuciones(model.selectListAtribucion);
+
             return View(model);
 
             #region Código anterior

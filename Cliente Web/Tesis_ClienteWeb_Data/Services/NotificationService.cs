@@ -1039,34 +1039,61 @@ namespace Tesis_ClienteWeb_Data.Services
         /// <returns>La lista de notificaciones respectiva</returns>
         public List<Notification> ObtenerListaNotificacionesPor_Docente_AnoEscolar(string idUsuario, 
             int idAnoEscolar)
-        {
+        {            
+            #region Declaración de variables
+            List<Notification> listaNotificaciones = new List<Notification>();
+            List<Notification> listaAux;
+            #endregion
             #region Obteniendo la lista de Cursos asociados al docente
             CourseService courseService = new CourseService();
-            List<Course> listaCursos = 
+            List<Course> listaCursos =
                 courseService.ObtenerListaCursoPor_Docente_AnoEscolar(idUsuario, idAnoEscolar);
             #endregion
-
-            List<Notification> listaNotificaciones = new List<Notification>();
-
-            foreach(Course course in listaCursos)
+            #region Ciclo por cada curso asociado al docente
+            foreach (Course course in listaCursos)
             {
-                List<Notification> listaAux = (
+                #region Lista de notificaciones asociadas al curso
+                listaAux = (
                 from SentNotification n in _unidad.RepositorioSentNotification._dbset
                     .Include("Notification.SentNotifications")
                     .Include("Student")
                     .Include("User")
                     .Include("Course")
-                where n.User.Id == idUsuario ||
-                      n.Course.CourseId == course.CourseId
+                where n.Course.CourseId == course.CourseId
                 select n.Notification)
-                    .OrderByDescending(m => m.DateOfCreation)
                     .ToList<Notification>();
-
-                foreach(Notification notification in listaAux)
+                #endregion
+                #region Llenando la lista de notificaciones
+                foreach (Notification notification in listaAux)
                 {
                     listaNotificaciones.Add(this.ObtenerNotificacionPor_Id(notification.NotificationId));
                 }
+                #endregion
             }
+            #endregion
+            #region Lista de notificaciones dirigidas al docente
+            listaAux = (
+                from SentNotification n in _unidad.RepositorioSentNotification._dbset
+                    .Include("Notification.SentNotifications")
+                    .Include("Student")
+                    .Include("User")
+                    .Include("Course")
+                where n.User.Id == idUsuario
+                select n.Notification)
+                    .ToList<Notification>();
+            #endregion
+            #region Llenando la lista de notificaciones
+            foreach (Notification notification in listaAux)
+            {
+                listaNotificaciones.Add(this.ObtenerNotificacionPor_Id(notification.NotificationId));
+            }
+            #endregion
+            #region Reordenando la lista
+            listaNotificaciones = listaNotificaciones
+                .OrderByDescending(m => m.DateOfCreation)
+                .ThenByDescending(m => m.SendDate)
+                .ToList<Notification>();
+            #endregion
 
             return listaNotificaciones;
         }

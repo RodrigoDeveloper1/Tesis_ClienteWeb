@@ -12,7 +12,7 @@ function DialogoNuevaNotificacion() {
     $("#dialog-nueva-notificacion").dialog({
         draggable: false,
         dialogClass: "no-close",
-        height: 660,
+        height: 570,
         hide: "explode",
         modal: true,
         position: {
@@ -23,7 +23,7 @@ function DialogoNuevaNotificacion() {
         resizable: false,
         show: "puff",
         title: "Enviar una nueva notificación",
-        width: 470,
+        width: 440,
         buttons: {
             "Enviar": function (e) {
                 mensaje = $("#text-area-notificacion").val();
@@ -69,7 +69,7 @@ function DialogoNuevaNotificacion() {
                                     tipoSujeto: sujeto,
                                     mensajeNotificacion: mensaje,
                                     tipoNotificacion: tipoNotificacion,
-                                    atribucion: atribucion
+                                    atribucion: "N/A"
                                 },
                                 success: function (enviado) {
                                     if(enviado[0].success) {
@@ -83,7 +83,7 @@ function DialogoNuevaNotificacion() {
                                         },
                                         function (isConfirm) {
                                             if (isConfirm) 
-                                                window.location.href = 'NotificacionesPersonalizadas';
+                                                window.location.href = 'Buzon';
                                         });
                                     }
                                     else {
@@ -97,7 +97,7 @@ function DialogoNuevaNotificacion() {
                                         },
                                         function (isConfirm) {
                                             if (isConfirm) 
-                                                window.location.href = 'NotificacionesPersonalizadas';
+                                                window.location.href = 'Buzon';
                                         });
                                     }
                                 },
@@ -125,120 +125,19 @@ $(document).ready(function () {
         DialogoNuevaNotificacion();
     });
 
-    $("#btn-nueva-notificacion").click(function () {
-        DialogoNuevaNotificacion();
-    });
+    //Carga del tipo de notificación
+    $.ajax({
+        type: "POST",
+        url: "/Bridge/ListaTiposNotificacion_CoordinadorRepresentante",
+        success: function (data) {
+            var lista = '<option value="">Seleccione el tipo de notificación...</option>';
 
+            for (var i = 0; i < data.length; i++) {
+                lista += ('<option value="' + data[i].tipo + '">' + data[i].tipo + '</option>');
+            }
 
-    /*Propiedades de los elementos del diálogo*/
-    $("#select-sujeto").change(function () {
-        sujeto = $(this).val();
-
-        elSujeto = ""; //Limpiando el sujeto
-        tipoNotificacion = ""; //Limpiando el tipo de notificación
-
-        if (sujeto == "Representante") {
-            //Habilitando la lista de cursos
-            $("#select-cursos").prop("disabled", false);
-            $("#select-cursos").selectpicker("refresh");
-            
-            //Deshabilitando la lista de sujetos a escoger
-            $("#select-el-sujeto").prop("disabled", true);
-            $("#select-el-sujeto").selectpicker("refresh");
-            
-            //Limpiando la variable idCurso
-            idCurso = "";
-
-            //Carga del tipo de notificación
-            $.ajax({
-                type: "POST",
-                url: "/Bridge/ListaTiposNotificacion_CoordinadorRepresentante",
-                success: function (data) {
-                    var lista = '<option value="">Seleccione el tipo de notificación...</option>';
-
-                    for (var i = 0; i < data.length; i++) {
-                        lista += ('<option value="' + data[i].tipo + '">' + data[i].tipo + '</option>');
-                    }
-
-                    $("#select-tipo-notificacion").find('option').remove().end().append(lista);
-                    $("#select-tipo-notificacion").prop("disabled", false);
-                    $("#select-tipo-notificacion").selectpicker("refresh");
-                }
-            });
-        }
-        else if (sujeto == "Usuario") {
-            //Deshabilitando la lista de cursos
-            $("#select-cursos").prop("disabled", true);
-            $("#select-cursos").selectpicker("refresh");
-
-            //Habilitando la lista de sujetos a escoger
-            $("#select-el-sujeto").find('option').remove().end().append("<option>Cargando docentes...</option>");
-            $("#select-el-sujeto").prop("disabled", false);
-            $("#select-el-sujeto").selectpicker("refresh");
-
-            //Limpiando la variable idCurso
-            idCurso = "";
-
-            $.ajax({
-                type: "POST",
-                url: "/Bridge/ObtenerSujetosDeUsuario",
-                success: function (data) {
-                    if (data[0].success) {
-                        var lista = '<option value="">Seleccione el docente...</option>';
-
-                        for (var i = 0; i < data.length; i++) {
-                            lista += ('<option value="' + data[i].idDocente + '">' +
-                                data[i].nombre + '</option>');
-                        }
-
-                        $("#select-el-sujeto").find('option').remove().end().append(lista);
-                        $("#select-el-sujeto").selectpicker("refresh");
-                    }
-                    else {
-                        $("#select-el-sujeto").find('option').remove().end()
-                            .append('<option>No existen docentes asociados</option>');
-                        $("#select-el-sujeto").selectpicker("refresh");
-
-                        swal("¡No hay docentes!", "No existen docentes asociados");
-                    }
-                }
-            });
-
-            //Carga del tipo de notificación
-            $.ajax({
-                type: "POST",
-                url: "/Bridge/ListaTiposNotificacion_CoordinadorDocente",
-                success: function (data) {
-                    var lista = '<option value="">Seleccione el tipo de notificación...</option>';
-
-                    for (var i = 0; i < data.length; i++) {
-                        lista += ('<option value="' + data[i].tipo + '">' + data[i].tipo + '</option>');
-                    }
-
-                    $("#select-tipo-notificacion").find('option').remove().end().append(lista);
-                    $("#select-tipo-notificacion").prop("disabled", false);
-                    $("#select-tipo-notificacion").selectpicker("refresh");
-                }
-            });
-        }        
-        else if (sujeto == "") {
-            //Deshabilitando la lista de cursos
-            $("#select-cursos").prop("disabled", true);
-            $("#select-cursos").selectpicker("refresh");
-
-            //Deshabilitando la lista de sujetos a escoger
-            $("#select-el-sujeto").prop("disabled", true);
-            $("#select-el-sujeto").selectpicker("refresh");
-
-            //Limpiando la variable idCurso
-            idCurso = "";
-
-            //Limpiando la lista de sujetos
-            $("#select-el-sujeto").find('option').remove().end().append('<option>Seleccione el sujeto...</option>');
-            $("#select-el-sujeto").selectpicker("refresh");
-
-            //Deshabilitando la lista de tipos de notificación
-            $("#select-tipo-notificacion").prop("disabled", true);
+            $("#select-tipo-notificacion").find('option').remove().end().append(lista);
+            $("#select-tipo-notificacion").prop("disabled", false);
             $("#select-tipo-notificacion").selectpicker("refresh");
         }
     });
@@ -250,8 +149,9 @@ $(document).ready(function () {
         if (idCurso != "") {
             //Habilitando la lista de sujetos a escoger
             $("#select-el-sujeto").find('option').remove().end().append("<option>Cargando representantes...</option>");
-            $("#select-el-sujeto").prop("disabled", false);
             $("#select-el-sujeto").selectpicker("refresh");
+
+            showProgress();
 
             $.ajax({
                 type: "POST",
@@ -270,6 +170,8 @@ $(document).ready(function () {
 
                         $("#select-el-sujeto").find('option').remove().end().append(lista);
                         $("#select-el-sujeto").selectpicker("refresh");
+
+                        hideProgress();
                     }
                     else {
                         $("#select-el-sujeto").find('option').remove().end()
@@ -277,6 +179,8 @@ $(document).ready(function () {
                         $("#select-el-sujeto").selectpicker("refresh");
 
                         swal("¡No hay representantes!", "No existen representantes asociados =(");
+
+                        hideProgress();
                     }
                 }
             });
@@ -286,12 +190,8 @@ $(document).ready(function () {
             $("#select-el-sujeto").find('option').remove().end().append('<option>Seleccione un representante...</option>');
             $("#select-el-sujeto").selectpicker("refresh");
 
-            //Deshabilitando la lista de sujetos a escoger
-            $("#select-el-sujeto").prop("disabled", true);
-            $("#select-el-sujeto").selectpicker("refresh");
-
             //Limpiando la variable idCurso
-            idCurso = "";
+            idCurso = "";            
         }
     });
 

@@ -7571,11 +7571,30 @@ namespace Tesis_ClienteWeb.Controllers
 
             return lista;
         }
+        public SelectList InicializadorListaCursosPorDocente(SelectList lista, int idAnoEscolar, string idUsuario)
+        {
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
+            CourseService service = new CourseService();
+
+            diccionario = service.ObtenerDiccionarioCursosPorAnoEscolar(idAnoEscolar, idUsuario);
+            lista = new SelectList(diccionario, "Key", "Value");
+
+            return lista;
+        }
         public SelectList InicializadorListaSujetosNotificaciones(SelectList lista)
         {
             Dictionary<string, string> diccionario = new Dictionary<string, string>();
             diccionario.Add("Representante", "Representante");
             diccionario.Add("Usuario", "Usuario");
+
+            lista = new SelectList(diccionario, "Key", "Value");
+
+            return lista;
+        }
+        public SelectList InicializadorListaSujetosNotificacionesDocente(SelectList lista)
+        {
+            Dictionary<string, string> diccionario = new Dictionary<string, string>();
+            diccionario.Add("Representante", "Representante");
 
             lista = new SelectList(diccionario, "Key", "Value");
 

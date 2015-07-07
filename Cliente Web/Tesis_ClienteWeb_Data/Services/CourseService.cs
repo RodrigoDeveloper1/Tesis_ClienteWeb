@@ -391,7 +391,32 @@ namespace Tesis_ClienteWeb_Data.Services
 
             return diccionario;
         }
+        public Dictionary<int, string> ObtenerDiccionarioCursosPorAnoEscolar(int idAnoEscolar, string idUsuario)
+        {
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
+            Period periodo = (from Period p in _unidad.RepositorioPeriod._dbset
+                                  .Include("CASUs")
+                              where p.SchoolYear.SchoolYearId == idAnoEscolar &&
+                                    p.StartDate >= p.SchoolYear.StartDate &&
+                                    p.FinishDate <= p.SchoolYear.EndDate
+                              select p).FirstOrDefault<Period>();
+
+            List<Course> listaCursos = (from CASU casu in _unidad.RepositorioCASU._dbset
+                                        where casu.PeriodId == periodo.PeriodId &&
+                                              casu.TeacherId == idUsuario
+                                        select casu.Course)
+                                            .OrderBy(m => m.Name)
+                                            .ToHashSet()
+                                            .ToList<Course>();
+
+            foreach (Course curso in listaCursos)
+            {
+                diccionario.Add(curso.CourseId, curso.Name);
+            }
+
+            return diccionario;
+        }
         #endregion
         #region Otros métodos
         /// <summary>

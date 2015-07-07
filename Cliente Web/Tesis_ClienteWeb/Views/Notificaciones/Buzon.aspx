@@ -13,23 +13,25 @@
                     <!-- Botones de control-->
                     <div class="mailbox-controls">
                         <!-- Botón de check all buttons -->
-                        <button class="btn btn-default btn-sm checkbox-toggle">
+                        <button class="btn btn-default btn-sm checkbox-toggle" disabled="disabled">
                             <i class="fa fa-square-o"></i>
                         </button>
 
                         <!-- Botones basura, atrás y adelante -->
                         <div class="btn-group">
-                            <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                            <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-trash-o"></i></button>
                             <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-reply"></i></button>
                             <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-share"></i></button>
                         </div>
 
                         <!-- Botón actualizador-->
-                        <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                        <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-refresh"></i></button>
 
+                        <!-- Botón nueva notificación -->
+                        <button class="btn btn-default btn-sm btn-nueva-notificacion"><i class="fa fa-envelope-o"></i></button>
 
                         <div class="pull-right">
-                            1-50/200
+                            <!--1-50/200-->
                             <div class="btn-group">
                                 <button class="btn btn-default btn-sm" disabled="disabled">
                                     <i class="fa fa-chevron-left"></i>
@@ -52,22 +54,27 @@
                                     <% int SentNotificationId = Convert.ToInt32(NotificationObject.GetType().GetProperty("SentNotificationId").GetValue(NotificationObject, null).ToString()); %>
                                     <% string Notification = NotificationObject.GetType().GetProperty("Notification").GetValue(NotificationObject, null).ToString(); %>
                                     <% int NotificationLength = Notification.Length; %>
-                                    <% string NotificationCutted = Notification.Substring(0, 41) + "...";%>
+                                    <% string NotificationCutted = (NotificationLength > 41 ?
+                                           Notification.Substring(0, 41) + "..." : Notification);%>
+                                    <% string NotficationAttribution = NotificationObject.GetType().GetProperty("Attribution").GetValue(NotificationObject, null).ToString(); %>
+                                    <% string From = NotificationObject.GetType().GetProperty("From").GetValue(NotificationObject, null).ToString(); %>
+                                    <% string DateOfCreation = NotificationObject.GetType().GetProperty("DateOfCreation").GetValue(NotificationObject, null).ToString(); %>    
 
                                     <tr id="<%: NotificationId %>">
                                         <td><input type="checkbox" /></td>
                                         <!--td class="mailbox-star">
                                             <a href="#"><i class="fa fa-star text-yellow"></i></a>
                                         </!td-->
-                                        <td class="mailbox-name">
-                                            <a href="read-mail.html">Prueba</a>
+                                        <td class="mailbox-name" style="font-style: italic">
+                                            <!--a href="read-mail.html"><%: From %></a-->
+                                            <%: From %>
                                         </td>
                                         <td class="mailbox-subject">
-                                            <b>AdminLTE 2.0 Issue</b> - 
+                                            <b><%: NotficationAttribution %></b> - 
                                             <%: (NotificationLength > 41 ? NotificationCutted : Notification) %>
                                         </td>
                                         <td class="mailbox-attachment"></td>
-                                        <td class="mailbox-date">5 mins ago</td>
+                                        <td class="mailbox-date"><%: DateOfCreation %></td>
                                     </tr>
                                 <% } %>
                                 </tbody>
@@ -75,39 +82,92 @@
                     </div>
                 </div>
 
-                <!-- /.box-body -->
                 <div class="box-footer no-padding">
                     <div class="mailbox-controls">
                         <!-- Check all button -->
                         <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
                         <div class="btn-group">
-                            <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                            <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-trash-o"></i></button>
+                            <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-reply"></i></button>
+                            <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-share"></i></button>
                         </div>
-                        <!-- /.btn-group -->
-                        <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                        
+                        <!-- Botón actualizador -->
+                        <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-refresh"></i></button>
+                        
+                        <!-- Botón nueva notificación -->
+                        <button class="btn btn-default btn-sm btn-nueva-notificacion"><i class="fa fa-envelope-o"></i></button>
+
                         <div class="pull-right">
-                            1-50/200
+                            <!-- 1-50/200 -->
                      
-                                    <div class="btn-group">
-                                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                                    </div>
-                            <!-- /.btn-group -->
+                            <div class="btn-group">
+                                <button class="btn btn-default btn-sm" disabled="disabled">
+                                    <i class="fa fa-chevron-left"></i>
+                                </button>
+                                <button class="btn btn-default btn-sm" disabled="disabled">
+                                    <i class="fa fa-chevron-right"></i>
+                                </button>
+                            </div>
                         </div>
-                        <!-- /.pull-right -->
                     </div>
                 </div>
             </div>
-            <!-- /. box -->
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Diálogo nueva Notificación -->
+        <div id="dialog-nueva-notificacion">
+            <!-- Select del curso -->
+            <div class="col-xs-12">
+                <%: Html.LabelFor(m => m.idCurso)%>
+                <%: Html.DropDownListFor(m => m.idCurso, Model.selectListCursos, "Seleccione un curso", 
+                    new { @class = "form-control selectpicker", @id = "select-cursos"})%>
+            </div>
+
+            <!--Separador normal -->
+            <div class="form-group col-xs-12"></div>
+
+            <!-- Select sujeto -->
+            <div class="col-xs-12" id="select-sujeto-2">
+                <%: Html.LabelFor(m => m.idElSujeto)%>
+                <%: Html.DropDownListFor(m => m.idElSujeto, Model.selectListElSujeto, "Seleccione el sujeto...", 
+                    new { @class = "form-control selectpicker", @id = "select-el-sujeto"})%>
+            </div>
+
+            <!--Separador normal & con línea -->
+            <div class="form-group col-xs-12"></div>
+            <div class="col-xs-12"><div class="separador"></div></div>
+
+            <!-- Select tipos de alerta -->
+            <div class="col-xs-12" id="select-tipos-notificacion">
+                <%: Html.LabelFor(m => m.idTipoNotificacion)%>
+                <%: Html.DropDownListFor(m => m.idTipoNotificacion, Model.selectListTiposNotificacion, 
+                    "Seleccione el tipo de notificación...", new { @class = "form-control selectpicker", 
+                    @id = "select-tipo-notificacion", @disabled = "disabled"})%>
+            </div>
+
+            <!--Separador normal & con línea -->
+            <div class="form-group col-xs-12"></div>
+            <div class="col-xs-12"><div class="separador"></div></div>
+
+            <!-- Mensaje de la notificación -->
+            <div class="row" id="fila-mensaje-nueva-notificacion">
+                <div class="form-group col-xs-12">
+                    <%: Html.LabelFor(m => m.mensaje, new { @class="pull-left" })%>
+                
+                    <%: Html.TextAreaFor(m => m.mensaje, new { @class = "form-control", @rows = "4", 
+                            @style = "resize: none", @id = "text-area-notificacion" })%>
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="CSSContent" runat="server">
     <link href="../../Content/Css/Notificaciones/Notificaciones.css" rel="Stylesheet" type="text/css"/>
-    <link href="../../Content/Css/Notificaciones/NuevaNotificacion.css" rel="Stylesheet" type="text/css"/>
+    <link href="../../Content/Css/Notificaciones/NuevaNotificacionDocente.css" rel="Stylesheet" type="text/css"/>
     <!-- Ionicons -->
     <link href="../../Content/Plug-ins/ionicons-2.0.1/css/ionicons.min.css" rel="Stylesheet" type="text/css"/>
     <!-- AdminLTE-2.1.1 -->
@@ -120,6 +180,8 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="JSContent" runat="server">
     <script src="../../Scripts/Views/Notificaciones/Notificaciones.js" type="text/javascript"></script>
     <script src="../../Scripts/Views/Notificaciones/NotificacionesPersonalizadas.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Notificaciones/Buzon.js" type="text/javascript"></script>
+    <script src="../../Scripts/Views/Notificaciones/NuevaNotificacionDocente.js" type="text/javascript"></script>
     <!-- AdminLTE-2.1.1 -->
     <script src="../../Content/Plug-ins/AdminLTE-2.1.1/dist/js/app.min.js" type="text/javascript"></script>
     <!-- icheck-1.x -->
