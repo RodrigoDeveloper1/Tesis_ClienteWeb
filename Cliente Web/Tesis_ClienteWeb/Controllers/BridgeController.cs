@@ -8506,20 +8506,21 @@ namespace Tesis_ClienteWeb.Controllers
             List<Period> listaLapsos = new List<Period>();
             List<object> jsonResult = new List<object>();
             SchoolYearService _schoolYearService = new SchoolYearService();
+            CourseService courseService = new CourseService();
             #endregion
             #region Obtener ano escolar y lista de periodos
             anoEscolarActivo = _schoolYearService.ObtenerAnoEscolarActivoPorColegio(idColegio);
             listaLapsos = anoEscolarActivo.Periods;
+            Course course = courseService.ObtenerCursoPor_Id(idCurso);
             #endregion
 
             foreach (Period lapso in listaLapsos)
             {
-
                 jsonResult.Add(new
                 {
                     nombre = lapso.Name,
                     idLapso = lapso.PeriodId,
-
+                    grado = course.Grade
                 });
             }
             return Json(jsonResult);

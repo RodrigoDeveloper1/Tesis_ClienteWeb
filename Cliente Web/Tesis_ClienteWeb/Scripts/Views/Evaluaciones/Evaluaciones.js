@@ -1,5 +1,6 @@
 ﻿var idEvaluacion = "";
 var idDocente = "";
+var grade = "";
 
 $(document).ready(function () {
     idDocente = $('#id-docente').val(); //Obteniendo el id del usuario de la sesión
@@ -70,6 +71,8 @@ $(document).ready(function () {
             },
             function (data) {
                 if (data != null && data.length > 0) {
+                    grade = data[0].grado;
+
                     var lista = '<option value="">Seleccione la materia...</option>';
 
                     for (var i = 0; i < data.length; i++) {
@@ -162,7 +165,8 @@ $(document).ready(function () {
 
         idEvaluacion = $(this).attr("id"); //Obteniendo el id de la evaluación
 
-        $('#btn-asociacion-indicadores-literales').removeAttr('disabled');
+        if (grade <= 6)
+            $('#btn-asociacion-indicadores-literales').removeAttr('disabled');
     });
 
     $("#btn-asociacion-indicadores-literales").click(function () {
