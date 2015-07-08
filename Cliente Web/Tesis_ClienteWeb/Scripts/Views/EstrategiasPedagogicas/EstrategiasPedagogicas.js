@@ -27,11 +27,11 @@ function GenerarReporte()
                     idMateria: idMateria,
                 },
                 success: function (data) {
-                    hideProgress();
+                    //hideProgress();
 
                     if (data[0].Success) {
-                        window.location = '/Reportes/GenerarReporte/?path=' + data[0].Path;
-                        swal("¡Reporte generado!", "El reporte ha sido generado", "success");
+                        //window.location = '/Reportes/GenerarReporte/?path=' + data[0].Path;
+                        //swal("¡Reporte generado!", "El reporte ha sido generado", "success");
                     }
                     else {
                         hideProgress();
@@ -81,7 +81,7 @@ $(document).ready(function () {
             $("#select-lapso").find('option').remove().end().append("<option>Cargando lapsos...</option>");
             $("#select-lapso").selectpicker("refresh");
 
-            $.post("/Bridge/ObtenerSelectListLapsosProfesor",
+            $.post("/Bridge/ObtenerSelectListLapsosProfesorEstrategias",
             {
                 idCurso: idCurso
             },

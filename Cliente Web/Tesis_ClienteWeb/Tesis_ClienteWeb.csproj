@@ -2339,16 +2339,27 @@
     <Content Include="App_Uploads\Reports_ServerSide\ReportePorMateria.pdf" />
     <Content Include="App_Uploads\Reports_ServerSide\ReportePorCurso.pdf" />
     <Content Include="App_Uploads\MobileAPK\app-release.apk" />
-    <Content Include="App_Uploads\Reports_SE\2\Reporte_Castellano.pdf" />
-    <Content Include="App_Uploads\Reports_SE\2\Reporte_Ciencias_Naturaleza.pdf" />
-    <Content Include="App_Uploads\Reports_SE\2\Reporte_Ciencias_Sociales.pdf" />
-    <Content Include="App_Uploads\Reports_SE\2\Reporte_Estetica.pdf" />
-    <Content Include="App_Uploads\Reports_SE\2\Reporte_Matematica.pdf" />
-    <Content Include="App_Uploads\Reports_SE\6\Reporte_Castellano.pdf" />
-    <Content Include="App_Uploads\Reports_SE\6\Reporte_Ciencias_Naturaleza.pdf" />
-    <Content Include="App_Uploads\Reports_SE\6\Reporte_Ciencias_Sociales.pdf" />
-    <Content Include="App_Uploads\Reports_SE\6\Reporte_Estetica.pdf" />
-    <Content Include="App_Uploads\Reports_SE\6\Reporte_Matematica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\1\Reporte_Castellano.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\1\Reporte_Ciencias_Naturaleza.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\1\Reporte_Ciencias_Sociales.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\1\Reporte_Estetica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\1\Reporte_Matematica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\1\Reporte_Castellano.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\1\Reporte_Ciencias_Naturaleza.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\1\Reporte_Ciencias_Sociales.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\1\Reporte_Estetica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\1\Reporte_Matematica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\8\1\Reporte_Biologia.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\2\Reporte_Castellano.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\2\Reporte_Ciencias_Naturaleza.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\2\Reporte_Ciencias_Sociales.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\2\Reporte_Estetica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\2\Reporte_Matematica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\2\Reporte_Castellano.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\2\Reporte_Ciencias_Naturaleza.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\2\Reporte_Ciencias_Sociales.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\2\Reporte_Estetica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\2\Reporte_Matematica.pdf" />
     <None Include="Service References\WS_Security\configuration91.svcinfo" />
     <None Include="Service References\WS_Security\configuration.svcinfo" />
     <None Include="Service References\WS_Security\Reference.svcmap">
@@ -2495,6 +2506,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Browsers\" />
+    <Folder Include="App_Uploads\Reports_SE\10\1\" />
+    <Folder Include="App_Uploads\Reports_SE\10\2\" />
+    <Folder Include="App_Uploads\Reports_SE\8\2\" />
     <Folder Include="Content\Css\Errores\" />
     <Folder Include="Content\Plug-ins\pick-a-color-master\docs\" />
     <Folder Include="Scripts\Views\Errores\" />

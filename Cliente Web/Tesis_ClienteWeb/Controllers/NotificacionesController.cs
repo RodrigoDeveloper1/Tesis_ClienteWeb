@@ -303,17 +303,25 @@ namespace Tesis_ClienteWeb.Controllers
             List<Notification> listaNotificaciones = notificationService
                 .ObtenerListaNotificacionesEnviadasPor_Usuario(_session.USERID);
             #endregion
+            #region No ha enviado notificaciones
+            if (listaNotificaciones.Count == 0)
+                jsonResult.Add(new { Success = false });
+            #endregion
             #region Definiendo el resultado
-            foreach(Notification notificacion in listaNotificaciones)
+            else
             {
-                jsonResult.Add(new {
-                    Success = true,
-                    NotificationId = notificacion.NotificationId,
-                    Notification = notificacion.Message,
-                    Attribution = notificacion.Attribution,
-                    From = "Prof. " + notificacion.User.LastName + ", " + notificacion.User.Name,
-                    DateOfCreation = notificacion.SendDate.ToString("dd/MM/yyyy")
-                });
+                foreach (Notification notificacion in listaNotificaciones)
+                {
+                    jsonResult.Add(new
+                    {
+                        Success = true,
+                        NotificationId = notificacion.NotificationId,
+                        Notification = notificacion.Message,
+                        Attribution = notificacion.Attribution,
+                        From = "Prof. " + notificacion.User.LastName + ", " + notificacion.User.Name,
+                        DateOfCreation = notificacion.SendDate.ToString("dd/MM/yyyy")
+                    });
+                }
             }
             #endregion
 

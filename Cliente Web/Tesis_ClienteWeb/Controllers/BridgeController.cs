@@ -8525,6 +8525,36 @@ namespace Tesis_ClienteWeb.Controllers
             }
             return Json(jsonResult);
         }
+        public JsonResult ObtenerSelectListLapsosProfesorEstrategias(int idCurso)
+        {
+            #region Declaración de variables
+            int idColegio = (int)Session["SchoolId"];
+            SchoolYear anoEscolarActivo = new SchoolYear();
+            List<Period> listaLapsos = new List<Period>();
+            List<object> jsonResult = new List<object>();
+            SchoolYearService _schoolYearService = new SchoolYearService();
+            CourseService courseService = new CourseService();
+            #endregion
+            #region Obtener ano escolar y lista de periodos
+            anoEscolarActivo = _schoolYearService.ObtenerAnoEscolarActivoPorColegio(idColegio);
+            listaLapsos = anoEscolarActivo.Periods;
+            Course course = courseService.ObtenerCursoPor_Id(idCurso);
+            #endregion
+
+            foreach (Period lapso in listaLapsos)
+            {
+                if(!lapso.Name.Equals(ConstantRepository.PERIOD_THREE))
+                {
+                    jsonResult.Add(new
+                    {
+                        nombre = lapso.Name,
+                        idLapso = lapso.PeriodId,
+                        grado = course.Grade
+                    });
+                }
+            }
+            return Json(jsonResult);
+        }
         public List<float> ObtenerPorcentajesPeriodos(DateTime fechaactual, SchoolYear anoescolar, 
             List<Period> listadeperiodos)
         {

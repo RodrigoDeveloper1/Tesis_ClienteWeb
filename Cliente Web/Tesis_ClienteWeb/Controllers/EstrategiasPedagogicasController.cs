@@ -34,7 +34,7 @@ namespace Tesis_ClienteWeb.Controllers
 
             foreach (Course course in listaAux)
             {
-                if (course.Grade <= 6)
+                //if (course.Grade <= 6)
                     listaCursos.Add(course);
             }
             #endregion
@@ -54,6 +54,7 @@ namespace Tesis_ClienteWeb.Controllers
             List<object> jsonResult = new List<object>();
             CourseService courseService = new CourseService();
             SubjectService subjectService = new SubjectService();
+            PeriodService periodService = new PeriodService();
             #endregion
             #region Obteniendo datos del curso
             Course course = courseService.ObtenerCursoPor_Id(idCurso);
@@ -62,6 +63,14 @@ namespace Tesis_ClienteWeb.Controllers
             #region Obteniendo datos de la materia
             Subject subject = subjectService.ObtenerMateriaPorId(idMateria);
             string subjectName = subject.Name;
+            #endregion
+            #region Obteniendo datos del lapso
+            Period period = periodService.ObtenerPeriodPorId(idLapso);
+            string lapso = "";
+            if (period.Name.Equals(ConstantRepository.PERIOD_ONE))
+                lapso = "1";
+            else if (period.Name.Equals(ConstantRepository.PERIOD_TWO))
+                lapso = "2";
             #endregion
             #region Definiendo el path
             string fileName = "";
@@ -78,8 +87,15 @@ namespace Tesis_ClienteWeb.Controllers
             else if (subjectName.Equals("Educación Estética")) 
                 fileName = ConstantRepository.ReportsSE_Estetica;
 
+            if (grade == 8)
+            {
+                if (subjectName.Equals("Biología"))
+                    fileName = ConstantRepository.ReportsSE_Biologia;
+            }
+
             string path =
-                Path.Combine(Server.MapPath(ConstantRepository.ReportsSE_Path), grade.ToString(), fileName);
+                Path.Combine(Server.MapPath(ConstantRepository.ReportsSE_Path), grade.ToString(), 
+                lapso, fileName);
             #endregion
             #region Definiendo el resultado
             if (fileName.Equals(""))

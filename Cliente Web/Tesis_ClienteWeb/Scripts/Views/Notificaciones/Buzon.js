@@ -1,6 +1,4 @@
-﻿
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $(".buzon-enviados").click(function () {
         $('#table-notificaciones').find('tbody').remove();
 
@@ -13,8 +11,6 @@ $(document).ready(function () {
             success: function (data) {
                 if (data[0].Success) {
                     for (var i = 0; i < data.length; i++) {
-                        console.log("Entra ciclo");
-
                         lista += (
                             "<tr>" +
                                 "<td class=''></td>" +
@@ -31,6 +27,12 @@ $(document).ready(function () {
 
                     $('#table-notificaciones').find('tbody').end().append(lista);
                     hideProgress();
+                }
+                else {
+                    hideProgress();
+
+                    swal('¡No hay notificaciones!', 'El usuario aún no ha enviado notificaciones', 'info');
+                    $('#table-notificaciones').find('tbody').remove();
                 }
             },
             error: function () {

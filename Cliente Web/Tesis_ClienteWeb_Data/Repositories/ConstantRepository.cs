@@ -467,6 +467,8 @@ namespace Tesis_ClienteWeb_Data.Repositories
         public const string ReportsSE_Ciencias_Sociales = "Reporte_Ciencias_Sociales.pdf";
         public const string ReportsSE_Estetica = "Reporte_Estetica.pdf";
         public const string ReportsSE_Matematica = "Reporte_Matematica.pdf";
+
+        public const string ReportsSE_Biologia = "Reporte_Biologia.pdf";
         #endregion
 
         #region Constant: SEX_LIST_SHORT
