@@ -21,8 +21,6 @@ var definitiva = 0;
 var auxDefinitiva = 0;
 var deffinal = 0;
 
-
-
 function RenderizarTabla() {
     countAlumnos = nombresAlumnos.length - 1;
     countExamenes = nombresEvaluaciones.length -1;
@@ -158,8 +156,37 @@ function AgregarNotas() {
         url: "/Calificaciones/CargarCalificaciones",
         traditional: true,
         data: postData,
-        success: function (r) {
+        success: function () {
+            swal({
+                title: " ¡Carga de notas exitoso!",
+                text: "Se han cargado las notas correctamente.",
+                type: "success",
+                closeOnConfirm: true,
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    showProgress();
+
+                    window.location.href = 'GestionCalificaciones';
+                }
+            });
+
             window.location.href = 'GestionCalificaciones';
+        },
+        error: function () {
+            hideProgress();
+
+            swal({
+                title: " ¡Error!",
+                text: "Ha ocurrido un error con la carga de notas.",
+                type: "error",
+                closeOnConfirm: true,
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    showProgress();
+
+                    window.location.href = 'GestionCalificaciones';
+                } 
+            });
         }
     });
 }

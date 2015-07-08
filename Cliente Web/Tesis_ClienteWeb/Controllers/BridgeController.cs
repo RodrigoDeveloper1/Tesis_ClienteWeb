@@ -1143,7 +1143,7 @@ namespace Tesis_ClienteWeb.Controllers
 
             return Json(jsonResult);
         }
-
+                
         public JsonResult ObtenerJsonIndicadoresLiterales(int idCompetencia, int idEvaluacion)
         {
             #region Declaración de variables

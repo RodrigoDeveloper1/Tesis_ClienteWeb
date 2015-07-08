@@ -119,6 +119,8 @@ namespace Tesis_ClienteWeb.Controllers
             {
                 StudentService _studentService = new StudentService(unidad);
                 estudiante = _studentService.ObtenerAlumnoPorId(Convert.ToInt32(idSujeto));
+                notificacion.Message = "[" + estudiante.FirstName + " " + estudiante.FirstLastName + "] " + 
+                    mensajeNotificacion;
 
                 SentNotification sentNotification = new SentNotification()
                 {
@@ -244,11 +246,12 @@ namespace Tesis_ClienteWeb.Controllers
                 }
             }
             #endregion
-
+            #region Inicializando la lista de datos para nueva notificación
             model.selectListSujetos = _puente.InicializadorListaSujetosNotificacionesDocente(model.selectListSujetos);
             model.selectListCursos = _puente.InicializadorListaCursosPorDocente(model.selectListCursos, _session.SCHOOLYEARID,
                 _session.USERID);
             model.selectListAtribucion = _puente.InicializadorListaAtribuciones(model.selectListAtribucion);
+            #endregion
 
             return View(model);
 
@@ -287,10 +290,84 @@ namespace Tesis_ClienteWeb.Controllers
             #endregion
         }
 
+        [HttpPost]
+        public JsonResult NotificacionesEnviadas()
+        {
+            ConfiguracionInicial(_controlador, "NotificacionesEnviadas");
 
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+            NotificationService notificationService = new NotificationService();
+            #endregion
+            #region Obteniendo la lista de notificaciones enviadas
+            List<Notification> listaNotificaciones = notificationService
+                .ObtenerListaNotificacionesEnviadasPor_Usuario(_session.USERID);
+            #endregion
+            #region Definiendo el resultado
+            foreach(Notification notificacion in listaNotificaciones)
+            {
+                jsonResult.Add(new {
+                    Success = true,
+                    NotificationId = notificacion.NotificationId,
+                    Notification = notificacion.Message,
+                    Attribution = notificacion.Attribution,
+                    From = "Prof. " + notificacion.User.LastName + ", " + notificacion.User.Name,
+                    DateOfCreation = notificacion.SendDate.ToString("dd/MM/yyyy")
+                });
+            }
+            #endregion
 
+            return Json(jsonResult);
+        }
 
+        [HttpPost]
+        public JsonResult NotificacionesRecibidas()
+        {
+            ObteniendoSesion();
 
+            #region Declaración de variables
+            List<object> jsonResult = new List<object>();
+            NotificationService notificationService = new NotificationService();
+            CourseService courseService = new CourseService();
+            UserService userService = new UserService();
+            #endregion
+            #region Obteniendo la lista de cursos del docente de la sesión activa
+            List<Course> listaCursos = courseService.ObtenerListaCursoPor_Docente_AnoEscolar(_session.USERID,
+                _session.SCHOOLYEARID);
+            #endregion
+            #region Obteniendo la lista de notificaciones
+            List<Notification> listaNotificaciones = notificationService
+                .ObtenerListaNotificacionesPor_Docente_AnoEscolar(_session.USERID, _session.SCHOOLYEARID);
+
+            foreach (Notification notificacion in listaNotificaciones)
+            {
+                foreach (Course curso in listaCursos)
+                {
+                    foreach (SentNotification SN in notificacion.SentNotifications)
+                    {
+                        if ((SN.User != null && SN.User.Id.Equals(_session.USERID)) ||
+                           (SN.Course != null && SN.Course.CourseId == curso.CourseId))
+                        {
+                            string From = notificacion.Automatic ? "Notif. Automática" : "Prof. " +
+                                notificacion.User.LastName + ", " + notificacion.User.Name;
+
+                            jsonResult.Add(new {
+                                Success = true,
+                                NotificationId = notificacion.NotificationId,
+                                SentNotificationId = SN.SentNotificationId,
+                                Notification = notificacion.Message,
+                                Attribution = notificacion.Attribution,
+                                From = From,
+                                DateOfCreation = notificacion.SendDate.ToString("dd/MM/yyyy")
+                            });
+                        }
+                    }
+                }
+            }
+            #endregion
+
+            return Json(jsonResult);
+        }
 
 
 

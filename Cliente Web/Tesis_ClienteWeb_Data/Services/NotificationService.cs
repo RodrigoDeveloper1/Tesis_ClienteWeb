@@ -807,12 +807,14 @@ namespace Tesis_ClienteWeb_Data.Services
             #region Cálculo de datos
             AssessmentService assessmentService = new AssessmentService(this._unidad);
             SubjectService subjectService = new SubjectService(this._unidad);
+            StudentService studentService = new StudentService(this._unidad);
 
             Assessment assessment = assessmentService.ObtenerEvaluacionPor_Id(score.AssessmentId);
             CASU casu = assessment.CASU;
             int grado = casu.Course.Grade;
             Subject subject = casu.Subject;
             SchoolYear schoolYear = casu.Period.SchoolYear;
+            Student student = studentService.ObtenerAlumnoPorId(score.StudentId);
             #endregion
 
             switch (categoria)
@@ -822,8 +824,10 @@ namespace Tesis_ClienteWeb_Data.Services
                     #region Notificación #1
                     notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
                     notificacion.Attribution = subject.Name;
-                    notificacion.Message = "Su hijo sacó " + (grado > 6 ? score.NumberScore.ToString() : 
-                        score.LetterScore) + " en la evaluación: " + assessment.Name + ". Materia " + subject.Name + ".";
+                    notificacion.Message = 
+                        "Su hijo sacó, " + student.FirstName + " " + student.FirstLastName + ", " +
+                        (grado > 6 ? score.NumberScore.ToString() : score.LetterScore) + 
+                        " en la evaluación: " + assessment.Name + ".";
                     notificacion.SendDate = DateTime.Now;
                     notificacion.SchoolYear = schoolYear;
                     notificacion.User = docente;
@@ -835,10 +839,11 @@ namespace Tesis_ClienteWeb_Data.Services
                     #region Notificación #1
                     notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
                     notificacion.Attribution = subject.Name;
-                    notificacion.Message = "La nota obtenida en la evaluación: " + assessment.Name + 
-                        " (" + assessment.Percentage + "%) " + "[" + subject.Name + "], ha sido modificada. El" + 
-                        " nuevo resultado es: " + (grado > 6 ? score.NumberScore.ToString() + " puntos." : 
-                        score.LetterScore);
+                    notificacion.Message = 
+                        "La nota obtenida por el estudiante " + student.FirstName + " " + student.FirstLastName +
+                        " en la evaluación: " + assessment.Name + " (" + assessment.Percentage + "%), ha sido" + 
+                        " modificada. El nuevo resultado es: " + (grado > 6 ? score.NumberScore.ToString() + 
+                        " puntos." : score.LetterScore);
                     notificacion.SendDate = DateTime.Now;
                     notificacion.SchoolYear = schoolYear;
                     notificacion.User = docente;
@@ -1080,6 +1085,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     .Include("Course")
                 where n.User.Id == idUsuario
                 select n.Notification)
+                    .ToHashSet<Notification>()
                     .ToList<Notification>();
             #endregion
             #region Llenando la lista de notificaciones
@@ -1094,6 +1100,29 @@ namespace Tesis_ClienteWeb_Data.Services
                 .ThenByDescending(m => m.SendDate)
                 .ToList<Notification>();
             #endregion
+
+            return listaNotificaciones;
+        }
+        
+        /// <summary>
+        /// Método que obtiene la lista de notificaciones enviadas por un usuario (docente) en particular.
+        /// Rodrigo Uzcátegui - 07-07-15
+        /// </summary>
+        /// <param name="idUsuario">El id del usuario</param>
+        /// <returns>La lista de notificaciones respectiva</returns>
+        public List<Notification> ObtenerListaNotificacionesEnviadasPor_Usuario(string idUsuario)
+        {
+            List<Notification> listaNotificaciones = (
+                from Notification n in _unidad.RepositorioNotification._dbset
+                    .Include("SentNotifications")
+                    .Include("User")
+                    .Include("Event")
+                    .Include("SchoolYear")
+                where n.User.Id == idUsuario
+                select n)
+                    .OrderByDescending(m => m.DateOfCreation)
+                    .ThenByDescending(m => m.SendDate)
+                    .ToList<Notification>();
 
             return listaNotificaciones;
         }

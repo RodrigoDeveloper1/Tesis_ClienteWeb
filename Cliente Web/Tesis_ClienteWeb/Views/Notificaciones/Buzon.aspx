@@ -24,12 +24,16 @@
                             <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-share"></i></button>
                         </div>
 
-                        <!-- Botón actualizador-->
-                        <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-refresh"></i></button>
+                        <!-- Botón actualizador & mensajes enviados-->
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-sm btn-refresh"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-default btn-sm buzon-enviados"><i class="fa fa-share-square-o"></i></button>
+                        </div>
 
                         <!-- Botón nueva notificación -->
                         <button class="btn btn-default btn-sm btn-nueva-notificacion"><i class="fa fa-envelope-o"></i></button>
 
+                        <!-- Flechas derecha e izquierda -->
                         <div class="pull-right">
                             <!--1-50/200-->
                             <div class="btn-group">
@@ -44,8 +48,8 @@
                     </div>
 
                     <!-- Tabla de notificaciones -->
-                    <div class="table-responsive mailbox-messages">
-                        <table class="table table-hover table-striped">
+                    <div class="table-responsive mailbox-messages" id="div-table-notificaciones">
+                        <table class="table table-hover table-striped" id="table-notificaciones">
                             <tbody>
                                 <% foreach (Object NotificationObject in Model.listaNotificacionesObject) %>
                                 <% { %>
@@ -92,12 +96,18 @@
                             <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-share"></i></button>
                         </div>
                         
-                        <!-- Botón actualizador -->
-                        <button class="btn btn-default btn-sm" disabled="disabled"><i class="fa fa-refresh"></i></button>
+                        <!-- Botón actualizador & mensajes enviados-->
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-sm btn-refresh"><i class="fa fa-refresh"></i></button>
+                            <button class="btn btn-default btn-sm buzon-enviados"><i class="fa fa-share-square-o"></i></button>
+                        </div>
                         
                         <!-- Botón nueva notificación -->
-                        <button class="btn btn-default btn-sm btn-nueva-notificacion"><i class="fa fa-envelope-o"></i></button>
+                        <button class="btn btn-default btn-sm btn-nueva-notificacion">
+                            <i class="fa fa-envelope-o"></i>
+                        </button>
 
+                        <!-- Flechas derecha e izquierda -->
                         <div class="pull-right">
                             <!-- 1-50/200 -->
                      
@@ -236,5 +246,6 @@
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="TituloPagina" runat="server">
-    Buzón de notificaciones <small>2 mensajes nuevos</small>
+    Buzón de notificaciones 
+    <!--small>2 mensajes nuevos</small-->
 </asp:Content>
