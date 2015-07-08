@@ -169,8 +169,6 @@ function AgregarNotas() {
                     window.location.href = 'GestionCalificaciones';
                 }
             });
-
-            window.location.href = 'GestionCalificaciones';
         },
         error: function () {
             hideProgress();

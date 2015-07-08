@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ErroresController.cs" />
     <Compile Include="Controllers\EstadisticasController.cs" />
     <Compile Include="Controllers\CalificacionesController.cs" />
+    <Compile Include="Controllers\EstrategiasPedagogicasController.cs" />
     <Compile Include="Controllers\EvaluacionesController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Models\CalificacionesModel.cs" />
     <Compile Include="Models\DocentesModel.cs" />
     <Compile Include="Models\EstadisticasModel.cs" />
+    <Compile Include="Models\EstrategiasPedagogicasModel.cs" />
     <Compile Include="Models\GestionRepresentantesModel.cs" />
     <Compile Include="Models\ReportesModel.cs" />
     <Compile Include="Models\SchoolYearModel.cs" />
@@ -2281,6 +2283,7 @@
     <Content Include="Scripts\Views\Estadisticas\EstadisticasCursos.js" />
     <Content Include="Scripts\Views\Estadisticas\EstadisticasMaterias.js" />
     <Content Include="Scripts\Views\Estadisticas\Reportes.js" />
+    <Content Include="Scripts\Views\EstrategiasPedagogicas\EstrategiasPedagogicas.js" />
     <Content Include="Scripts\Views\Evaluaciones\CrearEvaluacionAvanzadaProfesor.js" />
     <Content Include="Scripts\Views\Evaluaciones\CrearEvaluacionProfesor.js" />
     <Content Include="Scripts\Views\Evaluaciones\Matriz_IndicadoresLiterales.js" />
@@ -2336,6 +2339,16 @@
     <Content Include="App_Uploads\Reports_ServerSide\ReportePorMateria.pdf" />
     <Content Include="App_Uploads\Reports_ServerSide\ReportePorCurso.pdf" />
     <Content Include="App_Uploads\MobileAPK\app-release.apk" />
+    <Content Include="App_Uploads\Reports_SE\2\Reporte_Castellano.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\Reporte_Ciencias_Naturaleza.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\Reporte_Ciencias_Sociales.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\Reporte_Estetica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\2\Reporte_Matematica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\Reporte_Castellano.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\Reporte_Ciencias_Naturaleza.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\Reporte_Ciencias_Sociales.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\Reporte_Estetica.pdf" />
+    <Content Include="App_Uploads\Reports_SE\6\Reporte_Matematica.pdf" />
     <None Include="Service References\WS_Security\configuration91.svcinfo" />
     <None Include="Service References\WS_Security\configuration.svcinfo" />
     <None Include="Service References\WS_Security\Reference.svcmap">
@@ -2376,6 +2389,7 @@
     <Content Include="Views\Estadisticas\EstadisticasCursos.aspx" />
     <Content Include="Views\Estadisticas\EstadisticasMaterias.aspx" />
     <Content Include="Views\Estadisticas\EstadisticasEvaluaciones.aspx" />
+    <Content Include="Views\EstrategiasPedagogicas\EstrategiasPedagogicas.aspx" />
     <Content Include="Views\Evaluaciones\CrearEvaluacionAvanzadaProfesor.aspx" />
     <Content Include="Views\Evaluaciones\CrearEvaluacionProfesor.aspx" />
     <Content Include="Views\Evaluaciones\CrearEvaluacionAvanzada.aspx" />

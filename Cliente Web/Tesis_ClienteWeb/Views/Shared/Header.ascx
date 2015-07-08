@@ -356,7 +356,9 @@
                 
                 <!-- Menú de Estrategias Pedagógicas -->
                 <li>
-                    <a href="#"><i class="fa fa-cogs fa-fw"></i>Estrategias Pedagógicas</a>
+                    <a href="../EstrategiasPedagogicas/EstrategiasPedagogicas">
+                        <i class="fa fa-cogs fa-fw"></i>Estrategias Pedagógicas
+                    </a>
                 </li>                   
                 
                 <!-- Menú de Evaluaciones -->

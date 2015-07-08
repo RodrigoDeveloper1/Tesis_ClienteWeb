@@ -460,6 +460,15 @@ namespace Tesis_ClienteWeb_Data.Repositories
         public const string MobileAPK_Path = "~/App_Uploads/MobileAPK";
         public const string APKFileName = "app-release.apk";
 
+        #region Constantes de las estrategias pedagógicas
+        public const string ReportsSE_Path = "~/App_Uploads/Reports_SE";
+        public const string ReportsSE_Castellano = "Reporte_Castellano.pdf";
+        public const string ReportsSE_Ciencias_Naturaleza = "Reporte_Ciencias_Naturaleza.pdf";
+        public const string ReportsSE_Ciencias_Sociales = "Reporte_Ciencias_Sociales.pdf";
+        public const string ReportsSE_Estetica = "Reporte_Estetica.pdf";
+        public const string ReportsSE_Matematica = "Reporte_Matematica.pdf";
+        #endregion
+
         #region Constant: SEX_LIST_SHORT
         private static readonly ReadOnlyCollection<string> _sex_list_short =
             new ReadOnlyCollection<string>(new[] 

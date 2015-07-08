@@ -825,7 +825,7 @@ namespace Tesis_ClienteWeb_Data.Services
                     notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
                     notificacion.Attribution = subject.Name;
                     notificacion.Message = 
-                        "Su hijo sacó, " + student.FirstName + " " + student.FirstLastName + ", " +
+                        "Su hij, " + student.FirstName + " " + student.FirstLastName + ", sacó" +
                         (grado > 6 ? score.NumberScore.ToString() : score.LetterScore) + 
                         " en la evaluación: " + assessment.Name + ".";
                     notificacion.SendDate = DateTime.Now;
@@ -839,11 +839,21 @@ namespace Tesis_ClienteWeb_Data.Services
                     #region Notificación #1
                     notificacion.AlertType = ConstantRepository.NOTIFICATION_ALERT_TYPE_ResultadoNotas;
                     notificacion.Attribution = subject.Name;
+                    #region Mensaje de la notificación
                     notificacion.Message = 
-                        "La nota obtenida por el estudiante " + student.FirstName + " " + student.FirstLastName +
-                        " en la evaluación: " + assessment.Name + " (" + assessment.Percentage + "%), ha sido" + 
-                        " modificada. El nuevo resultado es: " + (grado > 6 ? score.NumberScore.ToString() + 
-                        " puntos." : score.LetterScore);
+                        "La nota del estudiante " + student.FirstName + " " + student.FirstLastName +
+                        " en: " + assessment.Name + " (" + assessment.Percentage + "%), fue modificada." + 
+                        " La nueva nota es: " + (grado > 6 ? score.NumberScore.ToString() + 
+                        " pts." : score.LetterScore);
+
+                    if (notificacion.Message.Length > 140)
+                    {
+                        notificacion.Message =
+                            "Nota modificada, estudiante: " + student.FirstName + " " + student.FirstLastName + 
+                            ". " + assessment.Name + " (" + assessment.Percentage + "%), nuevo valor: " +
+                            (grado > 6 ? score.NumberScore.ToString() + " pts." : score.LetterScore);
+                    }
+                    #endregion
                     notificacion.SendDate = DateTime.Now;
                     notificacion.SchoolYear = schoolYear;
                     notificacion.User = docente;
